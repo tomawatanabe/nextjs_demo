@@ -13,8 +13,8 @@ export default function Footer(){
         <li key={'inquiry'}>
             <Link href='/'>お問い合わせ</Link>
         </li>
-        <Image src='../images/Facebookロゴ.png' alt='FBロゴ' />
-        <Image src='../images/Instagramロゴ.png' alt='Instロゴ' />
+        <Image src='../images/Facebookロゴ.png' alt='FBロゴ' width={144} height={144} />
+        <Image src='../images/Instagramロゴ.png' alt='Instロゴ' width={144} height={144} />
         <Image src='../images/Twitter.png' alt='Twロゴ' />
         <p>
             運営会社<br />
