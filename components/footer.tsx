@@ -19,7 +19,7 @@ export default function Footer(){
         <p>
             運営会社<br />
             株式会社JORDANS<br />
-            〒160-0022<br />
+            〒160-0022 <br />
             東京都新宿区新宿2-5-12 FORECAST新宿AVENUE8階<br />
             MAIL : jordans@rakus-partners.co.jp<br />
         </p>
