@@ -1,7 +1,5 @@
 
 export default async function AddObj(){
-
-
     const item = await fetch('http://localhost:8000/items');
         const itemsdata:[items:{id:number}] = await item.json()    
     const stock = await fetch("http://localhost:8000/stock");
