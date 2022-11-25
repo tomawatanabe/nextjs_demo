@@ -1,13 +1,11 @@
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 
 const ContactConfirmation = () => {
   const router = useRouter();
 
   const {
-    register,
-    handleSubmit,
     formState: { isValid },
     getValues,
   } = useFormContext();

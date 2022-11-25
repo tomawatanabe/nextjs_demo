@@ -1,5 +1,5 @@
-import Router, { useRouter } from "next/router";
-import { useFormContext, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/router";
+import { useFormContext } from "react-hook-form";
 
 //formでデータ送信はonsubmit
 
@@ -10,7 +10,6 @@ const ContactForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
   } = useFormContext();
 
   console.log(errors);
@@ -19,8 +18,6 @@ const ContactForm = () => {
     console.log(data);
     router.push(`/contact?confirm=1`);
   };
-
-  const values = getValues();
 
   return (
     <>
