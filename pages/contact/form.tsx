@@ -86,7 +86,7 @@ const ContactForm = () => {
           </label>
           <input
             id="phone"
-            placeholder="03-1234-5678"
+            placeholder="0312345678"
             {...register("phone", {
               required: "入力が必須の項目です。",
               pattern: {
