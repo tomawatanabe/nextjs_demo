@@ -1,11 +1,6 @@
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
-
-import React, { useState, useEffect } from "react";
-import { resolveObjectURL } from "buffer";
-import { resourceLimits } from "worker_threads";
-
-//formでデータ送信はonsubmit
+import React from "react";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -14,21 +9,16 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     getValues,
+    setValue,
     formState: { errors },
   } = useFormContext();
-
-  // errorsの確認用
-  // console.log(errors);
 
   const onSubmit = async () => {
     router.push(`/signup?confirm=1`);
   };
 
-  const values = getValues();
-  // console.log(values);
-  // console.log(values.postcode);
-
-  const codeSuggest = async () => {
+  const citySuggest = async () => {
+    const values = getValues();
     const res = await fetch(
       `https://api.zipaddress.net/?zipcode=${values.postcode}`,
       {
@@ -36,9 +26,11 @@ const SignUpForm = () => {
       }
     );
     const result = await res.json();
-    console.log(result.data);
-    return result.data;
+    setValue("prefecture", result.data.pref);
+    setValue("city", result.data.address);
   };
+
+  // thenで書いたが、読みにくいため使わない
   // const codeSuggest = () => {
   //   if (values.postcode) {
   //     fetch(`https://api.zipaddress.net/?zipcode=${values.postcode}`, {
@@ -130,7 +122,7 @@ const SignUpForm = () => {
               },
             })}
           />
-          *ハイフンなし
+          <p>・ハイフンなしで入力してください。</p>
           {errors.phone?.message && (
             <div className="formError">{errors.phone?.message as string}</div>
           )}
@@ -151,7 +143,7 @@ const SignUpForm = () => {
               },
             })}
           />
-          <p>メールアドレスはログインIDになります。</p>
+          <p>・メールアドレスはログインIDになります。</p>
           {errors.email?.message && (
             <div className="formError">{errors.email.message as string}</div>
           )}
@@ -163,7 +155,6 @@ const SignUpForm = () => {
           <input
             type="text"
             placeholder="1600022"
-            // value={}
             {...register("postcode", {
               required: "入力が必須の項目です。",
               pattern: {
@@ -172,9 +163,13 @@ const SignUpForm = () => {
               },
             })}
           ></input>
-          <button className="" onClick={codeSuggest}>
-            郵便番号から住所を自動入力
-          </button>
+          <input
+            type="button"
+            className=""
+            onClick={citySuggest}
+            value="郵便番号から住所を自動入力"
+          />
+
           {errors.postcode?.message && (
             <div className="formError">{errors.postcode.message as string}</div>
           )}
@@ -187,7 +182,6 @@ const SignUpForm = () => {
             type="text"
             placeholder="東京都"
             id="prefecture"
-
             {...register("prefecture", { required: "入力が必須の項目です。" })}
           />
           {errors.prefecture?.message && (
@@ -254,7 +248,7 @@ const SignUpForm = () => {
             })}
           />
           <p>
-            パスワードは大文字、小文字、数字を少なくとも１つ入力してください
+            ・パスワードには大文字、小文字、数字を少なくとも１つ設定してください。
           </p>
           {errors.password?.message && (
             <div className="formError">{errors.password.message as string}</div>
