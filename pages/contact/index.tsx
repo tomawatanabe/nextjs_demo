@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import ContactForm from "./form";
-import ContactConfirmation from "./confirmation";
+import ContactForm from "../../components/contactForm";
+import ContactConfirmation from "../../components/contactConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
 
 const Contact = () => {

@@ -1,20 +1,21 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useFormContext } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
 
 const ContactConfirmation = () => {
   const router = useRouter();
 
+  //useFormContextは入力画面で入力した値を使用するために使う
   const {
-    formState: { isValid },
+    // formState: { isValid },
     getValues,
   } = useFormContext();
 
   const values = getValues();
 
-  if (!isValid) {
-    router.push("/contact");
-  }
+  // if (!isValid) {
+  //   router.push("/contact");
+  // }
 
   return (
     <>
