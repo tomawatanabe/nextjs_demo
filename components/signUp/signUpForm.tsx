@@ -17,6 +17,9 @@ const SignUpForm = () => {
     router.push(`/signup?confirm=1`);
   };
 
+  console.log(errors);
+
+  //郵便番号APIから住所を取得する関数
   const citySuggest = async () => {
     const values = getValues();
     const res = await fetch(
@@ -30,22 +33,6 @@ const SignUpForm = () => {
     setValue("city", result.data.address);
   };
 
-  // thenで書いたが、読みにくいため使わない
-  // const codeSuggest = () => {
-  //   if (values.postcode) {
-  //     fetch(`https://api.zipaddress.net/?zipcode=${values.postcode}`, {
-  //       mode: "cors",
-  //     })
-  //       .then((result) => {
-  //         return result.json();
-  //       })
-  //       .then((result) => {
-  //         console.log(result);
-  //         console.log(result.data);
-  //       });
-  //   }
-  // };
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,89 +40,107 @@ const SignUpForm = () => {
         <h2>
           <span>お客様情報を入力してください。</span>
         </h2>
+        <hr />
         <div>
           <label htmlFor="lastName">
-            氏名<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>氏名
           </label>
+
           <input
             id="lastName"
             placeholder="山田"
-            {...register("lastname", { required: "入力が必須の項目です。" })}
+            {...register("lastname", {
+              required: "必須項目です。",
+            })}
           />
+
           <input
             id="firstName"
             placeholder="太郎"
-            {...register("firstname", { required: "入力が必須の項目です。" })}
+            {...register("firstname", {
+              required: "必須項目です。",
+            })}
           />
-          {errors.lastname?.message && (
-            <div className="formError">
-              {errors.lastname?.message as string}
-            </div>
-          )}
-          {errors.firstname?.message && (
-            <div className="formError">
+
+          {(errors.firstname?.message && (
+            <span className="formError">
               {errors.firstname?.message as string}
-            </div>
-          )}
+            </span>
+          )) ||
+            (errors.lastname?.message && (
+              <span className="formError">
+                {errors.lastname?.message as string}
+              </span>
+            ))}
         </div>
         <div>
           <label htmlFor="kanaLastName">
-            氏名（カナ）<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>氏名（カナ）
           </label>
+
           <input
             id="kanaLastName"
             placeholder="ヤマダ"
             {...register("kanalastname", {
-              required: "入力が必須の項目です。",
+              required: "必須項目です。",
             })}
           />
           <input
             id="kanaFirstName"
             placeholder="タロウ"
             {...register("kanafirstname", {
-              required: "入力が必須の項目です。",
+              required: "必須項目です。",
             })}
           />
-          {errors.kanalastname?.message && (
-            <div className="formError">
+
+          {(errors.kanalastname?.message && (
+            <span className="formError">
               {errors.kanalastname?.message as string}
-            </div>
-          )}
-          {errors.kanafirstname?.message && (
-            <div className="formError">
-              {errors.kanafirstname?.message as string}
-            </div>
-          )}
+            </span>
+          )) ||
+            (errors.kanafirstname?.message && (
+              <span className="formError">
+                {errors.kanalastname?.message as string}
+              </span>
+            ))}
         </div>
         <div>
-          <label htmlFor="phoneNumber">
-            電話番号<span>*必須</span>
-          </label>
-          <input
-            id="phone"
-            placeholder="0312345678"
-            {...register("phone", {
-              required: "入力が必須の項目です。",
-              pattern: {
-                value: /^0\d{9,10}$/,
-                message: "電話番号を正しく入力してください",
-              },
-            })}
-          />
-          <p>・ハイフンなしで入力してください。</p>
-          {errors.phone?.message && (
-            <div className="formError">{errors.phone?.message as string}</div>
-          )}
+          <div>
+            <label htmlFor="phoneNumber">
+              <span className="label-fit label-danger">必須</span>電話番号
+            </label>
+
+            <input
+              id="phone"
+              placeholder="0312345678"
+              {...register("phone", {
+                required: "必須項目です。",
+                pattern: {
+                  value: /^0\d{9,10}$/,
+                  message: "電話番号を正しく入力してください",
+                },
+              })}
+            />
+            {errors.phone?.message && (
+              <span className="formError">
+                {errors.phone?.message as string}
+              </span>
+            )}
+          </div>
+          <div>
+            <span className="notice">*ハイフンなしで入力してください。</span>
+          </div>
         </div>
         <div>
           <label htmlFor="email">
-            メールアドレス<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>メールアドレス
           </label>
+
           <input
             id="email"
             placeholder="sample@sample.co.jp"
             {...register("email", {
-              required: "入力が必須の項目です。",
+              required: "必須項目です。",
               pattern: {
                 value:
                   /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
@@ -143,20 +148,25 @@ const SignUpForm = () => {
               },
             })}
           />
-          <p>・メールアドレスはログインIDになります。</p>
+
           {errors.email?.message && (
-            <div className="formError">{errors.email.message as string}</div>
+            <span className="formError">{errors.email.message as string}</span>
           )}
+          <div>
+            <span className="notice">
+              *メールアドレスはログインIDになります。
+            </span>
+          </div>
         </div>
         <div>
           <label htmlFor="postCode">
-            郵便番号<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>郵便番号
           </label>
           <input
             type="text"
             placeholder="1600022"
             {...register("postcode", {
-              required: "入力が必須の項目です。",
+              required: "必須項目です。",
               pattern: {
                 value: /^\d{3}?\d{4}$/,
                 message: "郵便番号を正しく入力してください。",
@@ -165,61 +175,67 @@ const SignUpForm = () => {
           ></input>
           <input
             type="button"
-            className=""
+            className="btn"
             onClick={citySuggest}
-            value="郵便番号から住所を自動入力"
+            value="住所を自動入力"
           />
 
           {errors.postcode?.message && (
-            <div className="formError">{errors.postcode.message as string}</div>
+            <span className="formError">
+              {errors.postcode.message as string}
+            </span>
           )}
         </div>
         <div>
           <label htmlFor="prefecture">
-            都道府県<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>都道府県
           </label>
           <input
             type="text"
             placeholder="東京都"
             id="prefecture"
-            {...register("prefecture", { required: "入力が必須の項目です。" })}
+            {...register("prefecture", { required: "必須項目です。" })}
           />
           {errors.prefecture?.message && (
-            <div className="formError">
+            <span className="formError">
               {errors.prefecture.message as string}
-            </div>
+            </span>
           )}
         </div>
         <div>
           <label htmlFor="city">
-            市区町村<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>市区町村
           </label>
           <input
             type="text"
             placeholder="新宿区新宿"
             id="city"
-            {...register("city", { required: "入力が必須の項目です。" })}
+            {...register("city", { required: "必須項目です。" })}
           ></input>
           {errors.city?.message && (
-            <div className="formError">{errors.city.message as string}</div>
+            <span className="formError">{errors.city.message as string}</span>
           )}
         </div>
         <div>
           <label htmlFor="address">
-            番地<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>番地
           </label>
           <input
             type="text"
             placeholder="4-3-25"
             id="address"
-            {...register("address", { required: "入力が必須の項目です。" })}
+            {...register("address", { required: "必須項目です。" })}
           />
           {errors.address?.message && (
-            <div className="formError">{errors.address.message as string}</div>
+            <span className="formError">
+              {errors.address.message as string}
+            </span>
           )}
         </div>
         <div>
-          <label htmlFor="building">アパート・マンション名</label>
+          <label htmlFor="building">
+            <span className="label-fit label-warning">任意</span>建物名
+          </label>
           <input
             type="text"
             placeholder="TOKYU REIT新宿ビル8F"
@@ -229,13 +245,13 @@ const SignUpForm = () => {
         </div>
         <div>
           <label htmlFor="password">
-            パスワード<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>パスワード
           </label>
           <input
             type="password"
             id="password"
             {...register("password", {
-              required: "入力が必須の項目です。",
+              required: "必須項目です。",
               minLength: {
                 value: 8,
                 message: "パスワードは8文字以上で入力してください",
@@ -247,34 +263,39 @@ const SignUpForm = () => {
               },
             })}
           />
-          <p>
-            ・パスワードには大文字、小文字、数字を少なくとも１つ設定してください。
-          </p>
           {errors.password?.message && (
-            <div className="formError">{errors.password.message as string}</div>
+            <span className="formError">
+              {errors.password.message as string}
+            </span>
           )}
         </div>
         <div>
           <label htmlFor="applicant-building">
-            パスワード（再入力）<span>*必須</span>
+            <span className="label-fit label-danger">必須</span>
+            パスワード（確認）
           </label>
           <input
             type="password"
             id="applicant-address"
             {...register("password_confirmation", {
-              required: "入力が必須の項目です。",
+              required: "必須項目です。",
               validate: (value) =>
                 value === getValues("password") || "パスワードが一致しません",
             })}
           />
           {errors.password_confirmation?.message && (
-            <div className="formError">
+            <span className="formError">
               {errors.password_confirmation.message as string}
-            </div>
+            </span>
           )}
         </div>
+        <div>
+          <span className="notice">
+            *パスワードには大文字、小文字、数字を少なくとも１つ設定してください。
+          </span>
+        </div>
 
-        <button type="submit">入力内容を確認</button>
+        <button type="submit" className="form-submit-btn">入力内容を確認</button>
       </form>
     </>
   );

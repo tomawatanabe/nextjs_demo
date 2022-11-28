@@ -1,14 +1,17 @@
 import { useRouter } from "next/router";
-import SignUpForm from "../../components/signUp/signUpForm";
-import SignUpConfirmation from "../../components/signUp/signUpConfirmation";
+import PurchaseForm from "../../components/purchase/purchaseForm";
+import PurchaseConfirmation from "../../components/purchase/purchaseConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
+import { useState } from "react";
 
-const Contact = () => {
+const Purchase = () => {
+
+
   const router = useRouter();
   const isConfirm = router.query.confirm;
 
   const methods = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     criteriaMode: "all",
   });
 
@@ -17,11 +20,11 @@ const Contact = () => {
       <FormProvider {...methods}>
         {isConfirm ? (
           <>
-            <SignUpConfirmation />
+            <PurchaseConfirmation />
           </>
         ) : (
           <>
-            <SignUpForm />
+            <PurchaseForm />
           </>
         )}
       </FormProvider>
@@ -29,4 +32,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Purchase;

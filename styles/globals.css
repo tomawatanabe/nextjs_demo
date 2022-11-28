@@ -24,3 +24,73 @@ a {
     background: black;
   }
 }
+
+label,
+.subtitle {
+  display: inline-block;
+  text-align: left;
+  width: 210px;
+  padding: 15px;
+}
+
+input {
+  margin-right: 15px;
+  width: 190px;
+}
+
+.formError {
+  color: #df6f5f;
+  margin-right: 0.3em;
+  font-size: 0.8em;
+  padding: 0.05em 0.25em 0.1em 0.25em;
+  border-radius: 0.3em;
+  white-space: nowrap;
+}
+
+.label-fit {
+  color: #fff;
+  margin-right: 0.3em;
+  font-size: 0.8em;
+  padding: 0.05em 0.25em 0.1em 0.25em;
+  border-radius: 0.3em;
+  white-space: nowrap;
+  text-align: center;
+  font-weight: normal;
+}
+
+.label-danger {
+  background-color: #df6f5f;
+}
+
+.label-warning {
+  background-color: #f5b555;
+}
+
+.btn {
+  width: auto;
+}
+
+hr {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+}
+
+.notice {
+  padding: 0px;
+  padding-left: 15px;
+  font-style: italic;
+}
+
+textarea{
+  margin-left: 10px;
+}
+
+.photo-sumbnail{
+  padding-left: px;
+}
+
+.preview{
+  padding-left: 200px;
+}
