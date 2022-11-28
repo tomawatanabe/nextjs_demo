@@ -25,6 +25,8 @@ export type Stock = {
   item: Item;
 };
 
+
+
 export type Users = {
   id: number;
   firstName: string;
@@ -37,4 +39,17 @@ export type Users = {
   address: string;
   telephone: string;
   deleted: string;
+};
+
+
+
+export type FavoriteItem = {
+  itemId: number;
+  cookieName: string | undefined; 
+  name: string;
+  price: number;
+  size: number;
+  imagePath: string;
+  condition: string;
+  deleted: boolean;
 };
