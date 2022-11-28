@@ -24,3 +24,32 @@ export type Stock = {
   condition: string;
   item: Item;
 };
+
+
+
+export type Users = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  kanaFirstName: string;
+  kanaLastName: string;
+  email: string;
+  password: string;
+  zipcode: string;
+  address: string;
+  telephone: string;
+  deleted: string;
+};
+
+
+
+export type FavoriteItem = {
+  itemId: number;
+  cookieName: string | undefined; 
+  name: string;
+  price: number;
+  size: number;
+  imagePath: string;
+  condition: string;
+  deleted: boolean;
+};
