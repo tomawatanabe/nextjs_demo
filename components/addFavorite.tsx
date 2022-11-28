@@ -50,5 +50,4 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
   )
 };
 
-
 export default AddFavorit;

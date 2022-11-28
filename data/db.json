@@ -1400,8 +1400,74 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": false,
+      "deleted": true,
       "id": 2
+    },
+    {
+      "itemId": 1,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
+    },
+    {
+      "itemId": 2,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 4
+    },
+    {
+      "itemId": 1,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 5
+    },
+    {
+      "itemId": 23,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR JORDAN 6 RETRO",
+      "price": 39600,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR JORDAN 6 RETRO③/AIR JORDAN 6 RETRO③_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 6
+    },
+    {
+      "itemId": 35,
+      "cookieName": "",
+      "name": "THE 10 : NIKE BLAZER MID",
+      "price": 82500,
+      "size": 26,
+      "imagePath": "images/sneakers/THE 10 _ NIKE BLAZER MID/THE 10 NIKE BLAZER MID1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 7
+    },
+    {
+      "itemId": 6,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FORCE 1 07 LV8 ND",
+      "price": 46200,
+      "size": 29,
+      "imagePath": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 8
     }
   ],
   "usedItems": []
