@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Stocks from '../pages/api/stocks';
 import { Stock } from "../types";
 
-const items = Stocks
 export default function ItemList() {
 items.map(()=>{
 return(
