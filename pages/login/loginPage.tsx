@@ -36,7 +36,7 @@ export default function Loginpage() {
           console.log(data.massage);
         } else {
           console.log(`ユーザー認証完了`);
-          Cookies.set("cookie_name", `${data.cookieId}`);
+          document.cookie = `${data.cookieId}`;
         }
         router.replace("/");
       });

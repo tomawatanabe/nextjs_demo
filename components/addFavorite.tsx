@@ -1,27 +1,34 @@
 import type { Stock } from "../types";
-import type {FavoriteItem} from "../types";
-import Cookies from 'js-cookie';
+import type { FavoriteItem } from "../types";
+import Router from "next/router";
+import { useEffect, useState } from "react";
 
+const AddFavorit = ({ stock }: { stock: Stock }) => {
 
-const AddFavorit = ({stock}: {stock:Stock}) => {
+  const [cookieName, setCookieName] = useState("");
 
-    const cookieName = Cookies.get("cookieName");
-    // cookieNameが取得出来れば、お気に入り追加機能を使えて、取得出来なければログイン画面に遷移
-    
-    const data: FavoriteItem = {
-      itemId: stock.id,
-      cookieName: cookieName,
-      name: stock.item.name,
-      price: stock.price,
-      size: stock.size,
-      imagePath: stock.image1,
-      condition: stock.condition,
-      deleted: false
-    };
+  useEffect(() => {
+    setCookieName(document.cookie);
+  }, []);
 
-    const sendFavo = () => {
+  // cookieNameが取得出来れば、お気に入り追加機能を使えて、取得出来なければログイン画面に遷移
+  const data: FavoriteItem = {
+    itemId: stock.id,
+    cookieName: cookieName,
+    name: stock.item.name,
+    price: stock.price,
+    size: stock.size,
+    imagePath: stock.image1,
+    condition: stock.condition,
+    deleted: false
+  };
+
+  const sendFavo = () => {
+    if (!cookieName === true) {
+      Router.push("/login/loginPage")
+    } else { 
     fetch('http://localhost:8000/favoriteItems', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -33,21 +40,15 @@ const AddFavorit = ({stock}: {stock:Stock}) => {
       })
       .catch((error) => {
         console.error('Error:', error);
-      });
-      
-    };
-    
-    return (
-      <div>
-        <button onClick={sendFavo}>お気に入りに追加</button>
-      </div>
-    );
-    
-  };
-  
-  
-  export default AddFavorit;
+      });}
+  }
 
-  
+  return (
+    <div>
+      <button onClick={sendFavo}>お気に入りに追加</button>
+    </div>
+  )
+};
 
-   
+
+export default AddFavorit;

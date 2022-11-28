@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 const SignIn = ({ children }: any) => {
-  const signIn = Cookies.get("cookie_name");
+  const signIn = document.cookie;
   const router = useRouter();
   useEffect(() => {
     if (!signIn === true) {
