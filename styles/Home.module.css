@@ -1,3 +1,9 @@
+.mainFlex{
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .container {
   padding: 0 2rem;
 }
