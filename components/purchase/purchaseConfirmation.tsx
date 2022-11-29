@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 
-const PurchaseConfirmation = (props:any) => {
+const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
   const router = useRouter();
 
   const {
@@ -12,12 +12,12 @@ const PurchaseConfirmation = (props:any) => {
   } = useFormContext();
 
   const values = getValues();
-
+  console.log(values);
   //Set to true if the form doesn't have any errors.
   //何かしらエラーがあるとき会員登録ページに飛ぶ
-  // if (!isValid) {
-  //   router.push("/purchase");
-  // }
+  if (!isValid) {
+    router.push("/purchase");
+  }
 
   return (
     <>
@@ -84,41 +84,122 @@ const PurchaseConfirmation = (props:any) => {
             建物名
           </span>
           {values?.building}
-        </p>{" "}
+        </p>
         <h2>買取希望商品情報の確認</h2>
         <hr />
-        <h3>買取希望商品１</h3>
-        <p>
+        <div className="form-group-used-item">
+          <div className="used-item-formA">
+            <h3>買取希望商品１</h3>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>品名
+              </span>
+              {values.itemName}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>品番
+              </span>
+              {values.itemCode}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>サイズ（cm）
+              </span>
+              {values.itemSize}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>カラー
+              </span>
+              {values.itemColor}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>写真
+              </span>
+              {values.itemPhoto[0].name}
+            </p>
+            <span className="subtitle-preview">*プレビュー</span>
+            {!!imageData && (
+              <span className="preview">
+                {/* stateのバイナリデータを参照する */}
+                <Image
+                  src={imageData}
+                  alt="画像プレビュー"
+                  height={150}
+                  width={150}
+                />
+              </span>
+            )}
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-warning">任意</span>
+                備考
+              </span>
+              {values?.itemNote}
+            </p>
+          </div>
+          <div className="used-item-formB">
+            <h3>買取希望商品２</h3>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>品名
+              </span>
+              {values.itemNameB}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>品番
+              </span>
+              {values.itemCodeB}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>サイズ（cm）
+              </span>
+              {values.itemSizeB}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>カラー
+              </span>
+              {values.itemColorB}
+            </p>
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-danger">必須</span>写真
+              </span>
+              {values.itemPhotoB[0].name}
+            </p>
+            <span className="subtitle-preview">*プレビュー</span>
+            {!!imageDataB && (
+              <span className="preview">
+                {/* stateのバイナリデータを参照する */}
+                <Image
+                  src={imageDataB}
+                  alt="画像プレビュー"
+                  height={150}
+                  width={150}
+                />
+              </span>
+            )}
+            <p>
+              <span className="subtitle">
+                <span className="label-fit label-warning">任意</span>
+                備考
+              </span>
+              {values?.itemNoteB}
+            </p>
+          </div>
+        </div>
+        <hr />
+        <div>
           <span className="subtitle">
-            <span className="label-fit label-danger">必須</span>品名
+            <span className="label-fit label-warning">任意</span>備考
           </span>
-          {values.itemName}
-        </p>
-        <p>
-          <span className="subtitle">
-            <span className="label-fit label-danger">必須</span>品番
-          </span>
-          {values.itemCode}
-        </p>
-        <p>
-          <span className="subtitle">
-            <span className="label-fit label-danger">必須</span>サイズ（cm）
-          </span>
-          {values.itemSize}
-        </p>
-        <p>
-          <span className="subtitle">
-            <span className="label-fit label-danger">必須</span>カラー
-          </span>
-          {values.itemColor}
-        </p>
-        <p>
-          <span className="subtitle">
-            <span className="label-fit label-danger">必須</span>写真
-          </span>
-        </p>
-        {/* <Image src={imagePreview} alt="画像プレビュー" width={150} /> */}
-
+          {values?.itemAdd}
+        </div>
         <div className="button001">
           <Link href="/purchase">入力内容を修正する</Link>
         </div>

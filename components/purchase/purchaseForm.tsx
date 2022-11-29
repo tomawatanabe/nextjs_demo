@@ -1,46 +1,14 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 import React from "react";
 import Image from "next/image";
 
-const PurchaseForm = (props:any) => {
-  //inputに登録された画像のバイナリデータを保持するstate
-  //型名、要検討
-  const [imagePreview, setImagePreview] = useState<any>(undefined);
-
-  //inputに登録された画像のバイナリデータをstateに保持する関数
-  const onChangeFileInput = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    //imagePreviewの値をundefinedに初期化
-    setImagePreview(undefined);
-
-    // 何も選択されなかったら処理中断
-    if (event.target.files?.length === 0) {
-      return;
-    }
-
-    // ファイル画像でなかったら処理中断
-    if (!event.target.files?.[0].type.match("image.*")) {
-      return;
-    }
-
-    // FileReaderクラスのインスタンスを取得
-    const reader = new FileReader();
-
-    // ファイルを読み込み終わったタイミングで実行するイベントハンドラー
-    reader.onload = (e) => {
-      // imagePreviewに読み込み結果（データURL/バイナリデータ）を代入する
-      // imagePreviewに値を入れると<output>に画像が表示される
-      console.log(e.target?.result);
-      setImagePreview(e.target?.result);
-    };
-
-    // ファイル読み込み読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
-    console.log(reader.readAsDataURL(event.target?.files[0]));
-  };
-
+const PurchaseForm = ({
+  handleChange,
+  handleChangeB,
+  imageData,
+  imageDataB,
+}: any) => {
   const router = useRouter();
 
   const {
@@ -64,11 +32,16 @@ const PurchaseForm = (props:any) => {
       }
     );
     const result = await res.json();
+
+    //存在しない郵便番号の場合、アラートを返す
+    if (result.code === 404) {
+      alert("存在しない郵便番号です");
+      return;
+    }
+
     setValue("prefecture", result.data.pref);
     setValue("city", result.data.address);
   };
-
-  console.log(getValues().itemPhoto);
 
   return (
     <>
@@ -284,179 +257,205 @@ const PurchaseForm = (props:any) => {
           <span>買取希望商品情報を入力してください。</span>
         </h2>
         <hr />
-        <div className="used-item-formA">
-          <h3>買取希望商品１</h3>
-          <div>
-            <label htmlFor="itemName">
-              <span className="label-fit label-danger">必須</span>品名
-            </label>
-            <input
-              type="text"
-              placeholder="NIKE AIR JORDAN 1"
-              id="itemName"
-              {...register("itemName", { required: "必須項目です。" })}
-            />
-            {errors.itemName?.message && (
-              <span className="formError">
-                {errors.itemName.message as string}
-              </span>
-            )}
+        <div className="form-group-used-item">
+          <div className="used-item-formA">
+            <h3>買取希望商品１</h3>
+            <div>
+              <label htmlFor="itemName">
+                <span className="label-fit label-danger">必須</span>品名
+              </label>
+              <input
+                type="text"
+                placeholder="NIKE AIR JORDAN 1"
+                id="itemName"
+                {...register("itemName", { required: "必須項目です。" })}
+              />
+              {errors.itemName?.message && (
+                <span className="formError">
+                  {errors.itemName.message as string}
+                </span>
+              )}
+            </div>
+            <div>
+              <label htmlFor="itemCode">
+                <span className="label-fit label-danger">必須</span>品番
+              </label>
+              <input
+                type="text"
+                placeholder="555088-101"
+                id="itemCode"
+                {...register("itemCode", { required: "必須項目です。" })}
+              />
+              {errors.itemCode?.message && (
+                <span className="formError">
+                  {errors.itemCode.message as string}
+                </span>
+              )}
+            </div>
+            <div>
+              <label htmlFor="itemSize">
+                <span className="label-fit label-danger">必須</span>サイズ（cm）
+              </label>
+              <input
+                type="text"
+                placeholder="28cm"
+                id="itemSize"
+                {...register("itemSize", { required: "必須項目です。" })}
+              />
+              {errors.itemSize?.message && (
+                <span className="formError">
+                  {errors.itemSize.message as string}
+                </span>
+              )}
+            </div>
+            <div>
+              <label htmlFor="itemColor">
+                <span className="label-fit label-danger">必須</span>カラー
+              </label>
+              <input
+                type="text"
+                placeholder="白"
+                id="itemColor"
+                {...register("itemColor", { required: "必須項目です。" })}
+              />
+              {errors.itemColor?.message && (
+                <span className="formError">
+                  {errors.itemColor.message as string}
+                </span>
+              )}
+            </div>
+            <div>
+              <label htmlFor="itemPhoto">
+                <span className="label-fit label-danger">必須</span>写真
+              </label>
+              <input
+                //画像ファイルだけでバリデーションする
+                accept="image/*"
+                type="file"
+                id="itemPhoto"
+                {...register("itemPhoto", { required: "必須項目です。" })}
+                onChange={handleChange}
+              />
+              {errors.itemPhoto?.message && (
+                <span className="formError">
+                  {errors.itemPhoto.message as string}
+                </span>
+              )}
+              <div>
+                {!!imageData && (
+                  <>
+                    <span className="subtitle-preview">*プレビュー</span>
+                    <output className="preview">
+                      {/* srcでstateのバイナリデータを参照する */}
+                      <Image
+                        src={imageData}
+                        alt="画像プレビュー"
+                        height={150}
+                        width={150}
+                      />
+                    </output>
+                  </>
+                )}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="itemNote">
+                <span className="label-fit label-warning">任意</span>備考
+              </label>
+              <input
+                type="text"
+                placeholder="箱無し、傷あり"
+                id="itemNote"
+                {...register("itemNote")}
+              />
+            </div>
           </div>
-          <div>
-            <label htmlFor="itemCode">
-              <span className="label-fit label-danger">必須</span>品番
-            </label>
-            <input
-              type="text"
-              placeholder="555088-101"
-              id="itemCode"
-              {...register("itemCode", { required: "必須項目です。" })}
-            />
-            {errors.itemCode?.message && (
-              <span className="formError">
-                {errors.itemCode.message as string}
-              </span>
-            )}
+          <div className="used-item-formB">
+            <h3>買取希望商品２</h3>
+            <div>
+              <label htmlFor="itemNameB">
+                <span className="label-fit label-danger">必須</span>品名
+              </label>
+              <input
+                type="text"
+                placeholder="NIKE AIR JORDAN 1"
+                id="itemNameB"
+                {...register("itemNameB")}
+              />
+            </div>
+            <div>
+              <label htmlFor="itemCodeB">
+                <span className="label-fit label-danger">必須</span>品番
+              </label>
+              <input
+                type="text"
+                placeholder="555088-101"
+                id="itemCodeB"
+                {...register("itemCodeB")}
+              />
+            </div>
+            <div>
+              <label htmlFor="itemSizeB">
+                <span className="label-fit label-danger">必須</span>サイズ（cm）
+              </label>
+              <input
+                type="text"
+                placeholder="28cm"
+                id="itemSizeB"
+                {...register("itemSizeB")}
+              />
+            </div>
+            <div>
+              <label htmlFor="itemColorB">
+                <span className="label-fit label-danger">必須</span>カラー
+              </label>
+              <input
+                type="text"
+                placeholder="白"
+                id="itemColorB"
+                {...register("itemColorB")}
+              />
+            </div>
+            <div>
+              <label htmlFor="itemPhotoB">
+                <span className="label-fit label-danger">必須</span>写真
+              </label>
+              <input
+                type="file"
+                id="itemPhotoB"
+                {...register("itemPhotoB")}
+                onChange={handleChangeB}
+              />
+            </div>
+            <div>
+              {!!imageDataB && (
+                <>
+                  <span className="subtitle-preview">*プレビュー</span>
+                  <output className="preview">
+                    {/* srcでstateのバイナリデータを参照する */}
+                    <Image
+                      src={imageDataB}
+                      alt="画像プレビュー"
+                      height={150}
+                      width={150}
+                    />
+                  </output>
+                </>
+              )}
+            </div>
+            <div>
+              <label htmlFor="itemNoteB">
+                <span className="label-fit label-warning">任意</span>備考
+              </label>
+              <input
+                type="text"
+                placeholder="箱無し、傷あり"
+                id="itemNoteB"
+                {...register("itemNoteB")}
+              />
+            </div>
           </div>
         </div>
-        <div>
-          <label htmlFor="itemSize">
-            <span className="label-fit label-danger">必須</span>サイズ（cm）
-          </label>
-          <input
-            type="text"
-            placeholder="28cm"
-            id="itemSize"
-            {...register("itemSize", { required: "必須項目です。" })}
-          />
-          {errors.itemSize?.message && (
-            <span className="formError">
-              {errors.itemSize.message as string}
-            </span>
-          )}
-        </div>
-        <div>
-          <label htmlFor="itemColor">
-            <span className="label-fit label-danger">必須</span>カラー
-          </label>
-          <input
-            type="text"
-            placeholder="白"
-            id="itemColor"
-            {...register("itemColor", { required: "必須項目です。" })}
-          />
-          {errors.itemColor?.message && (
-            <span className="formError">
-              {errors.itemColor.message as string}
-            </span>
-          )}
-        </div>
-        <div>
-          <label htmlFor="itemPhoto">
-            <span className="label-fit label-danger">必須</span>写真
-          </label>
-          <input
-            //画像ファイルだけでバリデーションする
-            accept="image/*"
-            type="file"
-            id="itemPhoto"
-            {...register("itemPhoto", { required: "必須項目です。" })}
-            onChange={onChangeFileInput}
-          />
-          {errors.itemPhoto?.message && (
-            <span className="formError">
-              {errors.itemPhoto.message as string}
-            </span>
-          )}
-          <div>
-            {!!imagePreview && (
-              <output className="preview">
-                {/* stateのバイナリデータを参照する */}
-                <Image
-                  src={imagePreview}
-                  alt="画像プレビュー"
-                  height={150}
-                  width={150}
-                />
-              </output>
-            )}
-          </div>
-        </div>
-        <div>
-          <label htmlFor="itemNote">
-            <span className="label-fit label-warning">任意</span>備考
-          </label>
-          <input
-            type="text"
-            placeholder="箱無し、傷あり"
-            id="itemNote"
-            {...register("itemNote")}
-          />
-        </div>
-        {/* <div className="used-item-form">
-          <h3>買取希望商品２</h3>
-          <div>
-            <label htmlFor="itemNameB">
-              <span className="label-fit label-danger">必須</span>品名
-            </label>
-            <input
-              type="text"
-              placeholder="NIKE AIR JORDAN 1"
-              id="itemName"
-              {...register("itemName")}
-            />
-          </div>
-          <div>
-            <label htmlFor="itemCode">
-              <span className="label-fit label-danger">必須</span>品番
-            </label>
-            <input
-              type="text"
-              placeholder="555088-101"
-              id="itemCode"
-              {...register("itemCode")}
-            />
-          </div>
-          <div>
-            <label htmlFor="itemSize">
-              <span className="label-fit label-danger">必須</span>サイズ
-            </label>
-            <input
-              type="text"
-              placeholder="28cm"
-              id="itemSize"
-              {...register("itemSize")}
-            />
-          </div>
-          <div>
-            <label htmlFor="itemColor">
-              <span className="label-fit label-danger">必須</span>カラー
-            </label>
-            <input
-              type="text"
-              placeholder="白"
-              id="itemColor"
-              {...register("itemColor")}
-            />
-          </div>
-          <div>
-            <label htmlFor="itemPhoto">
-              <span className="label-fit label-danger">必須</span>写真
-            </label>
-            <input type="file" id="itemPhoto" {...register("itemPhoto")} />
-          </div>
-          <div>
-            <label htmlFor="itemNote">
-              <span className="label-fit label-warning">任意</span>備考
-            </label>
-            <input
-              type="text"
-              placeholder="箱無し、傷あり"
-              id="itemNote"
-              {...register("itemNote")}
-            />
-          </div>
-        </div> */}
 
         <div>
           <p>
@@ -476,8 +475,8 @@ const PurchaseForm = (props:any) => {
             </label>
             <br />
             <textarea
-              cols={80}
-              rows={5}
+              cols={120}
+              rows={15}
               id="note"
               placeholder="買取情報を入力してください"
               {...register("itemAdd")}

@@ -28,7 +28,15 @@ const SignUpForm = () => {
         mode: "cors",
       }
     );
+
     const result = await res.json();
+
+    //存在しない郵便番号の場合、アラートを返す
+    if (result.code === 404) {
+      alert("存在しない郵便番号です");
+      return;
+    }
+    
     setValue("prefecture", result.data.pref);
     setValue("city", result.data.address);
   };
@@ -295,7 +303,9 @@ const SignUpForm = () => {
           </span>
         </div>
 
-        <button type="submit" className="form-submit-btn">入力内容を確認</button>
+        <button type="submit" className="form-submit-btn">
+          入力内容を確認
+        </button>
       </form>
     </>
   );
