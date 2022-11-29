@@ -346,7 +346,6 @@ const PurchaseForm = ({
                   <>
                     <span className="subtitle-preview">*プレビュー</span>
                     <output className="preview">
-                      {/* srcでstateのバイナリデータを参照する */}
                       <Image
                         src={imageData}
                         alt="画像プレビュー"
@@ -432,7 +431,6 @@ const PurchaseForm = ({
                 <>
                   <span className="subtitle-preview">*プレビュー</span>
                   <output className="preview">
-                    {/* srcでstateのバイナリデータを参照する */}
                     <Image
                       src={imageDataB}
                       alt="画像プレビュー"

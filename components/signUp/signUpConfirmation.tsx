@@ -6,17 +6,10 @@ const SignUpConfirmation = () => {
   const router = useRouter();
 
   const {
-    formState: { isValid },
     getValues,
   } = useFormContext();
 
   const values = getValues();
-
-  //Set to true if the form doesn't have any errors.
-  //何かしらエラーがあるとき会員登録ページに飛ぶ
-  if (!isValid) {
-    router
-  }
 
   //データベースに登録する関数
   const handleSubmitUserValue = () => {

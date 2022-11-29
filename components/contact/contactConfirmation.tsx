@@ -7,15 +7,10 @@ const ContactConfirmation = () => {
 
   //useFormContextは入力画面で入力した値を使用するために使う
   const {
-    // formState: { isValid },
     getValues,
   } = useFormContext();
 
   const values = getValues();
-
-  // if (!isValid) {
-  //   router.push("/contact");
-  // }
 
   return (
     <>

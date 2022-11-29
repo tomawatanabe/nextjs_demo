@@ -204,7 +204,6 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
             <span className="subtitle-preview">*プレビュー</span>
             {!!imageDataB && (
               <span className="preview">
-                {/* stateのバイナリデータを参照する */}
                 <Image
                   src={imageDataB}
                   alt="画像プレビュー"

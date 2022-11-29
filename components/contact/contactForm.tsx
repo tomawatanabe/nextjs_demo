@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 
-//formでデータ送信はonsubmit
-
 const ContactForm = () => {
   const router = useRouter();
 
