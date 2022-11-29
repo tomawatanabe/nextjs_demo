@@ -8,7 +8,7 @@ const Contact = () => {
   const isConfirm = router.query.confirm;
 
   const methods = useForm({
-    mode: "onBlur",
+    mode: "onSubmit",
     criteriaMode: "all",
   });
 

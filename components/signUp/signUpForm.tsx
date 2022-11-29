@@ -13,17 +13,19 @@ const SignUpForm = () => {
     formState: { errors },
   } = useFormContext();
 
-  const onSubmit = async () => {
+  //submitが押されたとき、確認画面に遷移する
+  const onSubmit = () => {
     router.push(`/signup?confirm=1`);
+    console.log("確認ボタンが押されました");
   };
 
-  console.log(errors);
+  // console.log(errors);
 
   //郵便番号APIから住所を取得する関数
   const citySuggest = async () => {
     const values = getValues();
     const res = await fetch(
-      `https://api.zipaddress.net/?zipcode=${values.postcode}`,
+      `https://api.zipaddress.net/?zipcode=${values.postCode}`,
       {
         mode: "cors",
       }
@@ -36,7 +38,7 @@ const SignUpForm = () => {
       alert("存在しない郵便番号です");
       return;
     }
-    
+
     setValue("prefecture", result.data.pref);
     setValue("city", result.data.address);
   };
@@ -57,7 +59,7 @@ const SignUpForm = () => {
           <input
             id="lastName"
             placeholder="山田"
-            {...register("lastname", {
+            {...register("lastName", {
               required: "必須項目です。",
             })}
           />
@@ -65,19 +67,19 @@ const SignUpForm = () => {
           <input
             id="firstName"
             placeholder="太郎"
-            {...register("firstname", {
+            {...register("firstName", {
               required: "必須項目です。",
             })}
           />
 
-          {(errors.firstname?.message && (
+          {(errors.firstName?.message && (
             <span className="formError">
-              {errors.firstname?.message as string}
+              {errors.firstName?.message as string}
             </span>
           )) ||
-            (errors.lastname?.message && (
+            (errors.lastName?.message && (
               <span className="formError">
-                {errors.lastname?.message as string}
+                {errors.lastName?.message as string}
               </span>
             ))}
         </div>
@@ -89,26 +91,26 @@ const SignUpForm = () => {
           <input
             id="kanaLastName"
             placeholder="ヤマダ"
-            {...register("kanalastname", {
+            {...register("kanaLastName", {
               required: "必須項目です。",
             })}
           />
           <input
             id="kanaFirstName"
             placeholder="タロウ"
-            {...register("kanafirstname", {
+            {...register("kanaFirstName", {
               required: "必須項目です。",
             })}
           />
 
-          {(errors.kanalastname?.message && (
+          {(errors.kanaLastName?.message && (
             <span className="formError">
-              {errors.kanalastname?.message as string}
+              {errors.kanaLastName?.message as string}
             </span>
           )) ||
-            (errors.kanafirstname?.message && (
+            (errors.kanaFirstName?.message && (
               <span className="formError">
-                {errors.kanalastname?.message as string}
+                {errors.kanaLastName?.message as string}
               </span>
             ))}
         </div>
@@ -140,14 +142,14 @@ const SignUpForm = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="email">
+          <label htmlFor="mail">
             <span className="label-fit label-danger">必須</span>メールアドレス
           </label>
 
           <input
-            id="email"
+            id="mail"
             placeholder="sample@sample.co.jp"
-            {...register("email", {
+            {...register("mail", {
               required: "必須項目です。",
               pattern: {
                 value:
@@ -157,8 +159,8 @@ const SignUpForm = () => {
             })}
           />
 
-          {errors.email?.message && (
-            <span className="formError">{errors.email.message as string}</span>
+          {errors.mail?.message && (
+            <span className="formError">{errors.mail.message as string}</span>
           )}
           <div>
             <span className="notice">
@@ -173,7 +175,7 @@ const SignUpForm = () => {
           <input
             type="text"
             placeholder="1600022"
-            {...register("postcode", {
+            {...register("postCode", {
               required: "必須項目です。",
               pattern: {
                 value: /^\d{3}?\d{4}$/,
@@ -188,9 +190,9 @@ const SignUpForm = () => {
             value="住所を自動入力"
           />
 
-          {errors.postcode?.message && (
+          {errors.postCode?.message && (
             <span className="formError">
-              {errors.postcode.message as string}
+              {errors.postCode.message as string}
             </span>
           )}
         </div>
@@ -278,13 +280,13 @@ const SignUpForm = () => {
           )}
         </div>
         <div>
-          <label htmlFor="applicant-building">
+          <label htmlFor="password_confirmation">
             <span className="label-fit label-danger">必須</span>
             パスワード（確認）
           </label>
           <input
             type="password"
-            id="applicant-address"
+            id="password_confirmation"
             {...register("password_confirmation", {
               required: "必須項目です。",
               validate: (value) =>

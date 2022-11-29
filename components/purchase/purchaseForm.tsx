@@ -19,7 +19,7 @@ const PurchaseForm = ({
     formState: { errors },
   } = useFormContext();
 
-  const onSubmit = async () => {
+  const onSubmit = (e:any) => {
     router.push(`/purchase?confirm=1`);
   };
 
@@ -48,7 +48,7 @@ const PurchaseForm = ({
       <h1>当店の買取システムはこちら！</h1>
       <p>新品、中古、新作、旧作スニーカーを高価買取！1足から何足でもOK！</p>
       <p>直接店舗に持ち込んでその場で現金！全国から発送買取も受付中です！</p>
-      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h1>
           <span>買取受付フォーム</span>
         </h1>

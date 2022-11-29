@@ -12,12 +12,41 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
   } = useFormContext();
 
   const values = getValues();
-  console.log(values);
-  //Set to true if the form doesn't have any errors.
-  //何かしらエラーがあるとき会員登録ページに飛ぶ
-  if (!isValid) {
-    router.push("/purchase");
-  }
+ 
+  const handleSubmitUsedItemValue = () => {
+    const values = getValues();
+    const today = new Date();
+
+    fetch("http://localhost:8000/usedItems", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sellerName: `${values.lastname}${values.firstname}`,
+        itemName: values.itemName,
+        itemDate: today,
+        itemStatus: "受付済み",
+      }),
+    });
+
+    if (values.itemNameB) {
+      fetch("http://localhost:8000/usedItems", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          lsellerName: `${values.lastname}${values.firstname}`,
+          itemName: values.itemName,
+          itemDate: today,
+          itemStatus: "受付済み",
+        }),
+      });
+    }
+
+    alert("入力内容を送信しました");
+  };
 
   return (
     <>
@@ -118,7 +147,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>写真
               </span>
-              {values.itemPhoto[0].name}
+              {values?.itemPhoto[0]?.name}
             </p>
             <span className="subtitle-preview">*プレビュー</span>
             {!!imageData && (
@@ -146,31 +175,31 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>品名
               </span>
-              {values.itemNameB}
+              {values?.itemNameB}
             </p>
             <p>
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>品番
               </span>
-              {values.itemCodeB}
+              {values?.itemCodeB}
             </p>
             <p>
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>サイズ（cm）
               </span>
-              {values.itemSizeB}
+              {values?.itemSizeB}
             </p>
             <p>
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>カラー
               </span>
-              {values.itemColorB}
+              {values?.itemColorB}
             </p>
             <p>
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>写真
               </span>
-              {values.itemPhotoB[0].name}
+              {values?.itemPhotoB[0]?.name}
             </p>
             <span className="subtitle-preview">*プレビュー</span>
             {!!imageDataB && (
@@ -204,7 +233,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           <Link href="/purchase">入力内容を修正する</Link>
         </div>
         <div className="button001">
-          <Link href="/" onClick={() => alert("入力内容を送信しました")}>
+          <Link href="/" onClick={handleSubmitUsedItemValue}>
             入力内容を送信する
           </Link>
         </div>

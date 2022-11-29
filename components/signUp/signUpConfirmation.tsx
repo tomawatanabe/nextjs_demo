@@ -15,8 +15,34 @@ const SignUpConfirmation = () => {
   //Set to true if the form doesn't have any errors.
   //何かしらエラーがあるとき会員登録ページに飛ぶ
   if (!isValid) {
-    router.push("/signup");
+    router
   }
+
+  //データベースに登録する関数
+  const handleSubmitUserValue = () => {
+    const values = getValues();
+    fetch("http://localhost:8000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        lastName: values.lastName,
+        firstName: values.firstName,
+        kanaLastName: values.kanaLastName,
+        kanaFirstName: values.kanaFirstName,
+        phoneNumber: values.phone,
+        email: values.mail,
+        zipCode: values.postCode,
+        prefecture: values.prefecture,
+        city: values.city,
+        address: values.address,
+        building: values.building,
+        password: values.password,
+      }),
+    });
+    alert("入力内容を送信しました");
+  };
 
   return (
     <>
@@ -28,15 +54,15 @@ const SignUpConfirmation = () => {
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>氏名
           </span>
-          {values.lastname}&nbsp;
-          {values.firstname}
+          {values.lastName}&nbsp;
+          {values.firstName}
         </p>
         <p>
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>氏名（フリガナ）
           </span>
-          {values.kanalastname}&nbsp;
-          {values.kanafirstname}
+          {values.kanaLastName}&nbsp;
+          {values.kanaFirstName}
         </p>
         <p>
           <span className="subtitle">
@@ -48,13 +74,13 @@ const SignUpConfirmation = () => {
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>メールアドレス
           </span>
-          {values.email}
+          {values.mail}
         </p>
         <p>
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>郵便番号
           </span>
-          {values.postcode}
+          {values.postCode}
         </p>
         <p>
           <span className="subtitle">
@@ -85,7 +111,7 @@ const SignUpConfirmation = () => {
           <Link href="/signup">入力内容を修正</Link>
         </div>
         <div className="form-submit-btn">
-          <Link href="/" onClick={() => alert("入力内容を送信しました")}>
+          <Link href="/" onClick={handleSubmitUserValue}>
             入力内容を送信
           </Link>
         </div>
