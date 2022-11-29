@@ -11,7 +11,7 @@ export default function ItemList(props: any) {
   const { data, error } = useSWR("/api/stock", fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
-  console.log(props.searchQuery);
+
   return (
     <>
       {props.searchQuery.map((stock: Stock) => {

@@ -1363,7 +1363,21 @@
       }
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "早川",
+      "lastName": "実穂",
+      "kanaFirstName": "はやかわ",
+      "kanaLastName": "みほ",
+      "email": "aaa@gmail.com",
+      "password": "aaa",
+      "zipcode": "100-0000",
+      "address": "東京都千代田区1-1",
+      "telephone": "030000000",
+      "deleted": false
+    }
+  ],
   "order": [],
   "orderItems": [],
   "purchaseHistory": [],
