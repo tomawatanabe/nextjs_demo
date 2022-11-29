@@ -2,18 +2,19 @@ import Link from "next/link";
 import useSWR from "swr";
 import { Stock } from "../types";
 import Image from "next/image";
+import styles from "../styles/ItemList.module.css";
 
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
 
-export default function ItemList() {
+export default function ItemList(props: any) {
   const { data, error } = useSWR("/api/stock", fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
   return (
     <>
-      {data.map((stock: Stock) => {
+      {props.searchQuery.map((stock: Stock) => {
         return (
           <div>
             <Link legacyBehavior href={`/${stock.id}`}>

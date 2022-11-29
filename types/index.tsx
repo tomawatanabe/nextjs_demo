@@ -24,3 +24,17 @@ export type Stock = {
   condition: string;
   item: Item;
 };
+
+export type Users = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  kanaFirstName: string;
+  kanaLastName: string;
+  email: string;
+  password: string;
+  zipcode: string;
+  address: string;
+  telephone: string;
+  deleted: string;
+};
