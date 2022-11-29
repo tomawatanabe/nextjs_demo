@@ -1,9 +1,16 @@
 .mainFlex{
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
+  width: 100%;
 }
-
-
+.gridBox{
+  margin-left: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px; 
+}
 .container {
   padding: 0 2rem;
 }

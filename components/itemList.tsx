@@ -2,6 +2,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import { Stock } from "../types";
 import Image from "next/image";
+import styles from "../styles/ItemList.module.css";
 
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());

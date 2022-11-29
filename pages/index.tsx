@@ -49,6 +49,14 @@ export default function Home() {
     const newValue = (e.target.value === data.notifyFrequency)? "" :  e.target.value;
     const newData = {...data, notifyFrequency: newValue};
     setData(newData);
+
+    if(e.target.checked){
+      setSearchQuery(
+        items.filter((stock: any) => e.target.value === stock.item.series)
+      )
+    }else{
+      setSearchQuery(items);
+    }
   }
 
 
@@ -68,7 +76,7 @@ export default function Home() {
         <Link href="/api/stock">リンク</Link>
         <div className={styles.mainFlex}>
           <Sidebar onChange={handleSearch} onClick={handleClick} data={data} handleFrequencyChange={handleFrequencyChange} />
-          <div>
+          <div className={styles.gridBox}>
             <ItemList searchQuery={searchQuery} />
           </div>
         </div>
