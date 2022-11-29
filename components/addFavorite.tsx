@@ -13,6 +13,7 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
 
   // cookieNameが取得出来れば、お気に入り追加機能を使えて、取得出来なければログイン画面に遷移
   const data: FavoriteItem = {
+  
     itemId: stock.id,
     cookieName: cookieName,
     name: stock.item.name,
