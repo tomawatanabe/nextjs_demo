@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -35,8 +34,11 @@ export default function Loginpage() {
         if (!data.cookieId === true) {
           console.log(data.massage);
         } else {
-          console.log(`ユーザー認証完了.data.cookieId is  ${data.cookieId}`);
-          Cookies.set("cookie_name", `${data.cookieId}`, { path: "/pages" });
+
+          console.log(`ユーザー認証完了`);
+          document.cookie = `${data.cookieId}`;
+          console.log(document.cookie);
+
         }
         router.replace("/");
       });

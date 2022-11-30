@@ -16,18 +16,20 @@ const Contact = () => {
 
   return (
     <div className="wrapper">
-      <FormProvider {...methods}>
-        {isConfirm ? (
-          <>
-            <ContactConfirmation />
-          </>
-        ) : (
-          <>
-            <ContactForm />
-          </>
-        )}
-      </FormProvider>
-      <Link href="/">トップページ</Link>
+      <SignIn>
+        <FormProvider {...methods}>
+          {isConfirm ? (
+            <>
+              <ContactConfirmation />
+            </>
+          ) : (
+            <>
+              <ContactForm />
+            </>
+          )}
+        </FormProvider>
+        <Link href="/">トップページ</Link>
+      </SignIn>
     </div>
   );
 };
