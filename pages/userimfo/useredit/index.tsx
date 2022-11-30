@@ -112,7 +112,6 @@ const UserImfo = () => {
             <span>お客様情報を変更してください。</span>
           </h2>
           <hr />
-          <input type="button" onClick={() => console.log(getValues())} />
           <div>
             <label htmlFor="lastName">
               <span className="label-fit label-danger">必須</span>氏名（姓）
@@ -167,7 +166,7 @@ const UserImfo = () => {
                 <span className="label-fit label-danger">必須</span>電話番号
               </label>
               <input
-              required
+                required
                 id="phoneNumber"
                 placeholder="0312345678"
                 {...register("phoneNumber", {
