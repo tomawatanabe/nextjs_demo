@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import SignIn from "../../../components/SignIn";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,7 +13,12 @@ const UserImfo = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onChange",
+    criteriaMode: "all",
+    shouldFocusError: false,
+  });
 
   const [userMail, setUserMail] = useState("");
   useEffect(() => {
@@ -42,10 +47,17 @@ const UserImfo = () => {
     setValue("city", result.data.address);
   };
 
-  //DBから値を読み込みデフォルト値としてセット
+  //DBから値を読み込み
   const get = async () => {
     const res = await fetch(`http://localhost:8000/users?email=${userMail}`);
     const data = await res.json();
+    return data;
+  };
+  get();
+
+  //デフォルト値としてセット
+  const setDefaultUserValue = async () => {
+    const data = await get();
     setValue("lastName", data[0]?.lastName);
     setValue("firstName", data[0]?.firstName);
     setValue("kanaLastName", data[0]?.kanaLastName);
@@ -58,17 +70,14 @@ const UserImfo = () => {
     setValue("address", data[0]?.address);
     setValue("building", data[0]?.building);
     setValue("password", data[0]?.password);
-
-    const userId = data[0]?.id;
-    return userId;
   };
-
-  get();
+  setDefaultUserValue();
 
   //onClickでデータベースに登録
-  const handleChangeUserValue = async () => {
+  const handleSubmit = async () => {
     const values = getValues();
-    const userId = await get();
+    const data = await get();
+    const userId = data[0]?.id;
 
     fetch(`http://localhost:8000/users/${userId}`, {
       method: "PATCH",
@@ -97,17 +106,19 @@ const UserImfo = () => {
   return (
     <>
       <SignIn>
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1>お客様情報</h1>
           <h2>
             <span>お客様情報を変更してください。</span>
           </h2>
           <hr />
+          <input type="button" onClick={() => console.log(getValues())} />
           <div>
             <label htmlFor="lastName">
               <span className="label-fit label-danger">必須</span>氏名（姓）
             </label>
             <input
+              required
               id="lastName"
               {...register("lastName", {
                 required: "必須項目です。",
@@ -311,11 +322,7 @@ const UserImfo = () => {
               </span>
             )}
           </div>
-          <input
-            type="button"
-            onClick={handleChangeUserValue}
-            value="変更内容を確定する"
-          />
+          <input type="submit" value="変更内容を確定する" />
         </form>
         <Link href="http://localhost:3000/userimfo">会員情報に戻る</Link>
       </SignIn>
