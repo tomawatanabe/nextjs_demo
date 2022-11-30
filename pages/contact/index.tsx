@@ -15,8 +15,13 @@ const Contact = () => {
   });
 
   return (
+<<<<<<< HEAD
     <SignIn>
       <div className="wrapper">
+=======
+    <div className="wrapper">
+      <SignIn>
+>>>>>>> cca75fdc8dc3c1c71ed8d9cd908e0879ff580808
         <FormProvider {...methods}>
           {isConfirm ? (
             <>
@@ -29,8 +34,13 @@ const Contact = () => {
           )}
         </FormProvider>
         <Link href="/">トップページ</Link>
+<<<<<<< HEAD
       </div>
     </SignIn>
+=======
+      </SignIn>
+    </div>
+>>>>>>> cca75fdc8dc3c1c71ed8d9cd908e0879ff580808
   );
 };
 
