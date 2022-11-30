@@ -29,7 +29,7 @@ const UserImfo = () => {
   const citySuggest = async () => {
     const values = getValues();
     const res = await fetch(
-      `https://api.zipaddress.net/?zipcode=${values.postCode}`,
+      `https://api.zipaddress.net/?zipcode=${values.zipCode}`,
       {
         mode: "cors",
       }
@@ -130,6 +130,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>氏名（名）
             </label>
             <input
+              required
               id="firstName"
               {...register("firstName", {
                 required: "必須項目です。",
@@ -141,6 +142,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>氏名（カナ姓）
             </label>
             <input
+              required
               id="kanaLastName"
               {...register("kanaLastName", {
                 required: "必須項目です。",
@@ -152,6 +154,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>氏名（カナ名）
             </label>
             <input
+              required
               id="kanaFirstName"
               {...register("kanaFirstName", {
                 required: "必須項目です。",
@@ -164,6 +167,7 @@ const UserImfo = () => {
                 <span className="label-fit label-danger">必須</span>電話番号
               </label>
               <input
+              required
                 id="phoneNumber"
                 placeholder="0312345678"
                 {...register("phoneNumber", {
@@ -190,6 +194,8 @@ const UserImfo = () => {
             </label>
 
             <input
+              required
+              type="email"
               id="email"
               placeholder="sample@sample.co.jp"
               {...register("email", {
@@ -216,6 +222,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>郵便番号
             </label>
             <input
+              required
               type="text"
               placeholder="1600022"
               {...register("zipCode", {
@@ -233,9 +240,9 @@ const UserImfo = () => {
               value="住所を自動入力"
             />
 
-            {errors.postCode?.message && (
+            {errors.zipCode?.message && (
               <span className="formError">
-                {errors.postCode.message as string}
+                {errors.zipCode.message as string}
               </span>
             )}
           </div>
@@ -244,6 +251,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>都道府県
             </label>
             <input
+              required
               type="text"
               placeholder="東京都"
               id="prefecture"
@@ -260,6 +268,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>市区町村
             </label>
             <input
+              required
               type="text"
               placeholder="新宿区新宿"
               id="city"
@@ -274,6 +283,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>番地
             </label>
             <input
+              required
               type="text"
               placeholder="4-3-25"
               id="address"
@@ -290,6 +300,7 @@ const UserImfo = () => {
               <span className="label-fit label-warning">任意</span>建物名
             </label>
             <input
+              required
               type="text"
               placeholder="TOKYU REIT新宿ビル8F"
               id="building"
@@ -301,6 +312,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>パスワード
             </label>
             <input
+              required
               type="text"
               id="password"
               {...register("password", {
