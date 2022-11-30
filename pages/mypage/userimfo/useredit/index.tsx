@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import React, { useEffect } from "react";
-import SignIn from "../../../components/SignIn";
+import SignIn from "../../../../components/SignIn";
 import Link from "next/link";
 import { useState } from "react";
+import Header from "../../../../components/Header";
+import Footer from "../../../../components/Footer";
 
 const UserImfo = () => {
   const router = useRouter();
@@ -106,6 +108,7 @@ const UserImfo = () => {
   return (
     <>
       <SignIn>
+        <Header />
         <form onSubmit={handleSubmit}>
           <h1>お客様情報</h1>
           <h2>
@@ -335,7 +338,8 @@ const UserImfo = () => {
           </div>
           <input type="submit" value="変更内容を確定する" />
         </form>
-        <Link href="http://localhost:3000/userimfo">会員情報に戻る</Link>
+        <Link href="http://localhost:3000/mypage/userimfo">会員情報に戻る</Link>
+        <Footer />
       </SignIn>
     </>
   );

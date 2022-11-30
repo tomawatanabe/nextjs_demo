@@ -1,9 +1,10 @@
 import useSWR from "swr";
-import { useFormContext } from "react-hook-form";
 import React, { use, useEffect } from "react";
-import SignIn from "../../components/SignIn";
+import SignIn from "../../../components/SignIn";
 import Link from "next/link";
 import { useState } from "react";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 
 const UserImfo = () => {
   const [userMail, setUserMail] = useState("");
@@ -27,6 +28,7 @@ const UserImfo = () => {
   return (
     <>
       <SignIn>
+        <Header />
         <h1>お客様情報</h1>
         <h2>
           <span>お客様情報を確認してください。</span>
@@ -63,21 +65,12 @@ const UserImfo = () => {
             </label>
             {data[0]?.phoneNumber}
           </div>
-          <div>
-            <span className="notice">*ハイフンなしで入力してください。</span>
-          </div>
         </div>
         <div>
           <label htmlFor="mail">
             <span className="label-fit label-danger">必須</span>メールアドレス
           </label>
           {data[0]?.email}
-
-          <div>
-            <span className="notice">
-              *メールアドレスはログインIDになります。
-            </span>
-          </div>
         </div>
         <div>
           <label htmlFor="postCode">
@@ -118,7 +111,8 @@ const UserImfo = () => {
         </div>
  
         <Link href="http://localhost:3000/mypage">マイページに戻る</Link>
-        <Link href="http://localhost:3000/userimfo/useredit">会員情報を編集する</Link>
+        <Link href="http://localhost:3000/mypage/userimfo/useredit">会員情報を編集する</Link>
+      <Footer />
       </SignIn>
     </>
   );
