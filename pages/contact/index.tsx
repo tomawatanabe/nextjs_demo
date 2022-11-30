@@ -15,20 +15,22 @@ const Contact = () => {
   });
 
   return (
-    <div className="wrapper">
-      <FormProvider {...methods}>
-        {isConfirm ? (
-          <>
-            <ContactConfirmation />
-          </>
-        ) : (
-          <>
-            <ContactForm />
-          </>
-        )}
-      </FormProvider>
-      <Link href="/">トップページ</Link>
-    </div>
+    <SignIn>
+      <div className="wrapper">
+        <FormProvider {...methods}>
+          {isConfirm ? (
+            <>
+              <ContactConfirmation />
+            </>
+          ) : (
+            <>
+              <ContactForm />
+            </>
+          )}
+        </FormProvider>
+        <Link href="/">トップページ</Link>
+      </div>
+    </SignIn>
   );
 };
 

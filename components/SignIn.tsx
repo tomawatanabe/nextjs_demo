@@ -8,7 +8,7 @@ const SignIn = ({ children }: any) => {
   useEffect(() => {
     if (!signIn === true) {
       console.log("ユーザー認証失敗");
-      router.push("/loginPage");
+      router.push("/login/loginPage");
     }
   }, []);
   //持っていたらそのままページを表示
