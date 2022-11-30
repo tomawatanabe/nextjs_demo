@@ -15,8 +15,8 @@ const Contact = () => {
   });
 
   return (
-    <div className="wrapper">
-      <SignIn>
+    <SignIn>
+      <div className="wrapper">
         <FormProvider {...methods}>
           {isConfirm ? (
             <>
@@ -29,8 +29,8 @@ const Contact = () => {
           )}
         </FormProvider>
         <Link href="/">トップページ</Link>
-      </SignIn>
-    </div>
+      </div>
+    </SignIn>
   );
 };
 
