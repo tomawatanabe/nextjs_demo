@@ -51,6 +51,7 @@ export type FavoriteItem = {
 };
 
 export type FavoriteItem2 = {
+<<<<<<< HEAD
   id: number;
   itemId: number;
   cookieName: string | undefined;
@@ -61,3 +62,14 @@ export type FavoriteItem2 = {
   condition: string;
   deleted: boolean;
 };
+=======
+  condition: string;
+  imagePath: string;
+  size: number;
+  price: number;
+  name: string;
+  id: number,
+  itemId: number;
+  cookieName: string | undefined; 
+}
+>>>>>>> origin/main

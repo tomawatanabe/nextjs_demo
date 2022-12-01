@@ -20,8 +20,6 @@ export async function getStaticProps({ params }: { params: any }) {
   const res = await fetch(`http://localhost:8000/stock/${params.id}`);
   const stock = await res.json();
 
-  return { props: { stock } };
-}
 
 export default function Detail({ stock }: { stock: Stock }) {
   return (
