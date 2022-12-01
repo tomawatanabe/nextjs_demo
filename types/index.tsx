@@ -93,3 +93,15 @@ export type TopUsedItems = {
   itemStatus: "完了" | "買取処理中";
   id: number;
 };
+
+
+export type Order = {
+  id: number;
+  userId: string;
+  totalPrice: number;
+  orderDate: Date;
+  note: string;
+  paymentMethod: string;
+  orderItemList: any[];
+  status: string;
+};

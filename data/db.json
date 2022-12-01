@@ -1378,6 +1378,19 @@
       "deleted": false
     },
     {
+      "id": 2,
+      "firstName": "京香",
+      "lastName": "林",
+      "kanaFirstName": "きょうか",
+      "kanaLastName": "はやし",
+      "email": "bbb@gmail.com",
+      "password": "bbb",
+      "zipcode": "3330000",
+      "address": "北海道千代田区1-1",
+      "telephone": "090000000",
+      "deleted": false
+    },
+    {
       "lastName": "渡辺",
       "firstName": "藤磨",
       "kanaLastName": "ワタナベ",
@@ -1413,9 +1426,42 @@
     }
   ],
   "order": [],
-  "orderItems": [],
   "purchaseHistory": [],
-  "shoppingCart": [],
+  "shoppingCart": [
+    {
+      "id": 1,
+      "stock": [
+        {
+          "id": 3,
+          "itemID": 3,
+          "price": 66000,
+          "size": 27,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 3,
+            "name": "AIR FOAMPOSITE ONE SP",
+            "series": "POSITE SERIES",
+            "year": 2021,
+            "description": "[ナイキ エア フォームポジット ワン SP \"コムデギャルソン オム プラス\" サミットホワイト/サミットホワイト DJ7952-100] デザイナー川久保玲氏が手掛けるファッションブランド\"COMME des GARÇONS\"のハイエンドライン\"COMME des GARÇONS HOMME PLUS\"とのコラボレーションモデル「AIR FOAMPOSITE ONE SP」の登場です。1997年に発売された「AIR FOAMPOSITE ONE」をベースに、既存の流線形のデザインから波紋柄のデザインへブラッシュアップ。ヒールには\"COMME des GARÇONS HOMME PLUS\"のロゴをデザインしたスペシャルエディションとなっています。",
+            "setprice": "2021年11月発売、日本定価57,200円",
+            "color": "\"CDG\"SUMMIT WHITE/SUMMIT WHITE",
+            "deleted": "false"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "stock": []
+    }
+  ],
   "favoriteItems": [
     {
       "itemId": 1,
@@ -1458,8 +1504,30 @@
       "size": 26,
       "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
       "condition": "A",
-      "deleted": false,
+      "deleted": true,
       "id": 4
+    },
+    {
+      "itemId": 9,
+      "cookieName": "2",
+      "name": "AIR FORCE 1 LOW PREMIUM 08 NRG",
+      "price": 60500,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 LOW PREMIUM 08 NRG/AIR FORCE 1 LOW PREMIUM 08 NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 5
+    },
+    {
+      "itemId": 1,
+      "cookieName": "5",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 6
     }
   ],
   "usedItems": [
