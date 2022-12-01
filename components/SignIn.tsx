@@ -5,7 +5,7 @@ const SignIn = ({ children }: any) => {
   const router = useRouter();
   useEffect(() => {
     const signIn = document.cookie;
-    if (!signIn === true) {
+    if (!signIn) {
       console.log("ユーザー認証失敗");
       router.push("/login/loginPage");
     }

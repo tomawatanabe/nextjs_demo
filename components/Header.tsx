@@ -3,11 +3,11 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useCookie } from "./useCookie";
+import { useCookieOriginal } from "./useCookie";
 
 export default function Header() {
   const router = useRouter();
-  const cookie = useCookie();
+  const cookieOriginal = useCookieOriginal();
 
   const [reload, setReload] = useState(0);
 
@@ -21,7 +21,7 @@ export default function Header() {
   };
 
   const correction = () => {
-    if (cookie === "userID=") {
+    if (cookieOriginal === "userID=" || "") {
       return (
         <div>
           <li key="signup">

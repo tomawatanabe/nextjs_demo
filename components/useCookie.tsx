@@ -20,3 +20,24 @@ export const useCookie = () => {
   });
   return state;
 };
+
+export const useCookieOriginal = () => {
+  const [cookieOriginal, setCookieOriginal] = useState("");
+
+  useEffect(() => {
+    const cookies = document.cookie;
+    if (!cookies) {
+      undefined;
+    } else {
+      const cookiesArray = cookies.split("; ");
+
+      const cookieArray = cookiesArray.filter(function (cookie) {
+        return cookie.includes("userID");
+      });
+      const cookie = cookieArray[0];
+
+      setCookieOriginal(cookie);
+    }
+  });
+  return cookieOriginal;
+};
