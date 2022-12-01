@@ -36,9 +36,7 @@ export default function Loginpage() {
         } else {
 
           console.log(`ユーザー認証完了`);
-          document.cookie = `${data.cookieId}`;
-          console.log(document.cookie);
-
+          document.cookie = `userID=${data.cookieId}; max-age=86400s"`;
         }
         router.replace("/");
       });

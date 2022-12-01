@@ -17,7 +17,7 @@ export default async function handler(
     if (obj[0] === undefined) {
       res.status(404).json({ massage: "見つかりません" });
     } else {
-      res.status(200).json({ cookieId: loginData.userId });
+      res.status(200).json({ cookieId: obj[0].id });
     }
   } catch (error) {
     return res.status(404).json({ massage: "見つかりません" });

@@ -3,6 +3,7 @@ import PurchaseForm from "../../components/purchase/purchaseForm";
 import PurchaseConfirmation from "../../components/purchase/purchaseConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
+import Link from "next/link";
 
 const Purchase = () => {
   //inputに登録された画像のバイナリデータを保持するstate
@@ -94,6 +95,7 @@ const Purchase = () => {
           </>
         )}
       </FormProvider>
+      <Link href="/">トップページ</Link>
     </div>
   );
 };
