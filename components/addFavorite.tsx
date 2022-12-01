@@ -3,14 +3,12 @@ import type { FavoriteItem } from "../types";
 
 import Router from "next/router";
 import { useEffect, useState } from "react";
+import { useCookie } from "./useCookie";
 
 const AddFavorit = ({ stock }: { stock: Stock }) => {
 
-  const [cookieName, setCookieName] = useState("");
 
-  useEffect(() => {
-    setCookieName(document.cookie);
-  }, []);
+ const cookieName = useCookie();
 
   // cookieNameが取得出来れば、お気に入り追加機能を使えて、取得出来なければログイン画面に遷移
   const data: FavoriteItem = {
