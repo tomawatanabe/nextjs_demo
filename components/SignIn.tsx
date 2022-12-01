@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 const SignIn = ({ children }: any) => {
+
   const router = useRouter();
   useEffect(() => {
     const signIn = document.cookie;
-    console.log(signIn);
-    if (!signIn === true) {
+    if (!signIn) {
       console.log("ユーザー認証失敗");
       router.push("/login/loginPage");
     }

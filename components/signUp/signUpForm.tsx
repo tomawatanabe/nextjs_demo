@@ -289,7 +289,7 @@ const SignUpForm = () => {
             id="password_confirmation"
             {...register("password_confirmation", {
               required: "必須項目です。",
-              validate: (value) =>
+              validate: (value: any) =>
                 value === getValues("password") || "パスワードが一致しません",
             })}
           />
