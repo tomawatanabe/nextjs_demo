@@ -1395,6 +1395,21 @@
     {
       "lastName": "aebgrawreb",
       "id": 3
+    },
+    {
+      "lastName": "test",
+      "firstName": "man",
+      "kanaLastName": "test",
+      "kanaFirstName": "man",
+      "phoneNumber": "0332532481",
+      "email": "test@test.co.jp",
+      "zipCode": "1440033",
+      "prefecture": "東京都",
+      "city": "大田区東糀谷",
+      "address": "3-4-5",
+      "building": "",
+      "password": "Rakus123",
+      "id": 4
     }
   ],
   "order": [],

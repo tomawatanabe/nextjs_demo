@@ -3,6 +3,8 @@ import SignUpForm from "../../components/signUp/signUpForm";
 import SignUpConfirmation from "../../components/signUp/signUpConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
 import SignIn from "../../components/SignIn";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Contact = () => {
   const router = useRouter();
@@ -16,6 +18,7 @@ const Contact = () => {
   return (
     <SignIn>
       <div className="wrapper">
+        <Header />
         <FormProvider {...methods}>
           {isConfirm ? (
             <>
@@ -27,6 +30,7 @@ const Contact = () => {
             </>
           )}
         </FormProvider>
+        <Footer />
       </div>
     </SignIn>
   );
