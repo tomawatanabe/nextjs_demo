@@ -5,9 +5,46 @@ import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
 import AddObj from "./api/stocks";
 import { useState, useRef, useEffect } from "react";
+<<<<<<< .merge_file_mABYD0
 import SignIn from "../components/SignIn";
+=======
+import { useCookie } from "../components/useCookie";  
+>>>>>>> .merge_file_jabCo6
 
 export default function Home() {
+  const userID = useCookie();
+  
+  useEffect(() => {
+    if(!userID === true){
+      return;
+    }else{
+      if(localStorage.getItem("shoppingCart")){
+        const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
+        // shoppingCart[0].stock.push(stock);
+        // localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+  
+        fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              "stock": shoppingCart[0].stock
+              }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+        // mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
+        // localStorage.clear();
+      }
+    }
+  }, [userID]);
+
   // 検索機能
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState([]);

@@ -16,23 +16,21 @@ const Contact = () => {
   });
 
   return (
-    <SignIn>
-      <div className="wrapper">
-        <Header />
-        <FormProvider {...methods}>
-          {isConfirm ? (
-            <>
-              <SignUpConfirmation />
-            </>
-          ) : (
-            <>
-              <SignUpForm />
-            </>
-          )}
-        </FormProvider>
-        <Footer />
-      </div>
-    </SignIn>
+    <div className="wrapper">
+      <Header />
+      <FormProvider {...methods}>
+        {isConfirm ? (
+          <>
+            <SignUpConfirmation />
+          </>
+        ) : (
+          <>
+            <SignUpForm />
+          </>
+        )}
+      </FormProvider>
+      <Footer />
+    </div>
   );
 };
 

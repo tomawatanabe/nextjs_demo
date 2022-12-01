@@ -17,7 +17,12 @@ const Contact = () => {
   });
 
   return (
+<<<<<<< HEAD
+    <SignIn>
+      <div className="wrapper">
+=======
     <div className="wrapper">
+<<<<<<< .merge_file_7gN4Ba
       <Header />
       <FormProvider {...methods}>
         {isConfirm ? (
@@ -31,7 +36,29 @@ const Contact = () => {
         )}
       </FormProvider>
       <Footer />
+=======
+      <SignIn>
+>>>>>>> cca75fdc8dc3c1c71ed8d9cd908e0879ff580808
+        <FormProvider {...methods}>
+          {isConfirm ? (
+            <>
+              <ContactConfirmation />
+            </>
+          ) : (
+            <>
+              <ContactForm />
+            </>
+          )}
+        </FormProvider>
+        <Link href="/">トップページ</Link>
+<<<<<<< HEAD
+      </div>
+    </SignIn>
+=======
+      </SignIn>
+>>>>>>> .merge_file_DpMESe
     </div>
+>>>>>>> cca75fdc8dc3c1c71ed8d9cd908e0879ff580808
   );
 };
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AddFavorit from "../components/addFavorite";
 import FavoriteList from "../components/FavoriteList";
+import CartButton from "../components/cart/cartButton";
 import { Stock } from "../types";
 
 export const getStaticPaths = async () => {
@@ -23,7 +24,6 @@ export async function getStaticProps({ params }: { params: any }) {
   return { props: { stock } }
 }
 
-
 export default function Detail({ stock }: { stock: Stock }) {
 
   return (
@@ -44,7 +44,7 @@ export default function Detail({ stock }: { stock: Stock }) {
         <Image src={`/${stock.image4}`} height={200} width={200} alt={stock.item.name} priority /><br />
         <Image src={`/${stock.image5}`} height={200} width={200} alt={stock.item.name} priority /><br /><br />
         <AddFavorit stock={stock} />
-        
+        <CartButton stock={stock} />
         <Link href="/">商品一覧へ戻る</Link><br />
       </div>
     </div>
