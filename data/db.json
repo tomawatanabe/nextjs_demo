@@ -1376,6 +1376,19 @@
       "address": "東京都千代田区1-1",
       "telephone": "030000000",
       "deleted": false
+    },
+    {
+      "id": 2,
+      "firstName": "林",
+      "lastName": "京香",
+      "kanaFirstName": "はやし",
+      "kanaLastName": "きょうか",
+      "email": "bbb@gmail.com",
+      "password": "bbb",
+      "zipcode": "333-0000",
+      "address": "埼玉県さいたま市1-1",
+      "telephone": "060000000",
+      "deleted": false
     }
   ],
   "order": [],
@@ -1410,8 +1423,173 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": false,
+      "deleted": true,
       "id": 3
+    },
+    {
+      "itemId": 2,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 4
+    },
+    {
+      "itemId": 1,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 5
+    },
+    {
+      "itemId": 23,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR JORDAN 6 RETRO",
+      "price": 39600,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR JORDAN 6 RETRO③/AIR JORDAN 6 RETRO③_1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 6
+    },
+    {
+      "itemId": 35,
+      "cookieName": "",
+      "name": "THE 10 : NIKE BLAZER MID",
+      "price": 82500,
+      "size": 26,
+      "imagePath": "images/sneakers/THE 10 _ NIKE BLAZER MID/THE 10 NIKE BLAZER MID1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 7
+    },
+    {
+      "itemId": 6,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FORCE 1 07 LV8 ND",
+      "price": 46200,
+      "size": 29,
+      "imagePath": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 8
+    },
+    {
+      "itemId": 7,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FORCE 1 07/CLOT/FRGMT",
+      "price": 66000,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 9
+    },
+    {
+      "itemId": 4,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 10
+    },
+    {
+      "itemId": 4,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 11
+    },
+    {
+      "itemId": 22,
+      "cookieName": "aaa@gmail.com",
+      "name": "AIR JORDAN 6 RETRO",
+      "price": 33000,
+      "size": 27,
+      "imagePath": "images/sneakers/AIR JORDAN 6 RETRO②/AIR JORDAN 6 RETRO②_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 12
+    },
+    {
+      "itemId": 25,
+      "cookieName": "bbb@gmail.com",
+      "name": "AIR JORDAN 6 RETRO",
+      "price": 22000,
+      "size": 28,
+      "imagePath": "images/sneakers/AIR JORDAN 6 RETRO⑤/AIR JORDAN 6 RETRO⑤_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 13
+    },
+    {
+      "itemId": 25,
+      "cookieName": "bbb@gmail.com",
+      "name": "AIR JORDAN 6 RETRO",
+      "price": 22000,
+      "size": 28,
+      "imagePath": "images/sneakers/AIR JORDAN 6 RETRO⑤/AIR JORDAN 6 RETRO⑤_1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 14
+    },
+    {
+      "itemId": 16,
+      "cookieName": "bbb@gmail.com",
+      "name": "AIR JORDAN 5 RETRO",
+      "price": 28.5,
+      "size": 13200,
+      "imagePath": "images/sneakers/AIR JORDAN 5 RETRO/AIR JORDAN 5 RETRO_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 15
+    },
+    {
+      "itemId": 9,
+      "cookieName": "bbb@gmail.com",
+      "name": "AIR FORCE 1 LOW PREMIUM 08 NRG",
+      "price": 60500,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 LOW PREMIUM 08 NRG/AIR FORCE 1 LOW PREMIUM 08 NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 16
+    },
+    {
+      "itemId": 1,
+      "cookieName": "2",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 17
+    },
+    {
+      "itemId": 1,
+      "cookieName": "2",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 18
     }
   ],
   "usedItems": []
