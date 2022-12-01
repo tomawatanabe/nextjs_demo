@@ -78,6 +78,7 @@ export default function Detail({ stock }: { stock: Stock }) {
         <br />
         <br />
         <AddFavorit stock={stock} />
+        <CartButton stock={stock} />
         <Link href="/">商品一覧へ戻る</Link>
         <br />
       </div>
