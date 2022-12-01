@@ -2,22 +2,18 @@ import useSWR from "swr";
 import React, { use, useEffect } from "react";
 import SignIn from "../../../components/SignIn";
 import Link from "next/link";
-import { useState } from "react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import { useCookie } from "../../../components/useCookie";
 
 const UserImfo = () => {
-  const [userMail, setUserMail] = useState("");
-
-  useEffect(() => {
-    setUserMail(document.cookie);
-  }, []);
+  const cookieName = useCookie();
 
   const fetcher = (resource: string) =>
     fetch(resource).then((res) => res.json());
 
   const { data, error } = useSWR(
-    `http://localhost:8000/users?email=${userMail}`,
+    `http://localhost:8000/users?id=${cookieName}`,
     fetcher
   );
 
@@ -109,10 +105,12 @@ const UserImfo = () => {
           </label>
           {data[0]?.password}
         </div>
- 
+
         <Link href="http://localhost:3000/mypage">マイページに戻る</Link>
-        <Link href="http://localhost:3000/mypage/userimfo/useredit">会員情報を編集する</Link>
-      <Footer />
+        <Link href="http://localhost:3000/mypage/userimfo/useredit">
+          会員情報を編集する
+        </Link>
+        <Footer />
       </SignIn>
     </>
   );

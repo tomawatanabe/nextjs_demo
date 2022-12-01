@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import React, { useEffect } from "react";
+import React from "react";
 import SignIn from "../../../../components/SignIn";
 import Link from "next/link";
-import { useState } from "react";
 import Header from "../../../../components/Header";
 import Footer from "../../../../components/Footer";
+import { useCookie } from "../../../../components/useCookie";
 
 const UserImfo = () => {
   const router = useRouter();
@@ -21,11 +21,7 @@ const UserImfo = () => {
     criteriaMode: "all",
     shouldFocusError: false,
   });
-
-  const [userMail, setUserMail] = useState("");
-  useEffect(() => {
-    setUserMail(document.cookie);
-  }, []);
+  const cookieName = useCookie()
 
   //郵便番号APIから住所を取得する関数
   const citySuggest = async () => {
@@ -51,7 +47,7 @@ const UserImfo = () => {
 
   //DBから値を読み込み
   const get = async () => {
-    const res = await fetch(`http://localhost:8000/users?email=${userMail}`);
+    const res = await fetch(`http://localhost:8000/users?id=${cookieName}`);
     const data = await res.json();
     return data;
   };

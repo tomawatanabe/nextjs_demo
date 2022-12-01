@@ -80,6 +80,16 @@ export type UsedItems = {
   itemSize: string;
   itemColor: string;
   itemNote: string;
-  itemStatus: "受付済" | "審査手続中" | "振込済";
+  itemStatus: "完了" | "買取処理中";
+  id: number;
+};
+
+export type TopUsedItems = {
+  receptionDate: string;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemStatus: "完了" | "買取処理中";
   id: number;
 };

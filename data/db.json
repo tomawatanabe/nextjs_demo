@@ -1609,7 +1609,7 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": false,
+      "deleted": true,
       "id": 18
     },
     {
@@ -1633,11 +1633,44 @@
       "condition": "A",
       "deleted": true,
       "id": 20
+    },
+    {
+      "itemId": 1,
+      "cookieName": "2",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 21
+    },
+    {
+      "itemId": 2,
+      "cookieName": "2",
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+      "condition": "A",
+      "deleted": true,
+      "id": 22
+    },
+    {
+      "itemId": 3,
+      "cookieName": "2",
+      "name": "AIR FOAMPOSITE ONE SP",
+      "price": 66000,
+      "size": 27,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 23
     }
   ],
   "usedItems": [
     {
-      "receptionDate": "2022/12/1",
+      "receptionDate": "2022/11/29",
       "cookieName": "2",
       "sellerLastName": "testID2",
       "sellerFirstName": "test",
@@ -1655,11 +1688,11 @@
       "itemSize": "28",
       "itemColor": "黒",
       "itemNote": "",
-      "itemStatus": "受付済",
+      "itemStatus": "完了",
       "id": 1
     },
     {
-      "receptionDate": "2022/12/1",
+      "receptionDate": "2022/11/30",
       "cookieName": "2",
       "sellerLastName": "山田",
       "sellerFirstName": "太郎",
@@ -1677,7 +1710,7 @@
       "itemSize": "28",
       "itemColor": "白",
       "itemNote": "",
-      "itemStatus": "受付済",
+      "itemStatus": "完了",
       "id": 2
     },
     {
@@ -1699,8 +1732,74 @@
       "itemSize": "27",
       "itemColor": "赤",
       "itemNote": "",
-      "itemStatus": "受付済",
+      "itemStatus": "買取処理中",
       "id": 3
+    },
+    {
+      "receptionDate": "2022/12/1",
+      "cookieName": "2",
+      "sellerLastName": "山田",
+      "sellerFirstName": "太郎",
+      "sellerKanaLastName": "タロウ",
+      "sellerKanaFirstName": "ヤマダ",
+      "sellerPhoneNumber": "0332532431",
+      "sellerEmail": "wt@gmail.com",
+      "sellerZipCode": "1600002",
+      "sellerPrefecture": "東京都",
+      "sellerCity": "新宿区四谷坂町",
+      "sellerAddress": "1-1-1",
+      "sellerBuilding": "",
+      "itemName": "NIKE AIR MAX sampleB",
+      "itemCode": "666",
+      "itemSize": "27",
+      "itemColor": "赤",
+      "itemNote": "",
+      "itemStatus": "買取処理中",
+      "id": 4
+    },
+    {
+      "receptionDate": "2022/12/1",
+      "cookieName": "2",
+      "sellerLastName": "山田",
+      "sellerFirstName": "太郎",
+      "sellerKanaLastName": "タロウ",
+      "sellerKanaFirstName": "ヤマダ",
+      "sellerPhoneNumber": "0332532431",
+      "sellerEmail": "wt@gmail.com",
+      "sellerZipCode": "1600002",
+      "sellerPrefecture": "東京都",
+      "sellerCity": "新宿区四谷坂町",
+      "sellerAddress": "1-1-1",
+      "sellerBuilding": "",
+      "itemName": "NIKE AIR MAX sampleB",
+      "itemCode": "666",
+      "itemSize": "27",
+      "itemColor": "赤",
+      "itemNote": "",
+      "itemStatus": "買取処理中",
+      "id": 5
+    },
+    {
+      "receptionDate": "2022/12/1",
+      "cookieName": "2",
+      "sellerLastName": "山田",
+      "sellerFirstName": "太郎",
+      "sellerKanaLastName": "タロウ",
+      "sellerKanaFirstName": "ヤマダ",
+      "sellerPhoneNumber": "0332532431",
+      "sellerEmail": "wt@gmail.com",
+      "sellerZipCode": "1600002",
+      "sellerPrefecture": "東京都",
+      "sellerCity": "新宿区四谷坂町",
+      "sellerAddress": "1-1-1",
+      "sellerBuilding": "",
+      "itemName": "NIKE AIR MAX sampleB",
+      "itemCode": "666",
+      "itemSize": "27",
+      "itemColor": "赤",
+      "itemNote": "",
+      "itemStatus": "買取処理中",
+      "id": 6
     }
   ]
 }
