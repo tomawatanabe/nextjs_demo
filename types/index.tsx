@@ -25,8 +25,6 @@ export type Stock = {
   item: Item;
 };
 
-
-
 export type Users = {
   id: number;
   firstName: string;
