@@ -53,6 +53,12 @@ export type FavoriteItem = {
 };
 
 export type FavoriteItem2 = {
+  condition: string;
+  imagePath: string;
+  size: number;
+  price: number;
+  name: string;
   id: number,
   itemId: number;
   cookieName: string | undefined; 
+}

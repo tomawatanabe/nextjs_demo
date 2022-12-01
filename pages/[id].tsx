@@ -23,8 +23,6 @@ export async function getStaticProps({ params }: { params: any }) {
   return { props: { stock } }
 }
 
-  return { props: { stock } };
-}
 
 export default function Detail({ stock }: { stock: Stock }) {
 
@@ -51,4 +49,3 @@ export default function Detail({ stock }: { stock: Stock }) {
     </div>
   );
 }
-
