@@ -1409,7 +1409,7 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": true,
+      "deleted": false,
       "id": 1
     },
     {
@@ -1421,6 +1421,16 @@
       "condition": "A",
       "deleted": false,
       "id": 2
+    },
+    {
+      "itemId": 2,
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
     }
   ],
   "usedItems": []

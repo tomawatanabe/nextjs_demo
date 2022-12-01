@@ -3,6 +3,7 @@ import SignIn from "../../components/SignIn";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import FavoriteList from "../../components/FavoriteList";
 
 const MyPage = () => {
   return (
@@ -18,13 +19,14 @@ const MyPage = () => {
         </div>
         <hr />
         <div>
-          <h2>お気に入りリスト</h2>
+          <FavoriteList />
         </div>
         <hr />
         <div>
           <h2>購入履歴</h2>
         </div>
         <Link href="http://localhost:3000/mypage/userimfo/">会員情報</Link>
+        <Link href="http://localhost:3000/">ショッピングカート</Link>
         <Footer />
       </SignIn>
     </>
