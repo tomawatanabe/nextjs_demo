@@ -13,7 +13,7 @@ const CartButton = ({ stock }: {stock: Stock}) => {
     console.log(userID);
 
     const data = {
-        stock: stock
+        stock: [stock]
     };
 
     const addCartItem = async () => {
@@ -21,7 +21,7 @@ const CartButton = ({ stock }: {stock: Stock}) => {
             // Router.push("/login/loginPage");
             if(localStorage.getItem("shoppingCart")){
               const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
-              shoppingCart.push(data);
+              shoppingCart[0].stock.push(stock);
               localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
             }else{
               localStorage.setItem('shoppingCart', JSON.stringify([data]));

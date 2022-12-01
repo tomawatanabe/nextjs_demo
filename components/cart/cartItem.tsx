@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import router from "next/router";
 import { useCookie } from "../useCookie";
+import type { Stock } from "../../types";
 
 
 
@@ -9,16 +10,30 @@ const CartItem = (props: any) => {
     const userID = useCookie();
 
   const [cart, setCart] = useState(props.data[0]);
+  const [cartItems, setCartItems] = useState(cart.stock);
   console.log(cart);
+   
 
   const handleDelete = (id: any) => {
-    fetch(`http://localhost:8000/shoppingCart/${userID}/stock?id=${id}`, {
-        method: 'DELETE'
-    })
-        .then(console.log);
+    if (!userID === true) {
+      const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
+      const deleted = shoppingCart[0].stock.filter((item: Stock) => item.id !== id);
+      const data = {stock: deleted};
+      localStorage.setItem('shoppingCart', JSON.stringify([data]));
+      router.reload();
+    }else{
+      fetch(`http://localhost:8000/shoppingCart/${userID}/stock?id=${id}`, {
+          method: 'DELETE'
+      })
+          .then(console.log);
+    }
   }
 
-  return (
+  const noItem = (
+    <p>カートの中身はありません</p>
+  )
+
+  const cartList = (
     <ul>
       {cart.stock?.map((content: any) => (
         <li key={content.id}>
@@ -48,6 +63,12 @@ const CartItem = (props: any) => {
       ))
       }
     </ul>
+  );
+
+  return (
+    <div>
+      {cartItems.length? cartList : noItem} 
+    </div>
   );
 }
 
