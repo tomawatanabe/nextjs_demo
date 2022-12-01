@@ -23,10 +23,6 @@ export async function getStaticProps({ params }: { params: any }) {
   return { props: { stock } }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d515abccaf87d873904017a58ac9d3437fd6d36
 export default function Detail({ stock }: { stock: Stock }) {
 
   return (
