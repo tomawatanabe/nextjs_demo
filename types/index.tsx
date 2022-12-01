@@ -41,7 +41,7 @@ export type Users = {
 
 export type FavoriteItem = {
   itemId: number;
-  cookieName: string | undefined; 
+  cookieName: string | undefined;
   name: string;
   price: number;
   size: number;
@@ -51,6 +51,13 @@ export type FavoriteItem = {
 };
 
 export type FavoriteItem2 = {
-  id: number,
+  id: number;
   itemId: number;
-  cookieName: string | undefined; 
+  cookieName: string | undefined;
+  name: string;
+  price: number;
+  size: number;
+  imagePath: string;
+  condition: string;
+  deleted: boolean;
+};
