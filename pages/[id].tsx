@@ -1,13 +1,11 @@
-import Image from "next/image"
-import Link from "next/link"
-import AddFavorit from "../components/addFavorite"
-import FavoriteList from "../components/FavoriteList"
-import { Stock } from "../types"
-
-
-
+import Image from "next/image";
+import Link from "next/link";
+import AddFavorit from "../components/addFavorite";
+import FavoriteList from "../components/FavoriteList";
+import { Stock } from "../types";
 
 export const getStaticPaths = async () => {
+
   const res = await fetch('http://localhost:8000/stock')
   const stocks = await res.json()
   const getpaths = stocks.map((stock: { id: any; }) => {
@@ -25,6 +23,8 @@ export async function getStaticProps({ params }: { params: any }) {
   return { props: { stock } }
 }
 
+  return { props: { stock } };
+}
 
 export default function Detail({ stock }: { stock: Stock }) {
 
@@ -52,3 +52,4 @@ export default function Detail({ stock }: { stock: Stock }) {
     </div>
   );
 }
+
