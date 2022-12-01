@@ -40,7 +40,7 @@ function FavoriteList() {
 
     return (
         <div>
-            <h1>お気に入り商品</h1>
+            <h2>お気に入り商品</h2>
             <table>
                 <thead>
                     <tr>

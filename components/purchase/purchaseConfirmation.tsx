@@ -4,15 +4,15 @@ import Image from "next/image";
 import { useCookie } from "../useCookie";
 
 const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
-  const userID = useCookie();
+  const cookieName = useCookie();
 
   const { getValues } = useFormContext();
-
   const values = getValues();
 
   const handleSubmitUsedItemValue = () => {
     const values = getValues();
-    const today = new Date();
+    const date = new Date();
+    const today: string = date.toLocaleDateString();
 
     fetch("http://localhost:8000/usedItems", {
       method: "POST",
@@ -20,7 +20,8 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sellerID: userID,
+        receptionDate: today,
+        cookieName: cookieName,
         sellerLastName: values.lastName,
         sellerFirstName: values.firstName,
         sellerKanaLastName: values.kanaFirstName,
@@ -37,8 +38,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
         itemSize: values.itemSize,
         itemColor: values.itemColor,
         itemNote: values.itemNote,
-        receptionDate: today,
-        itemStatus: "受付済み",
+        itemStatus: "受付済",
       }),
     });
 
@@ -49,7 +49,8 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          sellerID: userID,
+          receptionDate: today,
+          cookieName: cookieName,
           sellerLastName: values.lastName,
           sellerFirstName: values.firstName,
           sellerKanaLastName: values.kanaFirstName,
@@ -66,7 +67,6 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           itemSize: values.itemSizeB,
           itemColor: values.itemColorB,
           itemNote: values.itemNoteB,
-          receptionDate: today,
           itemStatus: "受付済み",
         }),
       });

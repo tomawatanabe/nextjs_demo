@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FavoriteList from "../../components/FavoriteList";
+import UsedItemList from "../../components/UsedItemList ";
 
 const MyPage = () => {
   return (
@@ -15,7 +16,7 @@ const MyPage = () => {
         </div>
         <hr />
         <div>
-          <h2>買取受付状況</h2>
+          <UsedItemList />
         </div>
         <hr />
         <div>
