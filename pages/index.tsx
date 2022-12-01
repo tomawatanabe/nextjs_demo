@@ -5,11 +5,11 @@ import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
 import AddObj from "./api/stocks";
 import { useState, useRef, useEffect } from "react";
-<<<<<<< .merge_file_mABYD0
+
 import SignIn from "../components/SignIn";
-=======
+
 import { useCookie } from "../components/useCookie";  
->>>>>>> .merge_file_jabCo6
+
 
 export default function Home() {
   const userID = useCookie();

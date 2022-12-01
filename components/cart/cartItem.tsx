@@ -11,7 +11,7 @@ const CartItem = (props: any) => {
 
   const [cart, setCart] = useState(props.data[0]);
   const [cartItems, setCartItems] = useState(cart.stock);
-  console.log(props.data);
+  console.log("data",props.data);
   console.log(props.data[0]);
   console.log(cart);
    

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookie } from "../../components/useCookie";
 import useSWR from "swr";
 import router from "next/router";
 import Link from "next/link";
+import Address from "../../components/settlement/adress";
 
 
 
@@ -22,7 +23,7 @@ export default function settlement() {
     const userId = useCookie();
 
     const getdata = {
-        // userID: userID,
+        // userID: cookieName,
         totalPrice: totalPrice,
         orderDate: orderDate,
         note: note,
@@ -32,35 +33,18 @@ export default function settlement() {
     };
 
 
-    // 発送先を表示すため、ユーザー情報を取得するフェッチ
-    const cookieName = useCookie();
-    const fetcher = (resource: string) =>
-        fetch(resource).then((res) => res.json());
+    // カート情報を出すためのフェッチ
+    const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
+        fetch(resource, init).then((res) => res.json());
+
 
     const { data, error } = useSWR(
-        `http://localhost:8000/users?id=${cookieName}`,
+        `http://localhost:8000/shoppingCart?userId=${userId}`,
         fetcher
     );
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
-
-
-    // カート情報を出すためのフェッチ
-
-
-    const fetchproducts = async () => {
-        // データを取得
-        const response = await fetch(`http://localhost:8000/shoppingCart/${userId}`);
-        let products = await response.json();
-        // 配列を1つ出力して別の変数に格納
-        const productsList = products.map((product: any) =>
-            <div>
-                <li>{product.stock.item.name} {product.stock.amount} {product.stock.price}</li>
-            </div>
-        );
-
-        setProducts(productsList)
-    };
+    
 
 
 
@@ -85,18 +69,9 @@ export default function settlement() {
             });
     };
 
-
-
-
     return (
         <div>
-            <h1>購入手続き</h1>
-            <h3>お届け先情報</h3>
-            <p>氏名: {data[0]?.lastName} {data[0]?.firstName}</p>
-            <p>郵便番号: {data[0]?.zipCode}</p>
-            <p>住所: {data[0]?.address}</p>
-            <p>メールアドレス: {data[0]?.email}</p>
-            <p>電話番号: {data[0]?.telephone}</p><br />
+            <Address />
             <h3>支払い方法</h3>
             <div>
                 <input
@@ -121,7 +96,35 @@ export default function settlement() {
 
             <h3>購入商品</h3>
             {/* カートの商品を持ってくる */}
-            <ul>{products}</ul>
+            <div>
+                <h2>お気に入り商品</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>商品名</th>
+                            <th>個数</th>
+                            <th>価格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data[0].stock.map((Item: any) => {
+                            return (
+                                <tr key={Item.itemId}>
+                                    <td>{Item.item.name}</td>
+                                    <td>{Item.amount}</td>
+                                    <td>¥{Item.price}</td>
+                                    <td>
+                                        <br />
+                                    </td>
+                                    <td>{Item.condition}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
             {/* 商品の合計個数と小計、合計金額を出す。代引きを選択された場合代引き手数料を表示するか金額が0→330になるようにする */}
             <b>発送予定日</b>
             <p>購入日から3～5営業日以内に発送いたします</p>
@@ -134,7 +137,7 @@ export default function settlement() {
 
                 <p>備考欄<br /><textarea name="msg" ></textarea></p>
                 <div>
-                    <Link href="">カートに戻る</Link>
+                    <Link href="/cart">カートに戻る</Link>
                 </div>
                 <div>
                     <button onClick={send}>購入する</button>

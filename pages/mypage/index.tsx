@@ -27,7 +27,7 @@ const MyPage = () => {
           <h2>購入履歴</h2>
         </div>
         <Link href="http://localhost:3000/mypage/userimfo/">会員情報</Link>
-        <Link href="http://localhost:3000/">ショッピングカート</Link>
+        <Link href="http://localhost:3000/cart">ショッピングカート</Link>
         <Footer />
       </SignIn>
     </>

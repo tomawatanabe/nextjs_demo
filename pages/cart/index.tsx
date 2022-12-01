@@ -32,7 +32,7 @@ const ShoppingCart = () => {
       <p>※注意<br />カート内の商品は取り置きではありません。購入手続きの時点で売り切れている可能性があります。</p>
       <CartItem data={data} />
       <CartTotal data={data} />
-      <Link href="#" legacyBehavior>
+      <Link href="http://localhost:3000/settlement" legacyBehavior>
         購入手続きへ進む
       </Link>
     </div>
