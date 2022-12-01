@@ -1,5 +1,6 @@
 import type { Stock } from "../types";
 import type { FavoriteItem } from "../types";
+
 import Router from "next/router";
 import { useEffect, useState } from "react";
 
@@ -32,19 +33,18 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
       method: 'POST',
 
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data);
+        console.log("Success:", data);
       })
       .catch((error) => {
         console.error('Error:', error);
       });}
   }
-
   return (
     <div>
       <button onClick={sendFavo}>お気に入りに追加</button>
@@ -53,4 +53,3 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
 };
 
 export default AddFavorit;
-

@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -32,11 +31,11 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (!data.cookieId === true) {
+        if (!data.cookieId) {
           console.log(data.massage);
         } else {
           console.log(`ユーザー認証完了`);
-          document.cookie = `userID=${data.cookieId}; max-age=86400s"`;
+          document.cookie = `userID=${data.cookieId}; max-age=86400s`;
         }
         router.replace("/");
       });
