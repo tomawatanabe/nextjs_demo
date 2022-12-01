@@ -26,7 +26,7 @@ const PurchaseForm = ({
   const citySuggest = async () => {
     const values = getValues();
     const res = await fetch(
-      `https://api.zipaddress.net/?zipcode=${values.postcode}`,
+      `https://api.zipaddress.net/?zipcode=${values.zipCode}`,
       {
         mode: "cors",
       }
@@ -64,7 +64,7 @@ const PurchaseForm = ({
           <input
             id="lastName"
             placeholder="山田"
-            {...register("lastname", {
+            {...register("lastName", {
               required: "必須項目です。",
             })}
           />
@@ -72,19 +72,19 @@ const PurchaseForm = ({
           <input
             id="firstName"
             placeholder="太郎"
-            {...register("firstname", {
+            {...register("firstName", {
               required: "必須項目です。",
             })}
           />
 
-          {(errors.firstname?.message && (
+          {(errors.firstName?.message && (
             <span className="formError">
-              {errors.firstname?.message as string}
+              {errors.firstName?.message as string}
             </span>
           )) ||
-            (errors.lastname?.message && (
+            (errors.lastName?.message && (
               <span className="formError">
-                {errors.lastname?.message as string}
+                {errors.lastName?.message as string}
               </span>
             ))}
         </div>
@@ -96,26 +96,26 @@ const PurchaseForm = ({
           <input
             id="kanaLastName"
             placeholder="ヤマダ"
-            {...register("kanalastname", {
+            {...register("kanaLastName", {
               required: "必須項目です。",
             })}
           />
           <input
             id="kanaFirstName"
             placeholder="タロウ"
-            {...register("kanafirstname", {
+            {...register("kanaFirstName", {
               required: "必須項目です。",
             })}
           />
 
-          {(errors.kanalastname?.message && (
+          {(errors.kanaLastName?.message && (
             <span className="formError">
-              {errors.kanalastname?.message as string}
+              {errors.kanaLastName?.message as string}
             </span>
           )) ||
-            (errors.kanafirstname?.message && (
+            (errors.kanaFirstName?.message && (
               <span className="formError">
-                {errors.kanalastname?.message as string}
+                {errors.kanaLastName?.message as string}
               </span>
             ))}
         </div>
@@ -175,7 +175,7 @@ const PurchaseForm = ({
           <input
             type="text"
             placeholder="1600022"
-            {...register("postcode", {
+            {...register("zipCode", {
               required: "必須項目です。",
               pattern: {
                 value: /^\d{3}?\d{4}$/,
@@ -190,9 +190,9 @@ const PurchaseForm = ({
             value="住所を自動入力"
           />
 
-          {errors.postcode?.message && (
+          {errors.zipCode?.message && (
             <span className="formError">
-              {errors.postcode.message as string}
+              {errors.zipCode.message as string}
             </span>
           )}
         </div>

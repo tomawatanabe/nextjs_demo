@@ -1,18 +1,15 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 import Image from "next/image";
+import { useCookie } from "../useCookie";
 
 const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
-  const router = useRouter();
+  const userID = useCookie();
 
-  const {
-    formState: { isValid },
-    getValues,
-  } = useFormContext();
+  const { getValues } = useFormContext();
 
   const values = getValues();
- 
+
   const handleSubmitUsedItemValue = () => {
     const values = getValues();
     const today = new Date();
@@ -23,9 +20,24 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sellerName: `${values.lastname}${values.firstname}`,
+        sellerID: userID,
+        sellerLastName: values.lastName,
+        sellerFirstName: values.firstName,
+        sellerKanaLastName: values.kanaFirstName,
+        sellerKanaFirstName: values.kanaLastName,
+        sellerPhoneNumber: values.phone,
+        sellerEmail: values.email,
+        sellerZipCode: values.zipCode,
+        sellerPrefecture: values.prefecture,
+        sellerCity: values.city,
+        sellerAddress: values.address,
+        sellerBuilding: values.building,
         itemName: values.itemName,
-        itemDate: today,
+        itemCode: values.itemCode,
+        itemSize: values.itemSize,
+        itemColor: values.itemColor,
+        itemNote: values.itemNote,
+        receptionDate: today,
         itemStatus: "受付済み",
       }),
     });
@@ -37,9 +49,24 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          lsellerName: `${values.lastname}${values.firstname}`,
-          itemName: values.itemName,
-          itemDate: today,
+          sellerID: userID,
+          sellerLastName: values.lastName,
+          sellerFirstName: values.firstName,
+          sellerKanaLastName: values.kanaFirstName,
+          sellerKanaFirstName: values.kanaLastName,
+          sellerPhoneNumber: values.phone,
+          sellerEmail: values.email,
+          sellerZipCode: values.zipCode,
+          sellerPrefecture: values.prefecture,
+          sellerCity: values.city,
+          sellerAddress: values.address,
+          sellerBuilding: values.building,
+          itemName: values.itemNameB,
+          itemCode: values.itemCodeB,
+          itemSize: values.itemSizeB,
+          itemColor: values.itemColorB,
+          itemNote: values.itemNoteB,
+          receptionDate: today,
           itemStatus: "受付済み",
         }),
       });
@@ -61,15 +88,15 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>氏名
           </span>
-          {values.lastname}&nbsp;
-          {values.firstname}
+          {values.lastName}&nbsp;
+          {values.firstName}
         </p>
         <p>
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>氏名（フリガナ）
           </span>
-          {values.kanalastname}&nbsp;
-          {values.kanafirstname}
+          {values.kanaLastName}&nbsp;
+          {values.kanaFirstName}
         </p>
         <p>
           <span className="subtitle">
@@ -87,7 +114,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           <span className="subtitle">
             <span className="label-fit label-danger">必須</span>郵便番号
           </span>
-          {values.postcode}
+          {values.zipCode}
         </p>
         <p>
           <span className="subtitle">
