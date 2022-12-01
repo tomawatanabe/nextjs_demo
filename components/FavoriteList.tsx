@@ -1,14 +1,31 @@
 import useSWR from 'swr'
 import router from 'next/router';
-import React from 'react';
-import { FavoriteItem, FavoriteItem2 } from '../types';
+import React, { useEffect, useState } from 'react';
+import { FavoriteItem, FavoriteItem2, Stock } from '../types';
 import Image from 'next/image';
 
 
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) => fetch(resource, init).then((res) => res.json());
 function FavoriteList() {
-    const { data, error } = useSWR('http://localhost:8000/favoriteItems?deleted=false', fetcher)
+
+    const [cookieName, setCookieName] = useState("");
+
+    useEffect(() => {
+        const cookies = document.cookie;
+        if (!cookies === true) {
+        } else {
+            const cookiesArray = cookies.split("; ");
+            const cookie = cookiesArray.filter(function (cookie) {
+                return cookie.includes("email");
+            });
+            const cookieName = cookie[0];
+            const cookieArray = cookieName.split("=");
+            setCookieName(cookieArray[1]);
+        }
+    });
+
+    const { data, error } = useSWR(`http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}`, fetcher)
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
 

@@ -8,8 +8,18 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
   const [cookieName, setCookieName] = useState("");
 
   useEffect(() => {
-    setCookieName(document.cookie);
-  }, []);
+    const cookies = document.cookie;
+    if(!cookies === true){
+    }else{
+    const cookiesArray = cookies.split("; ");
+    const cookie = cookiesArray.filter(function (cookie) {
+      return cookie.includes("email");
+    });
+    const cookieName = cookie[0];
+    const cookieArray = cookieName.split("=");
+    setCookieName(cookieArray[1]);
+  }});
+
 
   // cookieNameが取得出来れば、お気に入り追加機能を使えて、取得出来なければログイン画面に遷移
   const data: FavoriteItem = {

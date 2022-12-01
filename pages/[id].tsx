@@ -47,6 +47,7 @@ export default function Detail({ stock }: { stock: Stock }) {
         <Image src={`/${stock.image5}`} height={200} width={200} alt={stock.item.name} priority /><br /><br />
         <AddFavorit stock={stock} />
         <Link href="/">商品一覧へ戻る</Link><br />
+        <FavoriteList />
       </div>
     </div>
   );
