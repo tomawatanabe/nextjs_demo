@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type Item = {
   id: number;
   name: string;
@@ -60,4 +62,10 @@ export type FavoriteItem2 = {
   imagePath: string;
   condition: string;
   deleted: boolean;
+};
+
+export type ShoppingCart = {
+  id: number;
+  userID: number;
+  stock: any[];
 };
