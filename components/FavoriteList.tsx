@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import router from 'next/router';
 import React from 'react';
-import { FavoriteItem } from '../types';
+import { FavoriteItem, FavoriteItem2 } from '../types';
 import Image from 'next/image';
 
 
@@ -12,9 +12,9 @@ function FavoriteList() {
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>
 
-    const deletedB = (favoriteItem: FavoriteItem) => {
+    const deletedB = (favoriteItem: FavoriteItem2) => {
 
-        fetch(`http://localhost:8000/favoriteItems/${favoriteItem.itemId}`, {
+        fetch(`http://localhost:8000/favoriteItems/${favoriteItem.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ function FavoriteList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((favoriteItem: FavoriteItem) => {
+                    {data.map((favoriteItem: FavoriteItem2) => {
                         return (
                             <tr key={favoriteItem.itemId}>
                                 <td>{favoriteItem.name}</td>

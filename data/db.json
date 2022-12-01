@@ -1400,7 +1400,7 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": false,
+      "deleted": true,
       "id": 2
     },
     {
