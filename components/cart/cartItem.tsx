@@ -11,30 +11,17 @@ const CartItem = (props: any) => {
   const [cart, setCart] = useState(props.data[0]);
   console.log(cart);
 
-  const handleDelete = (stock: any) => {
-    fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "deleted": true
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data),
-                    router.reload();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+  const handleDelete = (id: any) => {
+    fetch(`http://localhost:8000/shoppingCart/${userID}/stock?id=${id}`, {
+        method: 'DELETE'
+    })
+        .then(console.log);
   }
 
   return (
     <ul>
       {cart.stock?.map((content: any) => (
-        <li key={content.stockID}>
+        <li key={content.id}>
           <div>
             <div>
               <Image
@@ -55,7 +42,7 @@ const CartItem = (props: any) => {
                 </select>
               </li>
             </ul>
-            <button onClick={() => handleDelete(content)}>カートから削除</button>
+            <button onClick={() => handleDelete(content.id)}>カートから削除</button>
           </div>
         </li>
       ))

@@ -12,13 +12,14 @@ const ShoppingCart = () => {
     const userID = useCookie();
     let {data, error, mutate} = useSWR(`http://localhost:8000/shoppingCart?userID=${userID}&deleted=false`, fetcher);
     
-    // useEffect(() => {
-    //   if(!userID === true){
-    //     const getjson = localStorage.getItem('shoppingCart') || '{}';
-    //     // data = JSON.parse(getjson) as ShoppingCart;
-    //     mutate(JSON.parse(getjson));
-    //   }
-    // }, []);
+    useEffect(() => {
+        console.log(localStorage.getItem('shoppingCart') || '{}')
+      if(!userID === true){
+        const getjson = localStorage.getItem('shoppingCart') || '{}';
+        // data = JSON.parse(getjson) as ShoppingCart;
+        mutate(JSON.parse(getjson));
+      }
+    }, []);
     console.log(data);
     
     if (error) return (<div>failed to load</div>);
