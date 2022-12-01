@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Cookies from "js-cookie";
+import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -36,7 +36,7 @@ export default function Loginpage() {
           console.log(data.massage);
         } else {
           console.log(`ユーザー認証完了`);
-          document.cookie = `${data.cookieId}`;
+          document.cookie = `userID=${data.cookieId}; max-age=86400s"`;
         }
         router.replace("/");
       });
@@ -56,3 +56,4 @@ export default function Loginpage() {
     </>
   );
 }
+

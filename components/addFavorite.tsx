@@ -30,6 +30,7 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
     } else { 
     fetch('http://localhost:8000/favoriteItems', {
       method: 'POST',
+
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,3 +53,4 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
 };
 
 export default AddFavorit;
+

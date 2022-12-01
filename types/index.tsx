@@ -41,8 +41,6 @@ export type Users = {
   deleted: string;
 };
 
-
-
 export type FavoriteItem = {
   itemId: number;
   cookieName: string | undefined; 
@@ -58,10 +56,3 @@ export type FavoriteItem2 = {
   id: number,
   itemId: number;
   cookieName: string | undefined; 
-  name: string;
-  price: number;
-  size: number;
-  imagePath: string;
-  condition: string;
-  deleted: boolean;
-};
