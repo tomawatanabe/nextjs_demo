@@ -34,6 +34,7 @@ export default function Loginpage() {
         if (!data.cookieId) {
           console.log(data.massage);
         } else {
+
           console.log(`ユーザー認証完了`);
           document.cookie = `userID=${data.cookieId}; Path=/; max-age=86400s`;
         }
