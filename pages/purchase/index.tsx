@@ -4,6 +4,8 @@ import PurchaseConfirmation from "../../components/purchase/purchaseConfirmation
 import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Purchase = () => {
   //inputに登録された画像のバイナリデータを保持するstate
@@ -76,6 +78,7 @@ const Purchase = () => {
 
   return (
     <div className="wrapper">
+      <Header />
       <FormProvider {...methods}>
         {isConfirm ? (
           <>
@@ -95,7 +98,7 @@ const Purchase = () => {
           </>
         )}
       </FormProvider>
-      <Link href="/">トップページ</Link>
+      <Footer />
     </div>
   );
 };
