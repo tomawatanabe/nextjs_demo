@@ -2,8 +2,7 @@ import type { Stock } from "../types";
 import type { FavoriteItem } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
-import { useState } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 const AddFavorit = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
@@ -23,7 +22,7 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
   const fetcher = (resource: string) =>
     fetch(resource).then((res) => res.json());
 
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}&itemId=${stockData.itemId}`,
     fetcher
   );
@@ -38,9 +37,11 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
       Router.push("/login/loginPage");
       return;
     }
+
     if (data.length) {
       alert("既にお気に入り済みです");
     } else {
+      alert("お気に入りに追加しました");
       fetch("http://localhost:8000/favoriteItems", {
         method: "POST",
         headers: {
@@ -48,41 +49,47 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
         },
         body: JSON.stringify(stockData),
       });
-
-      alert("お気に入りに追加しました");
+      mutate("http://localhost:8000/favoriteItems");
     }
   };
 
   const deleteFav = () => {
+    //cookie持ってなかったらログイン画面へ
+    if (!cookieName) {
+      Router.push("/login/loginPage");
+      return;
+    }
+    alert("お気に入りから削除しました");
+
     fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
       method: "DELETE",
     });
-    alert("お気に入りから削除しました");
+    mutate(`http://localhost:8000/favoriteItems/${data[0].id}`);
   };
 
   return (
     <>
       <div>
-        {/* ここdata.lengthじゃなくてflagにすると何故か動かない */}
-        {/* {data.length ? (
+        {data.length ? (
           <>
             <input
               type="button"
-              onClick={sendFavo}
+              onClick={deleteFav}
               value="お気に入りから削除"
             />
           </>
         ) : (
           <>
-            <input type="button" onClick={sendFavo} value="お気に入りに追加" />
+            <input type="button" onClick={addFav} value="お気に入りに追加" />
           </>
-        )} */}
+        )}
+        {/* 
         <input type="buuton" value="お気に入りにする" onClick={addFav} />
         <input
           type="buuton"
           value="お気に入りから削除する"
           onClick={deleteFav}
-        />
+        /> */}
       </div>
     </>
   );
