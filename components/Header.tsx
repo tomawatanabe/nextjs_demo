@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Header.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -23,38 +23,69 @@ export default function Header() {
   const correction = () => {
     if (cookieOriginal === "userID=" || "") {
       return (
-        <div>
-          <li key="signup">
-            <Link href="/signup">会員登録</Link>
+        <div className={styles.headerin}>
+          <li key="signup" className={styles.lis}>
+            <Link href="/signup" className={styles.link}>
+              会員登録
+            </Link>
           </li>
-          <li key="login">
-            <input type="button" onClick={login} value="ログイン" />
+          <li key="login" className={styles.lis}>
+            <input
+              type="button"
+              className={styles.button}
+              onClick={login}
+              value="ログイン"
+            />
           </li>
         </div>
       );
     } else {
-      return <input type="button" onClick={logout} value="ログアウト" />;
+      return (
+        <div className={styles.headerin}>
+          <li key="signup" className={styles.lis}>
+            <Link href="/" className={styles.link}>
+              マイページ
+            </Link>
+          </li>
+          <input
+            type="button"
+            onClick={logout}
+            value="ログアウト"
+            className={styles.button2}
+          />
+        </div>
+      );
     }
   };
   return (
-    <div>
-      <header className={styles.header}>
-        <Link href="/">
-          <Image src="/shoplogo.png" alt="syoplogo" height={144} width={144} />
-        </Link>
-        <ul>
-          <li key="mypage">
-            <Link href="/mypage">マイページ</Link>
+    <header className={styles.header}>
+      <Image
+        src="/shoplogo.png"
+        alt="syoplogo"
+        height={144}
+        width={144}
+        className={styles.image}
+      />
+      <div className={styles.header__inner}>
+        <ul className={styles.ul}>
+          <li key="mypage" className={styles.lis}>
+            <Link href="/" className={styles.link}>
+              カート
+            </Link>
           </li>
-          <li key="cart">
-            <Link href="/contact">お問い合わせ</Link>
+          <li key="cart" className={styles.lis}>
+            <Link href="/contact" className={styles.link}>
+              お問い合わせ
+            </Link>
           </li>
-          <li key="favorit">
-            <Link href="/purchase">買取受付</Link>
+          <li key="favorit" className={styles.lis}>
+            <Link href="/purchase" className={styles.link}>
+              買取受付
+            </Link>
           </li>
           {correction()}
         </ul>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 }

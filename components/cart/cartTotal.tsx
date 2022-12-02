@@ -7,6 +7,7 @@ const CartTotal = (props: any) => {
     console.log(initial);
     const [total, setTotal] = useState(initial);
     const [cartItems, setCartItems] = useState(cart.stock);
+
     
     return (
       <>

@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import styles from "../styles/Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className={styles.foot}>
       <li key={"purchase"}>
         <Link href="http://localhost:3000/purchase">買取受付</Link>
       </li>
