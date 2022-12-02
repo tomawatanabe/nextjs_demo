@@ -11,10 +11,12 @@ const CartItem = (props: any) => {
 
   const [cart, setCart] = useState(props.data[0]);
   const [cartItems, setCartItems] = useState(cart.stock);
+  console.log(props.data);
+  console.log(props.data[0]);
   console.log(cart);
    
 
-  const handleDelete = (id: any) => {
+  const handleDelete = (cart: any, id: any) => {
     if (!userID === true) {
       const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
       const deleted = shoppingCart[0].stock.filter((item: Stock) => item.id !== id);
@@ -22,10 +24,28 @@ const CartItem = (props: any) => {
       localStorage.setItem('shoppingCart', JSON.stringify([data]));
       router.reload();
     }else{
-      fetch(`http://localhost:8000/shoppingCart/${userID}/stock?id=${id}`, {
-          method: 'DELETE'
-      })
-          .then(console.log);
+      const stock = cart.stock;
+      const deleted = stock.filter((item: Stock) => item.id !== id);
+      console.log(deleted);
+
+      fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "stock": deleted
+                }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+
+      router.reload();
     }
   }
 
@@ -57,7 +77,7 @@ const CartItem = (props: any) => {
                 </select>
               </li>
             </ul>
-            <button onClick={() => handleDelete(content.id)}>カートから削除</button>
+            <button onClick={() => handleDelete(cart, content.id)}>カートから削除</button>
           </div>
         </li>
       ))

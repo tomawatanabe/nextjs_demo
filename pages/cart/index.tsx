@@ -10,14 +10,14 @@ const fetcher = (resource: string): Promise<any> => fetch(resource).then((res) =
 
 const ShoppingCart = () => {
     const userID = useCookie();
-    let {data, error, mutate} = useSWR(`http://localhost:8000/shoppingCart?userID=${userID}&deleted=false`, fetcher);
+    let {data, error, mutate} = useSWR(`http://localhost:8000/shoppingCart?id=${userID}`, fetcher);
     
     useEffect(() => {
-        console.log(localStorage.getItem('shoppingCart') || '{}')
       if(!userID === true){
         const getjson = localStorage.getItem('shoppingCart') || '{}';
-        // data = JSON.parse(getjson) as ShoppingCart;
         mutate(JSON.parse(getjson));
+      }else{
+        localStorage.clear();
       }
     }, []);
     console.log(data);
