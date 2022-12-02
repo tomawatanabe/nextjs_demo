@@ -1410,58 +1410,28 @@
       "building": "",
       "password": "Rakus123",
       "id": 4
+    },
+    {
+      "lastName": "test",
+      "firstName": "man",
+      "kanaLastName": "aaaa",
+      "kanaFirstName": "あ",
+      "phoneNumber": "0332532481",
+      "email": "sample@sample.co.jp",
+      "zipCode": "1600002",
+      "prefecture": "東京都",
+      "city": "新宿区四谷坂町",
+      "address": "14-25",
+      "building": "",
+      "password": "Rakus123",
+      "id": 5
     }
   ],
   "order": [],
   "orderItems": [],
   "purchaseHistory": [],
   "shoppingCart": [],
-  "favoriteItems": [
-    {
-      "itemId": 1,
-      "cookieName": "2",
-      "name": "AIR FOAMPOSITE ONE",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 1
-    },
-    {
-      "itemId": 2,
-      "cookieName": "2",
-      "name": "AIR FOAMPOSITE ONE NRG",
-      "price": 132000,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 2
-    },
-    {
-      "itemId": 6,
-      "cookieName": "2",
-      "name": "AIR FORCE 1 07 LV8 ND",
-      "price": 46200,
-      "size": 29,
-      "imagePath": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 3
-    },
-    {
-      "itemId": 7,
-      "cookieName": "2",
-      "name": "AIR FORCE 1 07/CLOT/FRGMT",
-      "price": 66000,
-      "size": 26,
-      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 4
-    }
-  ],
+  "favoriteItems": [],
   "usedItems": [
     {
       "receptionDate": "2022/11/29",

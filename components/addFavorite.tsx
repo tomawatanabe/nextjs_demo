@@ -2,6 +2,8 @@ import type { Stock } from "../types";
 import type { FavoriteItem } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
+import { useState } from "react";
+import useSWR from "swr";
 
 const AddFavorit = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
@@ -17,19 +19,25 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
     deleted: false,
   };
 
-  const sendFavo = async () => {
+  //自分がお気に入りしたこのstockの配列を取得
+  const fetcher = (resource: string) =>
+    fetch(resource).then((res) => res.json());
+
+  const { data, error } = useSWR(
+    `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}&itemId=${stockData.itemId}`,
+    fetcher
+  );
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  //onClick処理
+  const addFav = () => {
     //cookie持ってなかったらログイン画面へ
     if (!cookieName) {
       Router.push("/login/loginPage");
       return;
     }
-
-    const res = await fetch(
-      `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}&itemId=${stockData.itemId}`
-    );
-    const data = await res.json();
-
-    //data.lengthが1以上ならお気に入りできない
     if (data.length) {
       alert("既にお気に入り済みです");
     } else {
@@ -39,21 +47,44 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(stockData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      });
+
+      alert("お気に入りに追加しました");
     }
   };
 
+  const deleteFav = () => {
+    fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
+      method: "DELETE",
+    });
+    alert("お気に入りから削除しました");
+  };
+
   return (
-    <div>
-      <button onClick={sendFavo}>お気に入りに追加</button>
-    </div>
+    <>
+      <div>
+        {/* ここdata.lengthじゃなくてflagにすると何故か動かない */}
+        {/* {data.length ? (
+          <>
+            <input
+              type="button"
+              onClick={sendFavo}
+              value="お気に入りから削除"
+            />
+          </>
+        ) : (
+          <>
+            <input type="button" onClick={sendFavo} value="お気に入りに追加" />
+          </>
+        )} */}
+        <input type="buuton" value="お気に入りにする" onClick={addFav} />
+        <input
+          type="buuton"
+          value="お気に入りから削除する"
+          onClick={deleteFav}
+        />
+      </div>
+    </>
   );
 };
 
