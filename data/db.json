@@ -1430,7 +1430,65 @@
   "order": [],
   "orderItems": [],
   "purchaseHistory": [],
-  "shoppingCart": [],
+  "shoppingCart": [
+    {
+      "id": 1,
+      "stock": [
+        {
+          "id": 10,
+          "itemID": 10,
+          "price": 55000,
+          "size": 28,
+          "image1": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI1.jpg",
+          "image2": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI2.jpg",
+          "image3": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI3.jpg",
+          "image4": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI4.jpg",
+          "image5": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 10,
+            "name": "AIR FORCE 1 SP / TISCI",
+            "series": "AIR FORCE 1 LOW",
+            "year": 2014,
+            "description": "[ナイキ エアフォース 1 スペシャル \"リカルド ティッシ\" バケッタタン 669917-200] NIKE LABからイタリア出身のファッションデザイナー\"RICCARDO TISCI\"とのコラボレーションモデル「AIR FORCE 1 SP / TISCI」の登場です。クラシカルな印象を残しつつ、細部にマルチカラーの装飾を施すことでクラフト感を演出しています。またミッドソールにあるAIRの刻印下に、\"RT\"のイニシャルを付け加えるなど、\"RICCARDO TISCI\"らしいデザインを盛り込まれている1足となっています。",
+            "setprice": "2014年10月発売、日本定価24,840円",
+            "color": "VACHETTA TAN/BLACK",
+            "deleted": "false"
+          }
+        },
+        {
+          "id": 1,
+          "itemID": 1,
+          "price": 38500,
+          "size": 27.5,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 1,
+            "name": "AIR FOAMPOSITE ONE",
+            "series": "POSITE SERIES",
+            "year": 2016,
+            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
+            "setprice": "2016年6月発売、日本定価25,920円",
+            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
+            "deleted": "false"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "stock": []
+    }
+  ],
   "favoriteItems": [
     {
       "itemId": 6,
