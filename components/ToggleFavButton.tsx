@@ -4,7 +4,7 @@ import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR, { mutate } from "swr";
 
-const AddFavorit = ({ stock }: { stock: Stock }) => {
+const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
 
   const stockData: FavoriteItem = {
@@ -38,19 +38,15 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    if (data.length) {
-      alert("既にお気に入り済みです");
-    } else {
-      alert("お気に入りに追加しました");
-      fetch("http://localhost:8000/favoriteItems", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(stockData),
-      });
-      mutate("http://localhost:8000/favoriteItems");
-    }
+    alert("お気に入りに追加しました");
+
+    fetch("http://localhost:8000/favoriteItems", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stockData),
+    }).then(() => mutate("http://localhost:8000/favoriteItems"));
   };
 
   const deleteFav = () => {
@@ -63,8 +59,7 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
 
     fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
       method: "DELETE",
-    });
-    mutate(`http://localhost:8000/favoriteItems/${data[0].id}`);
+    }).then(() => mutate(`http://localhost:8000/favoriteItems/${data[0].id}`));
   };
 
   return (
@@ -83,16 +78,9 @@ const AddFavorit = ({ stock }: { stock: Stock }) => {
             <input type="button" onClick={addFav} value="お気に入りに追加" />
           </>
         )}
-        {/* 
-        <input type="buuton" value="お気に入りにする" onClick={addFav} />
-        <input
-          type="buuton"
-          value="お気に入りから削除する"
-          onClick={deleteFav}
-        /> */}
       </div>
     </>
   );
 };
 
-export default AddFavorit;
+export default ToggleFavButton;

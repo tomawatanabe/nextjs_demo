@@ -1431,7 +1431,30 @@
   "orderItems": [],
   "purchaseHistory": [],
   "shoppingCart": [],
-  "favoriteItems": [],
+  "favoriteItems": [
+    {
+      "itemId": 11,
+      "cookieName": "2",
+      "name": "AIR JORDAN 1",
+      "price": 27500,
+      "size": 27,
+      "imagePath": "images/sneakers/AIR JORDAN 1/AIR JORDAN 1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
+    },
+    {
+      "itemId": 17,
+      "cookieName": "2",
+      "name": "AIR JORDAN 5 RETRO SP",
+      "price": 66000,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR JORDAN 5 RETRO SP/AIR JORDAN 5 RETRO SP_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 4
+    }
+  ],
   "usedItems": [
     {
       "receptionDate": "2022/11/29",

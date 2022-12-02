@@ -1,39 +1,38 @@
 import useSWR from "swr";
-import router from "next/router";
-import React, { useEffect, useState } from "react";
-import { FavoriteItem, FavoriteItem2, Stock } from "../types";
+import { FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
+import { useRouter } from "next/router";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
+
 function FavoriteList() {
   const cookieName = useCookie();
+  const router = useRouter();
 
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}`,
     fetcher
   );
+
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  const deletedB = (favoriteItem: FavoriteItem2) => {
-    fetch(`http://localhost:8000/favoriteItems/${favoriteItem.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        deleted: true,
-      }),
+  // const deletedB = (favoriteItem: FavoriteItem2) => {
+  //   fetch(`http://localhost:8000/favoriteItems/${favoriteItem.id}`, {
+  //     method: "DELETE",
+  //   }).then(() =>
+  //     mutate(`http://localhost:8000/favoriteItems/${favoriteItem.id}`)
+  //   );
+  // };
+
+  const deleteFav = () => {
+    fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
+      method: "DELETE",
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data), router.reload();
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .then(() => mutate(`http://localhost:8000/favoriteItems/${data[0].id}`))
+      .then(router.reload());
   };
 
   return (
@@ -69,7 +68,7 @@ function FavoriteList() {
                 </td>
                 <td>{favoriteItem.condition}</td>
                 <td>
-                  <button onClick={() => deletedB(favoriteItem)}>削除</button>
+                  <button onClick={() => deleteFav()}>削除</button>
                 </td>
               </tr>
             );
