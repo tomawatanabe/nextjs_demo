@@ -7,7 +7,6 @@ import { useCookie } from "../useCookie";
 
 const CartButton = ({ stock }: {stock: Stock}) => {
     
-    // const [cookieName, setCookieName] = useState("");
     const userID = useCookie();
 
     console.log(stock);
@@ -18,7 +17,6 @@ const CartButton = ({ stock }: {stock: Stock}) => {
 
     const addCartItem = async () => {
         if (!userID === true) {
-            // Router.push("/login/loginPage");
             if(localStorage.getItem("shoppingCart")){
               const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
               shoppingCart[0].stock.push(stock);
@@ -30,8 +28,6 @@ const CartButton = ({ stock }: {stock: Stock}) => {
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();
           const target = stock;
-          console.log(target);
-          console.log(user.stock);
           if(user.stock.some((item: any) => 
             item.id === target.id 
           )){

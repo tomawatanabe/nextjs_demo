@@ -10,14 +10,13 @@ import { useCookie } from "../components/useCookie";
 export default function Home() {
   const userID = useCookie();
   
+  // ログインしたとき、ローカルストレージからサーバーにデータを移動
   useEffect(() => {
     if(!userID === true){
       return;
     }else{
       if(localStorage.getItem("shoppingCart")){
         const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
-        // shoppingCart[0].stock.push(stock);
-        // localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
   
         fetch(`http://localhost:8000/shoppingCart/${userID}`, {
           method: 'PATCH',
@@ -35,8 +34,6 @@ export default function Home() {
           .catch((error) => {
             console.error('Error:', error);
           });
-        // mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
-        // localStorage.clear();
       }
     }
   }, [userID]);

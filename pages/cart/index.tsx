@@ -4,7 +4,6 @@ import CartTotal from "../../components/cart/cartTotal";
 import {useState, useEffect} from "react";
 import useSWR from "swr";
 import { useCookie } from "../../components/useCookie";
-// import type { ShoppingCart } from "../../types";
 
 const fetcher = (resource: string): Promise<any> => fetch(resource).then((res) => res.json()); 
 

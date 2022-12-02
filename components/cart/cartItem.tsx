@@ -4,8 +4,6 @@ import router from "next/router";
 import { useCookie } from "../useCookie";
 import type { Stock } from "../../types";
 
-
-
 const CartItem = (props: any) => {
     const userID = useCookie();
 
