@@ -6,6 +6,8 @@ const CartTotal = (props: any) => {
     const initial: number = cart.stock?.map((stock: any) => stock.price).reduce((prev: number, curr: number) => prev + curr, 0);
     console.log(initial);
     const [total, setTotal] = useState(initial);
+    const [cartItems, setCartItems] = useState(cart.stock);
+
     
     return (
       <>
@@ -17,11 +19,11 @@ const CartTotal = (props: any) => {
             </tr>
             <tr>
                 <th>送料{'('}一律{')'}:</th> 
-                <td>￥500</td>
+                <td>￥{cartItems.length? 500 : 0}</td>
             </tr>
             </tbody>
         </table>
-        <p>合計：￥{total + 500}</p>
+        <p>合計：￥{cartItems.length? total + 500 : 0}</p>
       </>
     )
 }

@@ -6,10 +6,10 @@ export default function Footer() {
   return (
     <footer className={styles.foot}>
       <li key={"purchase"}>
-        <Link href="/">買取受付</Link>
+        <Link href="http://localhost:3000/purchase">買取受付</Link>
       </li>
       <li key={"inquiry"}>
-        <Link href="/">お問い合わせ</Link>
+        <Link href="http://localhost:3000/contact">お問い合わせ</Link>
       </li>
       <Image
         src="/images/FacebookLogo.png"

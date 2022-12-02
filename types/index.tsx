@@ -66,7 +66,6 @@ export type FavoriteItem2 = {
 
 export type ShoppingCart = {
   id: number;
-  userID: number;
   stock: any[];
 };
 
@@ -78,5 +77,37 @@ export type Order = {
   note: string;
   paymentMethod: string;
   orderItemList: any[];
-  status: string;
+};
+
+export type UsedItems = {
+  receptionDate: string;
+  cookieName: string | undefined;
+  sellerLastName: string;
+  sellerFirstName: string;
+  sellerKanaLastName: string;
+  sellerKanaFirstName: string;
+  sellerPhoneNumber: string;
+  sellerEmail: string;
+  sellerZipCode: string;
+  sellerPrefecture: string;
+  sellerCity: string;
+  sellerAddress: string;
+  sellerBuilding: string | undefined;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemNote: string;
+  itemStatus: "完了" | "買取処理中";
+  id: number;
+};
+
+export type TopUsedItems = {
+  receptionDate: string;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemStatus: "完了" | "買取処理中";
+  id: number;
 };
