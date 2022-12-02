@@ -3,6 +3,7 @@ import { FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
@@ -36,7 +37,6 @@ function FavoriteList() {
             <th>サイズ</th>
             <th>画像</th>
             <th>コンディション</th>
-            <th>お気に入りから削除</th>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +58,14 @@ function FavoriteList() {
                 </td>
                 <td>{favoriteItem.condition}</td>
                 <td>
-                  <button onClick={() => deleteFav(favoriteItem)}>削除</button>
+                  <Link href={`http://localhost:3000/${favoriteItem.itemId}`}>
+                    詳細
+                  </Link>
+                </td>
+                <td>
+                  <button onClick={() => deleteFav(favoriteItem)}>
+                    お気に入りから削除
+                  </button>
                 </td>
               </tr>
             );

@@ -1535,17 +1535,6 @@
       "id": 16
     },
     {
-      "itemId": 7,
-      "cookieName": "2",
-      "name": "AIR FORCE 1 07/CLOT/FRGMT",
-      "price": 66000,
-      "size": 26,
-      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 17
-    },
-    {
       "itemId": 9,
       "cookieName": "2",
       "name": "AIR FORCE 1 LOW PREMIUM 08 NRG",
