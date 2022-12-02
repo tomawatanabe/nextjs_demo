@@ -90,6 +90,7 @@ export default function Detail({ stock }: { stock: Stock }) {
             <p>在庫数：{stock.amount}</p>
             <p>コンディション：{stock.condition}</p>
             <ToggleFavButton stock={stock} />
+            <CartButton stock={stock} />
           </div>
         </div>
         <div className="explanation-wrapper">

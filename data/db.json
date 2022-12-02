@@ -1538,6 +1538,17 @@
       "condition": "A",
       "deleted": false,
       "id": 4
+    },
+    {
+      "itemId": 8,
+      "cookieName": "1",
+      "name": "AIR FORCE 1 07/PARA-NOISE",
+      "price": 60500,
+      "size": 29,
+      "imagePath": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 5
     }
   ],
   "usedItems": []
