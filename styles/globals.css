@@ -108,31 +108,47 @@ textarea {
 }
 
 /* [id].tsx */
+.content-wrapper {
+  width: 1160px;
+  padding-left: 50px;
+  margin-bottom: 50px;
+}
 
 .main-content {
   display: flex;
-  width: 100%;
 }
 
 .right-side-wrapper {
   justify-content: flex-end;
-  width: 30%;
+  width: 20%;
   height: 550px;
   text-align: center;
 }
 
 .image-wraper {
-  width: 70%;
+  width: 80%;
 }
 
 .main-image {
   display: flex;
   justify-content: center;
-  height: 300px; ;
-  width: 300px; ;
+  height: 300px;
+  width: 300px;
 }
 
 .sub-images {
   display: flex;
   margin-bottom: 100px;
+}
+
+.sub-image {
+  padding-left: 30px;
+}
+
+.sub {
+  padding-left: 20px;
+}
+
+.description{
+  width: 800px;
 }
