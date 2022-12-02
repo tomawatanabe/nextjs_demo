@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import ContactForm from "../../components/contact/contactForm";
 import ContactConfirmation from "../../components/contact/contactConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
-import SignIn from "../../components/SignIn";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Contact = () => {
   const router = useRouter();
@@ -15,8 +15,7 @@ const Contact = () => {
   });
 
   return (
-    <div className="wrapper">
-      <SignIn>
+      <div className="wrapper">
         <FormProvider {...methods}>
           {isConfirm ? (
             <>
@@ -29,7 +28,19 @@ const Contact = () => {
           )}
         </FormProvider>
         <Link href="/">トップページ</Link>
-      </SignIn>
+      <Header />
+      <FormProvider {...methods}>
+        {isConfirm ? (
+          <>
+            <ContactConfirmation />
+          </>
+        ) : (
+          <>
+            <ContactForm />
+          </>
+        )}
+      </FormProvider>
+      <Footer />
     </div>
   );
 };

@@ -5,9 +5,7 @@ import { useFormContext } from "react-hook-form";
 const SignUpConfirmation = () => {
   const router = useRouter();
 
-  const {
-    getValues,
-  } = useFormContext();
+  const { getValues } = useFormContext();
 
   const values = getValues();
 
@@ -34,6 +32,17 @@ const SignUpConfirmation = () => {
         password: values.password,
       }),
     });
+
+    fetch("http://localhost:8000/shoppingCart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        stock: [],
+      }),
+    });
+
     alert("入力内容を送信しました");
   };
 

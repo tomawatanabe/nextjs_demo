@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type Item = {
   id: number;
   name: string;
@@ -51,25 +53,60 @@ export type FavoriteItem = {
 };
 
 export type FavoriteItem2 = {
-<<<<<<< HEAD
+  condition: string;
+  imagePath: string;
+  size: number;
+  price: number;
+  name: string;
   id: number;
   itemId: number;
   cookieName: string | undefined;
-  name: string;
-  price: number;
-  size: number;
-  imagePath: string;
-  condition: string;
-  deleted: boolean;
 };
-=======
-  condition: string;
-  imagePath: string;
-  size: number;
-  price: number;
-  name: string;
-  id: number,
-  itemId: number;
-  cookieName: string | undefined; 
-}
->>>>>>> origin/main
+
+export type ShoppingCart = {
+  id: number;
+  stock: any[];
+};
+
+export type Order = {
+  id: number;
+  userId: string;
+  totalPrice: number;
+  orderDate: Date;
+  note: string;
+  paymentMethod: string;
+  orderItemList: any[];
+};
+
+export type UsedItems = {
+  receptionDate: string;
+  cookieName: string | undefined;
+  sellerLastName: string;
+  sellerFirstName: string;
+  sellerKanaLastName: string;
+  sellerKanaFirstName: string;
+  sellerPhoneNumber: string;
+  sellerEmail: string;
+  sellerZipCode: string;
+  sellerPrefecture: string;
+  sellerCity: string;
+  sellerAddress: string;
+  sellerBuilding: string | undefined;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemNote: string;
+  itemStatus: "完了" | "買取処理中";
+  id: number;
+};
+
+export type TopUsedItems = {
+  receptionDate: string;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemStatus: "完了" | "買取処理中";
+  id: number;
+};

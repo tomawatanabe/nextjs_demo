@@ -2,8 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Yu Gothic", Roboto Condensed, sans-serif, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -24,7 +25,6 @@ a {
     background: black;
   }
 }
-
 label,
 .subtitle {
   display: inline-block;
@@ -99,10 +99,40 @@ textarea {
   padding-left: px;
 }
 
-.form-group-used-item{
+.form-group-used-item {
   display: flex;
 }
 
-.used-item-formB{
+.used-item-formB {
   padding-left: 100px;
+}
+
+/* [id].tsx */
+
+.main-content {
+  display: flex;
+  width: 100%;
+}
+
+.right-side-wrapper {
+  justify-content: flex-end;
+  width: 30%;
+  height: 550px;
+  text-align: center;
+}
+
+.image-wraper {
+  width: 70%;
+}
+
+.main-image {
+  display: flex;
+  justify-content: center;
+  height: 300px; ;
+  width: 300px; ;
+}
+
+.sub-images {
+  display: flex;
+  margin-bottom: 100px;
 }
