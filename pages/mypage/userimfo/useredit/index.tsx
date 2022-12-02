@@ -36,7 +36,7 @@ const UserImfo = () => {
     const result = await res.json();
 
     //郵便番号が存在しない場合アラートを返す
-    if (result.code === 404) {
+    if (result.code === 404||result.code === 400) {
       alert("存在しない郵便番号です");
       return;
     }
