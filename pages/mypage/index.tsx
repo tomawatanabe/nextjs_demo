@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FavoriteList from "../../components/FavoriteList";
 import UsedItemList from "../../components/UsedItemList";
+import SettlementHistory from "../../components/SettlementHistory";
 
 const MyPage = () => {
   return (
@@ -16,7 +17,7 @@ const MyPage = () => {
         </div>
         <hr />
         <div>
-          <UsedItemList />
+          <SettlementHistory />
         </div>
         <hr />
         <div>
@@ -24,10 +25,16 @@ const MyPage = () => {
         </div>
         <hr />
         <div>
-          <h2>購入履歴</h2>
+          <UsedItemList />
         </div>
-        <Link href="http://localhost:3000/mypage/userimfo/">会員情報</Link>
-        <Link href="http://localhost:3000/">ショッピングカート</Link>
+        <h2>
+          <Link href="http://localhost:3000/mypage/userimfo/">
+            会員情報変更
+          </Link>
+        </h2>
+        <h2>
+          <Link href="http://localhost:3000/cart">ショッピングカート</Link>
+        </h2>
         <Footer />
       </SignIn>
     </>

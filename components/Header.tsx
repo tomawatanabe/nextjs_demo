@@ -43,7 +43,7 @@ export default function Header() {
       return (
         <div className={styles.headerin}>
           <li key="signup" className={styles.lis}>
-            <Link href="/" className={styles.link}>
+            <Link href="/mypage" className={styles.link}>
               マイページ
             </Link>
           </li>
@@ -59,17 +59,19 @@ export default function Header() {
   };
   return (
     <header className={styles.header}>
-      <Image
-        src="/shoplogo.png"
-        alt="syoplogo"
-        height={144}
-        width={144}
-        className={styles.image}
-      />
+      <Link href="/">
+        <Image
+          src="/shoplogo.png"
+          alt="syoplogo"
+          height={144}
+          width={144}
+          className={styles.image}
+        />
+      </Link>
       <div className={styles.header__inner}>
         <ul className={styles.ul}>
           <li key="mypage" className={styles.lis}>
-            <Link href="/" className={styles.link}>
+            <Link href="/cart" className={styles.link}>
               カート
             </Link>
           </li>

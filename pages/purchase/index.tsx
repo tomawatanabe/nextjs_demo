@@ -98,6 +98,7 @@ const Purchase = () => {
           </>
         )}
       </FormProvider>
+      <Link href="/">トップページへ</Link>
       <Footer />
     </div>
   );
