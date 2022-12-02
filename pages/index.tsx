@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.css";
 import AddObj from "./api/stocks";
 import { useState, useRef, useEffect } from "react";
 import SettlementHistory from "../components/SettlementHistory";
+import Footer from "../components/Footer";
 
 export default function Home() {
   // 検索機能
@@ -78,6 +79,7 @@ export default function Home() {
           />
           <div className={styles.gridBox}>
             <ItemList searchQuery={searchQuery} />
+            <Footer />
           </div>
         </div>
       </main>
