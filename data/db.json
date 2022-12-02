@@ -1433,26 +1433,37 @@
   "shoppingCart": [],
   "favoriteItems": [
     {
-      "itemId": 11,
+      "itemId": 6,
       "cookieName": "2",
-      "name": "AIR JORDAN 1",
-      "price": 27500,
-      "size": 27,
-      "imagePath": "images/sneakers/AIR JORDAN 1/AIR JORDAN 1.jpg",
+      "name": "AIR FORCE 1 07 LV8 ND",
+      "price": 46200,
+      "size": 29,
+      "imagePath": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND1.jpg",
       "condition": "A",
       "deleted": false,
-      "id": 3
+      "id": 16
     },
     {
-      "itemId": 17,
+      "itemId": 7,
       "cookieName": "2",
-      "name": "AIR JORDAN 5 RETRO SP",
+      "name": "AIR FORCE 1 07/CLOT/FRGMT",
       "price": 66000,
       "size": 26,
-      "imagePath": "images/sneakers/AIR JORDAN 5 RETRO SP/AIR JORDAN 5 RETRO SP_1.jpg",
+      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
       "condition": "A",
       "deleted": false,
-      "id": 4
+      "id": 17
+    },
+    {
+      "itemId": 9,
+      "cookieName": "2",
+      "name": "AIR FORCE 1 LOW PREMIUM 08 NRG",
+      "price": 60500,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 LOW PREMIUM 08 NRG/AIR FORCE 1 LOW PREMIUM 08 NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 18
     }
   ],
   "usedItems": [

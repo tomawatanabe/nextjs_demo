@@ -9,7 +9,7 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 
 function FavoriteList() {
   const cookieName = useCookie();
-  const router = useRouter();
+  const router: any = useRouter();
 
   const { data, error, mutate } = useSWR(
     `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}`,
@@ -19,20 +19,10 @@ function FavoriteList() {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  // const deletedB = (favoriteItem: FavoriteItem2) => {
-  //   fetch(`http://localhost:8000/favoriteItems/${favoriteItem.id}`, {
-  //     method: "DELETE",
-  //   }).then(() =>
-  //     mutate(`http://localhost:8000/favoriteItems/${favoriteItem.id}`)
-  //   );
-  // };
-
-  const deleteFav = () => {
-    fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
+  const deleteFav = (favoriteItem: FavoriteItem2) => {
+    fetch(`http://localhost:8000/favoriteItems/${favoriteItem?.id}`, {
       method: "DELETE",
-    })
-      .then(() => mutate(`http://localhost:8000/favoriteItems/${data[0].id}`))
-      .then(router.reload());
+    }).then(router.reload());
   };
 
   return (
@@ -68,7 +58,7 @@ function FavoriteList() {
                 </td>
                 <td>{favoriteItem.condition}</td>
                 <td>
-                  <button onClick={() => deleteFav()}>削除</button>
+                  <button onClick={() => deleteFav(favoriteItem)}>削除</button>
                 </td>
               </tr>
             );
