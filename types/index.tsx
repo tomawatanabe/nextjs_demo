@@ -25,8 +25,6 @@ export type Stock = {
   item: Item;
 };
 
-
-
 export type Users = {
   id: number;
   firstName: string;
@@ -43,7 +41,7 @@ export type Users = {
 
 export type FavoriteItem = {
   itemId: number;
-  cookieName: string | undefined; 
+  cookieName: string | undefined;
   name: string;
   price: number;
   size: number;
@@ -58,7 +56,40 @@ export type FavoriteItem2 = {
   size: number;
   price: number;
   name: string;
-  id: number,
+  id: number;
   itemId: number;
-  cookieName: string | undefined; 
-}
+  cookieName: string | undefined;
+};
+
+export type UsedItems = {
+  receptionDate: string;
+  cookieName: string | undefined;
+  sellerLastName: string;
+  sellerFirstName: string;
+  sellerKanaLastName: string;
+  sellerKanaFirstName: string;
+  sellerPhoneNumber: string;
+  sellerEmail: string;
+  sellerZipCode: string;
+  sellerPrefecture: string;
+  sellerCity: string;
+  sellerAddress: string;
+  sellerBuilding: string | undefined;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemNote: string;
+  itemStatus: "完了" | "買取処理中";
+  id: number;
+};
+
+export type TopUsedItems = {
+  receptionDate: string;
+  itemName: string;
+  itemCode: string;
+  itemSize: string;
+  itemColor: string;
+  itemStatus: "完了" | "買取処理中";
+  id: number;
+};
