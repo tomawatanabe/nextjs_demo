@@ -41,12 +41,19 @@ export default function Header() {
       );
     } else {
       return (
-        <input
-          type="button"
-          onClick={logout}
-          value="ログアウト"
-          className={styles.button2}
-        />
+        <div className={styles.headerin}>
+          <li key="signup" className={styles.lis}>
+            <Link href="/" className={styles.link}>
+              マイページ
+            </Link>
+          </li>
+          <input
+            type="button"
+            onClick={logout}
+            value="ログアウト"
+            className={styles.button2}
+          />
+        </div>
       );
     }
   };
@@ -63,7 +70,7 @@ export default function Header() {
         <ul className={styles.ul}>
           <li key="mypage" className={styles.lis}>
             <Link href="/" className={styles.link}>
-              マイページ
+              カート
             </Link>
           </li>
           <li key="cart" className={styles.lis}>
