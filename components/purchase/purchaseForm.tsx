@@ -32,9 +32,10 @@ const PurchaseForm = ({
       }
     );
     const result = await res.json();
+    console.log(result)
 
     //存在しない郵便番号の場合、アラートを返す
-    if (result.code === 404) {
+    if (result.code === 404||result.code === 400) {
       alert("存在しない郵便番号です");
       return;
     }
