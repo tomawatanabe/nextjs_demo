@@ -99,10 +99,40 @@ textarea {
   padding-left: px;
 }
 
-.form-group-used-item{
+.form-group-used-item {
   display: flex;
 }
 
-.used-item-formB{
+.used-item-formB {
   padding-left: 100px;
+}
+
+/* [id].tsx */
+
+.main-content {
+  display: flex;
+  width: 100%;
+}
+
+.right-side-wrapper {
+  justify-content: flex-end;
+  width: 30%;
+  height: 550px;
+  text-align: center;
+}
+
+.image-wraper {
+  width: 70%;
+}
+
+.main-image {
+  display: flex;
+  justify-content: center;
+  height: 300px; ;
+  width: 300px; ;
+}
+
+.sub-images {
+  display: flex;
+  margin-bottom: 100px;
 }
