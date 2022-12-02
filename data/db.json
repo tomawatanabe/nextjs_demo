@@ -1365,30 +1365,17 @@
   ],
   "users": [
     {
-<<<<<<< HEAD
       "lastName": "hayakawa",
       "firstName": "miho",
       "kanaLastName": "hayakawa",
       "kanaFirstName": "miho",
       "phoneNumber": "09010000000",
       "email": "aaaa@gmail.com",
-=======
-      "lastName": "新宿",
-      "firstName": "楽子",
-      "kanaLastName": "シンジュク",
-      "kanaFirstName": "ラクコ",
-      "phoneNumber": "09010000000",
-      "email": "aaa@gmail.com",
->>>>>>> origin/main
       "zipCode": "2300001",
       "prefecture": "神奈川県",
       "city": "横浜市鶴見区矢向",
       "address": "1-1",
-<<<<<<< HEAD
       "building": "aaaa@gmail.com",
-=======
-      "building": "新宿ビル1",
->>>>>>> origin/main
       "password": "Password1",
       "id": 1
     }
@@ -1476,7 +1463,6 @@
         }
       ],
       "status": "未発送"
-<<<<<<< HEAD
     }
   ],
   "shoppingCart": [
@@ -1552,223 +1538,7 @@
       "condition": "A",
       "deleted": false,
       "id": 4
-=======
     }
   ],
-  "purchaseHistory": [],
-  "shoppingCart": [
-    {
-      "id": 1,
-      "stock": [
-        {
-          "id": 10,
-          "itemID": 10,
-          "price": 55000,
-          "size": 28,
-          "image1": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI1.jpg",
-          "image2": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI2.jpg",
-          "image3": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI3.jpg",
-          "image4": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI4.jpg",
-          "image5": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 10,
-            "name": "AIR FORCE 1 SP / TISCI",
-            "series": "AIR FORCE 1 LOW",
-            "year": 2014,
-            "description": "[ナイキ エアフォース 1 スペシャル \"リカルド ティッシ\" バケッタタン 669917-200] NIKE LABからイタリア出身のファッションデザイナー\"RICCARDO TISCI\"とのコラボレーションモデル「AIR FORCE 1 SP / TISCI」の登場です。クラシカルな印象を残しつつ、細部にマルチカラーの装飾を施すことでクラフト感を演出しています。またミッドソールにあるAIRの刻印下に、\"RT\"のイニシャルを付け加えるなど、\"RICCARDO TISCI\"らしいデザインを盛り込まれている1足となっています。",
-            "setprice": "2014年10月発売、日本定価24,840円",
-            "color": "VACHETTA TAN/BLACK",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 1,
-          "itemID": 1,
-          "price": 38500,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 1,
-            "name": "AIR FOAMPOSITE ONE",
-            "series": "POSITE SERIES",
-            "year": 2016,
-            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
-            "setprice": "2016年6月発売、日本定価25,920円",
-            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
-            "deleted": "false"
-          }
-        }
-      ]
-    },
-    
-  ],
-  "favoriteItems": [
-    {
-      "itemId": 6,
-      "cookieName": "2",
-      "name": "AIR FORCE 1 07 LV8 ND",
-      "price": 46200,
-      "size": 29,
-      "imagePath": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 16
-    },
-    {
-      "itemId": 9,
-      "cookieName": "2",
-      "name": "AIR FORCE 1 LOW PREMIUM 08 NRG",
-      "price": 60500,
-      "size": 26,
-      "imagePath": "images/sneakers/AIR FORCE 1 LOW PREMIUM 08 NRG/AIR FORCE 1 LOW PREMIUM 08 NRG1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 18
->>>>>>> origin/main
-    }
-  ],
-  "usedItems": [
-    {
-      "receptionDate": "2022/11/29",
-      "cookieName": "2",
-      "sellerLastName": "testID2",
-      "sellerFirstName": "test",
-      "sellerKanaLastName": "testid2",
-      "sellerKanaFirstName": "testid2",
-      "sellerPhoneNumber": "0312345678",
-      "sellerEmail": "wt@gmail.com",
-      "sellerZipCode": "1600002",
-      "sellerPrefecture": "東京都",
-      "sellerCity": "新宿区四谷坂町",
-      "sellerAddress": "111",
-      "sellerBuilding": "",
-      "itemName": "NIKE AIR JORDAN sampleA",
-      "itemCode": "777",
-      "itemSize": "28",
-      "itemColor": "黒",
-      "itemNote": "",
-      "itemStatus": "完了",
-      "id": 1
-    },
-    {
-      "receptionDate": "2022/11/30",
-      "cookieName": "2",
-      "sellerLastName": "山田",
-      "sellerFirstName": "太郎",
-      "sellerKanaLastName": "タロウ",
-      "sellerKanaFirstName": "ヤマダ",
-      "sellerPhoneNumber": "0332532431",
-      "sellerEmail": "wt@gmail.com",
-      "sellerZipCode": "1600002",
-      "sellerPrefecture": "東京都",
-      "sellerCity": "新宿区四谷坂町",
-      "sellerAddress": "1-1-1",
-      "sellerBuilding": "",
-      "itemName": "NIKE AIR JORDAN",
-      "itemCode": "777",
-      "itemSize": "28",
-      "itemColor": "白",
-      "itemNote": "",
-      "itemStatus": "完了",
-      "id": 2
-    },
-    {
-      "receptionDate": "2022/12/1",
-      "cookieName": "2",
-      "sellerLastName": "山田",
-      "sellerFirstName": "太郎",
-      "sellerKanaLastName": "タロウ",
-      "sellerKanaFirstName": "ヤマダ",
-      "sellerPhoneNumber": "0332532431",
-      "sellerEmail": "wt@gmail.com",
-      "sellerZipCode": "1600002",
-      "sellerPrefecture": "東京都",
-      "sellerCity": "新宿区四谷坂町",
-      "sellerAddress": "1-1-1",
-      "sellerBuilding": "",
-      "itemName": "NIKE AIR MAX sampleB",
-      "itemCode": "666",
-      "itemSize": "27",
-      "itemColor": "赤",
-      "itemNote": "",
-      "itemStatus": "買取処理中",
-      "id": 3
-    },
-    {
-      "receptionDate": "2022/12/1",
-      "cookieName": "2",
-      "sellerLastName": "山田",
-      "sellerFirstName": "太郎",
-      "sellerKanaLastName": "タロウ",
-      "sellerKanaFirstName": "ヤマダ",
-      "sellerPhoneNumber": "0332532431",
-      "sellerEmail": "wt@gmail.com",
-      "sellerZipCode": "1600002",
-      "sellerPrefecture": "東京都",
-      "sellerCity": "新宿区四谷坂町",
-      "sellerAddress": "1-1-1",
-      "sellerBuilding": "",
-      "itemName": "NIKE AIR MAX sampleB",
-      "itemCode": "666",
-      "itemSize": "27",
-      "itemColor": "赤",
-      "itemNote": "",
-      "itemStatus": "買取処理中",
-      "id": 4
-    },
-    {
-      "receptionDate": "2022/12/1",
-      "cookieName": "2",
-      "sellerLastName": "山田",
-      "sellerFirstName": "太郎",
-      "sellerKanaLastName": "タロウ",
-      "sellerKanaFirstName": "ヤマダ",
-      "sellerPhoneNumber": "0332532431",
-      "sellerEmail": "wt@gmail.com",
-      "sellerZipCode": "1600002",
-      "sellerPrefecture": "東京都",
-      "sellerCity": "新宿区四谷坂町",
-      "sellerAddress": "1-1-1",
-      "sellerBuilding": "",
-      "itemName": "NIKE AIR MAX sampleB",
-      "itemCode": "666",
-      "itemSize": "27",
-      "itemColor": "赤",
-      "itemNote": "",
-      "itemStatus": "買取処理中",
-      "id": 5
-    },
-    {
-      "receptionDate": "2022/12/1",
-      "cookieName": "2",
-      "sellerLastName": "山田",
-      "sellerFirstName": "太郎",
-      "sellerKanaLastName": "タロウ",
-      "sellerKanaFirstName": "ヤマダ",
-      "sellerPhoneNumber": "0332532431",
-      "sellerEmail": "wt@gmail.com",
-      "sellerZipCode": "1600002",
-      "sellerPrefecture": "東京都",
-      "sellerCity": "新宿区四谷坂町",
-      "sellerAddress": "1-1-1",
-      "sellerBuilding": "",
-      "itemName": "NIKE AIR MAX sampleB",
-      "itemCode": "666",
-      "itemSize": "27",
-      "itemColor": "赤",
-      "itemNote": "",
-      "itemStatus": "買取処理中",
-      "id": 6
-    }
-  ]
+  "usedItems": []
 }

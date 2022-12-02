@@ -7,34 +7,36 @@ import AddObj from "./api/stocks";
 import { useState, useRef, useEffect } from "react";
 import SettlementHistory from "../components/SettlementHistory";
 import Footer from "../components/Footer";
-import { useCookie } from "../components/useCookie";  
+import { useCookie } from "../components/useCookie";
 
 export default function Home() {
   const userID = useCookie();
-  
+
   // ログインしたとき、ローカルストレージからサーバーにデータを移動
   useEffect(() => {
-    if(!userID === true){
+    if (!userID === true) {
       return;
-    }else{
-      if(localStorage.getItem("shoppingCart")){
-        const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
-  
+    } else {
+      if (localStorage.getItem("shoppingCart")) {
+        const shoppingCart = JSON.parse(
+          localStorage.getItem("shoppingCart") || "{}"
+        );
+
         fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-          method: 'PATCH',
+          method: "PATCH",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-              "stock": shoppingCart[0].stock
-              }),
+            stock: shoppingCart[0].stock,
+          }),
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log('Success:', data);
+            console.log("Success:", data);
           })
           .catch((error) => {
-            console.error('Error:', error);
+            console.error("Error:", error);
           });
       }
     }
@@ -111,8 +113,9 @@ export default function Home() {
           <div className={styles.gridBox}>
             <ItemList searchQuery={searchQuery} />
           </div>
+        </div>
       </main>
       <Footer />
-     </div>
+    </div>
   );
 }
