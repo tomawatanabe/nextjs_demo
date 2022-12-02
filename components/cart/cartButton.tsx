@@ -10,7 +10,7 @@ const CartButton = ({ stock }: {stock: Stock}) => {
     // const [cookieName, setCookieName] = useState("");
     const userID = useCookie();
 
-    console.log(userID);
+    console.log(stock);
 
     const data = {
         stock: [stock]
@@ -29,24 +29,34 @@ const CartButton = ({ stock }: {stock: Stock}) => {
         } else { 
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();
-          user.stock.push(stock);
-
-          fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "stock": user.stock
-                }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log('Success:', data);
+          const target = stock;
+          console.log(target);
+          console.log(user.stock);
+          if(user.stock.some((item: any) => 
+            item.id === target.id 
+          )){
+            alert("既にカートに追加済みです");
+          }else{
+            user.stock.push(stock);
+  
+            fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  "stock": user.stock
+                  }),
             })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('Success:', data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          }
+
         }
     }
 
