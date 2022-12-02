@@ -5,6 +5,7 @@ import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
 import AddObj from "./api/stocks";
 import { useState, useRef, useEffect } from "react";
+import SettlementHistory from "../components/SettlementHistory";
 
 export default function Home() {
   // 検索機能

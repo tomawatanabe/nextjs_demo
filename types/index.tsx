@@ -69,3 +69,14 @@ export type ShoppingCart = {
   userID: number;
   stock: any[];
 };
+
+export type Order = {
+  id: number;
+  userId: string;
+  totalPrice: number;
+  orderDate: Date;
+  note: string;
+  paymentMethod: string;
+  orderItemList: any[];
+  status: string;
+};

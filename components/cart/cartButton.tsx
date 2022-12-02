@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import Router from "next/router";
 import type { Stock } from "../../types";
 import { useCookie } from "../useCookie";
@@ -8,13 +7,20 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   // const [cookieName, setCookieName] = useState("");
   const userID = useCookie();
 
-  console.log(userID);
-
   // const data = {
   //     itemId: stock.id,
   //     cookieName: cookieName,
-
   // };
+
+  //カート追加時にshoppingCart内にstockデータを追加
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("stockID", stock.id);
+    await fetch("/api/cart", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ stockID: stock.id }),
+    });
+  };
 
   const addCartItem = async () => {
     if (!userID === true) {
@@ -29,8 +35,6 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     } else {
       const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
       const user = await res.json();
-      user.stockID.push(stock.id);
-      user.stock.push(stock);
 
       fetch(`http://localhost:8000/shoppingCart/${userID}`, {
         method: "PATCH",
@@ -53,7 +57,10 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     }
   };
 
-  return <button onClick={addCartItem}>カートへ追加</button>;
+  return (
+    <form onSubmit={handleSubmit}>
+      <button onClick={addCartItem}>カートへ追加</button>
+    </form>
+  );
 };
-
 export default CartButton;

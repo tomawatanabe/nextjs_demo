@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AddFavorit from "../components/addFavorite";
+import CartButton from "../components/cart/cartButton";
 import FavoriteList from "../components/FavoriteList";
 import { Stock } from "../types";
 
