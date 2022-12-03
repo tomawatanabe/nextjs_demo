@@ -36,9 +36,11 @@
 
 .lis {
   font-size: 18px;
+  font-weight: 500;
   display: inline-block;
   box-sizing: border-box;
   padding: 14px 20px;
+  padding-bottom: 0;
 }
 
 .link {
@@ -57,7 +59,7 @@
   margin-top: 10px;
   font-family: "Yu Gothic";
   font-weight: bold;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
 }
 .button2 {
   color: #000;

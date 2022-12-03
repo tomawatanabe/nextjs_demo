@@ -2,7 +2,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import { Stock } from "../types";
 import Image from "next/image";
-import styles from "../styles/ItemList.module.css";
+import styles from "../styles/itemList.module.css";
 
 const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
@@ -16,7 +16,7 @@ export default function ItemList(props: any) {
     <>
       {props.searchQuery.map((stock: Stock) => {
         return (
-          <div>
+          <div className={styles.itemdiv}>
             <Link legacyBehavior href={`/${stock.id}`}>
               <Image
                 src={`/${stock.image1}`}
@@ -30,6 +30,8 @@ export default function ItemList(props: any) {
               {stock.item.name}
             </Link>
             <br />￥{stock.price}
+            <br />
+            size {stock.size}
           </div>
         );
       })}

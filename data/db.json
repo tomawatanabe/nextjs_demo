@@ -1370,12 +1370,12 @@
       "kanaLastName": "hayakawa",
       "kanaFirstName": "miho",
       "phoneNumber": "09010000000",
-      "email": "aaaa@gmail.com",
+      "email": "aaa@gmail.com",
       "zipCode": "2300001",
       "prefecture": "神奈川県",
       "city": "横浜市鶴見区矢向",
       "address": "1-1",
-      "building": "aaaa@gmail.com",
+      "building": "aaa@gmail.com",
       "password": "Password1",
       "id": 1
     }
@@ -1650,6 +1650,30 @@
           "itemID": 1,
           "price": 38500,
           "size": 27.5,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 4,
+            "name": "AIR FOAMPOSITE ONE SUPREME SP",
+            "series": "POSITE SERIES",
+            "year": 2014,
+            "description": "[ナイキ エアフォームポジットワン \"シュプリーム\" ブラック 652792-001]  AIR FOAMPOSITE ONE」は1997年にアンファニー\"ペニー\"ハーダウェイ氏のモデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。デザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けているエリック・エイバー氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。  今作はニューヨーク発のスケートブランド「SUPREME」とのコラボレーションモデル「AIR FOAMPOSITE ONE SUPREME SP」。 ※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。  ",
+            "setprice": "2014年4月発売、日本定価27,000円",
+            "color": "\"SUPREME\" BLACK/BLACK-METALLIC GOLD",
+            "deleted": "false"
+          }
+        },
+        {
+          "id": 1,
+          "itemID": 1,
+          "price": 38500,
+          "size": 27.5,
           "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
           "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
           "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
@@ -1739,50 +1763,7 @@
       "condition": "A",
       "deleted": false,
       "id": 4
-    },
-    {
-      "itemId": 1,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 5
-    },
-    {
-      "itemId": 2,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE NRG",
-      "price": 132000,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 6
-    },
-    {
-      "itemId": 3,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE SP",
-      "price": 66000,
-      "size": 27,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 7
-    },
-    {
-      "itemId": 4,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE SUPREME SP",
-      "price": 121000,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 8
+
     }
   ],
   "usedItems": []

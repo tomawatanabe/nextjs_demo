@@ -3,17 +3,16 @@ import Router from "next/router";
 import type { Stock } from "../../types";
 import { useCookie } from "../useCookie";
 
-const CartButton = ({ stock }: {stock: Stock}) => {
-    
-    const userID = useCookie();
+const CartButton = ({ stock }: { stock: Stock }) => {
+  const userID = useCookie();
 
-    console.log(stock);
+  console.log(stock);
 
-    const data = {
-        stock: [stock]
-    };
-    
-    //カート追加時にshoppingCart内にstockデータを追加
+  const data = {
+    stock: [stock],
+  };
+
+  //カート追加時にshoppingCart内にstockデータを追加
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log("stockID", stock.id);
     await fetch("/api/cart", {
@@ -59,14 +58,31 @@ const CartButton = ({ stock }: {stock: Stock}) => {
               alert("カートに追加しました");
           }
 
-        }
+        fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            stock: user.stock,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
     }
+  };
 
     return (
     // <form onSubmit={handleSubmit}>
     // </form>
       <button onClick={addCartItem}>カートへ追加</button>
   );
-}
+};
 
 export default CartButton;
