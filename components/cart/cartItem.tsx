@@ -1,18 +1,21 @@
 import {useEffect, useState} from "react";
+import useSWR from "swr";
 import Image from "next/image";
 import router from "next/router";
 import { useCookie } from "../useCookie";
 import type { Stock } from "../../types";
 
-const CartItem = (props: any) => {
-    const userID = useCookie();
+const fetcher = (resource: string): Promise<any> =>
+  fetch(resource).then((res) => res.json());
 
+
+const CartItem = (props: any) => {
+  const userID = useCookie();
   const [cart, setCart] = useState(props.data[0]);
-  const [cartItems, setCartItems] = useState(cart?.stock);
-  console.log(props.data);
-  console.log(props.data[0]);
-  console.log(cart);
-   
+
+  useEffect(() => {
+    setCart(props.data[0]);
+  }, [props.data]);
 
   const handleDelete = (cart: any, id: any) => {
       const stock = cart.stock;
@@ -77,7 +80,7 @@ const CartItem = (props: any) => {
 
   return (
     <div>
-      {cartItems?.length? cartList : noItem} 
+      {cart?.stock.length? cartList : noItem} 
     </div>
   );
 }

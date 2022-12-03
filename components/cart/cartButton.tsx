@@ -25,6 +25,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     const addCartItem = async () => {
         if (!userID === true) {
             alert('ログインしてください');
+            Router.push('/login/loginPage');
         } else { 
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();

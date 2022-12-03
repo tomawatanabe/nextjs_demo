@@ -2,7 +2,7 @@ import Link from "next/link";
 import CartItem from "../../components/cart/cartItem";
 import CartTotal from "../../components/cart/cartTotal";
 import { useState, useEffect } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { useCookie } from "../../components/useCookie";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -16,6 +16,11 @@ const ShoppingCart = () => {
     `http://localhost:8000/shoppingCart?id=${userID}`,
     fetcher
   );
+
+  useEffect(() => {
+    console.log('mutateしました');
+    mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
+  }, [])
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
