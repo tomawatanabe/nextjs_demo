@@ -3,12 +3,13 @@ import { ShoppingCart, Stock } from "../../types";
 
 export default async function cart(req: NextApiRequest, res: NextApiResponse) {
   const userID = req.cookies.userID;
+  console.log(userID);
 
   if (userID === "userID=" || undefined) {
     console.log("未ログイン");
   } else {
     const cart = await fetch(
-      `http://localhost:8000/shoppingCart?userID=${userID}`
+      `http://localhost:8000/shoppingCart?id=${userID}`
     );
     const shoppingcartData: ShoppingCart[] = await cart.json();
     const cartData = shoppingcartData[0];
