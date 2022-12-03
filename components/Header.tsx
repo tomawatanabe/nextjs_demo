@@ -63,8 +63,8 @@ export default function Header() {
         <Image
           src="/shoplogo.png"
           alt="syoplogo"
-          height={144}
-          width={144}
+          height={160}
+          width={200}
           className={styles.image}
         />
       </Link>

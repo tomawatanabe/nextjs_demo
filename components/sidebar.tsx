@@ -1,9 +1,11 @@
 import styles from "../styles/Sidebar.module.css";
 import { useRef, useState, useEffect } from "react";
+import Note from "./Note";
 
 export default function Sidebar(props: any) {
   return (
     <div className={styles.sidebarBox}>
+      <Note />
       <form className={styles.itemSearch}>
         <input
           type="text"
@@ -12,6 +14,7 @@ export default function Sidebar(props: any) {
           placeholder="商品名検索"
           onChange={props.onChange}
         />
+        <br />
         <input
           type="submit"
           value="検索"
