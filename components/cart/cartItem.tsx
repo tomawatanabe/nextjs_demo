@@ -31,12 +31,12 @@ const CartItem = (props: any) => {
             .then((response) => response.json())
             .then((data) => {
               console.log('Success:', data);
+              router.reload();
             })
             .catch((error) => {
               console.error('Error:', error);
             });
 
-      router.reload();
   }
 
   const noItem = (
