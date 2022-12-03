@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type Item = {
   id: number;
   name: string;
@@ -60,6 +62,12 @@ export type FavoriteItem2 = {
   itemId: number;
   cookieName: string | undefined;
 };
+
+export type ShoppingCart = {
+  id: number;
+  stock: any[];
+};
+
 
 export type UsedItems = {
   receptionDate: string;

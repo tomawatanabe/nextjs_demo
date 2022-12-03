@@ -1,51 +1,64 @@
-.itemSearch{
-    padding: 10px 0;
+.itemSearch {
+  padding: 10px 0;
 }
-.search{
-    width: 200px;
-    height: 30px;
-    padding: 10px;
+.search {
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+  margin: auto;
 }
-.searchBtn{
-    height: 30px;
-    cursor: pointer;
+.searchBtn {
+  height: 30px;
+  width: 50px;
+  cursor: pointer;
+  color: #000;
+  background-color: rgb(94, 177, 207);
+  border-bottom: 5px solid rgb(61, 143, 173);
+  margin-left: 5px;
+  margin-top: 10px;
+  font-family: "Yu Gothic";
+  font-weight: bold;
+  margin-bottom: 3px;
 }
-.sidebarBox{
-    background-color: #35325C;
-    width: 300px;
-    height: 550px;
-    text-align: center;
-    padding: 10px;
+.sidebarBox {
+  background-color: #35325c;
+  min-width: 240px;
+  height: 700px;
+  text-align: center;
+  padding: 10px;
+  color: white;
 }
-.title{
-    border-bottom: 2px #fff solid;
-    width: 200px;
-    margin: 20px auto;
+.title {
+  border-bottom: 2px #fff solid;
+  width: 200px;
+  margin: 20px auto;
+  color: #e6da9e;
 }
-.explain{
-    font-size: 14px;
+.explain {
+  font-size: 14px;
 }
-.hideCheck{
-    display: none;
+.hideCheck {
+  display: none;
 }
-.hideCheck:checked + label{
-    background-color: rgb(196, 139, 247);
-    color: #35325C;
-    font-weight: bold;
+.hideCheck:checked + label {
+  background-color: rgb(147, 115, 176);
+  color: #d3d1ed;
+  font-weight: bold;
 }
-.hideCheck:checked + label:hover{
-    background-color:rgb(211, 164, 253);
-    color: #35325C;
-    font-weight: bold;
+.hideCheck:checked + label:hover {
+  background-color: rgb(147, 115, 176);
+  color: #35325c;
+  font-weight: bold;
 }
 
-.hideCheck + label{
-    padding: 10px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    padding: 15px 0;
+.hideCheck + label {
+  padding: 10px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
 }
-.hideCheck + label:hover{
-    background-color:#4a4681;
+.hideCheck + label:hover {
+  background-color: #4a4681;
+  color: rgb(179, 178, 194);
 }
