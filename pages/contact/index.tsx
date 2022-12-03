@@ -4,6 +4,7 @@ import ContactConfirmation from "../../components/contact/contactConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Link from "next/link";
 
 const Contact = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const Contact = () => {
           </>
         )}
       </FormProvider>
+      <Link href="/">トップページへ</Link>
       <Footer />
     </div>
   );

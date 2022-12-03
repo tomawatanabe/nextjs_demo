@@ -8,7 +8,7 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 
 function UsedItemList() {
   const cookieName = useCookie();
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
     `http://localhost:8000/usedItems?cookieName=${cookieName}`,
@@ -22,7 +22,7 @@ function UsedItemList() {
     return a.id < b.id ? 1 : -1;
   });
 
-  //降順のTop3を抽出
+  //降順のTop3を抽出した配列を定義
   const sortTopData = () => {
     const sortedTopData = [];
     for (let i = 0; i < 3; i++) {
@@ -39,75 +39,82 @@ function UsedItemList() {
     return sortedTopData;
   };
   const sortedTopData = sortTopData();
-
-  return (
-    <div>
-      <h2>買取受付状況</h2>
-      {flag ? (
-        <>
-          <input
-            type="button"
-            value="全て表示する"
-            onClick={() => setFlag(!flag)}
+  if (!data.length) {
+    return (
+      <>
+        <h2>買取受付</h2>
+        <p>買取受付はありません</p>
+      </>
+    );
+  } else {
+    return (
+      <div>
+        <h2>買取受付状況</h2>
+        {flag ? (
+          <>
+            <input
+              type="button"
+              value="全て表示する"
+              onClick={() => setFlag(!flag)}
             />
-        </>
-      ) : (
-        <>
-          <input
-            type="button"
-            value="最近のみ表示する"
-            onClick={() => setFlag(!flag)}
-          />
-        </>
-      )}
-
-      <table>
-        <thead>
-          <tr>
-            <th>受付状況</th>
-            <th>受付日</th>
-            <th>品名</th>
-            <th>品番</th>
-            <th>サイズ</th>
-            <th>色</th>
-          </tr>
-        </thead>
-        <tbody>
-          {flag ? (
-            <>
-              {sortedTopData.map((usedItem: TopUsedItems) => {
-                return (
-                  <tr key={usedItem.id}>
-                    <td>{usedItem.itemStatus}</td>
-                    <td>{usedItem.receptionDate}</td>
-                    <td>{usedItem.itemName}</td>
-                    <td>{usedItem.itemCode}</td>
-                    <td>{usedItem.itemSize}</td>
-                    <td>{usedItem.itemColor}</td>
-                  </tr>
-                );
-              })}
-            </>
-          ) : (
-            <>
-              {sortedData.map((usedItem: UsedItems) => {
-                return (
-                  <tr key={usedItem.id}>
-                    <td>{usedItem.itemStatus}</td>
-                    <td>{usedItem.receptionDate}</td>
-                    <td>{usedItem.itemName}</td>
-                    <td>{usedItem.itemCode}</td>
-                    <td>{usedItem.itemSize}</td>
-                    <td>{usedItem.itemColor}</td>
-                  </tr>
-                );
-              })}
-            </>
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
+          </>
+        ) : (
+          <>
+            <input
+              type="button"
+              value="最近のみ表示する"
+              onClick={() => setFlag(!flag)}
+            />
+          </>
+        )}
+        <table>
+          <thead>
+            <tr>
+              <th>受付状況</th>
+              <th>受付日</th>
+              <th>品名</th>
+              <th>品番</th>
+              <th>サイズ</th>
+              <th>色</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flag ? (
+              <>
+                {sortedTopData.map((usedItem: TopUsedItems) => {
+                  return (
+                    <tr key={usedItem.id}>
+                      <td>{usedItem.itemStatus}</td>
+                      <td>{usedItem.receptionDate}</td>
+                      <td>{usedItem.itemName}</td>
+                      <td>{usedItem.itemCode}</td>
+                      <td>{usedItem.itemSize}</td>
+                      <td>{usedItem.itemColor}</td>
+                    </tr>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                {sortedData.map((usedItem: UsedItems) => {
+                  return (
+                    <tr key={usedItem.id}>
+                      <td>{usedItem.itemStatus}</td>
+                      <td>{usedItem.receptionDate}</td>
+                      <td>{usedItem.itemName}</td>
+                      <td>{usedItem.itemCode}</td>
+                      <td>{usedItem.itemSize}</td>
+                      <td>{usedItem.itemColor}</td>
+                    </tr>
+                  );
+                })}
+              </>
+            )}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
 export default UsedItemList;
