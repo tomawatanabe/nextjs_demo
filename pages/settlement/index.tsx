@@ -76,6 +76,13 @@ export default function settlement() {
         }
     };
 
+    const handleClick = (event: { target: any; }) => {
+        console.log(event.target);
+        
+        sendOrder();
+    
+        
+      };
 
     return (
         <div>
@@ -168,7 +175,7 @@ export default function settlement() {
                     <Link href="/cart">カートに戻る</Link>
                 </div>
                 <div>
-                    <button onClick={sendOrder}>購入する</button>
+                    <button onClick={handleClick}>購入する</button>
                 </div>
             </form><br /><br />
         </div>
