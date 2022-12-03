@@ -23,11 +23,8 @@ const CartTotal = (props: any) => {
             </tr>
             </tbody>
         </table>
-<<<<<<< Updated upstream
+        
         <p>合計：￥{cartItems?.length? total + 500 : 0}</p>
-=======
-        <p><b> 合計</b>：￥{cartItems.length? total + 500 : 0}</p>
->>>>>>> Stashed changes
       </>
     )
 }
