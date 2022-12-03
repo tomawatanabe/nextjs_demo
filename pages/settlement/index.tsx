@@ -115,27 +115,7 @@ export default function settlement() {
     return (
         <div>
             <Address />
-            <h3>支払い方法</h3>
-            <div>
-                <input
-                    type="radio"
-                    id="credit"
-                    name="支払い方法"
-                    value="credit"
-                    required
-                    onClick={() => setPaymentMethod("credit")}
-                />
-                <label htmlFor="credit">クレジット</label>
-                <input
-                    type="radio"
-                    id="cashOnDelivery"
-                    name="支払い方法"
-                    value="cashOnDelivery"
-                    onClick={() => setPaymentMethod("cashOnDelivery")}
-                />
-                <label htmlFor="cashOnDelivery">代引き手数料</label>
-            </div>
-            {flag && <p>支払い方法を選択してください</p>}
+            
 
             <h3>購入商品</h3>
             {/* カートの商品を持ってくる */}
@@ -192,9 +172,31 @@ export default function settlement() {
             {/* 商品の合計個数と小計、合計金額を出す。代引きを選択された場合代引き手数料を表示するか金額が0→330になるようにする */}
             <b>発送予定日</b>
             <p>購入日から3～5営業日以内に発送いたします</p>
-            <form method="post" >
+            <form >
                 {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
                 <input type="hidden" name="shipstatus" value={shipStatus} />
+                <h3>支払い方法</h3>
+            <div>
+                <input
+                    type="radio"
+                    id="credit"
+                    name="支払い方法"
+                    value="credit"
+                    required
+                    onClick={() => setPaymentMethod("credit")}
+                />
+                <label htmlFor="credit">クレジット</label>
+                <input
+                    type="radio"
+                    id="cashOnDelivery"
+                    name="支払い方法"
+                    value="cashOnDelivery"
+                    onClick={() => setPaymentMethod("cashOnDelivery")}
+                />
+                <label htmlFor="cashOnDelivery">代引き手数料</label>
+            </div>
+            {flag && <p>支払い方法を選択してください</p>}
+            
                 <p>発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。</p>
                 {/* 上記文言は赤字にする */}
 
