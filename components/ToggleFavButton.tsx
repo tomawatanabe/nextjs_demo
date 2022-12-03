@@ -70,12 +70,18 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
             <input
               type="button"
               onClick={deleteFav}
+              className="idbutton"
               value="お気に入りから削除"
             />
           </>
         ) : (
           <>
-            <input type="button" onClick={addFav} value="お気に入りに追加" />
+            <input
+              type="button"
+              onClick={addFav}
+              className="idbutton"
+              value="お気に入りに追加"
+            />
           </>
         )}
       </div>

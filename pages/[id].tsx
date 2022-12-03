@@ -32,7 +32,7 @@ export default function Detail({ stock }: { stock: Stock }) {
   return (
     <div>
       <Header />
-      <div>
+      <div className="outside">
         <div className="top-wrapper">
           <h1>{stock.item.name}</h1>
           <p>年代：{stock.item.year}年代</p>
@@ -43,8 +43,8 @@ export default function Detail({ stock }: { stock: Stock }) {
             <div className="main-image">
               <Image
                 src={`/${stock.image1}`}
-                height={200}
-                width={200}
+                height={300}
+                width={300}
                 alt={stock.item.name}
                 priority
               />
@@ -53,32 +53,32 @@ export default function Detail({ stock }: { stock: Stock }) {
               <Image
                 className="sub-image"
                 src={`/${stock.image2}`}
-                height={200}
-                width={200}
+                height={170}
+                width={170}
                 alt={stock.item.name}
                 priority
               />
               <Image
                 className="sub-image"
                 src={`/${stock.image3}`}
-                height={200}
-                width={200}
+                height={170}
+                width={170}
                 alt={stock.item.name}
                 priority
               />
               <Image
                 className="sub-image"
                 src={`/${stock.image4}`}
-                height={200}
-                width={200}
+                height={170}
+                width={170}
                 alt={stock.item.name}
                 priority
               />
               <Image
                 className="sub-image"
                 src={`/${stock.image5}`}
-                height={200}
-                width={200}
+                height={170}
+                width={170}
                 alt={stock.item.name}
                 priority
               />
@@ -97,8 +97,8 @@ export default function Detail({ stock }: { stock: Stock }) {
           <h2>商品説明</h2>
           <p className="explanation">{stock.item.description}</p>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
