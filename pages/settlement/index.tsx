@@ -30,8 +30,6 @@ export default function settlement() {
     // カート情報を出すためのフェッチ
     const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
         fetch(resource, init).then((res) => res.json());
-
-
     const { data, error } = useSWR(
         `http://localhost:8000/shoppingCart?id=${userId}`,
         fetcher
