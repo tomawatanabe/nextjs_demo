@@ -29,7 +29,7 @@ const MyPage = () => {
         </div>
         <h2>
           <Link href="http://localhost:3000/mypage/userimfo/">
-            会員情報変更
+            会員情報
           </Link>
         </h2>
         <h2>
