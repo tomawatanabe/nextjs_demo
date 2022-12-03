@@ -12,36 +12,6 @@ import { useCookie } from "../components/useCookie";
 export default function Home() {
   const userID = useCookie();
 
-  // ログインしたとき、ローカルストレージからサーバーにデータを移動
-  useEffect(() => {
-    if (!userID === true) {
-      return;
-    } else {
-      if (localStorage.getItem("shoppingCart")) {
-        const shoppingCart = JSON.parse(
-          localStorage.getItem("shoppingCart") || "{}"
-        );
-
-        fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            stock: shoppingCart[0].stock,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-    }
-  }, [userID]);
-
   // 検索機能
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState([]);
