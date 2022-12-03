@@ -51,7 +51,7 @@ export default function settlement() {
     };
 
     // 購入手続きをDBにpostするためのフェッチ
-    const send = () => {
+    const sendOrder = () => {
         if (!paymentMethod) {
             setFlag(true)
             return
@@ -168,7 +168,7 @@ export default function settlement() {
                     <Link href="/cart">カートに戻る</Link>
                 </div>
                 <div>
-                    <button onClick={send}>購入する</button>
+                    <button onClick={sendOrder}>購入する</button>
                 </div>
             </form><br /><br />
         </div>
