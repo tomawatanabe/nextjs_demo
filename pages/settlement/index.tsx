@@ -18,7 +18,7 @@ export default function settlement() {
     const [orderDate, setOrderDate] = useState(today);
     const [note, setNote] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("");
-    // const [ shipstatus, setshipstatus] = useState("未発送");
+    const [ shipstatus, setshipstatus] = useState("未発送");
     const [Item, setItem] = useState("");
     const [flag, setFlag] = useState(false);
     const userId = useCookie();
@@ -39,13 +39,13 @@ export default function settlement() {
  
 
     const getdata = {
-        // userID: cookieName,
+        userID: userId,
         // totalPrice: totalPrice,
         orderDate: orderDate,
         note: note,
         paymentMethod: paymentMethod,
         // orderItemList: orderItemList,
-        // shipstatus: shipstatus,
+        shipstatus: shipstatus,
     };
 
     // 購入手続きをDBにpostするためのフェッチ
@@ -66,7 +66,7 @@ export default function settlement() {
                 .then((response) => response.json())
                 .then((getdata) => {
                     console.log('Success:', getdata),
-                        router.push('/pages');
+                        router.push('/');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -163,6 +163,7 @@ export default function settlement() {
             <p>購入日から3～5営業日以内に発送いたします</p>
             <form method="post" >
                 {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
+                <input type="hidden" name="shipstatus" value={shipstatus}/>
                 <input type="hidden" name="hyouka" value={orderDate.toDateString()} />
                 <p>発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。</p>
                 {/* 上記文言は赤字にする */}

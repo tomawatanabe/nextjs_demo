@@ -23,7 +23,7 @@ export default async function cart(req: NextApiRequest, res: NextApiResponse) {
     cartData.stock.push(stockData[0]);
 
     fetch(`http://localhost:8000/shoppingCart/${cartData.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,7 +31,11 @@ export default async function cart(req: NextApiRequest, res: NextApiResponse) {
     })
       .then((response) => response.json())
       .then((cartData) => {
+        alert("カートに追加しました");
         console.log("cartにstockを追加しました");
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
   }
   res.status(200).end();
