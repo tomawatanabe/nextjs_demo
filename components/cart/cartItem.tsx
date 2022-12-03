@@ -8,20 +8,13 @@ const CartItem = (props: any) => {
     const userID = useCookie();
 
   const [cart, setCart] = useState(props.data[0]);
-  const [cartItems, setCartItems] = useState(cart.stock);
+  const [cartItems, setCartItems] = useState(cart?.stock);
   console.log(props.data);
   console.log(props.data[0]);
   console.log(cart);
    
 
   const handleDelete = (cart: any, id: any) => {
-    if (!userID === true) {
-      const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
-      const deleted = shoppingCart[0].stock.filter((item: Stock) => item.id !== id);
-      const data = {stock: deleted};
-      localStorage.setItem('shoppingCart', JSON.stringify([data]));
-      router.reload();
-    }else{
       const stock = cart.stock;
       const deleted = stock.filter((item: Stock) => item.id !== id);
       console.log(deleted);
@@ -44,7 +37,6 @@ const CartItem = (props: any) => {
             });
 
       router.reload();
-    }
   }
 
   const noItem = (
@@ -53,7 +45,7 @@ const CartItem = (props: any) => {
 
   const cartList = (
     <ul>
-      {cart.stock?.map((content: any) => (
+      {cart?.stock.map((content: any) => (
         <li key={content.id}>
           <div>
             <div>
@@ -85,7 +77,7 @@ const CartItem = (props: any) => {
 
   return (
     <div>
-      {cartItems.length? cartList : noItem} 
+      {cartItems?.length? cartList : noItem} 
     </div>
   );
 }

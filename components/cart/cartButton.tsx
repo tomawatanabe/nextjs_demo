@@ -22,25 +22,41 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     });
   };
 
-  const addCartItem = async () => {
-    if (!userID === true) {
-      if (localStorage.getItem("shoppingCart")) {
-        const shoppingCart = JSON.parse(
-          localStorage.getItem("shoppingCart") || "{}"
-        );
-        shoppingCart[0].stock.push(stock);
-        localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-      } else {
-        localStorage.setItem("shoppingCart", JSON.stringify([data]));
-      }
-    } else {
-      const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
-      const user = await res.json();
-      const target = stock;
-      if (user.stock.some((item: any) => item.id === target.id)) {
-        alert("既にカートに追加済みです");
-      } else {
-        user.stock.push(stock);
+    const addCartItem = async () => {
+        if (!userID === true) {
+            alert('ログインしてください');
+        } else { 
+          const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
+          const user = await res.json();
+          const target = stock;
+          console.log(user);
+          console.log(target);
+          if(user.stock.some((item: any) => 
+            item.id === target.id 
+          )){
+            alert("既にカートに追加済みです");
+            return;
+          }else{
+            user.stock.push(stock);
+  
+            fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  "stock": user.stock
+                  }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('Success:', data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+              alert("カートに追加しました");
+          }
 
         fetch(`http://localhost:8000/shoppingCart/${userID}`, {
           method: "PATCH",
@@ -62,12 +78,10 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <button onClick={addCartItem} className="idbutton">
-        カートへ追加
-      </button>
-    </form>
+    return (
+    // <form onSubmit={handleSubmit}>
+    // </form>
+      <button onClick={addCartItem}>カートへ追加</button>
   );
 };
 
