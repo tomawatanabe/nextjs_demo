@@ -75,7 +75,6 @@ const CartButton = ({ stock }: { stock: Stock }) => {
             console.error("Error:", error);
           });
       }
-    }
   };
 
     return (
