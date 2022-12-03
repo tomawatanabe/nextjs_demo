@@ -68,16 +68,6 @@ export type ShoppingCart = {
   stock: any[];
 };
 
-export type Order = {
-  id: number;
-  userId: string;
-  totalPrice: number;
-  orderDate: Date;
-  note: string;
-  paymentMethod: string;
-  orderItemList: any[];
-  status: string;
-};
 
 export type UsedItems = {
   receptionDate: string;
@@ -110,4 +100,16 @@ export type TopUsedItems = {
   itemColor: string;
   itemStatus: "完了" | "買取処理中";
   id: number;
+};
+
+
+export type Order = {
+  id: number;
+  userId: string;
+  totalPrice: number;
+  orderDate: Date;
+  note: string;
+  paymentMethod: string;
+  orderItemList: any[];
+  shipStatus: string;
 };

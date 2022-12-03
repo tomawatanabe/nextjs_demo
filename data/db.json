@@ -1371,69 +1371,283 @@
       "kanaFirstName": "miho",
       "phoneNumber": "09010000000",
       "email": "aaa@gmail.com",
-      "zipCode": "2300001",
+      "password": "aaa",
+      "zipcode": "100-0000",
+      "address": "東京都千代田区1-1",
+      "telephone": "030000000",
+      "deleted": false
+    },
+    {
+      "lastName": "渡辺",
+      "firstName": "藤磨",
+      "kanaLastName": "ワタナベ",
+      "kanaFirstName": "トウマ",
+      "phoneNumber": "0312345678",
+      "email": "wt@gmail.com",
+      "zipCode": "2220003",
       "prefecture": "神奈川県",
-      "city": "横浜市鶴見区矢向",
-      "address": "1-1",
-      "building": "aaa@gmail.com",
-      "password": "Password1",
-      "id": 1
+      "city": "横浜市港北区大曽根",
+      "address": "4-3-25",
+      "building": "サンプルマンション301号室",
+      "password": "Rakus123",
+      "id": 2
+    },
+    {
+      "lastName": "aebgrawreb",
+      "id": 3
+    },
+    {
+      "lastName": "test",
+      "firstName": "man",
+      "kanaLastName": "test",
+      "kanaFirstName": "man",
+      "phoneNumber": "0332532481",
+      "email": "test@test.co.jp",
+      "zipCode": "1440033",
+      "prefecture": "東京都",
+      "city": "大田区東糀谷",
+      "address": "3-4-5",
+      "building": "",
+      "password": "Rakus123",
+      "id": 4
+    },
+    {
+      "lastName": "山田",
+      "firstName": "花子",
+      "kanaLastName": "ヤマダ",
+      "kanaFirstName": "ハナコ",
+      "phoneNumber": "03000000000",
+      "email": "111@gmail.com",
+      "zipCode": "3300000",
+      "prefecture": "埼玉県",
+      "city": "さいたま市浦和区",
+      "address": "3－3－3",
+      "building": "",
+      "password": "111aB111",
+      "id": 5
+    },
+    {
+      "lastName": "坂田",
+      "firstName": "金時",
+      "kanaLastName": "サカタ",
+      "kanaFirstName": "キントキ",
+      "phoneNumber": "09099999999",
+      "email": "vvv@gmail.com",
+      "zipCode": "1600022",
+      "prefecture": "東京都",
+      "city": "新宿区新宿",
+      "address": "4-3-25",
+      "building": "",
+      "password": "vvvVb111",
+      "id": 6
     }
   ],
   "order": [
     {
-      "id": 1,
-      "userId": 1,
-      "totalPrice": 10000,
-      "orderDate": "1992/12/1",
+      "totalPrice": 0,
+      "orderDate": "2022-12-02T10:31:10.635Z",
+      "note": 0,
+      "paymentMethod": "cashOnDelivery",
+      "id": 1
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-02T11:05:43.904Z",
+      "note": 0,
+      "paymentMethod": "",
+      "id": 2
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-03T03:39:18.557Z",
+      "note": "ふぁｋｌふぁ；ｈんｄふぁ",
+      "paymentMethod": "",
+      "id": 3
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-03T03:40:37.916Z",
+      "note": "ｆじゃ：",
+      "paymentMethod": "",
+      "id": 4
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-03T03:41:43.046Z",
+      "note": "ｆだ",
+      "paymentMethod": "",
+      "id": 5
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-03T04:05:49.315Z",
       "note": "",
-      "paymentMethod": "代引き",
+      "paymentMethod": "cashOnDelivery",
+      "id": 6
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-03T05:09:27.053Z",
+      "note": "",
+      "paymentMethod": "cashOnDelivery",
+      "id": 7
+    },
+    {
+      "totalPrice": 0,
+      "orderDate": "2022-12-03T07:17:16.374Z",
+      "note": "waon",
+      "paymentMethod": "credit",
+      "id": 8
+    },
+    {
+      "orderDate": "2022-12-03T08:42:02.827Z",
+      "note": "",
+      "paymentMethod": "cashOnDelivery",
+      "id": 9
+    },
+    {
+      "orderDate": "2022-12-03T08:43:30.631Z",
+      "note": "fadfa",
+      "paymentMethod": "cashOnDelivery",
+      "id": 10
+    },
+    {
+      "orderDate": "2022-12-05T01:58:04.039Z",
+      "note": "waonnyaon",
+      "paymentMethod": "cashOnDelivery",
+      "id": 11
+    },
+    {
+      "userID": "5",
+      "orderDate": "2022-12-05T02:39:33.385Z",
+      "note": "",
+      "paymentMethod": "cashOnDelivery",
+      "orderItemList": [],
+      "shipStatus": "未発送",
+      "id": 12
+    },
+    {
+      "userID": "5",
+      "orderDate": "2022-12-05T03:11:50.474Z",
+      "note": "カート情報最新になった",
+      "paymentMethod": "credit",
       "orderItemList": [
         {
-          "id": 14,
-          "itemID": 14,
-          "price": 22000,
-          "size": 28,
-          "image1": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_1.jpg",
-          "image2": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_2.jpg",
-          "image3": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_3.jpg",
-          "image4": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_4.jpg",
-          "image5": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_5.jpg",
+          "id": 5,
+          "stock": [
+            {
+              "id": 2,
+              "itemID": 2,
+              "price": 132000,
+              "size": 27.5,
+              "image1": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+              "image2": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG2.jpg",
+              "image3": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG3.jpg",
+              "image4": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG4.jpg",
+              "image5": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG5.jpg",
+              "amount": 1,
+              "arrival": "2022/11/24",
+              "condition": "A",
+              "item": {
+                "id": 2,
+                "name": "AIR FOAMPOSITE ONE NRG",
+                "series": "POSITE SERIES",
+                "year": 2012,
+                "description": "[ナイキ エアフォームポジット ワン \"ギャラクシー\" 521286-800]「AIR FOAMPOSITE ONE」は1997年に「アンファニー\"ペニー\"ハーダウェイ」モデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。ちなみにデザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けている\"エリック・エイバー\"で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。 今作のは\"NBA ALLSTAR GAME 2012\"を記念してリリースされた宇宙空間のグラフィックを全面にプリントした通称「GALAXY」。 ※作りがタイトなため、普段履いているNIKEのシューズより1cmから1.5cmアップをおすすめします。※こちらの商品は製造から年数が経過しております。そのため劣化により今後ご使用の際に破損する可能性がございますのでご注意ください。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。",
+                "setprice": "2012年2月発売、日本定価23,100円",
+                "color": "\"GALAXY\" OBSIDIAN/ANTHRACITE-BLACK",
+                "deleted": "false"
+              }
+            },
+            {
+              "id": 3,
+              "itemID": 3,
+              "price": 66000,
+              "size": 27,
+              "image1": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+              "image2": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP2.jpg",
+              "image3": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP3.jpg",
+              "image4": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP4.jpg",
+              "image5": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP5.jpg",
+              "amount": 1,
+              "arrival": "2022/11/24",
+              "condition": "A",
+              "item": {
+                "id": 3,
+                "name": "AIR FOAMPOSITE ONE SP",
+                "series": "POSITE SERIES",
+                "year": 2021,
+                "description": "[ナイキ エア フォームポジット ワン SP \"コムデギャルソン オム プラス\" サミットホワイト/サミットホワイト DJ7952-100] デザイナー川久保玲氏が手掛けるファッションブランド\"COMME des GARÇONS\"のハイエンドライン\"COMME des GARÇONS HOMME PLUS\"とのコラボレーションモデル「AIR FOAMPOSITE ONE SP」の登場です。1997年に発売された「AIR FOAMPOSITE ONE」をベースに、既存の流線形のデザインから波紋柄のデザインへブラッシュアップ。ヒールには\"COMME des GARÇONS HOMME PLUS\"のロゴをデザインしたスペシャルエディションとなっています。",
+                "setprice": "2021年11月発売、日本定価57,200円",
+                "color": "\"CDG\"SUMMIT WHITE/SUMMIT WHITE",
+                "deleted": "false"
+              }
+            }
+          ]
+        }
+      ],
+      "shipStatus": "未発送",
+      "id": 13
+    }
+  ],
+  "purchaseHistory": [],
+  "shoppingCart": [
+    {
+      "stock": [
+        {
+          "id": 4,
+          "itemID": 4,
+          "price": 121000,
+          "size": 27.5,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP5.jpg",
           "amount": 1,
           "arrival": "2022/11/24",
           "condition": "A",
           "item": {
-            "id": 14,
-            "name": "AIR JORDAN 1 MID",
-            "series": "JORDAN BRAND 1",
-            "year": 2018,
-            "description": "[ナイキ エアジョーダン 1 ミッド ホワイト/ブラック ハイパーロイヤル 554724-124]  1985年に登場した「AIR JORDAN 1」はシューホールが9つあるハイカット。そのシューホールを一つ減らし8ホールにしたミッドカット版になります。",
-            "setprice": "2018年12月発売、日本定価14,040円",
-            "color": " WHITE/BLACK-HYPER ROYAL",
+            "id": 4,
+            "name": "AIR FOAMPOSITE ONE SUPREME SP",
+            "series": "POSITE SERIES",
+            "year": 2014,
+            "description": "[ナイキ エアフォームポジットワン \"シュプリーム\" ブラック 652792-001]  AIR FOAMPOSITE ONE」は1997年にアンファニー\"ペニー\"ハーダウェイ氏のモデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。デザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けているエリック・エイバー氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。  今作はニューヨーク発のスケートブランド「SUPREME」とのコラボレーションモデル「AIR FOAMPOSITE ONE SUPREME SP」。 ※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。  ",
+            "setprice": "2014年4月発売、日本定価27,000円",
+            "color": "\"SUPREME\" BLACK/BLACK-METALLIC GOLD",
             "deleted": "false"
           }
-        },
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "stock": []
+    },
+    {
+      "id": 5,
+      "stock": [
         {
-          "id": 1,
-          "itemID": 1,
-          "price": 38500,
+          "id": 2,
+          "itemID": 2,
+          "price": 132000,
           "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG5.jpg",
           "amount": 1,
           "arrival": "2022/11/24",
           "condition": "A",
           "item": {
-            "id": 1,
-            "name": "AIR FOAMPOSITE ONE",
+            "id": 2,
+            "name": "AIR FOAMPOSITE ONE NRG",
             "series": "POSITE SERIES",
-            "year": 2016,
-            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
-            "setprice": "2016年6月発売、日本定価25,920円",
-            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
+            "year": 2012,
+            "description": "[ナイキ エアフォームポジット ワン \"ギャラクシー\" 521286-800]「AIR FOAMPOSITE ONE」は1997年に「アンファニー\"ペニー\"ハーダウェイ」モデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。ちなみにデザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けている\"エリック・エイバー\"で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。 今作のは\"NBA ALLSTAR GAME 2012\"を記念してリリースされた宇宙空間のグラフィックを全面にプリントした通称「GALAXY」。 ※作りがタイトなため、普段履いているNIKEのシューズより1cmから1.5cmアップをおすすめします。※こちらの商品は製造から年数が経過しております。そのため劣化により今後ご使用の際に破損する可能性がございますのでご注意ください。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。",
+            "setprice": "2012年2月発売、日本定価23,100円",
+            "color": "\"GALAXY\" OBSIDIAN/ANTHRACITE-BLACK",
             "deleted": "false"
           }
         },
@@ -1461,164 +1675,8 @@
             "deleted": "false"
           }
         }
-      ],
-      "status": "未発送"
+      ]
     },
-    {
-      "id": 2,
-      "userId": 1,
-      "totalPrice": 10000,
-      "orderDate": "1994/12/1",
-      "note": "",
-      "paymentMethod": "代引き",
-      "orderItemList": [
-        {
-          "id": 14,
-          "itemID": 14,
-          "price": 22000,
-          "size": 28,
-          "image1": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_1.jpg",
-          "image2": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_2.jpg",
-          "image3": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_3.jpg",
-          "image4": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_4.jpg",
-          "image5": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 14,
-            "name": "AIR JORDAN 1 MID",
-            "series": "JORDAN BRAND 1",
-            "year": 2018,
-            "description": "[ナイキ エアジョーダン 1 ミッド ホワイト/ブラック ハイパーロイヤル 554724-124]  1985年に登場した「AIR JORDAN 1」はシューホールが9つあるハイカット。そのシューホールを一つ減らし8ホールにしたミッドカット版になります。",
-            "setprice": "2018年12月発売、日本定価14,040円",
-            "color": " WHITE/BLACK-HYPER ROYAL",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 1,
-          "itemID": 1,
-          "price": 38500,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 1,
-            "name": "AIR FOAMPOSITE ONE",
-            "series": "POSITE SERIES",
-            "year": 2016,
-            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
-            "setprice": "2016年6月発売、日本定価25,920円",
-            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
-            "deleted": "false"
-          }
-        }
-      ],
-      "status": "未発送"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "totalPrice": 10000,
-      "orderDate": "2001/12/1",
-      "note": "",
-      "paymentMethod": "代引き",
-      "orderItemList": [
-        {
-          "id": 14,
-          "itemID": 14,
-          "price": 22000,
-          "size": 28,
-          "image1": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_1.jpg",
-          "image2": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_2.jpg",
-          "image3": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_3.jpg",
-          "image4": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_4.jpg",
-          "image5": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 14,
-            "name": "AIR JORDAN 1 MID",
-            "series": "JORDAN BRAND 1",
-            "year": 2018,
-            "description": "[ナイキ エアジョーダン 1 ミッド ホワイト/ブラック ハイパーロイヤル 554724-124]  1985年に登場した「AIR JORDAN 1」はシューホールが9つあるハイカット。そのシューホールを一つ減らし8ホールにしたミッドカット版になります。",
-            "setprice": "2018年12月発売、日本定価14,040円",
-            "color": " WHITE/BLACK-HYPER ROYAL",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 1,
-          "itemID": 1,
-          "price": 38500,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 1,
-            "name": "AIR FOAMPOSITE ONE",
-            "series": "POSITE SERIES",
-            "year": 2016,
-            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
-            "setprice": "2016年6月発売、日本定価25,920円",
-            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
-            "deleted": "false"
-          }
-        }
-      ],
-      "status": "未発送"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "totalPrice": 10000,
-      "orderDate": "2021/12/1",
-      "note": "",
-      "paymentMethod": "代引き",
-      "orderItemList": [
-        {
-          "id": 14,
-          "itemID": 14,
-          "price": 22000,
-          "size": 28,
-          "image1": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_1.jpg",
-          "image2": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_2.jpg",
-          "image3": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_3.jpg",
-          "image4": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_4.jpg",
-          "image5": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 14,
-            "name": "AIR JORDAN 1 MID",
-            "series": "JORDAN BRAND 1",
-            "year": 2018,
-            "description": "[ナイキ エアジョーダン 1 ミッド ホワイト/ブラック ハイパーロイヤル 554724-124]  1985年に登場した「AIR JORDAN 1」はシューホールが9つあるハイカット。そのシューホールを一つ減らし8ホールにしたミッドカット版になります。",
-            "setprice": "2018年12月発売、日本定価14,040円",
-            "color": " WHITE/BLACK-HYPER ROYAL",
-            "deleted": "false"
-          }
-        }
-      ],
-      "status": "未発送"
-    }
-  ],
-  "shoppingCart": [
     {
       "stock": [
         {
@@ -1644,82 +1702,9 @@
             "color": "\"SUPREME\" BLACK/BLACK-METALLIC GOLD",
             "deleted": "false"
           }
-        },
-        {
-          "id": 1,
-          "itemID": 1,
-          "price": 38500,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 4,
-            "name": "AIR FOAMPOSITE ONE SUPREME SP",
-            "series": "POSITE SERIES",
-            "year": 2014,
-            "description": "[ナイキ エアフォームポジットワン \"シュプリーム\" ブラック 652792-001]  AIR FOAMPOSITE ONE」は1997年にアンファニー\"ペニー\"ハーダウェイ氏のモデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。デザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けているエリック・エイバー氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。  今作はニューヨーク発のスケートブランド「SUPREME」とのコラボレーションモデル「AIR FOAMPOSITE ONE SUPREME SP」。 ※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。  ",
-            "setprice": "2014年4月発売、日本定価27,000円",
-            "color": "\"SUPREME\" BLACK/BLACK-METALLIC GOLD",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 1,
-          "itemID": 1,
-          "price": 38500,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 1,
-            "name": "AIR FOAMPOSITE ONE",
-            "series": "POSITE SERIES",
-            "year": 2016,
-            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
-            "setprice": "2016年6月発売、日本定価25,920円",
-            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 6,
-          "itemID": 6,
-          "price": 46200,
-          "size": 29,
-          "image1": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND1.jpg",
-          "image2": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND2.jpg",
-          "image3": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND3.jpg",
-          "image4": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND4.jpg",
-          "image5": "images/sneakers/AIR FORCE 1 07 LV8 ND/AIR FORCE 1 07 LV8 ND5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 6,
-            "name": "AIR FORCE 1 07 LV8 ND",
-            "series": "AIR FORCE 1 LOW",
-            "year": 2019,
-            "description": "[ナイキ エア フォース 1 07 LV8 \"ハブ ア ナイキ デイ\" BQ9044-100] 1982年に登場した「AIR FORCE 1」は、その時その時代のカルチャーとも密接にリンクしバスケットボールシューズという枠を超え長い間ストリートの定番となっています。今作は耐久性に優れたアッパーを組み合わせ、スマイリーフェイスをあしらった通称\"HAVE A NIKE DAY\"。",
-            "setprice": "2019年1月発売、日本定価12,100円",
-            "color": "\"HAVE A NIKE DAY\" WHITE/WHITE-BLACK",
-            "deleted": "false"
-          }
         }
       ],
-      "id": 1,
-      "deleted": false
+      "id": 6
     }
   ],
   "favoriteItems": [
@@ -1761,9 +1746,74 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": false,
+      "deleted": true,
       "id": 4
-
+    },
+    {
+      "itemId": 9,
+      "cookieName": "2",
+      "name": "AIR FORCE 1 LOW PREMIUM 08 NRG",
+      "price": 60500,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 LOW PREMIUM 08 NRG/AIR FORCE 1 LOW PREMIUM 08 NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 5
+    },
+    {
+      "itemId": 1,
+      "cookieName": "5",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 6
+    },
+    {
+      "itemId": 17,
+      "cookieName": "1",
+      "name": "AIR JORDAN 5 RETRO SP",
+      "price": 66000,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR JORDAN 5 RETRO SP/AIR JORDAN 5 RETRO SP_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 7
+    },
+    {
+      "itemId": 27,
+      "cookieName": "1",
+      "name": "AIR MAX 1/97 VF SW",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR MAX 1-97 VF SW/AIR MAX 1 97 VF SW1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 8
+    },
+    {
+      "itemId": 2,
+      "cookieName": "5",
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 9
+    },
+    {
+      "itemId": 4,
+      "cookieName": "6",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 10
     }
   ],
   "usedItems": []
