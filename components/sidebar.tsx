@@ -22,7 +22,7 @@ export default function Sidebar(props: any) {
           onClick={props.onClick}
         />
       </form>
-      <h3 className={styles.title}>シリーズ</h3>
+      <h3 className={styles.title}>SERIES</h3>
       <div className={styles.box}>
         {/* input onChange={event} ===> if(e.target.checked)  filter e.target.value === item.series   filterで出来た配列を一覧として表示　elseの場合は全画面表示 */}
         <input
