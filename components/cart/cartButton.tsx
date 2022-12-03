@@ -25,21 +25,18 @@ const CartButton = ({ stock }: {stock: Stock}) => {
 
     const addCartItem = async () => {
         if (!userID === true) {
-            if(localStorage.getItem("shoppingCart")){
-              const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
-              shoppingCart[0].stock.push(stock);
-              localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-            }else{
-              localStorage.setItem('shoppingCart', JSON.stringify([data]));
-            }
+            alert('ログインしてください');
         } else { 
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();
           const target = stock;
+          console.log(user);
+          console.log(target);
           if(user.stock.some((item: any) => 
             item.id === target.id 
           )){
             alert("既にカートに追加済みです");
+            return;
           }else{
             user.stock.push(stock);
   
@@ -59,15 +56,16 @@ const CartButton = ({ stock }: {stock: Stock}) => {
               .catch((error) => {
                 console.error('Error:', error);
               });
+              alert("カートに追加しました");
           }
 
         }
     }
 
     return (
-    <form onSubmit={handleSubmit}>
+    // <form onSubmit={handleSubmit}>
+    // </form>
       <button onClick={addCartItem}>カートへ追加</button>
-    </form>
   );
 }
 
