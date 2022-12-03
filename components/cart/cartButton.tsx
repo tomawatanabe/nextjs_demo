@@ -75,13 +75,12 @@ const CartButton = ({ stock }: { stock: Stock }) => {
             console.error("Error:", error);
           });
       }
-    }
   };
 
     return (
     // <form onSubmit={handleSubmit}>
     // </form>
-      <button onClick={addCartItem}>カートへ追加</button>
+      <button onClick={addCartItem} className="idbutton">カートへ追加</button>
   );
 };
 
