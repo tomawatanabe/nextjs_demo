@@ -15,7 +15,6 @@ export default function settlement() {
 
     // 購入手続き完了でDB/orderに送るデータ内容
     // const [ userID, setUserID] = useState(0);
-    
     const [orderDate, setOrderDate] = useState(today);
     const [note, setNote] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -24,7 +23,7 @@ export default function settlement() {
     const [flag, setFlag] = useState(false);
     const userId = useCookie();
 
-   
+
 
 
     // カート情報を出すためのフェッチ
@@ -37,8 +36,7 @@ export default function settlement() {
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
 
-
-
+ 
 
     const getdata = {
         // userID: cookieName,
@@ -78,11 +76,10 @@ export default function settlement() {
 
     const handleClick = (event: { target: any; }) => {
         console.log(event.target);
-        
+
         sendOrder();
-    
-        
-      };
+
+    };
 
     return (
         <div>
@@ -123,7 +120,7 @@ export default function settlement() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data[0].stock.map((Item: any) => {
+                        {data[0]?.stock.map((Item: any) => {
                             return (
                                 <tr key={Item.itemId}>
                                     <td>{Item.item.name}</td>
@@ -147,7 +144,7 @@ export default function settlement() {
                     </tbody>
                 </table>
                 {/* <table> */}
-                    {/* <tbody>
+                {/* <tbody>
                         <tr>
                             <th>小計{'('}税込{')'}:</th>
                             <td>￥{totalPrice}</td>
@@ -175,7 +172,7 @@ export default function settlement() {
                     <Link href="/cart">カートに戻る</Link>
                 </div>
                 <div>
-                    <button onClick={handleClick}>購入する</button>
+                    <input type="button" onClick={handleClick} value= "購入する" />
                 </div>
             </form><br /><br />
         </div>

@@ -24,8 +24,28 @@ const CartButton = ({ stock }: { stock: Stock }) => {
 
     const addCartItem = async () => {
         if (!userID === true) {
-            alert('ログインしてください');
+          // ログアウト状態でカートに商品追加
+            if(localStorage.getItem("shoppingCart")){
+              const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
+              const target = stock;
+
+              if(shoppingCart[0].stock.some((item: any) => 
+                  item.id === target.id 
+              )){
+                alert("既にカートに追加済みです");
+                return;
+              }else{
+                shoppingCart[0].stock.push(stock);
+                localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+                alert("カートに追加しました");
+              }
+
+            }else{
+              localStorage.setItem('shoppingCart', JSON.stringify([data]));
+              alert("カートに追加しました");
+            }
         } else { 
+          // ログイン状態でカート商品追加
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();
           const target = stock;
@@ -51,11 +71,11 @@ const CartButton = ({ stock }: { stock: Stock }) => {
               .then((response) => response.json())
               .then((data) => {
                 console.log('Success:', data);
+                alert("カートに追加しました");
               })
               .catch((error) => {
                 console.error('Error:', error);
               });
-              alert("カートに追加しました");
           }
 
         fetch(`http://localhost:8000/shoppingCart/${userID}`, {
@@ -78,9 +98,9 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   };
 
     return (
-    // <form onSubmit={handleSubmit}>
-    // </form>
-      <button onClick={addCartItem} className="idbutton">カートへ追加</button>
+    <form onSubmit={handleSubmit}>
+      <button onClick={addCartItem}>カートへ追加</button>
+    </form>
   );
 };
 
