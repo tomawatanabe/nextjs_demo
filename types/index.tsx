@@ -111,5 +111,5 @@ export type Order = {
   note: string;
   paymentMethod: string;
   orderItemList: any[];
-  status: string;
+  shipStatus: string;
 };

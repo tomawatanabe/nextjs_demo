@@ -1501,6 +1501,15 @@
       "note": "waonnyaon",
       "paymentMethod": "cashOnDelivery",
       "id": 11
+    },
+    {
+      "userID": "5",
+      "orderDate": "2022-12-05T02:39:33.385Z",
+      "note": "",
+      "paymentMethod": "cashOnDelivery",
+      "orderItemList": [],
+      "shipStatus": "未発送",
+      "id": 12
     }
   ],
   "purchaseHistory": [],
