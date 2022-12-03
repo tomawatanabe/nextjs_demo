@@ -13,30 +13,33 @@ export default function settlement() {
 
     const today = new Date();
 
+
     // 購入手続き完了でDB/orderに送るデータ内容
     // const [ userID, setUserID] = useState(0);
     const [orderDate, setOrderDate] = useState(today);
     const [note, setNote] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("");
-    const [ shipStatus, setShipStatus] = useState("未発送");
+    const [shipStatus, setShipStatus] = useState("未発送");
     const [flag, setFlag] = useState(false);
     const userId = useCookie();
 
 
 
 
-    // カート情報を出すためのフェッチ
+    // カート情報を引き出す
     const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
         fetch(resource, init).then((res) => res.json());
-    const { data, error } = useSWR(
-        `http://localhost:8000/shoppingCart?id=${userId}`,
+    const { data: cart, error } = useSWR(
+        `http://localhost:3000/api/shoppingCart/${userId}`,
         fetcher
     );
     if (error) return <div>failed to load</div>;
-    if (!data) return <div>loading...</div>;
-    const ItemList = data;
+    if (!cart) return <div>loading...</div>;
+    const ItemList = cart?.stock;
+    console.log("itemlist", ItemList);
 
- 
+
+
 
     const getdata = {
         userID: userId,
@@ -46,17 +49,17 @@ export default function settlement() {
         paymentMethod: paymentMethod,
         orderItemList: ItemList,
         shipStatus: shipStatus,
+
     };
 
-    // 購入手続きをDBにpostするためのフェッチ
+    // 購入手続きをDBにpostする
     const sendOrder = () => {
         if (!paymentMethod) {
             setFlag(true)
             return
         } else {
 
-            alert("購入手続きが完了しました！");
-            fetch('http://localhost:8000/order/', {
+            fetch('http://localhost:3000/api/order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,8 +68,9 @@ export default function settlement() {
             })
                 .then((response) => response.json())
                 .then((getdata) => {
-                    console.log('Success:', getdata),
-                        router.push('/');
+                    console.log('Success:', getdata);
+                    alert("購入手続きが完了しました！");
+                    router.push('/');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -74,13 +78,39 @@ export default function settlement() {
         }
     };
 
+    // カートの中身を削除する
+    const DeletedItems = () => {
+        const deletedList: any[] = [];
+
+
+        fetch(`http://localhost:3000/api/shoppingCart/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "stock": deletedList
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+
     const handleClick = (event: { target: any; }) => {
         console.log(event.target);
 
         sendOrder();
         setShipStatus("未発送");
-
+        setOrderDate(today);
+        DeletedItems();
     };
+
 
     return (
         <div>
@@ -121,7 +151,7 @@ export default function settlement() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data[0]?.stock.map((Item: any) => {
+                        {cart?.stock?.map((Item: any) => {
                             return (
                                 <tr key={Item.itemId}>
                                     <td>{Item.item.name}</td>
@@ -144,8 +174,8 @@ export default function settlement() {
                         })}
                     </tbody>
                 </table>
-                {/* <table> */}
-                {/* <tbody>
+                {/* <table>
+                <tbody>
                         <tr>
                             <th>小計{'('}税込{')'}:</th>
                             <td>￥{totalPrice}</td>
@@ -164,8 +194,7 @@ export default function settlement() {
             <p>購入日から3～5営業日以内に発送いたします</p>
             <form method="post" >
                 {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
-                <input type="hidden" name="shipstatus" value={shipStatus}/>
-                <input type="hidden" name="hyouka" value={orderDate.toDateString()} />
+                <input type="hidden" name="shipstatus" value={shipStatus} />
                 <p>発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。</p>
                 {/* 上記文言は赤字にする */}
 
@@ -174,7 +203,7 @@ export default function settlement() {
                     <Link href="/cart">カートに戻る</Link>
                 </div>
                 <div>
-                    <input type="button" onClick={handleClick} value= "購入する" />
+                    <input type="button" onClick={handleClick} value="購入する" />
                 </div>
             </form><br /><br />
         </div>

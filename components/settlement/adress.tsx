@@ -11,22 +11,22 @@ export default function Address() {
     const fetcher = (resource: string) =>
         fetch(resource).then((res) => res.json());
 
-    const { data, error } = useSWR(
-        `http://localhost:8000/users?id=${userId}`,
+    const { data: user, error } = useSWR(
+        `http://localhost:3000/api/users/${userId}`,
         fetcher
     );
     if (error) return <div>failed to load</div>;
-    if (!data) return <div>loading...</div>;
+    if (!user) return <div>loading...</div>;
 
     return (
         <div>
             <h1>購入手続き</h1>
             <h3>お届け先情報</h3>
-            <p>氏名: {data[0]?.lastName} {data[0]?.firstName}</p>
-            <p>郵便番号: {data[0]?.zipCode}</p>
-            <p>住所: {data[0]?.address}</p>
-            <p>メールアドレス: {data[0]?.email}</p>
-            <p>電話番号: {data[0]?.telephone}</p><br />
+            <p>氏名: {user?.lastName} {user?.firstName}</p>
+            <p>郵便番号: {user?.zipCode}</p>
+            <p>住所: {user?.address}</p>
+            <p>メールアドレス: {user?.email}</p>
+            <p>電話番号: {user?.phoneNumber}</p><br />
         </div>
     );
 
