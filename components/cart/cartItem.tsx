@@ -17,10 +17,9 @@ const CartItem = (props: any) => {
     setCart(props.data[0]);
   }, [props.data]);
 
-  
-  const noItem = (
-    <p>カートの中身はありません</p>
-  )
+
+  const noItem = <p>カートの中身はありません</p>;
+
 
   const cartList = (
     <ul>
@@ -46,19 +45,22 @@ const CartItem = (props: any) => {
                 </select>
               </li>
             </ul>
-            <button onClick={() => props.handleDelete(cart, content.id)}>カートから削除</button>
+
+            <button
+              onClick={() => props.handleDelete(cart, content.id)}
+              className="idbutton"
+            >
+              カートから削除
+            </button>
           </div>
         </li>
-      ))
-      }
+      ))}
     </ul>
   );
 
-  return (
-    <div>
-      {cart?.stock.length? cartList : noItem} 
-    </div>
-  );
-}
 
-export default CartItem
+  return <div>{cart?.stock.length ? cartList : noItem}</div>;
+};
+
+
+export default CartItem;

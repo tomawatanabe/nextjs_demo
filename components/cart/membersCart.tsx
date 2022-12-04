@@ -1,3 +1,4 @@
+
 import useSWR, { mutate } from "swr";
 import { useEffect, useState } from "react";
 import { useCookie } from "../useCookie";
@@ -6,9 +7,11 @@ import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type { Stock } from "../../types";
 import cart from "../../pages/api/cart";
+import Link from "next/link";
 
 const fetcher = (resource: string): Promise<any> =>
     fetch(resource).then((res) => res.json());
+
 
 const Members = () => {
     const userID = useCookie();
@@ -27,7 +30,6 @@ const Members = () => {
     );
 
     useEffect(() => {
-        console.log('mutateしました');
         mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
     }, [])
 
@@ -68,6 +70,7 @@ const Members = () => {
             if (stock.some((serverItem: any) =>
                 serverItem.id === localItem.id
             )) {
+
                 continue;
             }
             stock.push(localItem);
@@ -91,7 +94,6 @@ const Members = () => {
             .catch((error) => {
                 console.error('Error:', error);
             });
-
     }
 
     // ログイン前のカート内商品をログイン後のカートに移動したくない場合
@@ -106,6 +108,13 @@ const Members = () => {
                 <p>
                     ログイン前のカートに商品があります。現在のアカウントのカートにその商品を移動しますか？
                 </p>
+                <ul>
+                    {localData[0]?.stock.map((cartItem: Stock) => {
+                        <li>
+                            {cartItem?.item.name}
+                        </li>
+                    })}
+                </ul>
                 <button onClick={() => handleCombine(data[0])}>はい</button>
                 <button onClick={() => rejectCombine()}>いいえ</button>
             </div>
@@ -116,6 +125,12 @@ const Members = () => {
                 localData={localData}
             />
             <CartTotal data={data} />
+            <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
+                <Link href="#" legacyBehavior>
+                    購入手続きへ進む
+                </Link>
+            </div>
+
         </>
     );
 }
