@@ -34,6 +34,7 @@ const Members = () => {
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
 
+    // カート内商品削除
     const handleDelete = (cart: any, id: any) => {
         const stock = cart.stock;
         const deleted = stock.filter((item: Stock) => item.id !== id);
@@ -60,6 +61,7 @@ const Members = () => {
   
     }
 
+    // ログイン前のカート内商品をログイン後のカートに移動
     const handleCombine = (cart: any) => {
         const stock = cart.stock;
         for(const localItem of localData[0]?.stock){
@@ -92,6 +94,7 @@ const Members = () => {
 
     }
 
+    // ログイン前のカート内商品をログイン後のカートに移動しない場合
     const rejectCombine = () => {
         localStorage.clear();
         Router.reload();
@@ -99,7 +102,7 @@ const Members = () => {
 
     return (
         <>  
-          <div style={{display: localData[0]?.stock.length? "block" : "none"}}>
+          <div style={{display: localData[0]?.stock.length? "block" : "none", backgroundColor: "#CEDCFF"}}>
               <p>
                   ログイン前のカートに商品があります。現在のアカウントのカートにその商品を移動しますか？
               </p>
