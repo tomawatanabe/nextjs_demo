@@ -38,10 +38,12 @@ const CartButton = ({ stock }: { stock: Stock }) => {
               }else{
                 shoppingCart[0].stock.push(stock);
                 localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+                alert("カートに追加しました");
               }
-              
+
             }else{
               localStorage.setItem('shoppingCart', JSON.stringify([data]));
+              alert("カートに追加しました");
             }
         } else { 
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
@@ -69,11 +71,11 @@ const CartButton = ({ stock }: { stock: Stock }) => {
               .then((response) => response.json())
               .then((data) => {
                 console.log('Success:', data);
+                alert("カートに追加しました");
               })
               .catch((error) => {
                 console.error('Error:', error);
               });
-              alert("カートに追加しました");
           }
 
         fetch(`http://localhost:8000/shoppingCart/${userID}`, {

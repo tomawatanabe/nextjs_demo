@@ -1,10 +1,11 @@
 import useSWR, { mutate } from "swr";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCookie } from "../useCookie";
 import CartItem from "./cartItem";
 import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type { Stock } from "../../types";
+import cart from "../../pages/api/cart";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -12,6 +13,14 @@ const fetcher = (resource: string): Promise<any> =>
 const Members = () => {
     const userID = useCookie();
 
+    // ローカルストレージ内のデータがあるか確認
+    const [localData, setLocalData] = useState<any[]>([]);
+
+    useEffect(() => {
+        setLocalData(JSON.parse(localStorage.getItem('shoppingCart') || '{}'));
+    }, []);
+
+    // サーバ上のデータを取得
     let { data, error } = useSWR(
         `http://localhost:8000/shoppingCart?id=${userID}`,
         fetcher
@@ -42,6 +51,7 @@ const Members = () => {
               .then((response) => response.json())
               .then((data) => {
                 console.log('Success:', data);
+                mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
                 Router.reload();
               })
               .catch((error) => {
@@ -50,9 +60,58 @@ const Members = () => {
   
     }
 
+    const handleCombine = (cart: any) => {
+        const stock = cart.stock;
+        for(const localItem of localData[0]?.stock){
+            if(stock.some((serverItem: any) => 
+                serverItem.id === localItem.id 
+            )){
+                continue;
+            }
+            stock.push(localItem);
+        }
+
+        fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  "stock": stock
+                  }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('Success:', data);
+                localStorage.clear();
+                Router.reload();
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+
+    }
+
+    const rejectCombine = () => {
+        localStorage.clear();
+        Router.reload();
+    }
+
     return (
-        <>
-          <CartItem data={data} handleDelete={handleDelete} />
+        <>  
+          <div style={{display: localData[0]?.stock.length? "block" : "none"}}>
+              <p>
+                  ログイン前のカートに商品があります。現在のアカウントのカートにその商品を移動しますか？
+              </p>
+              <button onClick={() => handleCombine(data[0])}>はい</button>
+              <button onClick={() => rejectCombine()}>いいえ</button>
+          </div>
+          <CartItem 
+            data={data} 
+            handleDelete={handleDelete} 
+            handleCombine={handleCombine}
+            localData={localData}
+            />
           <CartTotal data={data} />
         </>
     );
