@@ -24,8 +24,25 @@ const CartButton = ({ stock }: { stock: Stock }) => {
 
     const addCartItem = async () => {
         if (!userID === true) {
-            alert('ログインしてください');
-            Router.push('/login/loginPage');
+            // alert('ログインしてください');
+            // Router.push('/login/loginPage');
+            if(localStorage.getItem("shoppingCart")){
+              const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
+              const target = stock;
+
+              if(shoppingCart[0].stock.some((item: any) => 
+                  item.id === target.id 
+              )){
+                alert("既にカートに追加済みです");
+                return;
+              }else{
+                shoppingCart[0].stock.push(stock);
+                localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+              }
+              
+            }else{
+              localStorage.setItem('shoppingCart', JSON.stringify([data]));
+            }
         } else { 
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();

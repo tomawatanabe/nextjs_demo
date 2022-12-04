@@ -17,31 +17,7 @@ const CartItem = (props: any) => {
     setCart(props.data[0]);
   }, [props.data]);
 
-  const handleDelete = (cart: any, id: any) => {
-      const stock = cart.stock;
-      const deleted = stock.filter((item: Stock) => item.id !== id);
-      console.log(deleted);
-
-      fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "stock": deleted
-                }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log('Success:', data);
-              router.reload();
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-
-  }
-
+  
   const noItem = (
     <p>カートの中身はありません</p>
   )
@@ -70,7 +46,7 @@ const CartItem = (props: any) => {
                 </select>
               </li>
             </ul>
-            <button onClick={() => handleDelete(cart, content.id)}>カートから削除</button>
+            <button onClick={() => props.handleDelete(cart, content.id)}>カートから削除</button>
           </div>
         </li>
       ))
