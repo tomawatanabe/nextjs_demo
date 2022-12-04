@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 import router from "next/router";

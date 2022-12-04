@@ -22,8 +22,6 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     stock: [stock],
   };
 
-
-
   useEffect(() => {
     setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
   }, []);
@@ -69,8 +67,6 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     }
   };
 
-
-  
   return (
     <div>
       {data?.stock?.some((item: any) => item.id === stock.id) ||

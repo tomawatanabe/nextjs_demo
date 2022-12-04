@@ -138,7 +138,6 @@ export default function settlement() {
             {flag && <p>支払い方法を選択してください</p>}
 
             <h3>購入商品</h3>
-            {/* カートの商品を持ってくる */}
             <div>
                 <table>
                     <thead>
