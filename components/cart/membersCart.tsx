@@ -126,7 +126,7 @@ const Members = () => {
             />
             <CartTotal data={data} />
             <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
-                <Link href="/settelement" legacyBehavior>
+                <Link href="http://localhost:3000/settlement" legacyBehavior>
                     購入手続きへ進む
                 </Link>
             </div>

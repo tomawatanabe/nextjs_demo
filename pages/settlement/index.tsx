@@ -4,12 +4,11 @@ import useSWR from "swr";
 import router from "next/router";
 import Link from "next/link";
 import Address from "../../components/settlement/adress";
-import CartTotal from "../../components/cart/cartTotal";
 import Image from "next/image";
 
 
 
-export default function settlement() {
+export default function Settlement() {
 
     const today = new Date();
 
@@ -116,7 +115,6 @@ export default function settlement() {
         <div>
             <Address />
             
-
             <h3>購入商品</h3>
             <div>
                 <table>
