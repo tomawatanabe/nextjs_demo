@@ -24,8 +24,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
 
     const addCartItem = async () => {
         if (!userID === true) {
-            // alert('ログインしてください');
-            // Router.push('/login/loginPage');
+          // ログアウト状態でカートに商品追加
             if(localStorage.getItem("shoppingCart")){
               const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart") || "{}");
               const target = stock;
@@ -46,6 +45,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
               alert("カートに追加しました");
             }
         } else { 
+          // ログイン状態でカート商品追加
           const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
           const user = await res.json();
           const target = stock;
@@ -98,9 +98,9 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   };
 
     return (
-    // <form onSubmit={handleSubmit}>
-    // </form>
+    <form onSubmit={handleSubmit}>
       <button onClick={addCartItem}>カートへ追加</button>
+    </form>
   );
 };
 

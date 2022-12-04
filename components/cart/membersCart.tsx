@@ -94,7 +94,7 @@ const Members = () => {
 
     }
 
-    // ログイン前のカート内商品をログイン後のカートに移動しない場合
+    // ログイン前のカート内商品をログイン後のカートに移動したくない場合
     const rejectCombine = () => {
         localStorage.clear();
         Router.reload();
