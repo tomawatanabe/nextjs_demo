@@ -12,6 +12,7 @@ const fetcher = (resource: string): Promise<any> =>
 
 const ShoppingCart = () => {
   const userID = useCookie();
+
   let { data, error } = useSWR(
     `http://localhost:8000/shoppingCart?id=${userID}`,
     fetcher
@@ -29,11 +30,15 @@ const ShoppingCart = () => {
     <div>
       <Header />
       <h1>カート</h1>
-      <p>
-        ※注意
-        <br />
-        カート内の商品は取り置きではありません。購入手続きの時点で売り切れている可能性があります。
-      </p>
+      {userID? (<p>
+          ※注意
+          <br />
+          カート内の商品は取り置きではありません。購入手続きの時点で売り切れている可能性があります。
+        </p>
+        )
+        :
+        (<p>※ログインしてください</p>)
+      }
       <CartItem data={data} />
       <CartTotal data={data} />
       <Link href="#" legacyBehavior>
