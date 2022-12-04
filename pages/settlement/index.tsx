@@ -118,7 +118,6 @@ export default function settlement() {
             
 
             <h3>購入商品</h3>
-            {/* カートの商品を持ってくる */}
             <div>
                 <table>
                     <thead>

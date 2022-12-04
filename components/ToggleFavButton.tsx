@@ -3,6 +3,7 @@ import type { FavoriteItem } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR, { mutate } from "swr";
+import styles from "../styles/FavButton.module.css";
 
 const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
@@ -38,8 +39,6 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    alert("お気に入りに追加しました");
-
     fetch("http://localhost:8000/favoriteItems", {
       method: "POST",
       headers: {
@@ -55,7 +54,6 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       Router.push("/login/loginPage");
       return;
     }
-    alert("お気に入りから削除しました");
 
     fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
       method: "DELETE",
@@ -70,7 +68,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
             <input
               type="button"
               onClick={deleteFav}
-              className="idbutton"
+              className={styles.deleteFavBtn}
               value="お気に入りから削除"
             />
           </>
@@ -79,7 +77,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
             <input
               type="button"
               onClick={addFav}
-              className="idbutton"
+              className={styles.addFavBtn}
               value="お気に入りに追加"
             />
           </>

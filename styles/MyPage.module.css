@@ -1,0 +1,59 @@
+.mypage_main_content {
+    width: 1160px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.user_imfo_icon{
+  padding-left: 800px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn::after {
+  content: "全て見る";
+}
+
+.title_wrapper {
+  padding-top:  20px;
+  padding-bottom: 20px;
+}
+
+.content_title {
+  display: inline;
+  padding-right: 30px;
+}
+
+.table_list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table_list th {
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid rgb(62, 57, 57);
+}
+
+.table_list td {
+  height: 110px;
+  padding: 5px;
+  border-bottom: 0.5px solid rgb(178, 164, 164);
+}
+
+.td_justify {
+  text-align: justify;
+}
+
+.td_center {
+  text-align: center;
+}
+
+.th_size {
+  width: 100px;
+}
+
+.th_name {
+  width: 400px;
+}
