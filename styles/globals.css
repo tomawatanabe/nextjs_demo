@@ -171,3 +171,8 @@ textarea {
   border-bottom: 5px solid rgb(84, 124, 137);
   color: #ffffff;
 }
+
+.idbutton:hover {
+  background-color: rgb(154, 197, 212);
+  border-bottom: 5px solid rgb(122, 165, 180);
+}
