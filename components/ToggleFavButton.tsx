@@ -38,8 +38,6 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    alert("お気に入りに追加しました");
-
     fetch("http://localhost:8000/favoriteItems", {
       method: "POST",
       headers: {
@@ -55,7 +53,6 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       Router.push("/login/loginPage");
       return;
     }
-    alert("お気に入りから削除しました");
 
     fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
       method: "DELETE",

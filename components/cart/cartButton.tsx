@@ -65,6 +65,30 @@ const CartButton = ({ stock }: { stock: Stock }) => {
             Router.reload();
           }
       }
+
+      fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          stock: user.stock,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+      await fetch("/api/cart", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ stockID: stock.id }),
+      });
+    }
   };
 
     return (
@@ -78,7 +102,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           ?
             (<button onClick={addCartItem} disabled>カートに追加済みです</button>)
             :
-            (<button onClick={addCartItem}>カートへ追加</button>)
+            (<button onClick={addCartItem} className="idbutton">カートへ追加</button>)
           }
         </div>
     );

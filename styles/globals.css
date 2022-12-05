@@ -2,7 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  margin-left: 0;
   font-family: "Yu Gothic", Roboto Condensed, sans-serif, -apple-system,
     BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
     Droid Sans, Helvetica Neue, sans-serif;
@@ -29,7 +28,7 @@ a {
 label,
 .subtitle {
   display: inline-block;
-  text-align: center;
+  text-align: left;
   width: 210px;
   padding: 15px;
 }
@@ -108,7 +107,12 @@ textarea {
   padding-left: 100px;
 }
 
-/* [id] */
+/* [id].tsx */
+.content-wrapper {
+  width: 1160px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
 
 .main-content {
   display: flex;
@@ -116,14 +120,11 @@ textarea {
 }
 
 .right-side-wrapper {
-  justify-content: flex-end;
-  width: 20%;
-  height: 290px;
-  text-align: center;
-  margin-top: 100px;
   margin-left: 80px;
+  width: 25%;
+  height: 400px;
+  text-align: center;
   background-color: #f2f8fa;
-  border: 1px solid #d1dfdf;
 }
 
 .image-wraper {
@@ -150,7 +151,7 @@ textarea {
 }
 
 .outside {
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: 120px;
 }
 

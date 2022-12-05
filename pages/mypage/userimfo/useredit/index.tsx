@@ -334,7 +334,7 @@ const UserImfo = () => {
           </div>
           <input type="submit" value="変更内容を確定する" />
         </form>
-        <Link href="http://localhost:3000/mypage/userimfo">会員情報に戻る</Link>
+        <Link href="/mypage/userimfo">会員情報に戻る</Link>
         <Footer />
       </SignIn>
     </>

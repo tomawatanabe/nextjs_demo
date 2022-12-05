@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
+import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
+import styles from "../../styles/LogInPage.module.css";
 
 export default function Loginpage() {
   const [id, setId] = useState("");
@@ -34,7 +35,6 @@ export default function Loginpage() {
         if (!data.cookieId) {
           console.log(data.massage);
         } else {
-
           console.log(`ユーザー認証完了`);
           document.cookie = `userID=${data.cookieId}; Path=/; max-age=86400s`;
         }
@@ -44,14 +44,37 @@ export default function Loginpage() {
 
   return (
     <>
-      <Header />
-      <h3>ログイン</h3>
-      <p>メールアドレス</p>
-      <input type="text" name="id" value={id} onChange={handleChangeId} />
-      <p>パスワード</p>
-      <input type="password" name="pw" value={pw} onChange={handleChangePw} />
-      <br />
-      <input type="button" value="ログイン" onClick={postCarti} />
+      <LoginPageHeader />
+      <div className={styles.login}>
+        {/* <h3 className={styles.login_header}>ログイン</h3> */}
+        <div className={styles.login_container}>
+          <p>メールアドレス</p>
+          <input
+            placeholder="sample@example.com"
+            type="text"
+            name="id"
+            value={id}
+            onChange={handleChangeId}
+          />
+          <p>パスワード</p>
+          <input
+            type="password"
+            placeholder="Password"
+            name="pw"
+            value={pw}
+            onChange={handleChangePw}
+          />
+          <br />
+          <span>
+            <input
+              className={styles.login_btn}
+              type="button"
+              value="ログイン"
+              onClick={postCarti}
+            />
+          </span>
+        </div>
+      </div>
       <Footer />
     </>
   );

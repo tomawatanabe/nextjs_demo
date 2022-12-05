@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 import { useCookie } from "../useCookie";
+import styles from "../../styles/purchase.module.css";
 
 const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
   const cookieName = useCookie();
@@ -67,7 +68,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           itemSize: values.itemSizeB,
           itemColor: values.itemColorB,
           itemNote: values.itemNoteB,
-          itemStatus: "受付済み",
+          itemStatus: "受付済",
         }),
       });
     }
@@ -76,13 +77,10 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
   };
 
   return (
-    <>
+    <div className={styles.outside}>
       <form>
-        <h1>
-          <span>買取受付フォーム</span>
-        </h1>
-        <h1>入力内容を確認してください</h1>
-        <h2>お客様情報の確認</h2>
+        <h1 className={styles.midashi}>入力内容を確認してください</h1>
+        <h2 className={styles.kaitori}>お客様情報の確認</h2>
         <hr />
         <p>
           <span className="subtitle">
@@ -141,11 +139,11 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           </span>
           {values?.building}
         </p>
-        <h2>買取希望商品情報の確認</h2>
+        <h2 className={styles.kaitori}>買取希望商品情報の確認</h2>
         <hr />
-        <div className="form-group-used-item">
+        <div className={styles.formgroupuseditem}>
           <div className="used-item-formA">
-            <h3>買取希望商品１</h3>
+            <h3 className={styles.h3tag}>買取希望商品１</h3>
             <p>
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>品名
@@ -197,7 +195,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
             </p>
           </div>
           <div className="used-item-formB">
-            <h3>買取希望商品２</h3>
+            <h3 className={styles.h3tag}>買取希望商品２</h3>
             <p>
               <span className="subtitle">
                 <span className="label-fit label-danger">必須</span>品名
@@ -255,16 +253,27 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           </span>
           {values?.itemAdd}
         </div>
+
         <div className="button001">
-          <Link href="/purchase">入力内容を修正する</Link>
+          <div className={styles.btn}>
+            <Link href="/purchase" className="idbutton">
+              入力内容を修正する
+            </Link>
+          </div>
         </div>
         <div className="button001">
-          <Link href="/" onClick={handleSubmitUsedItemValue}>
-            入力内容を送信する
-          </Link>
+          <div className={styles.btn}>
+            <Link
+              href="/"
+              onClick={handleSubmitUsedItemValue}
+              className="idbutton"
+            >
+              入力内容を送信する
+            </Link>
+          </div>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

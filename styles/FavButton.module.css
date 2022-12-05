@@ -1,0 +1,55 @@
+
+.addFavBtn{
+  padding: 0.5em;
+  margin: 10px 0;
+  color: #fff !important;
+  background: #FF8300;
+  text-decoration: none;
+  font-weight: bold;
+  font-size:16px;
+  border-radius: 3px;
+  text-align:center;
+  text-decoration:none !important;
+}
+
+.addFavBtn:after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: -3px 5px 0 0;
+  background-Image: url("//public/shoplogo.png") no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.addFavBtn:hover {
+  background: #FFCE71;
+}
+
+.deleteFavBtn{
+  padding: 0.5em;
+  margin: 10px 0;
+  color: #fff !important;
+  background:#B5BABD;
+  text-decoration: none;
+  font-weight: bold;
+  font-size:16px;
+  border-radius: 3px;
+  text-align:center;
+  text-decoration:none !important;
+}
+
+.deleteFavBtn:after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: -3px 5px 0 0;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.deleteFavBtn:hover {
+  background: #E8EDF0;
+}
