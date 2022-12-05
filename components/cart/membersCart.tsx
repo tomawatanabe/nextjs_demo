@@ -6,6 +6,7 @@ import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type { Stock } from "../../types";
 import cart from "../../pages/api/cart";
+import Link from "next/link";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -122,6 +123,12 @@ const Members = () => {
             localData={localData}
             />
           <CartTotal data={data} />
+          <div style={{display: data[0]?.stock.length? "block" : "none"}}>
+            <Link href="#" legacyBehavior>
+                購入手続きへ進む
+            </Link>
+          </div>
+          
         </>
     );
 }

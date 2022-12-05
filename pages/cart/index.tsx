@@ -13,19 +13,6 @@ import Footer from "../../components/Footer";
 const ShoppingCart = () => {
   const userID = useCookie();
 
-  // let { data, error, mutate } = useSWR(
-  //   `http://localhost:8000/shoppingCart?id=${userID}`,
-  //   fetcher
-  // );
-
-  // useEffect(() => {
-  //   console.log('mutateしました');
-  //   mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
-  // }, [])
-
-  // if (error) return <div>failed to load</div>;
-  // if (!data) return <div>loading...</div>;
-
   return (
     <div>
       <Header />
@@ -40,9 +27,9 @@ const ShoppingCart = () => {
         :
         <Local />
       }
-      <Link href="#" legacyBehavior>
+      {/* <Link href="#" legacyBehavior>
         購入手続きへ進む
-      </Link>
+      </Link> */}
       <br />
       <Link href="/" legacyBehavior>
         トップページへ
