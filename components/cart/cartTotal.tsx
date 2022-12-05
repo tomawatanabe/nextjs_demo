@@ -37,7 +37,7 @@ const CartTotal = (props: any) => {
             </tr>
           </tbody>
         </table>
-        <p>合計：￥{cart?.stock.length ? total + 500 : 0}</p>
+        <h2>合計：￥{cart?.stock.length ? total + 500 : 0}（税込）</h2>
       </div>
     </>
   );

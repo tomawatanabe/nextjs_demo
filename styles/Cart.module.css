@@ -1,4 +1,4 @@
-.cart_main_content{
+.cart_main_content {
   padding-left: 45px;
 }
 
@@ -27,3 +27,69 @@
   width: fit-content;
   padding-right: 0;
 }
+
+.attention {
+  width: fit-content;
+  font-weight: bold;
+  text-align: center;border-radius: 3px;
+}
+
+.yes_btn {
+  width: 100px;
+  padding: 0.5em;
+  margin-right: 2em;
+  color: #fff !important;
+  background: #df9a4f;
+  border-bottom: 5px solid #ba7e3e;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.yes_btn:hover {
+  background: #f1c063;
+}
+
+.no_btn {
+  width: 100px;
+  padding: 0.5em;
+  margin: 10px 0;
+  color: #fff !important;
+  background: #b5babd;
+  border-bottom: 5px solid rgb(81, 80, 80);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.no_btn:hover {
+  background: #e8edf0;
+}
+
+.frame {
+  width: 100%;
+  margin: 30px auto 20px;
+  padding: 30px 20px 0;
+  border: 3px solid #aaa;
+  position: relative;
+  border-radius: 3px;
+  background-color: #fff;
+  border-color: #ff4500;
+ }
+
+ .frame_title {
+  position: absolute;
+  top: -13px;
+  left: 20px;
+  padding: 0 5px;
+  background-color: #ff4500;
+  border: 2px solid #ff4500;
+  color: #fff;
+  border-radius: 3px;
+ }
