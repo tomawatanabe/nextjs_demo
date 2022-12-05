@@ -6,35 +6,43 @@ import Footer from "../../components/Footer";
 import FavoriteList from "../../components/FavoriteList";
 import UsedItemList from "../../components/UsedItemList";
 import SettlementHistory from "../../components/SettlementHistory";
+import styles from "../../styles/MyPage.module.css";
+import Image from "next/image";
 
 const MyPage = () => {
   return (
     <>
       <SignIn>
         <Header />
-        <div>
-          <h1>マイページ</h1>
+        <div className={styles.mypage_main_content}>
+          <div className={styles.title_wrapper}>
+            <h1 className={styles.content_title}>マイページ</h1>
+            <span className={styles.user_imfo_icon}>
+              <Link href="/mypage/userimfo/">
+                <Image
+                  className={styles.btn}
+                  src="/images/user_icon.png"
+                  alt="詳細ページにジャンプするボタン"
+                  width={20}
+                  height={20}
+                />
+                会員情報
+              </Link>
+            </span>
+          </div>
+          <hr />
+          <div>
+            <SettlementHistory />
+          </div>
+          <hr />
+          <div>
+            <FavoriteList />
+          </div>
+          <hr />
+          <div>
+            <UsedItemList />
+          </div>
         </div>
-        <hr />
-        <div>
-          <SettlementHistory />
-        </div>
-        <hr />
-        <div>
-          <FavoriteList />
-        </div>
-        <hr />
-        <div>
-          <UsedItemList />
-        </div>
-        <h2>
-          <Link href="http://localhost:3000/mypage/userimfo/">
-            会員情報
-          </Link>
-        </h2>
-        <h2>
-          <Link href="http://localhost:3000/cart">ショッピングカート</Link>
-        </h2>
         <Footer />
       </SignIn>
     </>
