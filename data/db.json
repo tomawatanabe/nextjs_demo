@@ -1627,12 +1627,12 @@
   ],
   "favoriteItems": [
     {
-      "itemId": 1,
+      "itemId": 2,
       "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE",
-      "price": 38500,
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
       "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
       "condition": "A",
       "deleted": false,
       "id": 1

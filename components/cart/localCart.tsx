@@ -3,9 +3,10 @@ import CartItem from "./cartItem";
 import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type{ Stock } from "../../types";
+import Link from "next/link";
 
 const Local = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
         setData(JSON.parse(localStorage.getItem('shoppingCart') || '{}'));
@@ -22,6 +23,11 @@ const Local = () => {
         <>
           <CartItem data={data} handleDelete={handleDelete} />
           <CartTotal data={data} />
+          <div style={{display: data[0]?.stock.length? "block" : "none"}}>
+            <Link href="#" legacyBehavior>
+                購入手続きへ進む
+            </Link>
+          </div>
         </>
     );
 } 
