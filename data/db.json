@@ -765,8 +765,8 @@
     {
       "id": 16,
       "itemID": 16,
-      "price": 28.5,
-      "size": 13200,
+      "price": 13200,
+      "size": 28.5,
       "image1": "images/sneakers/AIR JORDAN 5 RETRO/AIR JORDAN 5 RETRO_1.jpg",
       "image2": "images/sneakers/AIR JORDAN 5 RETRO/AIR JORDAN 5 RETRO_2.jpg",
       "image3": "images/sneakers/AIR JORDAN 5 RETRO/AIR JORDAN 5 RETRO_3.jpg",
@@ -1620,8 +1620,9 @@
   ],
   "shoppingCart": [
     {
+      "stock": [],
       "id": 1,
-      "stock": []
+      "deleted": false
     }
   ],
   "favoriteItems": [],
@@ -1669,6 +1670,29 @@
       "itemNote": "",
       "itemStatus": "受付済",
       "id": 2
+
+    },
+    {
+      "itemId": 1,
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
+    },
+    {
+      "itemId": 1,
+      "cookieName": "userID=1",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 4
     }
-  ]
+  ],
+  "usedItems": []
 }

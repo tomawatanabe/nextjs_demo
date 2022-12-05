@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const CartTotal = (props: any) => {
     const [cart, setCart] = useState(props.data[0]);
@@ -6,8 +6,14 @@ const CartTotal = (props: any) => {
     const initial: number = cart?.stock.map((stock: any) => stock.price).reduce((prev: number, curr: number) => prev + curr, 0);
     console.log(initial);
     const [total, setTotal] = useState(initial);
-    const [cartItems, setCartItems] = useState(cart?.stock);
 
+    useEffect(() => {
+      setCart(props.data[0]);
+    }, [props.data]);
+
+    useEffect(() => {
+      setTotal(initial);
+    }, [cart]);
     
     return (
       <>
@@ -19,11 +25,11 @@ const CartTotal = (props: any) => {
             </tr>
             <tr>
                 <th>送料{'('}一律{')'}:</th> 
-                <td>￥{cartItems?.length? 500 : 0}</td>
+                <td>￥{cart?.stock.length? 500 : 0}</td>
             </tr>
             </tbody>
         </table>
-        <p>合計：￥{cartItems?.length? total + 500 : 0}</p>
+        <p>合計：￥{cart?.stock.length? total + 500 : 0}</p>
       </>
     )
 }
