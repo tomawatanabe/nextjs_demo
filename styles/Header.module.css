@@ -53,7 +53,6 @@
 }
 
 .button {
-  color: #000;
   background-color: rgb(94, 177, 207);
   border-bottom: 5px solid rgb(61, 143, 173);
   margin-left: 5px;
@@ -73,4 +72,16 @@
   font-family: "Yu Gothic";
   font-weight: bold;
   height: 32px;
+}
+
+.button:hover {
+  background-color: rgb(125, 188, 211);
+  border-bottom: 5px solid rgb(79, 148, 173);
+  color: rgb(255, 255, 255);
+}
+
+.button2:hover {
+  background-color: rgb(125, 188, 211);
+  border-bottom: 5px solid rgb(79, 148, 173);
+  color: rgb(255, 255, 255);
 }
