@@ -15,7 +15,7 @@ export default async function handler(
     const obj = await checkData.json();
 
     if (obj[0] === undefined) {
-      res.status(404).json({ massage: "見つかりません" });
+      res.status(404).json({ massage: "ログイン情報が見つかりません" });
     } else {
       res.status(200).json({ cookieId: obj[0].id });
     }

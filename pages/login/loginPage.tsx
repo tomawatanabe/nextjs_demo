@@ -7,6 +7,7 @@ import styles from "../../styles/LogInPage.module.css";
 export default function Loginpage() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [flag, setFlag] = useState(false);
 
   const handleChangeId = (e: ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -21,6 +22,8 @@ export default function Loginpage() {
       userPw: pw,
     };
 
+    setFlag(false);
+
     fetch(`/api/certification`, {
       method: `POST`,
       headers: {
@@ -33,13 +36,20 @@ export default function Loginpage() {
       })
       .then((data) => {
         if (!data.cookieId) {
-          console.log(data.massage);
+          setFlag(true);
+          console.log(flag);
         } else {
           console.log(`ユーザー認証完了`);
           document.cookie = `userID=${data.cookieId}; Path=/; max-age=86400s`;
+          router.replace("/");
         }
-        router.replace("/");
       });
+  }
+
+  function loginFlag() {
+    if (flag === true) {
+      return <p className={styles.loginmiss}>ログインできませんでした</p>;
+    }
   }
 
   return (
@@ -75,6 +85,7 @@ export default function Loginpage() {
           </span>
         </div>
       </div>
+      {loginFlag()}
       <Footer />
     </>
   );
