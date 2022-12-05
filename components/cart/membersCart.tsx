@@ -53,7 +53,7 @@ const Members = () => {
               .then((data) => {
                 console.log('Success:', data);
                 mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
-                Router.reload();
+                Router.push("/cart");
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -106,6 +106,13 @@ const Members = () => {
               <p>
                   ログイン前のカートに商品があります。現在のアカウントのカートにその商品を移動しますか？
               </p>
+              <ul>
+                {localData[0]?.stock.map((cartItem: Stock) => {
+                  <li>
+                    {cartItem?.item.name}
+                  </li>
+                })}
+              </ul>
               <button onClick={() => handleCombine(data[0])}>はい</button>
               <button onClick={() => rejectCombine()}>いいえ</button>
           </div>

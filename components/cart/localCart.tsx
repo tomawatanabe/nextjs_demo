@@ -15,7 +15,7 @@ const Local = () => {
         const deleted = cart.stock.filter((item: Stock) => item.id !== id);
         cart.stock = deleted;
         localStorage.setItem('shoppingCart', JSON.stringify([cart]));
-        Router.reload();
+        Router.push("/cart");
     }
 
     return (
