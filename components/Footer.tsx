@@ -15,33 +15,28 @@ export default function Footer() {
           </li>
         </ul>
         <div className={styles.images}>
-          <Link href="https://bit.ly/3upDsNH">
-            <Image
-              src="/images/FacebookLogo.png"
-              alt="FBLogo"
-              width={30}
-              height={30}
-              className={styles.image}
-            />
-          </Link>
-          <Link href="https://www.instagram.com/rakus_partners/?hl=ja">
-            <Image
-              src="/images/InstagramLogo.png"
-              alt="InstLogo"
-              width={30}
-              height={30}
-              className={styles.image}
-            />
-          </Link>
-          <Link href="https://twitter.com/hr_rakus">
-            <Image
-              src="/images/TwitterLogo.png"
-              alt="TwLogo"
-              width={30}
-              height={30}
-              className={styles.image}
-            />
-          </Link>
+          <Image
+            src="/images/FacebookLogo.png"
+            alt="FBLogo"
+            width={30}
+            height={30}
+            className={styles.image}
+          />
+
+          <Image
+            src="/images/InstagramLogo.png"
+            alt="InstLogo"
+            width={30}
+            height={30}
+            className={styles.image}
+          />
+          <Image
+            src="/images/TwitterLogo.png"
+            alt="TwLogo"
+            width={30}
+            height={30}
+            className={styles.image}
+          />
         </div>
       </div>
       <div className={styles.right}>

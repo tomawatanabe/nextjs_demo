@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 import React from "react";
-import styles from "../../styles/purchase.module.css";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -35,7 +34,7 @@ const SignUpForm = () => {
     const result = await res.json();
 
     //存在しない郵便番号の場合、アラートを返す
-    if (result.code === 404 || result.code === 400) {
+    if (result.code === 404||result.code === 400) {
       alert("存在しない郵便番号です");
       return;
     }
@@ -45,10 +44,11 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className={styles.outside}>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <h1>会員登録フォーム</h1>
         <h2>
-          <span className={styles.midashi}>お客様情報を入力してください。</span>
+          <span>お客様情報を入力してください。</span>
         </h2>
         <hr />
         <div>
@@ -304,13 +304,12 @@ const SignUpForm = () => {
             *パスワードには大文字、小文字、数字を少なくとも１つ設定してください。
           </span>
         </div>
-        <div className={styles.btn}>
-          <button type="submit" className="idbutton">
-            入力内容を確認
-          </button>
-        </div>
+
+        <button type="submit" className="form-submit-btn">
+          入力内容を確認
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
-import styles from "../../styles/purchase.module.css";
 
 const ContactForm = () => {
   const router = useRouter();
@@ -19,11 +18,11 @@ const ContactForm = () => {
   };
 
   return (
-    <div className={styles.outside}>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={styles.title}>お問い合わせフォーム</h1>
-        <h2 className={styles.kaitori}>
-          <span className={styles.midashi}>お客様情報を入力してください。</span>
+        <h1>お問い合わせフォーム</h1>
+        <h2>
+          <span>お客様情報を入力してください。</span>
         </h2>
         <hr />
         <div>
@@ -141,9 +140,7 @@ const ContactForm = () => {
 
         <div>
           <h2>
-            <span className={styles.midashi}>
-              お問い合わせ内容を入力してください。
-            </span>
+            <span>お問い合わせ内容を入力してください。</span>
           </h2>
           <hr />
           <textarea
@@ -157,11 +154,9 @@ const ContactForm = () => {
             <div className="formError">{errors.content?.message as string}</div>
           )}
         </div>
-        <button type="submit" className="idbutton">
-          入力内容を確認
-        </button>
+        <button type="submit">入力内容を確認</button>
       </form>
-    </div>
+    </>
   );
 };
 

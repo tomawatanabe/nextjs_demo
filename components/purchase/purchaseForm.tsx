@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 import React from "react";
 import Image from "next/image";
-import styles from "../../styles/purchase.module.css";
 
 const PurchaseForm = ({
   handleChange,
@@ -20,7 +19,7 @@ const PurchaseForm = ({
     formState: { errors },
   } = useFormContext();
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e:any) => {
     router.push(`/purchase?confirm=1`);
   };
 
@@ -33,10 +32,10 @@ const PurchaseForm = ({
       }
     );
     const result = await res.json();
-    console.log(result);
+    console.log(result)
 
     //存在しない郵便番号の場合、アラートを返す
-    if (result.code === 404 || result.code === 400) {
+    if (result.code === 404||result.code === 400) {
       alert("存在しない郵便番号です");
       return;
     }
@@ -46,10 +45,16 @@ const PurchaseForm = ({
   };
 
   return (
-    <div className={styles.outside}>
+    <>
+      <h1>当店の買取システムについて</h1>
+      <p>新品、中古、新作、旧作スニーカーを高価買取！1足から何足でもOK！</p>
+      <p>直接店舗に持ち込んでその場で現金！全国から発送買取も受付中です！</p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={styles.kaitori}>
-          <span className={styles.midashi}>お客様情報を入力してください。</span>
+        <h1>
+          <span>買取受付フォーム</span>
+        </h1>
+        <h2>
+          <span>お客様情報を入力してください。</span>
         </h2>
         <hr />
         <div>
@@ -248,17 +253,14 @@ const PurchaseForm = ({
             id="building"
             {...register("building")}
           />
-          <br />
         </div>
-        <h2 className={styles.kaitori}>
-          <span className={styles.midashi}>
-            買取希望商品情報を入力してください。
-          </span>
+        <h2>
+          <span>買取希望商品情報を入力してください。</span>
         </h2>
         <hr />
-        <div className={styles.formgroupuseditem}>
+        <div className="form-group-used-item">
           <div className="used-item-formA">
-            <h3 className={styles.h3tag}>買取希望商品１</h3>
+            <h3>買取希望商品１</h3>
             <div>
               <label htmlFor="itemName">
                 <span className="label-fit label-danger">必須</span>品名
@@ -369,7 +371,7 @@ const PurchaseForm = ({
             </div>
           </div>
           <div className="used-item-formB">
-            <h3 className={styles.h3tag}>買取希望商品２</h3>
+            <h3>買取希望商品２</h3>
             <div>
               <label htmlFor="itemNameB">
                 <span className="label-fit label-danger">必須</span>品名
@@ -477,17 +479,12 @@ const PurchaseForm = ({
               id="note"
               placeholder="買取情報を入力してください"
               {...register("itemAdd")}
-              className={styles.form}
             />
           </div>
         </div>
-        <div className={styles.btn}>
-          <button type="submit" className="idbutton">
-            入力内容を確認
-          </button>
-        </div>
+        <button type="submit">入力内容を確認</button>
       </form>
-    </div>
+    </>
   );
 };
 

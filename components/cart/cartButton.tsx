@@ -13,21 +13,50 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   };
 
   //カート追加時にshoppingCart内にstockデータを追加
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("stockID", stock.id);
+    await fetch("/api/cart", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ stockID: stock.id }),
+    });
+  };
 
-  const addCartItem = async () => {
-    if (!userID === true) {
-      alert("ログインしてください");
-    } else {
-      const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
-      const user = await res.json();
-      const target = stock;
-      console.log(user);
-      console.log(target);
-      if (user.stock.some((item: any) => item.id === target.id)) {
-        alert("既にカートに追加済みです");
-        return;
-      } else {
-        user.stock.push(stock);
+    const addCartItem = async () => {
+        if (!userID === true) {
+            alert('ログインしてください');
+        } else { 
+          const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
+          const user = await res.json();
+          const target = stock;
+          console.log(user);
+          console.log(target);
+          if(user.stock.some((item: any) => 
+            item.id === target.id 
+          )){
+            alert("既にカートに追加済みです");
+            return;
+          }else{
+            user.stock.push(stock);
+  
+            fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  "stock": user.stock
+                  }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('Success:', data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+              alert("カートに追加しました");
+          }
 
         fetch(`http://localhost:8000/shoppingCart/${userID}`, {
           method: "PATCH",
@@ -45,40 +74,13 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           .catch((error) => {
             console.error("Error:", error);
           });
-        alert("カートに追加しました");
       }
-
-      fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          stock: user.stock,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-
-      await fetch("/api/cart", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ stockID: stock.id }),
-      });
-    }
   };
 
-  return (
+    return (
     // <form onSubmit={handleSubmit}>
     // </form>
-    <button onClick={addCartItem} className="idbutton">
-      カートへ追加
-    </button>
+      <button onClick={addCartItem} className="idbutton">カートへ追加</button>
   );
 };
 

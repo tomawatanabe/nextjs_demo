@@ -64,17 +64,11 @@ export default function Header() {
           src="/shoplogo.png"
           alt="syoplogo"
           height={160}
-          width={210}
+          width={200}
           className={styles.image}
         />
       </Link>
-      <div className={styles.responsive_btn}>
-        <div className={styles.smenu_line}></div>
-        <div className={styles.smenu_line}></div>
-        <div className={styles.smenu_line}></div>
-      </div>
-
-      <nav className={styles.header__inner}>
+      <div className={styles.header__inner}>
         <ul className={styles.ul}>
           <li key="mypage" className={styles.lis}>
             <Link href="/cart" className={styles.link}>
@@ -93,7 +87,7 @@ export default function Header() {
           </li>
           {correction()}
         </ul>
-      </nav>
+      </div>
     </header>
   );
 }

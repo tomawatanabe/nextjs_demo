@@ -76,7 +76,7 @@ export type Order = {
   note: string;
   paymentMethod: string;
   orderItemList: any[];
-  shipStatus: string;
+  status: string;
 };
 
 export type UsedItems = {
