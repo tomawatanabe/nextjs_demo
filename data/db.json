@@ -1398,12 +1398,62 @@
   "order": [],
   "shoppingCart": [
     {
-      "stock": [],
+      "stock": [
+        {
+          "id": 28,
+          "itemID": 28,
+          "price": 35200,
+          "size": 28,
+          "image1": "images/sneakers/AIR MAX 90/AIR MAX 90_1.jpg",
+          "image2": "images/sneakers/AIR MAX 90/AIR MAX 90_2.jpg",
+          "image3": "images/sneakers/AIR MAX 90/AIR MAX 90_3.jpg",
+          "image4": "images/sneakers/AIR MAX 90/AIR MAX 90_4.jpg",
+          "image5": "images/sneakers/AIR MAX 90/AIR MAX 90_5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 28,
+            "name": "AIR MAX 90",
+            "series": "AIR MAX",
+            "year": 2004,
+            "description": "[ナイキ エア マックス 90 \"デイブズ クオリティ ミート/ベーコン\" 310766-161]   DAVE・ORTIZ氏が手掛ける、2003年オープンのニューヨーク発のスケートショップ\"DAVE'S QUALITY MEAT(DQM)\"とNIKEの共同モデル「AIR MAX 90 \"BACON\"」の登場です。朝食の定番ベーコン、卵、チーズのサンドイッチをイメージしてデザインされたスペシャルエディションとなっています。※こちらの商品は経年劣化によりご使用出来ません。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。 ",
+            "setprice": "2004年1月発売",
+            "color": "\"DQM/BACON\" SAIL/SHEEN-STRAW-MEDIUM BROWN",
+            "deleted": "false"
+          }
+        }
+      ],
       "id": 1,
       "deleted": false
     },
     {
-      "stock": [],
+      "stock": [
+        {
+          "id": 28,
+          "itemID": 28,
+          "price": 35200,
+          "size": 28,
+          "image1": "images/sneakers/AIR MAX 90/AIR MAX 90_1.jpg",
+          "image2": "images/sneakers/AIR MAX 90/AIR MAX 90_2.jpg",
+          "image3": "images/sneakers/AIR MAX 90/AIR MAX 90_3.jpg",
+          "image4": "images/sneakers/AIR MAX 90/AIR MAX 90_4.jpg",
+          "image5": "images/sneakers/AIR MAX 90/AIR MAX 90_5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 28,
+            "name": "AIR MAX 90",
+            "series": "AIR MAX",
+            "year": 2004,
+            "description": "[ナイキ エア マックス 90 \"デイブズ クオリティ ミート/ベーコン\" 310766-161]   DAVE・ORTIZ氏が手掛ける、2003年オープンのニューヨーク発のスケートショップ\"DAVE'S QUALITY MEAT(DQM)\"とNIKEの共同モデル「AIR MAX 90 \"BACON\"」の登場です。朝食の定番ベーコン、卵、チーズのサンドイッチをイメージしてデザインされたスペシャルエディションとなっています。※こちらの商品は経年劣化によりご使用出来ません。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。 ",
+            "setprice": "2004年1月発売",
+            "color": "\"DQM/BACON\" SAIL/SHEEN-STRAW-MEDIUM BROWN",
+            "deleted": "false"
+          }
+        }
+      ],
       "id": 2
     }
   ],

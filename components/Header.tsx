@@ -68,32 +68,36 @@ export default function Header() {
           className={styles.image}
         />
       </Link>
-      <div className={styles.responsive_btn}>
-        <div className={styles.smenu_line}></div>
-        <div className={styles.smenu_line}></div>
-        <div className={styles.smenu_line}></div>
-      </div>
+      <div className={styles.responsivebtn}>
+        <div className={styles.icon}>
+          <div className={styles.smenuline}></div>
+          <div className={styles.smenuline}></div>
+          <div className={styles.smenuline}></div>
+        </div>
 
-      <nav className={styles.header__inner}>
-        <ul className={styles.ul}>
-          <li key="mypage" className={styles.lis}>
-            <Link href="/cart" className={styles.link}>
-              カート
-            </Link>
-          </li>
-          <li key="cart" className={styles.lis}>
-            <Link href="/contact" className={styles.link}>
-              お問い合わせ
-            </Link>
-          </li>
-          <li key="favorit" className={styles.lis}>
-            <Link href="/purchase" className={styles.link}>
-              買取受付
-            </Link>
-          </li>
-          {correction()}
-        </ul>
-      </nav>
+        <input className={styles.drawer_hidden} type="checkbox" />
+
+        <nav className={styles.header__inner}>
+          <ul className={styles.ul}>
+            <li key="mypage" className={styles.lis}>
+              <Link href="/cart" className={styles.link}>
+                カート
+              </Link>
+            </li>
+            <li key="cart" className={styles.lis}>
+              <Link href="/contact" className={styles.link}>
+                お問い合わせ
+              </Link>
+            </li>
+            <li key="favorit" className={styles.lis}>
+              <Link href="/purchase" className={styles.link}>
+                買取受付
+              </Link>
+            </li>
+            {correction()}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
