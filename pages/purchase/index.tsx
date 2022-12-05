@@ -6,6 +6,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Image from "next/image";
+import styles from "../../styles/purchase.module.css";
 
 const Purchase = () => {
   //inputに登録された画像のバイナリデータを保持するstate
@@ -79,6 +81,12 @@ const Purchase = () => {
   return (
     <div className="wrapper">
       <Header />
+      <h1>
+        <span className={styles.kaitorititle}>買取受付フォーム</span>
+      </h1>
+      <div className={styles.image}>
+        <Image src="/kaitori.png" alt="kaitori" width={900} height={240} />
+      </div>
       <FormProvider {...methods}>
         {isConfirm ? (
           <>
@@ -98,7 +106,9 @@ const Purchase = () => {
           </>
         )}
       </FormProvider>
-      <Link href="/">トップページへ</Link>
+      <Link href="/" className={styles.link}>
+        トップページへ
+      </Link>
       <Footer />
     </div>
   );

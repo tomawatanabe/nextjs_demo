@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useCookieOriginal } from "./useCookie";
 
-export default function Header() {
+export default function LoginPageHeader() {
   const router = useRouter();
   const cookieOriginal = useCookieOriginal();
 
@@ -28,14 +28,6 @@ export default function Header() {
             <Link href="/signup" className={styles.link}>
               会員登録
             </Link>
-          </li>
-          <li key="login" className={styles.lis}>
-            <input
-              type="button"
-              className={styles.button}
-              onClick={login}
-              value="ログイン"
-            />
           </li>
         </div>
       );
@@ -64,17 +56,11 @@ export default function Header() {
           src="/shoplogo.png"
           alt="syoplogo"
           height={160}
-          width={210}
+          width={200}
           className={styles.image}
         />
       </Link>
-      <div className={styles.responsive_btn}>
-        <div className={styles.smenu_line}></div>
-        <div className={styles.smenu_line}></div>
-        <div className={styles.smenu_line}></div>
-      </div>
-
-      <nav className={styles.header__inner}>
+      <div className={styles.header__inner}>
         <ul className={styles.ul}>
           <li key="mypage" className={styles.lis}>
             <Link href="/cart" className={styles.link}>
@@ -93,7 +79,7 @@ export default function Header() {
           </li>
           {correction()}
         </ul>
-      </nav>
+      </div>
     </header>
   );
 }

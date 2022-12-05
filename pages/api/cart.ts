@@ -4,7 +4,7 @@ import { ShoppingCart, Stock } from "../../types";
 export default async function cart(req: NextApiRequest, res: NextApiResponse) {
   const userID = req.cookies.userID;
 
-  if (userID === "" || undefined) {
+  if (userID === "userID=" || undefined) {
     console.log("未ログイン");
   } else {
     const cart = await fetch(

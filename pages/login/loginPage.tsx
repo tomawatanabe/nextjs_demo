@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
+import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 
 export default function Loginpage() {
@@ -34,7 +34,6 @@ export default function Loginpage() {
         if (!data.cookieId) {
           console.log(data.massage);
         } else {
-
           console.log(`ユーザー認証完了`);
           document.cookie = `userID=${data.cookieId}; Path=/; max-age=86400s`;
         }
@@ -44,7 +43,7 @@ export default function Loginpage() {
 
   return (
     <>
-      <Header />
+      <LoginPageHeader />
       <h3>ログイン</h3>
       <p>メールアドレス</p>
       <input type="text" name="id" value={id} onChange={handleChangeId} />
