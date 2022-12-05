@@ -39,13 +39,13 @@ const CartItem = (props: any) => {
                 </select>
               </li>
             </ul>
-
             <button
               onClick={() => props.handleDelete(cart, content.id)}
               className="idbutton"
             >
               カートから削除
             </button>
+
           </div>
         </li>
       ))}
