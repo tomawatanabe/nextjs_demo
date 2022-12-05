@@ -5,10 +5,6 @@ import router from "next/router";
 import { useCookie } from "../useCookie";
 import type { Stock } from "../../types";
 
-const fetcher = (resource: string): Promise<any> =>
-  fetch(resource).then((res) => res.json());
-
-
 const CartItem = (props: any) => {
   const userID = useCookie();
   const [cart, setCart] = useState(props.data[0]);

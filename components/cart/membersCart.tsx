@@ -27,7 +27,6 @@ const Members = () => {
       );
     
     useEffect(() => {
-      console.log('mutateしました');
       mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
     }, [])
 
