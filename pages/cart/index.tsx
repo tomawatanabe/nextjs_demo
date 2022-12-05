@@ -27,9 +27,6 @@ const ShoppingCart = () => {
         :
         <Local />
       }
-      {/* <Link href="#" legacyBehavior>
-        購入手続きへ進む
-      </Link> */}
       <br />
       <Link href="/" legacyBehavior>
         トップページへ

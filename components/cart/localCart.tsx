@@ -24,7 +24,7 @@ const Local = () => {
           <CartItem data={data} handleDelete={handleDelete} />
           <CartTotal data={data} />
           <div style={{display: data[0]?.stock.length? "block" : "none"}}>
-            <Link href="#" legacyBehavior>
+            <Link href="/settlement" legacyBehavior>
                 購入手続きへ進む
             </Link>
           </div>
