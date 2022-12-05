@@ -1,15 +1,15 @@
-
-.addFavBtn{
+.addFavBtn {
   padding: 0.5em;
   margin: 10px 0;
   color: #fff !important;
-  background: #e09e58
+  background: #df9a4f;
+  border-bottom: 5px solid #ba7e3e;
   text-decoration: none;
   font-weight: bold;
-  font-size:16px;
+  font-size: 16px;
   border-radius: 3px;
-  text-align:center;
-  text-decoration:none !important;
+  text-align: center;
+  text-decoration: none !important;
 }
 
 .addFavBtn:after {
@@ -18,26 +18,26 @@
   width: 18px;
   height: 18px;
   margin: -3px 5px 0 0;
-  background-Image: url("//public/shoplogo.png") no-repeat;
+  background-image: url("//public/shoplogo.png") no-repeat;
   background-size: contain;
   vertical-align: middle;
 }
 
 .addFavBtn:hover {
-  background: #FFCE71;
+  background: #ffce71;
 }
 
-.deleteFavBtn{
+.deleteFavBtn {
   padding: 0.5em;
   margin: 10px 0;
   color: #fff !important;
-  background:#B5BABD;
+  background: #b5babd;
   text-decoration: none;
   font-weight: bold;
-  font-size:16px;
+  font-size: 16px;
   border-radius: 3px;
-  text-align:center;
-  text-decoration:none !important;
+  text-align: center;
+  text-decoration: none !important;
 }
 
 .deleteFavBtn:after {
@@ -51,5 +51,5 @@
 }
 
 .deleteFavBtn:hover {
-  background: #E8EDF0;
+  background: #e8edf0;
 }
