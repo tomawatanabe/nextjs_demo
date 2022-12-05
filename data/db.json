@@ -1378,6 +1378,21 @@
       "building": "aaa@gmail.com",
       "password": "Password1",
       "id": 1
+    },
+    {
+      "lastName": "hayakawa",
+      "firstName": "miho",
+      "kanaLastName": "hayakawa",
+      "kanaFirstName": "miho",
+      "phoneNumber": "09010000000",
+      "email": "bbb@gmail.com",
+      "zipCode": "2300001",
+      "prefecture": "神奈川県",
+      "city": "横浜市鶴見区矢向",
+      "address": "1-1",
+      "building": "aaa@gmail.com",
+      "password": "Password2",
+      "id": 2
     }
   ],
   "order": [
@@ -1623,6 +1638,12 @@
       "stock": [
       ],
       "id": 1,
+      "deleted": false
+    },
+    {
+      "stock": [
+      ],
+      "id": 2,
       "deleted": false
     }
   ],

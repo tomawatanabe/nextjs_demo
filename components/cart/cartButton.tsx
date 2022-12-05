@@ -8,21 +8,11 @@ const CartButton = ({ stock }: { stock: Stock }) => {
 
   console.log(stock);
 
-  const data = {
+  const dataType = {
     stock: [stock],
   };
 
-  //カート追加時にshoppingCart内にstockデータを追加
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   console.log("stockID", stock.id);
-    // await fetch("/api/cart", {
-    //   method: "POST",
-    //   headers: { "content-type": "application/json" },
-    //   body: JSON.stringify({ stockID: stock.id }),
-    // });
-  // };
-
-    const addCartItem = async () => {
+  const addCartItem = async () => {
         if (!userID === true) {
           // ログアウト状態でカートに商品追加
             if(localStorage.getItem("shoppingCart")){
@@ -41,7 +31,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
               }
 
             }else{
-              localStorage.setItem('shoppingCart', JSON.stringify([data]));
+              localStorage.setItem('shoppingCart', JSON.stringify([dataType]));
               alert("カートに追加しました");
             }
         } else { 
@@ -51,7 +41,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           const target = stock;
           // console.log(user);
           // console.log(target);
-          if(user.stock.some((item: any) => 
+          if(user?.stock.some((item: any) => 
             item.id === target.id 
           )){
             alert("既にカートに追加済みです");
@@ -64,59 +54,11 @@ const CartButton = ({ stock }: { stock: Stock }) => {
               headers: { "content-type": "application/json" },
               body: JSON.stringify({ stockID: stock.id }),
             })
-  
-            // fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-            //   method: 'PATCH',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            //   body: JSON.stringify({
-            //       "stock": user.stock
-            //       }),
-            // })
-            //   .then((response) => response.json())
-            //   .then((data) => {
-            //     console.log('Success:', data);
-            //     alert("カートに追加しました");
-            //     fetch("/api/cart", {
-            //       method: "POST",
-            //       headers: { "content-type": "application/json" },
-            //       body: JSON.stringify({ stockID: stock.id }),
-            //     });
-            //   })
-            //   .catch((error) => {
-            //     console.error('Error:', error);
-            //   });
           }
-
-        // fetch(`http://localhost:8000/shoppingCart/${userID}`, {
-        //   method: "PATCH",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     stock: user.stock,
-        //   }),
-        // })
-        //   .then((response) => response.json())
-        //   .then((data) => {
-        //     console.log("Success:", data);
-
-        //     fetch("/api/cart", {
-        //           method: "POST",
-        //           headers: { "content-type": "application/json" },
-        //           body: JSON.stringify({ stockID: stock.id }),
-        //         });
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error:", error);
-        //   });
       }
   };
 
     return (
-    // <form onSubmit={handleSubmit}>
-    // </form>
       <button onClick={addCartItem}>カートへ追加</button>
   );
 };
