@@ -41,6 +41,7 @@
   box-sizing: border-box;
   padding: 14px 20px;
   padding-bottom: 0;
+  width: 160px;
 }
 
 .link {
@@ -72,23 +73,13 @@
   height: 32px;
 }
 
-/* チェックボックスを非表示 */
-.drawer_hidden {
-  display: none;
-}
 /* ハンバーガーアイコンの設置スペース */
-.drawer_open {
-  display: flex;
-  height: 60px;
-  width: 60px;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 100; /* 重なり順を一番上にする */
-  cursor: pointer;
-}
 
 @media screen and (max-width: 1100px) {
+  .lis {
+    display: done;
+  }
+
   .responsivebtn {
     display: flex;
     flex-direction: column;

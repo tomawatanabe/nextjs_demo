@@ -75,8 +75,6 @@ export default function Header() {
           <div className={styles.smenuline}></div>
         </div>
 
-        <input className={styles.drawer_hidden} type="checkbox" />
-
         <nav className={styles.header__inner}>
           <ul className={styles.ul}>
             <li key="mypage" className={styles.lis}>
