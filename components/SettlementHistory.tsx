@@ -11,7 +11,7 @@ function SettlementHistory() {
   const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
-    `http://localhost:8000/order?userID=${cookie}`,
+    `http://localhost:8000/order?userId=${cookie}`,
     fetcher
   );
   if (error) return <div>failed to load</div>;

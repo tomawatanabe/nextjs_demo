@@ -5,7 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
-import SignIn from "../../components/SignIn";
+import styles from "../../styles/purchase.module.css";
 
 const Contact = () => {
   const router = useRouter();
@@ -18,22 +18,24 @@ const Contact = () => {
 
   return (
     <div className="wrapper">
-      <SignIn>
-        <Header />
-        <FormProvider {...methods}>
-          {isConfirm ? (
-            <>
-              <ContactConfirmation />
-            </>
-          ) : (
-            <>
-              <ContactForm />
-            </>
-          )}
-        </FormProvider>
-        <Link href="/">トップページへ</Link>
-        <Footer />
-      </SignIn>
+
+      <Header />
+      <FormProvider {...methods}>
+        {isConfirm ? (
+          <>
+            <ContactConfirmation />
+          </>
+        ) : (
+          <>
+            <ContactForm />
+          </>
+        )}
+      </FormProvider>
+      <br />
+      <Link href="/" className={styles.link}>
+        トップページへ
+      </Link>
+      <Footer />
     </div>
   );
 };
