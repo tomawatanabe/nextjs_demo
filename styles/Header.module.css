@@ -41,7 +41,7 @@
   box-sizing: border-box;
   padding: 14px 20px;
   padding-bottom: 0;
-  width: 160px;
+  width: 155px;
 }
 
 .link {
@@ -61,15 +61,16 @@
   font-family: "Yu Gothic";
   font-weight: bold;
   margin-bottom: 10px;
+  width: 150px;
+  color: rgb(255, 255, 255);
 }
 .button2 {
-  color: #000;
   background-color: rgb(94, 177, 207);
   border-bottom: 5px solid rgb(61, 143, 173);
+  color: rgb(255, 255, 255);
   margin-left: 5px;
   margin-top: 16px;
   font-family: "Yu Gothic";
   font-weight: bold;
   height: 32px;
 }
-
