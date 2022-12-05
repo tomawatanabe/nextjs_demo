@@ -1620,7 +1620,8 @@
   ],
   "shoppingCart": [
     {
-      "stock": [],
+      "stock": [
+      ],
       "id": 1,
       "deleted": false
     }
