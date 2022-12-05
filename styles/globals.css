@@ -110,7 +110,7 @@ textarea {
 /* [id].tsx */
 .content-wrapper {
   width: 1160px;
-  padding-left: 50px;
+  margin: 0 auto;
   margin-bottom: 50px;
 }
 
@@ -119,14 +119,21 @@ textarea {
 }
 
 .right-side-wrapper {
-  justify-content: flex-end;
-  width: 20%;
+  margin-left: 80px;
+  width: 25%;
   height: 550px;
   text-align: center;
 }
 
+.right-side-wrapper dl {
+  display: flex;
+  padding: 15px 30px;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+}
+
 .image-wraper {
-  width: 80%;
+  width: 75%;
 }
 
 .main-image {
@@ -149,6 +156,6 @@ textarea {
   padding-left: 20px;
 }
 
-.description{
+.description {
   width: 800px;
 }

@@ -67,7 +67,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
           itemSize: values.itemSizeB,
           itemColor: values.itemColorB,
           itemNote: values.itemNoteB,
-          itemStatus: "受付済み",
+          itemStatus: "受付済",
         }),
       });
     }

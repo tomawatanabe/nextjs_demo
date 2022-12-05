@@ -29,7 +29,7 @@ export default function ItemList(props: any) {
             <Link legacyBehavior href={`/${stock.id}`}>
               {stock.item.name}
             </Link>
-            <br />￥{stock.price}
+            <br />￥{stock.price.toLocaleString()}
           </div>
         );
       })}

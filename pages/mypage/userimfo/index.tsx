@@ -106,8 +106,8 @@ const UserImfo = () => {
           {data[0]?.password}
         </div>
 
-        <Link href="http://localhost:3000/mypage">マイページに戻る</Link>
-        <Link href="http://localhost:3000/mypage/userimfo/useredit">
+        <Link href="/mypage">マイページに戻る</Link>
+        <Link href="/mypage/userimfo/useredit">
           会員情報を編集する
         </Link>
         <Footer />

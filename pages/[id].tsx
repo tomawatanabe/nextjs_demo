@@ -1,11 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import AddFavorit from "../components/ToggleFavButton";
-import FavoriteList from "../components/FavoriteList";
 import CartButton from "../components/cart/cartButton";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
 import { Stock } from "../types";
 import ToggleFavButton from "../components/ToggleFavButton";
 
@@ -33,11 +29,11 @@ export default function Detail({ stock }: { stock: Stock }) {
     <div>
       <Header />
       <div>
-        <body className="content-wrapper">
+        <div className="content-wrapper">
           <div className="top-wrapper">
             <h1>{stock.item.name}</h1>
             <div className="sub">
-              <h3>YEAR：{stock.item.year}年代</h3>
+              <h3>YEAR：{stock.item.year}</h3>
               <h3>COLOR：{stock.item.color}</h3>
             </div>
           </div>
@@ -88,10 +84,22 @@ export default function Detail({ stock }: { stock: Stock }) {
               </div>
             </div>
             <div className="right-side-wrapper">
-              <p>価格：¥{stock.price}</p>
-              <p>サイズ：{stock.size}cm</p>
-              <p>在庫数：{stock.amount}</p>
-              <p>コンディション：{stock.condition}</p>
+              <dl>
+                <dt>価格（税込）</dt>
+                <dd>¥{stock.price.toLocaleString()}</dd>
+              </dl>
+              <dl>
+                <dt>サイズ</dt>
+                <dd>{stock.size}cm</dd>
+              </dl>
+              <dl>
+                <dt>在庫数</dt>
+                <dd>{stock.amount}</dd>
+              </dl>
+              <dl>
+                <dt>コンディション</dt>
+                <dd>{stock.condition}</dd>
+              </dl>
               <ToggleFavButton stock={stock} />
             </div>
           </div>
@@ -101,7 +109,7 @@ export default function Detail({ stock }: { stock: Stock }) {
               <p>{stock.item.description}</p>
             </div>
           </div>
-        </body>
+        </div>
         <Footer />
       </div>
     </div>

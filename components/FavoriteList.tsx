@@ -5,6 +5,7 @@ import { useCookie } from "./useCookie";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
+import styles from "../styles/MyPage.module.css";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
@@ -14,7 +15,7 @@ function FavoriteList() {
   const [flag, setFlag] = useState(true);
   const router: any = useRouter();
 
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}`,
     fetcher
   );
@@ -30,6 +31,10 @@ function FavoriteList() {
   const sortTopData = () => {
     const sortedTopData = [];
     for (let i = 0; i < 3; i++) {
+      if (typeof sortedData[i]?.name === "undefined") {
+        break;
+      }
+
       sortedTopData.push({
         name: sortedData[i]?.name,
         condition: sortedData[i]?.condition,
@@ -62,32 +67,42 @@ function FavoriteList() {
   } else {
     return (
       <div>
-        <h2>お気に入り商品</h2>
-        {flag ? (
-          <>
-            <input
-              type="button"
-              value="全て表示する"
-              onClick={() => setFlag(!flag)}
-            />
-          </>
-        ) : (
-          <>
-            <input
-              type="button"
-              value="最近のみ表示する"
-              onClick={() => setFlag(!flag)}
-            />
-          </>
-        )}
-        <table>
+        <div className={styles.title_wrapper}>
+          <h2 className={styles.content_title}>お気に入り</h2>
+          {flag ? (
+            <>
+              <Image
+                className={styles.btn}
+                src="/images/angles-down-solid.svg"
+                alt="アコーディオンを開く"
+                width={20}
+                height={20}
+                onClick={() => setFlag(!flag)}
+              />
+            </>
+          ) : (
+            <>
+              <Image
+                className={styles.btn}
+                src="/images/angles-up-solid.svg"
+                alt="アコーディオンを閉じる"
+                width={20}
+                height={20}
+                onClick={() => setFlag(!flag)}
+              />
+            </>
+          )}
+        </div>
+        <table className={styles.table_list}>
           <thead>
             <tr>
               <th>商品名</th>
               <th>価格</th>
-              <th>サイズ</th>
+              <th className={styles.th_size}>サイズ</th>
               <th>画像</th>
               <th>コンディション</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -97,30 +112,44 @@ function FavoriteList() {
                   return (
                     <tr key={favoriteItem.itemId}>
                       <td>{favoriteItem.name}</td>
-                      <td>¥{favoriteItem.price}</td>
-                      <td>{favoriteItem.size}</td>
+                      <td>¥{favoriteItem.price.toLocaleString()}</td>
+                      <td className={styles.td_center}>{favoriteItem.size}</td>
                       <td>
                         <Image
                           src={`/${favoriteItem.imagePath}`}
-                          height={150}
-                          width={150}
+                          height={120}
+                          width={120}
                           alt={favoriteItem.name}
                           priority
                         />
                         <br />
                       </td>
-                      <td>{favoriteItem.condition}</td>
-                      <td>
-                        <Link
-                          href={`http://localhost:3000/${favoriteItem.itemId}`}
-                        >
-                          詳細
-                        </Link>
+                      <td className={styles.td_center}>
+                        {favoriteItem.condition}
                       </td>
                       <td>
-                        <button onClick={() => deleteFav(favoriteItem)}>
-                          お気に入りから削除
-                        </button>
+                        <a
+                          target="_blank"
+                          href={`http://localhost:3000/${favoriteItem.itemId}`}
+                        >
+                          <Image
+                            className={styles.btn}
+                            src="/images/new_window.png"
+                            alt="詳細ページにジャンプするボタン"
+                            width={20}
+                            height={20}
+                          />
+                        </a>
+                      </td>
+                      <td>
+                        <Image
+                          className={styles.btn}
+                          src="/images/trashbox.png"
+                          alt="削除ボタン"
+                          width={30}
+                          height={30}
+                          onClick={() => deleteFav(favoriteItem)}
+                        />
                       </td>
                     </tr>
                   );
@@ -132,30 +161,44 @@ function FavoriteList() {
                   return (
                     <tr key={favoriteItem.itemId}>
                       <td>{favoriteItem.name}</td>
-                      <td>¥{favoriteItem.price}</td>
-                      <td>{favoriteItem.size}</td>
+                      <td>¥{favoriteItem.price.toLocaleString()}</td>
+                      <td className={styles.td_center}>{favoriteItem.size}</td>
                       <td>
                         <Image
                           src={`/${favoriteItem.imagePath}`}
-                          height={150}
-                          width={150}
+                          height={120}
+                          width={120}
                           alt={favoriteItem.name}
                           priority
                         />
                         <br />
                       </td>
-                      <td>{favoriteItem.condition}</td>
-                      <td>
-                        <Link
-                          href={`http://localhost:3000/${favoriteItem.itemId}`}
-                        >
-                          詳細
-                        </Link>
+                      <td className={styles.td_center}>
+                        {favoriteItem.condition}
                       </td>
                       <td>
-                        <button onClick={() => deleteFav(favoriteItem)}>
-                          お気に入りから削除
-                        </button>
+                        <a
+                          target="_blank"
+                          href={`http://localhost:3000/${favoriteItem.itemId}`}
+                        >
+                          <Image
+                            className={styles.btn}
+                            src="/images/new_window.png"
+                            alt="詳細ページにジャンプするボタン"
+                            width={20}
+                            height={20}
+                          />
+                        </a>
+                      </td>
+                      <td>
+                        <Image
+                          className={styles.myPageDeleteBtn}
+                          src="/images/trashbox.png"
+                          alt="削除ボタン"
+                          width={30}
+                          height={30}
+                          onClick={() => deleteFav(favoriteItem)}
+                        />
                       </td>
                     </tr>
                   );
