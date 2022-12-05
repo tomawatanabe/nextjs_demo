@@ -18,6 +18,7 @@ const Contact = () => {
 
   return (
     <div className="wrapper">
+
       <Header />
       <FormProvider {...methods}>
         {isConfirm ? (

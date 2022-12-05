@@ -1618,7 +1618,9 @@
       "status": "未発送"
     }
   ],
-  "shoppingCart": [
+  "shoppingCart": [],
+  "favoriteItems": [],
+  "usedItems": [
     {
       "stock": [
         {
