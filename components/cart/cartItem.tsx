@@ -43,7 +43,7 @@ const CartItem = (props: any) => {
               </li>
             </ul>
 
-            <button onClick={() => props.handleDelete(cart, content.id) className="idbutton"}>カートから削除</button>
+            <button onClick={() => props.handleDelete(cart, content.id)}className="idbutton">カートから削除</button>
           </div>
         </li>
       ))
