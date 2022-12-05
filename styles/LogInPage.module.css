@@ -38,10 +38,10 @@
 .login input[type="email"]:focus,
 .login input[type="password"]:focus {
   border-color: #888;
-} 
+}
 
 .login_btn {
-  background: #2188DD;
+  background: #2188dd;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
@@ -53,4 +53,9 @@
 
 .login_btn:focus {
   border-color: #05a;
+}
+
+.loginmiss {
+  text-align: center;
+  color: #a55139;
 }
