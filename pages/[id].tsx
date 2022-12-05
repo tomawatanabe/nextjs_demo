@@ -84,24 +84,26 @@ export default function Detail({ stock }: { stock: Stock }) {
             </div>
           </div>
           <div className="right-side-wrapper">
-            <dl>
-              <dt>価格（税込）</dt>
-              <dd>¥{stock.price.toLocaleString()}</dd>
-            </dl>
-            <dl>
-              <dt>サイズ</dt>
-              <dd>{stock.size}cm</dd>
-            </dl>
-            <dl>
-              <dt>在庫数</dt>
-              <dd>{stock.amount}</dd>
-            </dl>
-            <dl>
-              <dt>コンディション</dt>
-              <dd>{stock.condition}</dd>
-            </dl>
-            <CartButton stock={stock} />
+            <div className="right-side-colored">
+              <dl>
+                <dt>価格（税込）</dt>
+                <dd>¥{stock.price.toLocaleString()}</dd>
+              </dl>
+              <dl>
+                <dt>サイズ</dt>
+                <dd>{stock.size}cm</dd>
+              </dl>
+              <dl>
+                <dt>在庫数</dt>
+                <dd>{stock.amount}</dd>
+              </dl>
+              <dl>
+                <dt>コンディション</dt>
+                <dd>{stock.condition}</dd>
+              </dl>
+            </div>
             <ToggleFavButton stock={stock} />
+            <CartButton stock={stock} />
           </div>
         </div>
         <div className="explanation-wrapper">

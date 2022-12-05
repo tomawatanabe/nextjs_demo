@@ -124,6 +124,9 @@ textarea {
   width: 25%;
   height: 400px;
   text-align: center;
+}
+
+.right-side-colored {
   background-color: #f2f8fa;
 }
 
@@ -133,7 +136,6 @@ textarea {
   justify-content: space-between;
   border-bottom: 1px solid #efefef;
 }
-
 
 .image-wraper {
   width: 70%;

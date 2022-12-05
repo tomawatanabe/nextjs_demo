@@ -1620,11 +1620,142 @@
   ],
   "shoppingCart": [
     {
-      "stock": [],
+      "stock": [
+        {
+          "id": 1,
+          "itemID": 1,
+          "price": 38500,
+          "size": 27.5,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 1,
+            "name": "AIR FOAMPOSITE ONE",
+            "series": "POSITE SERIES",
+            "year": 2016,
+            "description": "ナイキ エア フォームポジット ワン オプティク イエロー/ブラック 314996-701「AIR FOAMPOSITE ONE」は1997年に\"ANFERNEE\"PENNY\"HARDAWAY\"氏のモデルとしてヒールに\"PENNY\"のシグネチャーロゴ\"1CENT\"が入って売り出されたNIKEを代表するバスケットシューズ。1993.4年頃から開発をスタートし、当時は技術が追い付かず発売まで数年を要したモデルで、\"PENNY\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"PENNY\"モデルとして売り出された背景があります。デザインを担当したのは\"KOBE\"シリーズのデザインも手掛けている\"ERIC・AVAR\"氏で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。",
+            "setprice": "2016年6月発売、日本定価25,920円",
+            "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
+            "deleted": "false"
+          }
+        },
+        {
+          "id": 3,
+          "itemID": 3,
+          "price": 66000,
+          "size": 27,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 3,
+            "name": "AIR FOAMPOSITE ONE SP",
+            "series": "POSITE SERIES",
+            "year": 2021,
+            "description": "[ナイキ エア フォームポジット ワン SP \"コムデギャルソン オム プラス\" サミットホワイト/サミットホワイト DJ7952-100] デザイナー川久保玲氏が手掛けるファッションブランド\"COMME des GARÇONS\"のハイエンドライン\"COMME des GARÇONS HOMME PLUS\"とのコラボレーションモデル「AIR FOAMPOSITE ONE SP」の登場です。1997年に発売された「AIR FOAMPOSITE ONE」をベースに、既存の流線形のデザインから波紋柄のデザインへブラッシュアップ。ヒールには\"COMME des GARÇONS HOMME PLUS\"のロゴをデザインしたスペシャルエディションとなっています。",
+            "setprice": "2021年11月発売、日本定価57,200円",
+            "color": "\"CDG\"SUMMIT WHITE/SUMMIT WHITE",
+            "deleted": "false"
+          }
+        },
+        {
+          "id": 2,
+          "itemID": 2,
+          "price": 132000,
+          "size": 27.5,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 2,
+            "name": "AIR FOAMPOSITE ONE NRG",
+            "series": "POSITE SERIES",
+            "year": 2012,
+            "description": "[ナイキ エアフォームポジット ワン \"ギャラクシー\" 521286-800]「AIR FOAMPOSITE ONE」は1997年に「アンファニー\"ペニー\"ハーダウェイ」モデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。ちなみにデザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けている\"エリック・エイバー\"で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。 今作のは\"NBA ALLSTAR GAME 2012\"を記念してリリースされた宇宙空間のグラフィックを全面にプリントした通称「GALAXY」。 ※作りがタイトなため、普段履いているNIKEのシューズより1cmから1.5cmアップをおすすめします。※こちらの商品は製造から年数が経過しております。そのため劣化により今後ご使用の際に破損する可能性がございますのでご注意ください。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。",
+            "setprice": "2012年2月発売、日本定価23,100円",
+            "color": "\"GALAXY\" OBSIDIAN/ANTHRACITE-BLACK",
+            "deleted": "false"
+          }
+        },
+        {
+          "id": 8,
+          "itemID": 8,
+          "price": 60500,
+          "size": 29,
+          "image1": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE1.jpg",
+          "image2": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE2.jpg",
+          "image3": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE3.jpg",
+          "image4": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE4.jpg",
+          "image5": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 8,
+            "name": "AIR FORCE 1 07/PARA-NOISE",
+            "series": "AIR FORCE 1 LOW",
+            "year": 2020,
+            "description": "[ナイキ エア フォース 1 07 \"パラノイズ/ピースマイナスワン\" ホワイト/ブラック DD3223-100] 韓国のアーティストグループ\"BIGBANG\"のG-DRAGON氏が手掛けるブランド\"PEACEMINUSONE\"とのコラボレーションモデル「AIR FORCE 1 07/PARA-NOISE」の登場です。人々を団結させる「一歩」を促す存在になることに自分の人生を捧げてきたというG-DRAGON氏。この精神を「AIR FORCE 1」に落とし込み、擦り切れると別のアートが現れるペイントのレイヤーを使用。下に隠れたアートには、現実とユートピアの境目が曖昧になった場所という、彼が理想として思い描く世界のビジョンが表現されています。シュータンには\"PEACEMINUSONE\"を象徴するデイジーの花が刺繍されたスペシャルエディションとなっています。",
+            "setprice": "2020年11月発売、日本定価24,200円",
+            "color": "WHITE/BLACK-WHITE",
+            "deleted": "false"
+          }
+        }
+      ],
       "id": 1,
       "deleted": false
     }
   ],
-  "favoriteItems": [],
+  "favoriteItems": [
+    {
+      "itemId": 1,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 1
+    },
+    {
+      "itemId": 2,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 2
+    },
+    {
+      "itemId": 8,
+      "cookieName": "1",
+      "name": "AIR FORCE 1 07/PARA-NOISE",
+      "price": 60500,
+      "size": 29,
+      "imagePath": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
+    }
+  ],
   "usedItems": []
 }
