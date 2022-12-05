@@ -23,6 +23,7 @@ export default function ItemList(props: any) {
                 alt="item"
                 width={140}
                 height={140}
+                className={styles.images}
               />
             </Link>
             <br />

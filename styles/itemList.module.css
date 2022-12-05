@@ -2,3 +2,7 @@
   min-width: 165px;
   margin: 9px;
 }
+
+.images {
+  cursor: pointer;
+}
