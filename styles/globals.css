@@ -126,10 +126,6 @@ textarea {
   text-align: center;
 }
 
-.right-side-colored {
-  background-color: #f2f8fa;
-}
-
 .right-side-wrapper dl {
   display: flex;
   padding: 15px 30px;
