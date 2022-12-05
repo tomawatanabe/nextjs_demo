@@ -3,7 +3,6 @@ import Link from "next/link";
 import CartButton from "../components/cart/cartButton";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
 import { Stock } from "../types";
 import ToggleFavButton from "../components/ToggleFavButton";
 
