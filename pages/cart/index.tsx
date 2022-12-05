@@ -12,20 +12,10 @@ const fetcher = (resource: string): Promise<any> =>
 
 const ShoppingCart = () => {
   const userID = useCookie();
-  let { data, error, mutate } = useSWR(
+  let { data, error } = useSWR(
     `http://localhost:8000/shoppingCart?id=${userID}`,
     fetcher
   );
-
-  useEffect(() => {
-    if (!userID === true) {
-      const getjson = localStorage.getItem("shoppingCart") || "{}";
-      mutate(JSON.parse(getjson));
-    } else {
-      localStorage.clear();
-    }
-  }, []);
-  console.log(data);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;

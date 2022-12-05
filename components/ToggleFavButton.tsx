@@ -3,7 +3,6 @@ import type { FavoriteItem } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR, { mutate } from "swr";
-import styles from "../styles/FavButton.module.css";
 
 const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
@@ -66,18 +65,18 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
         {data.length ? (
           <>
             <input
-              className={styles.deleteFavBtn}
               type="button"
               onClick={deleteFav}
+              className="idbutton"
               value="お気に入りから削除"
             />
           </>
         ) : (
           <>
             <input
-              className={styles.addFavBtn}
               type="button"
               onClick={addFav}
+              className="idbutton"
               value="お気に入りに追加"
             />
           </>

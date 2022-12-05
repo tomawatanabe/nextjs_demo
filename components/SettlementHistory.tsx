@@ -13,7 +13,7 @@ function SettlementHistory() {
   const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
-    `http://localhost:8000/order?userID=${cookie}`,
+    `http://localhost:8000/order?userId=${cookie}`,
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -39,7 +39,7 @@ function SettlementHistory() {
         orderDate: sortedData[i]?.orderDate,
         note: sortedData[i]?.note,
         paymentMethod: sortedData[i]?.paymaentMethod,
-        status: sortedData[i]?.status,
+        shipStatus: sortedData[i]?.shipStatus,
         orderItemList: sortedData[i]?.orderItemList,
       });
     }
@@ -107,7 +107,7 @@ function SettlementHistory() {
 
                   return (
                     <tr key={order.id}>
-                      <td className={styles.td_center}>{order.status}</td>
+                      <td className={styles.td_center}>{order.shipStatus}</td>
                       <td className={styles.td_center}>
                         {order.orderDate.toString()}
                       </td>
@@ -133,7 +133,7 @@ function SettlementHistory() {
 
                   return (
                     <tr key={order.id}>
-                      <td className={styles.td_center}>{order.status}</td>
+                      <td className={styles.td_center}>{order.shipStatus}</td>
                       <td className={styles.td_center}>
                         {order.orderDate.toString()}
                       </td>

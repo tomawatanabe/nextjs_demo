@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
-import Header from "../../components/Header";
+import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
 
@@ -44,7 +44,7 @@ export default function Loginpage() {
 
   return (
     <>
-      <Header />
+      <LoginPageHeader />
       <div className={styles.login}>
         {/* <h3 className={styles.login_header}>ログイン</h3> */}
         <div className={styles.login_container}>
@@ -55,7 +55,7 @@ export default function Loginpage() {
             name="id"
             value={id}
             onChange={handleChangeId}
-            />
+          />
           <p>パスワード</p>
           <input
             type="password"
@@ -63,7 +63,7 @@ export default function Loginpage() {
             name="pw"
             value={pw}
             onChange={handleChangePw}
-            />
+          />
           <br />
           <span>
             <input

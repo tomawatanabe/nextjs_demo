@@ -1768,15 +1768,15 @@
       "id": 4
     },
     {
-      "itemId": 15,
-      "cookieName": "1",
-      "name": "AIR JORDAN 1 RETRO HIGH OG",
-      "price": 121000,
-      "size": 29,
-      "imagePath": "images/sneakers/AIR JORDAN 1 RETRO HIGH OG/AIR JORDAN 1 RETRO HIGH OG_1.jpg",
+      "itemId": 2,
+      "cookieName": "2",
+      "name": "AIR FOAMPOSITE ONE NRG",
+      "price": 132000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
       "condition": "A",
       "deleted": false,
-      "id": 5
+      "id": 6
     }
   ],
   "usedItems": [

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useCookieOriginal } from "./useCookie";
 
-export default function Header() {
+export default function LoginPageHeader() {
   const router = useRouter();
   const cookieOriginal = useCookieOriginal();
 
@@ -28,14 +28,6 @@ export default function Header() {
             <Link href="/signup" className={styles.link}>
               会員登録
             </Link>
-          </li>
-          <li key="login" className={styles.lis}>
-            <input
-              type="button"
-              className={styles.button}
-              onClick={login}
-              value="ログイン"
-            />
           </li>
         </div>
       );
@@ -64,39 +56,29 @@ export default function Header() {
           src="/shoplogo.png"
           alt="syoplogo"
           height={160}
-          width={210}
+          width={200}
           className={styles.image}
         />
       </Link>
-      <div className={styles.responsivebtn}>
-        <div className={styles.icon}>
-          <div className={styles.smenuline}></div>
-          <div className={styles.smenuline}></div>
-          <div className={styles.smenuline}></div>
-        </div>
-
-        <input className={styles.drawer_hidden} type="checkbox" />
-
-        <nav className={styles.header__inner}>
-          <ul className={styles.ul}>
-            <li key="mypage" className={styles.lis}>
-              <Link href="/cart" className={styles.link}>
-                カート
-              </Link>
-            </li>
-            <li key="cart" className={styles.lis}>
-              <Link href="/contact" className={styles.link}>
-                お問い合わせ
-              </Link>
-            </li>
-            <li key="favorit" className={styles.lis}>
-              <Link href="/purchase" className={styles.link}>
-                買取受付
-              </Link>
-            </li>
-            {correction()}
-          </ul>
-        </nav>
+      <div className={styles.header__inner}>
+        <ul className={styles.ul}>
+          <li key="mypage" className={styles.lis}>
+            <Link href="/cart" className={styles.link}>
+              カート
+            </Link>
+          </li>
+          <li key="cart" className={styles.lis}>
+            <Link href="/contact" className={styles.link}>
+              お問い合わせ
+            </Link>
+          </li>
+          <li key="favorit" className={styles.lis}>
+            <Link href="/purchase" className={styles.link}>
+              買取受付
+            </Link>
+          </li>
+          {correction()}
+        </ul>
       </div>
     </header>
   );

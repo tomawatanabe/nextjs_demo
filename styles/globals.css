@@ -116,24 +116,20 @@ textarea {
 
 .main-content {
   display: flex;
+  width: 100%;
 }
 
 .right-side-wrapper {
   margin-left: 80px;
   width: 25%;
-  height: 550px;
+  height: 400px;
   text-align: center;
-}
-
-.right-side-wrapper dl {
-  display: flex;
-  padding: 15px 30px;
-  justify-content: space-between;
-  border-bottom: 1px solid #efefef;
+  background-color: #f2f8fa;
 }
 
 .image-wraper {
-  width: 75%;
+  width: 70%;
+  height: 500px;
 }
 
 .main-image {
@@ -148,14 +144,22 @@ textarea {
   margin-bottom: 100px;
 }
 
-.sub-image {
-  padding-left: 30px;
+.explanation-wrapper {
+  width: 600px;
+  margin-left: 50px;
+  margin-bottom: 100px;
 }
 
-.sub {
-  padding-left: 20px;
+.outside {
+  margin-top: 30px;
+  margin-left: 120px;
 }
 
-.description {
-  width: 800px;
+.idbutton {
+  margin-left: 5px;
+  margin-top: 10px;
+  font-family: "Yu Gothic";
+  font-weight: 600;
+  background-color: rgb(173, 203, 214);
+  border-bottom: 5px solid rgb(148, 163, 168);
 }

@@ -36,9 +36,11 @@
 
 .lis {
   font-size: 18px;
+  font-weight: 500;
   display: inline-block;
   box-sizing: border-box;
   padding: 14px 20px;
+  padding-bottom: 0;
 }
 
 .link {
@@ -57,7 +59,7 @@
   margin-top: 10px;
   font-family: "Yu Gothic";
   font-weight: bold;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
 }
 .button2 {
   color: #000;
@@ -68,4 +70,42 @@
   font-family: "Yu Gothic";
   font-weight: bold;
   height: 32px;
+}
+
+/* チェックボックスを非表示 */
+.drawer_hidden {
+  display: none;
+}
+/* ハンバーガーアイコンの設置スペース */
+.drawer_open {
+  display: flex;
+  height: 60px;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100; /* 重なり順を一番上にする */
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+  .responsivebtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin: 0 40px 0 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+  .menuline {
+    background: #172776;
+    border-radius: 5px;
+    width: 100%;
+    height: 5px;
+    margin: 4px 0;
+  }
 }
