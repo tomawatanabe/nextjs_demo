@@ -1625,6 +1625,18 @@
       "deleted": false
     }
   ],
-  "favoriteItems": [],
+  "favoriteItems": [
+    {
+      "itemId": 1,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 1
+    }
+  ],
   "usedItems": []
 }
