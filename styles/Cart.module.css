@@ -1,0 +1,29 @@
+.cart_main_content{
+  padding-left: 45px;
+}
+
+.cart_li {
+  height: auto;
+  list-style: none;
+}
+
+.cart_ul {
+  height: max-content;
+  padding-left: 0;
+}
+
+.cart_quantity {
+  height: 25px;
+  display: inline;
+  vertical-align: bottom;
+}
+
+.btn {
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.cart_count_label {
+  width: fit-content;
+  padding-right: 0;
+}

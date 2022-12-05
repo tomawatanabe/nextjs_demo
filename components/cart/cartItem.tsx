@@ -4,6 +4,7 @@ import Image from "next/image";
 import router from "next/router";
 import { useCookie } from "../useCookie";
 import type { Stock } from "../../types";
+import styles from "../../styles/Cart.module.css";
 
 const CartItem = (props: any) => {
   const userID = useCookie();
@@ -16,9 +17,9 @@ const CartItem = (props: any) => {
   const noItem = <p>カートの中身はありません</p>;
 
   const cartList = (
-    <ul>
+    <ul className={styles.cart_ul}>
       {cart?.stock.map((content: any) => (
-        <li key={content.id}>
+        <li className={styles.cart_li} key={content.id}>
           <div>
             <div>
               <Image
@@ -29,23 +30,29 @@ const CartItem = (props: any) => {
                 priority
               />
             </div>
-            <ul>
-              <li>{content.item.name}</li>
-              <li>{content.price}</li>
-              <li>
-                <label htmlFor="count">個数</label>
+            <ul className={styles.cart_ul}>
+              <li className={styles.cart_li}>商品名　{content.item.name}</li>
+              <li className={styles.cart_li}>
+                ¥ {content.price.toLocaleString()}（税込）
+              </li>
+              <li className={styles.cart_quantity}>
+                <label htmlFor="count" className={styles.cart_count_label}>
+                  個数
+                </label>
                 <select id="count">
                   <option value="1">1</option>
                 </select>
+                <Image
+                  className={styles.btn}
+                  src="/images/trashbox.png"
+                  alt="削除ボタン"
+                  width={30}
+                  height={30}
+                  onClick={() => props.handleDelete(cart, content.id)}
+                />
               </li>
             </ul>
-            <button
-              onClick={() => props.handleDelete(cart, content.id)}
-              className="idbutton"
-            >
-              カートから削除
-            </button>
-
+            <hr />
           </div>
         </li>
       ))}
