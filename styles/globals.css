@@ -178,8 +178,8 @@ textarea {
 
 /* pageTop */
 .pageTop {
-  width: 100px;
-  height: 60px;
+  width: 90px;
+  height: 40px;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -192,6 +192,7 @@ textarea {
   width: 100px;
   height: 60px;
   text-decoration: none;
+  margin-bottom: 20px;
 }
 .pageTopa:before {
   font-family: "Font Awesome 5 Free";
@@ -213,9 +214,9 @@ textarea {
   font-size: 13px;
   color: #fff;
   position: absolute;
-  top: 30px;
+  top: 10px;
   bottom: 0;
-  right: 0;
+  right: 10px;
   left: 0;
   margin: auto;
   text-align: center;
