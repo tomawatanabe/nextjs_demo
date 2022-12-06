@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Members from "../../components/cart/membersCart";
 import Local from "../../components/cart/localCart";
 import { useCookie } from "../../components/useCookie";
 import Header from "../../components/Header";
@@ -18,7 +19,7 @@ const ShoppingCart = () => {
         <p>
           カート内の商品は取り置きではありません。購入手続きの時点で売り切れている可能性があります。
         </p>
-        {/* {userID ? < /> : <Local />} */}
+        {userID ? <Members /> : <Local />}
         <br />
         <Link href="/" legacyBehavior>
           トップページへ
