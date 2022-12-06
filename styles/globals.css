@@ -227,3 +227,20 @@ textarea {
 .userinfoa {
   margin-left: 40px;
 }
+
+/* 郵便番号のボタン */
+.zipCodeBtn {
+  width: auto;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-family: "Yu Gothic";
+  font-weight: 600;
+  background-color: rgb(113, 164, 183);
+  border-bottom: 5px solid rgb(84, 124, 137);
+  color: #ffffff;
+}
+
+.zipCodeBtn:hover {
+  background-color: rgb(154, 197, 212);
+  border-bottom: 5px solid rgb(122, 165, 180);
+}
