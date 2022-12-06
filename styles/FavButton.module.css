@@ -2,8 +2,8 @@
   padding: 0.5em;
   margin: 10px 0;
   color: #fff !important;
-  background: #df9a4f;
-  border-bottom: 5px solid #ba7e3e;
+  background: #bbb260;
+  border-bottom: 5px solid #948842;
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
@@ -24,7 +24,7 @@
 }
 
 .addFavBtn:hover {
-  background: #f1c063;
+  background: #d8d1a3;
 }
 
 .deleteFavBtn {

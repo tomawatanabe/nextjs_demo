@@ -4,11 +4,11 @@
   padding: 0.5em;
   margin: 10px 0;
   color: #fff !important;
-  background: #74a993;
+  background: #62abaa;
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
-  border-bottom: 5px solid #5c8e84;
+  border-bottom: 5px solid #4d9385;
   border-radius: 3px;
   text-align: center;
   text-decoration: none !important;
@@ -37,4 +37,3 @@
 .addedCartBtnBtn:hover {
   background: #e8edf0;
 }
-
