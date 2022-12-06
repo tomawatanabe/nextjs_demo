@@ -1,0 +1,39 @@
+.addCartBtn {
+  width: 190px;
+  height: 44px;
+  padding: 0.5em;
+  margin: 10px 0;
+  color: #fff !important;
+  background: #1abc9c;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 5px solid #16a085;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.addCartBtn:hover {
+  background: #4af2d0;
+}
+
+.addedCartBtn {
+  border:2px solid black;
+  width: 190px;
+  height: 44px;
+  padding: 0.5em;
+  margin: 10px 0;
+  color: #fff !important;
+  background: #b5babd;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.addedCartBtnBtn:hover {
+  background: #e8edf0;
+}
