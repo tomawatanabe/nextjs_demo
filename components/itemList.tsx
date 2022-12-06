@@ -18,13 +18,14 @@ export default function ItemList(props: any) {
         return (
           <div className={styles.itemdiv}>
             <Link legacyBehavior href={`/${stock.id}`}>
-              <Image
-                src={`/${stock.image1}`}
-                alt="item"
-                width={140}
-                height={140}
-                className={styles.images}
-              />
+              <div className={styles.images}>
+                <Image
+                  src={`/${stock.image1}`}
+                  alt="item"
+                  layout="fill"
+                  className={styles.image}
+                />
+              </div>
             </Link>
             <br />
             <Link legacyBehavior href={`/${stock.id}`}>
