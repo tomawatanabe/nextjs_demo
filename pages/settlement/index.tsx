@@ -15,17 +15,18 @@ import styles from "/styles/Settlement.module.css";
 
 export default function Settlement() {
 
+    
     const today = new Date();
-
+    
 
     // 購入手続き完了でDB/orderに送るデータ内容
-    // const [ userID, setUserID] = useState(0);
-    const [orderDate, setOrderDate] = useState(today);
+    const [orderDate, setOrderDate] = useState();
     const [note, setNote] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("");
     const [shipStatus, setShipStatus] = useState("未発送");
     const [flag, setFlag] = useState(false);
     const userId = useCookie();
+    
 
 
 
@@ -121,10 +122,9 @@ export default function Settlement() {
 
         sendOrder();
         setShipStatus("未発送");
-        setOrderDate(today);
+        // setOrderDate();
         DeletedItems();
     };
-
 
     return (
         <div >
@@ -170,47 +170,47 @@ export default function Settlement() {
                     </table><br />
                     {paymentMethod === "credit" ? (
                         <div className={styles.total_wrapper}>
-                        <table  className="right-side-colored">
-                            <tbody>
-                                <tr className={styles.total_table_list}>
-                                    <th>小計{'('}税込{')'}:</th>
-                                    <td>￥{total}</td>
-                                </tr>
-                                <tr className={styles.total_table_list}>
-                                    <th>送料{'('}一律{')'}:</th>
-                                    <td>￥500</td>
-                                </tr>                   
-                                <tr className={styles.total_table_last_list}>
-                                    <th>合計{'('}税込{')'}:</th>
-                                    <td>￥{total + 500}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <table className="right-side-colored">
+                                <tbody>
+                                    <tr className={styles.total_table_list}>
+                                        <th>小計{'('}税込{')'}:</th>
+                                        <td>￥{total}</td>
+                                    </tr>
+                                    <tr className={styles.total_table_list}>
+                                        <th>送料{'('}一律{')'}:</th>
+                                        <td>￥500</td>
+                                    </tr>
+                                    <tr className={styles.total_table_last_list}>
+                                        <th>合計{'('}税込{')'}:</th>
+                                        <td>￥{total + 500}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     ) : (
                         <div className={styles.total_wrapper}>
-                        <div className="right-side-colored">
-                        <table>
-                            <tbody >
-                            <tr className={styles.total_table_list}>
-                                    <th >小計{'('}税込{')'}:</th>
-                                    <td>￥{total}</td>
-                                </tr>
-                                <tr className={styles.total_table_list}>
-                                    <th>送料{'('}一律{')'}:</th>
-                                    <td>￥500</td>
-                                </tr>
-                                <tr className={styles.total_table_list}>
-                                    <th>代引き手数料:</th>
-                                    <td>￥330</td>
-                                </tr>
-                                <tr className={styles.total_table_last_list}>
-                                    <th>合計{'('}税込{')'}:</th>
-                                    <td>￥{total + 500 + 330}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
+                            <div className="right-side-colored">
+                                <table>
+                                    <tbody >
+                                        <tr className={styles.total_table_list}>
+                                            <th >小計{'('}税込{')'}:</th>
+                                            <td>￥{total}</td>
+                                        </tr>
+                                        <tr className={styles.total_table_list}>
+                                            <th>送料{'('}一律{')'}:</th>
+                                            <td>￥500</td>
+                                        </tr>
+                                        <tr className={styles.total_table_list}>
+                                            <th>代引き手数料:</th>
+                                            <td>￥330</td>
+                                        </tr>
+                                        <tr className={styles.total_table_last_list}>
+                                            <th>合計{'('}税込{')'}:</th>
+                                            <td>￥{total + 500 + 330}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     )}
                     <b>発送予定日</b>
@@ -276,7 +276,7 @@ export default function Settlement() {
                         </div>
                     </form><br /><br />
                 </div>
-                <Footer/>
+                <Footer />
             </SignIn>
         </div>
     );
