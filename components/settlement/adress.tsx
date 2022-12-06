@@ -24,7 +24,10 @@ export default function Address() {
             <h3>お届け先情報</h3>
             <p>氏名: {user?.lastName} {user?.firstName}</p>
             <p>郵便番号: {user?.zipCode}</p>
-            <p>住所: {user?.address}</p>
+            <p>都道府県: {user?.prefecture}</p>
+            <p>市区町村: {user?.city}</p>
+            <p>番地: {user?.address}</p>
+            <p>建物名: {user?.building}</p>
             <p>メールアドレス: {user?.email}</p>
             <p>電話番号: {user?.phoneNumber}</p><br />
         </div>
