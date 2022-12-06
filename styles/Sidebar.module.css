@@ -32,12 +32,36 @@
   padding: 10px;
   color: white;
 }
+
 .title {
   border-bottom: 2px #fff solid;
   width: 200px;
   margin: 20px auto;
   color: #e6da9e;
 }
+
+@media (max-width: 1170px) {
+  .sidebarBox {
+    min-width: 100px;
+    height: 100%;
+  }
+  .search {
+    width: 85px;
+  }
+  .title {
+    font-size: 12px;
+    width: 85px;
+  }
+  .searchBtn {
+    height: 25px;
+    width: 40;
+    font-size: 12px;
+  }
+  .ptag {
+    font-size: 12px;
+  }
+}
+
 .explain {
   font-size: 14px;
 }

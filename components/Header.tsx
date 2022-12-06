@@ -60,42 +60,34 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <Image
-          src="/shoplogo.png"
-          alt="syoplogo"
-          height={160}
-          width={210}
-          className={styles.image}
-        />
-      </Link>
-      <div className={styles.responsivebtn}>
-        <div className={styles.icon}>
-          <div className={styles.smenuline}></div>
-          <div className={styles.smenuline}></div>
-          <div className={styles.smenuline}></div>
+        <div className={styles.imageIcon}>
+          <Image
+            src="/shoplogo.png"
+            alt="syoplogo"
+            height={160}
+            width={210}
+            className={styles.image}
+          />
         </div>
-
-        <nav className={styles.header__inner}>
-          <ul className={styles.ul}>
-            <li key="mypage" className={styles.lis}>
-              <Link href="/cart" className={styles.link}>
-                カート
-              </Link>
-            </li>
-            <li key="cart" className={styles.lis}>
-              <Link href="/contact" className={styles.link}>
-                お問い合わせ
-              </Link>
-            </li>
-            <li key="favorit" className={styles.lis}>
-              <Link href="/purchase" className={styles.link}>
-                買取受付
-              </Link>
-            </li>
-            {correction()}
-          </ul>
-        </nav>
-      </div>
+      </Link>
+      <ul className={styles.ul}>
+        <li key="mypage" className={styles.lis}>
+          <Link href="/cart" className={styles.link}>
+            カート
+          </Link>
+        </li>
+        <li key="cart" className={styles.lis}>
+          <Link href="/contact" className={styles.link}>
+            お問い合わせ
+          </Link>
+        </li>
+        <li key="favorit" className={styles.lis}>
+          <Link href="/purchase" className={styles.link}>
+            買取受付
+          </Link>
+        </li>
+        {correction()}
+      </ul>
     </header>
   );
 }
