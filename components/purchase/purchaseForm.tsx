@@ -213,7 +213,8 @@ const PurchaseForm = ({
           ></input>
           <input
             type="button"
-            className="btn"
+            className="Z
+            zipCodeBtn"
             onClick={citySuggest}
             value="住所を自動入力"
           />

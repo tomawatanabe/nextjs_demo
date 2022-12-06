@@ -21,7 +21,7 @@ const UserImfo = () => {
     criteriaMode: "all",
     shouldFocusError: false,
   });
-  const cookieName = useCookie()
+  const cookieName = useCookie();
 
   //郵便番号APIから住所を取得する関数
   const citySuggest = async () => {
@@ -36,7 +36,7 @@ const UserImfo = () => {
     const result = await res.json();
 
     //郵便番号が存在しない場合アラートを返す
-    if (result.code === 404||result.code === 400) {
+    if (result.code === 404 || result.code === 400) {
       alert("存在しない郵便番号です");
       return;
     }
@@ -233,7 +233,7 @@ const UserImfo = () => {
             ></input>
             <input
               type="button"
-              className="btn"
+              className="zipCodeBtn"
               onClick={citySuggest}
               value="住所を自動入力"
             />
@@ -332,7 +332,11 @@ const UserImfo = () => {
               </span>
             )}
           </div>
-          <input type="submit" value="変更内容を確定する" />
+          <input
+            type="submit"
+            className="zipCodeBtn"
+            value="変更内容を確定する"
+          />
         </form>
         <Link href="/mypage/userimfo">会員情報に戻る</Link>
         <Footer />

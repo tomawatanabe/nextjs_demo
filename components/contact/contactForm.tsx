@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
 import styles from "../../styles/purchase.module.css";
+import { useCookie } from "../useCookie";
 
 const ContactForm = () => {
   const router = useRouter();
@@ -8,11 +9,38 @@ const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
   console.log(errors);
 
+  // console.log(errors);
+  const cookieName = useCookie();
+
+  // ログインしてたら（cookie持ってたら会員情報を自動入力）
+  if (cookieName === "userID=" || undefined) {
+  } else {
+    //DBから値を読み込み
+    const get = async () => {
+      const res = await fetch(`http://localhost:8000/users?id=${cookieName}`);
+      const data = await res.json();
+      return data;
+    };
+    get();
+
+    //デフォルト値としてセット
+    const setDefaultUserValue = async () => {
+      const data = await get();
+      setValue("lastname", data[0]?.lastName);
+      setValue("firstname", data[0]?.firstName);
+      setValue("kanalastname", data[0]?.kanaLastName);
+      setValue("kanafirstname", data[0]?.kanaFirstName);
+      setValue("phone", data[0]?.phoneNumber);
+      setValue("email", data[0]?.email);
+    };
+    setDefaultUserValue();
+  }
   const onSubmit = async (data: any) => {
     console.log(data);
     router.push(`/contact?confirm=1`);
