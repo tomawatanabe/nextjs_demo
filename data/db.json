@@ -1383,11 +1383,10 @@
   "order": [],
   "shoppingCart": [
     {
-      "id": 1,
-      "stock": []
+      "stock": [],
+      "id": 1
     }
   ],
   "favoriteItems": [],
   "usedItems": []
 }
-
