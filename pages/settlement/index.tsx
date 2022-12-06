@@ -11,173 +11,177 @@ import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
 
 export default function Settlement() {
-  const todayYear = new Date().getFullYear();
-  const todayMonth = new Date().getMonth() + 1;
-  const todayDate = new Date().getDate();
+    const todayYear = new Date().getFullYear();
+    const todayMonth = new Date().getMonth() + 1;
+    const todayDate = new Date().getDate();
 
-  // 購入手続き完了でDB/orderに送るデータ内容
-  // const [ userID, setUserID] = useState(0);
-  const [orderDate, setOrderDate] = useState(
-    `${todayYear}年${todayMonth}月${todayDate}日`
-  );
-  const [note, setNote] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
-  const [shipStatus, setShipStatus] = useState("未発送");
-  const [flag, setFlag] = useState(false);
-  const userId = useCookie();
 
-  // カート情報を引き出す
-  const fetcher = (
-    resource: RequestInfo | URL,
-    init: RequestInit | undefined
-  ) => fetch(resource, init).then((res) => res.json());
-  const { data: cart, error } = useSWR(
-    `http://localhost:3000/api/shoppingCart/${userId}`,
-    fetcher
-  );
+    const today = new Date();
 
-  const ItemList = cart?.stock;
-  console.log("itemlist", ItemList);
+    // 購入手続き完了でDB/orderに送るデータ内容
+    // const [ userID, setUserID] = useState(0);
+    const [orderDate, setOrderDate] = useState(
+        `${todayYear}年${todayMonth}月${todayDate}日`
+    );
+    const [note, setNote] = useState("");
+    const [paymentMethod, setPaymentMethod] = useState("");
+    const [shipStatus, setShipStatus] = useState("未発送");
+    const [flag, setFlag] = useState(false);
+    const userId = useCookie();
 
-  // 合計金額計算
-  const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
-    (prev: number, curr: number) => prev + curr,
-    0
-  );
-  console.log(initial);
-  const [total, setTotal] = useState(initial);
+    // カート情報を引き出す
+    const fetcher = (
+        resource: RequestInfo | URL,
+        init: RequestInit | undefined
+    ) => fetch(resource, init).then((res) => res.json());
+    const { data: cart, error } = useSWR(
+        `http://localhost:3000/api/shoppingCart/${userId}`,
+        fetcher
+    );
 
-  useEffect(() => {
-    setTotal(initial);
-  }, [cart]);
+    const ItemList = cart?.stock;
+    console.log("itemlist", ItemList);
 
-  if (error) return <div>failed to load</div>;
-  if (!cart) return <div>loading...</div>;
 
-  const getdata = {
-    userID: userId,
-    // totalPrice: totalPrice,
-    orderDate: orderDate,
-    note: note,
-    paymentMethod: paymentMethod,
-    orderItemList: ItemList,
-    shipStatus: shipStatus,
-    totalPrice: total,
-  };
+    // 合計金額計算
+    const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
+        (prev: number, curr: number) => prev + curr,
+        0
+    );
+    console.log(initial);
+    const [total, setTotal] = useState(initial);
 
-  // 購入手続きをDBにpostする
-  const sendOrder = () => {
-    if (!paymentMethod) {
-      setFlag(true);
-      return;
-    } else {
-      fetch("http://localhost:3000/api/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(getdata),
-      })
-        .then((response) => response.json())
-        .then((getdata) => {
-          console.log("Success:", getdata);
-          router.replace("http://localhost:3000/settlement/close");
+    useEffect(() => {
+        setTotal(initial);
+    }, [cart]);
+
+    if (error) return <div>failed to load</div>;
+    if (!cart) return <div>loading...</div>;
+
+    const getdata = {
+        userID: userId,
+        // totalPrice: totalPrice,
+        orderDate: orderDate,
+        note: note,
+        paymentMethod: paymentMethod,
+        orderItemList: ItemList,
+        shipStatus: shipStatus,
+        totalPrice: total,
+    };
+
+    // 購入手続きをDBにpostする
+    const sendOrder = () => {
+        if (!paymentMethod) {
+            setFlag(true);
+            return;
+        } else {
+            fetch("http://localhost:3000/api/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(getdata),
+            })
+                .then((response) => response.json())
+                .then((getdata) => {
+                    console.log("Success:", getdata);
+                    router.replace("http://localhost:3000/settlement/close");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+    };
+
+    // カートの中身を削除する
+    const DeletedItems = () => {
+        const deletedList: any[] = [];
+
+        fetch(`http://localhost:3000/api/shoppingCart/${userId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                stock: deletedList,
+            }),
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-  };
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Success:", data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
 
-  // カートの中身を削除する
-  const DeletedItems = () => {
-    const deletedList: any[] = [];
+    const handleClick = (event: { target: any }) => {
+        console.log(event.target);
 
-    fetch(`http://localhost:3000/api/shoppingCart/${userId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        stock: deletedList,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
+        sendOrder();
+        setShipStatus("未発送");
+        // setOrderDate(`${todayYear}年${todayMonth}月${todayDate}日`);
+        DeletedItems();
+    };
 
-  const handleClick = (event: { target: any }) => {
-    console.log(event.target);
-
-    sendOrder();
-    setShipStatus("未発送");
-    // setOrderDate(`${todayYear}年${todayMonth}月${todayDate}日`);
-    DeletedItems();
-  };
-
-  return (
-    <div>
-      <SignIn>
-        <Header />
-        <div className={styles.outside}>
-          <Address />
-          <h3 className={styles.content_title}>購入商品</h3>
-          <br />
-          <table className={styles.table_list}>
-            <thead>
-              <tr>
-                <th>商品名</th>
-                <th>個数</th>
-                <th>価格</th>
-                <th>画像</th>
-                <th>コンディション</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart?.stock?.map((Item: any) => {
-                return (
-                  <tr key={Item.itemId}>
-                    <td>{Item.item.name}</td>
-                    <td>{Item.amount}</td>
-                    <td>¥{Item.price}</td>
-                    <td>
-                      <Image
-                        src={`/${Item.image1}`}
-                        height={150}
-                        width={150}
-                        alt={Item.item.name}
-                      />
-                      <br />
-                    </td>
-                    <td className={styles.td_center}>{Item.condition}</td>
-                    <td></td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <br />
-          {paymentMethod === "credit" ? (
-            <div className={styles.total_wrapper}>
-              <table className="right-side-colored">
-                <tbody>
-                  <tr className={styles.total_table_list}>
-                    <th>
-                      小計{"("}税込{")"}:
-                    </th>
-                    <td>￥{total}</td>
-                  </tr>
-                  <tr className={styles.total_table_list}>
-                    <th>
-                      送料{"("}一律{")"}:
-                    </th>
-                    <td>￥500</td>
-                  </tr>
+    return (
+        <div>
+            <SignIn>
+                <Header />
+                <div className={styles.outside}>
+                    <Address />
+                    <h3 className={styles.content_title}>購入商品</h3>
+                    <br />
+                    <table className={styles.table_list}>
+                        <thead>
+                            <tr>
+                                <th>商品名</th>
+                                <th>個数</th>
+                                <th>価格</th>
+                                <th>画像</th>
+                                <th>コンディション</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cart?.stock?.map((Item: any) => {
+                                return (
+                                    <tr key={Item.itemId}>
+                                        <td>{Item.item.name}</td>
+                                        <td>{Item.amount}</td>
+                                        <td>¥{Item.price}</td>
+                                        <td>
+                                            <Image
+                                                src={`/${Item.image1}`}
+                                                height={150}
+                                                width={150}
+                                                alt={Item.item.name}
+                                            />
+                                            <br />
+                                        </td>
+                                        <td className={styles.td_center}>{Item.condition}</td>
+                                        <td></td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                    <br />
+                    {paymentMethod === "credit" ? (
+                        <div className={styles.total_wrapper}>
+                            <table className="right-side-colored">
+                                <tbody>
+                                    <tr className={styles.total_table_list}>
+                                        <th>
+                                            小計{"("}税込{")"}:
+                                        </th>
+                                        <td>￥{total}</td>
+                                    </tr>
+                                    <tr className={styles.total_table_list}>
+                                        <th>
+                                            送料{"("}一律{")"}:
+                                        </th>
+                                        <td>￥500</td>
+                                    </tr>
 
                   <tr className={styles.total_table_last_list}>
                     <th>
@@ -304,8 +308,5 @@ export default function Settlement() {
           <br />
           <br />
         </div>
-        <Footer />
-      </SignIn>
-    </div>
-  );
+    );
 }

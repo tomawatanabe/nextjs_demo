@@ -1,4 +1,3 @@
-
 import useSWR, { mutate } from "swr";
 import { useEffect, useState } from "react";
 import { useCookie } from "../useCookie";
@@ -146,4 +145,3 @@ const Members = () => {
 };
 
 export default Members;
-
