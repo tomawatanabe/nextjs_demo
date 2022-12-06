@@ -6,6 +6,10 @@ import { useCookie } from "../useCookie";
 import type { Stock } from "../../types";
 import styles from "../../styles/Cart.module.css";
 
+const fetcher = (resource: string): Promise<any> =>
+  fetch(resource).then((res) => res.json());
+
+
 const CartItem = (props: any) => {
   const userID = useCookie();
   const [cart, setCart] = useState(props.data[0]);
@@ -14,7 +18,9 @@ const CartItem = (props: any) => {
     setCart(props.data[0]);
   }, [props.data]);
 
+
   const noItem = <p>カートの中身はありません</p>;
+
 
   const cartList = (
     <ul className={styles.cart_ul}>
@@ -59,7 +65,9 @@ const CartItem = (props: any) => {
     </ul>
   );
 
+
   return <div>{cart?.stock.length ? cartList : noItem}</div>;
 };
+
 
 export default CartItem;
