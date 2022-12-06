@@ -27,3 +27,23 @@
     font-size: 13px;
   }
 }
+
+.images {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+@media (max-width: 1170px) {
+  .images {
+    position: relative;
+    width: 25vw;
+    height: 25vw;
+  }
+  .itemdiv {
+    min-width: 75px;
+    width: 25vw;
+    margin: 9px;
+    font-size: 13px;
+  }
+}
