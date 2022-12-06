@@ -1621,8 +1621,7 @@
   "shoppingCart": [
     {
       "stock": [],
-      "id": 1,
-      "deleted": false
+      "id": 1
     }
   ],
   "favoriteItems": [],
