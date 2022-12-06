@@ -1698,40 +1698,6 @@
       "deleted": false
     }
   ],
-  "favoriteItems": [
-    {
-      "itemId": 2,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE NRG",
-      "price": 132000,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 1
-    },
-    {
-      "itemId": 5,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE PRO",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 2
-    },
-    {
-      "itemId": 12,
-      "cookieName": "1",
-      "name": "AIR JORDAN 1 HIGH 85",
-      "price": 71500,
-      "size": 29,
-      "imagePath": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 3
-    }
-  ],
+  "favoriteItems": [],
   "usedItems": []
 }
