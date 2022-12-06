@@ -24,9 +24,6 @@ export default function ItemList(props: any) {
                   alt="item"
                   layout="fill"
                   className={styles.image}
-                  sizes="(max-width: 1200px) 12vw,
-                  (max-width: 1170px) 25vw,
-                  25vw"
                 />
               </div>
             </Link>
