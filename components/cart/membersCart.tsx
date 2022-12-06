@@ -97,8 +97,13 @@ const Members = () => {
     const rejectCombine = () => {
         localStorage.clear();
         Router.reload();
-    };
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
+<<<<<<<<< Temporary merge branch 1
     return (
         <>
             <div
@@ -137,13 +142,64 @@ const Members = () => {
             />
             <CartTotal data={data} />
             <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
-                <Link href="/settlement" legacyBehavior>
+                <Link href="#" legacyBehavior>
                     購入手続きへ進む
                 </Link>
             </div>
         </>
     );
+=========
+  // ログイン前のカート内商品をログイン後のカートに移動したくない場合
+  const rejectCombine = () => {
+    localStorage.clear();
+    Router.reload();
+  };
 
+  return (
+    <>
+      <div
+        className={styles.attention}
+        style={{
+          display: localData[0]?.stock.length ? "block" : "none",
+        }}
+      >
+        <div className={styles.frame}>
+          <div className={styles.frame_title}>注意！</div>
+          <p>
+            ログイン前のカートに商品があります。
+            <br /> 現在のアカウントのカートにその商品を移動しますか？
+          </p>
+          <ul>
+            {localData[0]?.stock.map((cartItem: Stock) => {
+              <li>{cartItem?.item.name}</li>;
+            })}
+          </ul>
+          <button
+            className={styles.yes_btn}
+            onClick={() => handleCombine(data[0])}
+          >
+            はい
+          </button>
+          <button className={styles.no_btn} onClick={() => rejectCombine()}>
+            いいえ
+          </button>
+        </div>
+      </div>
+      <CartItem
+        data={data}
+        handleDelete={handleDelete}
+        handleCombine={handleCombine}
+        localData={localData}
+      />
+      <CartTotal data={data} />
+      <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
+        <Link href="/settlement" legacyBehavior>
+          購入手続きへ進む
+        </Link>
+      </div>
+    </>
+  );
+>>>>>>>>> Temporary merge branch 2
 };
 
 export default Members;
