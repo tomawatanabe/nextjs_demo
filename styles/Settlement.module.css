@@ -1,0 +1,91 @@
+._main_content {
+   display: block;
+    width: 1160px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+
+.close_tenn {
+display: block;
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  align-items: center;
+  text-align: center;
+}
+
+.outside {
+  margin-top: 30px;
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+.user_imfo_icon{
+  padding-left: 800px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+
+.title_wrapper {
+  padding-top:  20px;
+  padding-bottom: 20px;
+}
+
+.content_title {
+  display: inline;
+  padding-right: 30px;
+}
+
+.table_list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.total_table_list {
+  width: 100%;
+}
+.total_table_last_list {
+  width: 100%;
+  padding-left: 220px;
+  
+}
+
+.total_wrapper  {
+  margin-left: 80px;
+  width: 25%;
+  height: 220px;
+  text-align: center;
+}
+
+.table_list th {
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid rgb(62, 57, 57);
+}
+
+.table_list td {
+  height: 110px;
+  padding: 5px;
+  border-bottom: 0.5px solid rgb(178, 164, 164);
+}
+
+.td_justify {
+  text-align: justify;
+}
+
+.td_center {
+  text-align: center;
+}
+
+.th_size {
+  width: 100px;
+}
+
+.attention {
+  color: red;
+  font-weight: bold;
+}
