@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
+import PageTop from "../../components/pageTop";
 
 export default function Loginpage() {
   const [id, setId] = useState("");
@@ -16,6 +17,9 @@ export default function Loginpage() {
     setPw(e.target.value);
   };
   const router = useRouter();
+  var expire = new Date();
+  expire.setTime(expire.getTime() + 1000 * 3600 * 24);
+
   function postCarti() {
     const loginData: { userId: string; userPw: string } = {
       userId: id,
@@ -40,7 +44,8 @@ export default function Loginpage() {
           console.log(flag);
         } else {
           console.log(`ユーザー認証完了`);
-          document.cookie = `userID=${data.cookieId}; Path=/; max-age=86400s`;
+          document.cookie =
+            `userID=${data.cookieId};  Path=/; expires=` + expire.toUTCString();
           router.replace("/");
         }
       });
@@ -86,6 +91,7 @@ export default function Loginpage() {
         </div>
       </div>
       {loginFlag()}
+      <PageTop />
       <Footer />
     </>
   );

@@ -8,6 +8,7 @@ import UsedItemList from "../../components/UsedItemList";
 import SettlementHistory from "../../components/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import Image from "next/image";
+import PageTop from "../../components/pageTop";
 
 const MyPage = () => {
   return (
@@ -43,6 +44,7 @@ const MyPage = () => {
             <UsedItemList />
           </div>
         </div>
+        <PageTop />
         <Footer />
       </SignIn>
     </>

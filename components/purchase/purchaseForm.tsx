@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 import React from "react";
 import Image from "next/image";
 import styles from "../../styles/purchase.module.css";
+import { useCookie } from "../useCookie";
 
 const PurchaseForm = ({
   handleChange,
@@ -19,6 +20,37 @@ const PurchaseForm = ({
     setValue,
     formState: { errors },
   } = useFormContext();
+  
+  const cookieName = useCookie();
+
+  // ログインしてたら（cookie持ってたら会員情報を自動入力）
+  if (cookieName === "userID=" || undefined) {
+  } else {
+    //DBから値を読み込み
+    const get = async () => {
+      const res = await fetch(`http://localhost:8000/users?id=${cookieName}`);
+      const data = await res.json();
+      return data;
+    };
+    get();
+
+    //デフォルト値としてセット
+    const setDefaultUserValue = async () => {
+      const data = await get();
+      setValue("lastName", data[0]?.lastName);
+      setValue("firstName", data[0]?.firstName);
+      setValue("kanaLastName", data[0]?.kanaLastName);
+      setValue("kanaFirstName", data[0]?.kanaFirstName);
+      setValue("phone", data[0]?.phoneNumber);
+      setValue("email", data[0]?.email);
+      setValue("zipCode", data[0]?.zipCode);
+      setValue("prefecture", data[0]?.prefecture);
+      setValue("city", data[0]?.city);
+      setValue("address", data[0]?.address);
+      setValue("building", data[0]?.building);
+    };
+    setDefaultUserValue();
+  }
 
   const onSubmit = (e: any) => {
     router.push(`/purchase?confirm=1`);

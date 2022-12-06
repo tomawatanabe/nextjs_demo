@@ -1365,17 +1365,17 @@
   ],
   "users": [
     {
-      "lastName": "hayakawa",
-      "firstName": "miho",
-      "kanaLastName": "hayakawa",
-      "kanaFirstName": "miho",
+      "lastName": "早川",
+      "firstName": "実穂",
+      "kanaLastName": "ハヤカワ",
+      "kanaFirstName": "ミホ",
       "phoneNumber": "09010000000",
       "email": "aaaa@gmail.com",
       "zipCode": "2300001",
       "prefecture": "神奈川県",
       "city": "横浜市鶴見区矢向",
       "address": "1-1",
-      "building": "aaaa@gmail.com",
+      "building": "ラクスマンション101号室",
       "password": "Password1",
       "id": 1
     }
@@ -1838,104 +1838,10 @@
   ],
   "shoppingCart": [
     {
-      "stock": [
-        {
-          "id": 2,
-          "itemID": 2,
-          "price": 132000,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 2,
-            "name": "AIR FOAMPOSITE ONE NRG",
-            "series": "POSITE SERIES",
-            "year": 2012,
-            "description": "[ナイキ エアフォームポジット ワン \"ギャラクシー\" 521286-800]「AIR FOAMPOSITE ONE」は1997年に「アンファニー\"ペニー\"ハーダウェイ」モデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。ちなみにデザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けている\"エリック・エイバー\"で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。 今作のは\"NBA ALLSTAR GAME 2012\"を記念してリリースされた宇宙空間のグラフィックを全面にプリントした通称「GALAXY」。 ※作りがタイトなため、普段履いているNIKEのシューズより1cmから1.5cmアップをおすすめします。※こちらの商品は製造から年数が経過しております。そのため劣化により今後ご使用の際に破損する可能性がございますのでご注意ください。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。",
-            "setprice": "2012年2月発売、日本定価23,100円",
-            "color": "\"GALAXY\" OBSIDIAN/ANTHRACITE-BLACK",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 7,
-          "itemID": 7,
-          "price": 66000,
-          "size": 26,
-          "image1": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
-          "image2": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT2.jpg",
-          "image3": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT3.jpg",
-          "image4": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT4.jpg",
-          "image5": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 7,
-            "name": "AIR FORCE 1 07/CLOT/FRGMT",
-            "series": "AIR FORCE 1 LOW",
-            "year": 2019,
-            "description": "[ナイキ エアフォース 1 07 \"クロット/フラグメントデザイン\" ブラック/ユニバーシティレッド-ホワイト CZ3986-001] 1982年に登場した「AIR FORCE 1」は、その時その時代のカルチャーとも密接にリンクしバスケットボールシューズという枠を超え長い間ストリートの定番となっています。今作は藤原ヒロシ氏によるデザインプロジェクト\"FRAGMENT DESIGN\"とエディソン・チャン氏が手掛ける香港発のブランド\"CLOT\"とのコラボレーションモデルです。黒のアッパーを剥がすと赤の下地に\"FRAGMENT DESIGN\"のロゴが現れる仕様になっています。",
-            "setprice": "2019年11月発売、日本定価31,350円",
-            "color": "\"CLOT×FRAGMENT DESIGN\"BLACK/UNIVERSITY RED-WHITE",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 8,
-          "itemID": 8,
-          "price": 60500,
-          "size": 29,
-          "image1": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE1.jpg",
-          "image2": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE2.jpg",
-          "image3": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE3.jpg",
-          "image4": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE4.jpg",
-          "image5": "images/sneakers/AIR FORCE 1 07-PARA-NOISE/AIR FORCE 1 07 PARA-NOISE5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 8,
-            "name": "AIR FORCE 1 07/PARA-NOISE",
-            "series": "AIR FORCE 1 LOW",
-            "year": 2020,
-            "description": "[ナイキ エア フォース 1 07 \"パラノイズ/ピースマイナスワン\" ホワイト/ブラック DD3223-100] 韓国のアーティストグループ\"BIGBANG\"のG-DRAGON氏が手掛けるブランド\"PEACEMINUSONE\"とのコラボレーションモデル「AIR FORCE 1 07/PARA-NOISE」の登場です。人々を団結させる「一歩」を促す存在になることに自分の人生を捧げてきたというG-DRAGON氏。この精神を「AIR FORCE 1」に落とし込み、擦り切れると別のアートが現れるペイントのレイヤーを使用。下に隠れたアートには、現実とユートピアの境目が曖昧になった場所という、彼が理想として思い描く世界のビジョンが表現されています。シュータンには\"PEACEMINUSONE\"を象徴するデイジーの花が刺繍されたスペシャルエディションとなっています。",
-            "setprice": "2020年11月発売、日本定価24,200円",
-            "color": "WHITE/BLACK-WHITE",
-            "deleted": "false"
-          }
-        }
-      ]
-    },
-    {
-      "stock": [],
       "id": 1,
-      "deleted": false
+      "stock": []
     }
   ],
-  "favoriteItems": [
-    {
-      "itemId": 4,
-      "cookieName": "6",
-      "id": 1
-    },
-    {
-      "itemId": 1,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 4
-    }
-  ],
+  "favoriteItems": [],
   "usedItems": []
 }

@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Stock } from "../types";
 import ToggleFavButton from "../components/ToggleFavButton";
+import PageTop from "../components/pageTop";
 
 export const getStaticPaths = async () => {
   const res = await fetch("http://localhost:8000/stock");
@@ -110,6 +111,7 @@ export default function Detail({ stock }: { stock: Stock }) {
           <p className="explanation">{stock.item.description}</p>
         </div>
       </div>
+      <PageTop />
       <Footer />
     </div>
   );
