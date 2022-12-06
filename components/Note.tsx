@@ -1,3 +1,5 @@
+import styles from "../styles/Sidebar.module.css";
+
 export default function Note() {
-  return <p className="ptag">当店はすべて税込み表記です</p>;
+  return <p className={styles.ptag}>当店はすべて税込み表記です</p>;
 }

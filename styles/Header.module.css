@@ -11,16 +11,10 @@
   align-items: flex-end;
 }
 
-.header__inner {
-  padding: 0.2px; /*左右の余白確保*/
-  display: flex; /*ロゴとハンバーガーメニューを横に並べる*/
-  align-items: center;
-  height: inherit; /*親要素の高さを継承*/
-  position: relative;
-  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ,
-    Meiryo, "MSPゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin-left: auto;
-  align-items: flex-end;
+@media (max-width: 1170px) {
+  .header {
+    display: block;
+  }
 }
 
 .headerin {
@@ -42,6 +36,11 @@
   padding: 14px 20px;
   padding-bottom: 0;
   width: 155px;
+  color: rgb(76, 77, 80);
+}
+
+.lis:hover {
+  color: rgb(151, 156, 161);
 }
 
 .link {
@@ -72,6 +71,34 @@
   font-family: "Yu Gothic";
   font-weight: bold;
   height: 32px;
+}
+@media (max-width: 1170px) {
+  .lis {
+    font-size: 13px;
+    padding: 7px 10px;
+    width: 80px;
+    margin-top: 31px;
+  }
+
+  .imageIcon {
+    position: relative;
+    margin-top: 40px;
+  }
+
+  .ul {
+    padding: 0;
+  }
+
+  .button {
+    width: 65px;
+    font-size: 10px;
+  }
+
+  .button2 {
+    width: 65px;
+    font-size: 10px;
+    margin-top: 41px;
+  }
 }
 
 .button:hover {
