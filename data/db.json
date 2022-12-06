@@ -1668,6 +1668,30 @@
             "color": "\"CLOT×FRAGMENT DESIGN\"BLACK/UNIVERSITY RED-WHITE",
             "deleted": "false"
           }
+        },
+        {
+          "id": 12,
+          "itemID": 12,
+          "price": 71500,
+          "size": 29,
+          "image1": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_1.jpg",
+          "image2": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_2.jpg",
+          "image3": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_3.jpg",
+          "image4": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_4.jpg",
+          "image5": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 12,
+            "name": "AIR JORDAN 1 HIGH 85",
+            "series": "JORDAN BRAND 1",
+            "year": 2021,
+            "description": "[ナイキ エア ジョーダン 1 ハイ 85 ホワイト/ニュートラルグレー グレー BQ4422-100] 「AIR JORDAN 1」は1985年4月にUS定価$65で発売されました。デザインは\"Peter Moore\"氏で、3本線で三角形のアディダスのパフォーマンスロゴをデザインした人物としても有名です。ウィングマークは\"Peter Moore\"氏が飛行機での移動中に見た、アメリカ空軍のパイロットウイングのレプリカにインスピレーションを受けてデザインされています。 今作はオリジナルカラーのひとつ\"WHITE/NEUTRAL GREY\"が待望の初復刻。 ",
+            "setprice": "2021年2月発売、日本定価23,100円",
+            "color": "HITE/NEUTRAL GREY",
+            "deleted": "false"
+          }
         }
       ],
       "id": 1,
@@ -1696,6 +1720,17 @@
       "condition": "A",
       "deleted": false,
       "id": 2
+    },
+    {
+      "itemId": 12,
+      "cookieName": "1",
+      "name": "AIR JORDAN 1 HIGH 85",
+      "price": 71500,
+      "size": 29,
+      "imagePath": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
     }
   ],
   "usedItems": []
