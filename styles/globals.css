@@ -175,3 +175,54 @@ textarea {
   background-color: rgb(154, 197, 212);
   border-bottom: 5px solid rgb(122, 165, 180);
 }
+
+/* pageTop */
+.pageTop {
+  width: 90px;
+  height: 40px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: #2b3c92;
+  opacity: 0.6;
+}
+.pageTopa {
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 60px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.pageTopa:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -25px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+.pageTopa:after {
+  content: "⇧PAGE TOP";
+  font-size: 13px;
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  right: 10px;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+
+/* mypage */
+.userinfoa {
+  margin-left: 40px;
+}

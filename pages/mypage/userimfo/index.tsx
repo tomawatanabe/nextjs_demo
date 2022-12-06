@@ -107,9 +107,10 @@ const UserImfo = () => {
         </div>
 
         <Link href="/mypage">マイページに戻る</Link>
-        <Link href="/mypage/userimfo/useredit">
+        <Link href="/mypage/userimfo/useredit" className="userinfoa">
           会員情報を編集する
         </Link>
+
         <Footer />
       </SignIn>
     </>

@@ -92,6 +92,7 @@ const Members = () => {
             });
     };
 
+
     // ログイン前のカート内商品をログイン後のカートに移動したくない場合
     const rejectCombine = () => {
         localStorage.clear();
@@ -136,12 +137,13 @@ const Members = () => {
             />
             <CartTotal data={data} />
             <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
-                <Link href="#" legacyBehavior>
+                <Link href="/settlement" legacyBehavior>
                     購入手続きへ進む
                 </Link>
             </div>
         </>
     );
+
 };
 
 export default Members;

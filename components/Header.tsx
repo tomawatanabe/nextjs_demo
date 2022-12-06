@@ -3,16 +3,17 @@ import styles from "../styles/Header.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useCookieOriginal } from "./useCookie";
+import { useCookie, useCookieOriginal } from "./useCookie";
 
 export default function Header() {
   const router = useRouter();
   const cookieOriginal = useCookieOriginal();
+  const cookie = useCookie();
 
   const [reload, setReload] = useState(0);
 
   const logout = (event: React.MouseEvent<HTMLInputElement>) => {
-    document.cookie = `userID=;max-age=-86400s`;
+    document.cookie = `userID=;`;
     setReload((event) => reload + 1);
   };
 

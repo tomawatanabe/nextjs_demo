@@ -4,6 +4,7 @@ import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type { Stock } from "../../types";
 import Link from "next/link";
+import styles from "../../styles/Cart.module.css";
 
 const Local = () => {
     const [data, setData] = useState<any[]>([]);
@@ -17,7 +18,7 @@ const Local = () => {
         const deleted = cart.stock.filter((item: Stock) => item.id !== id);
         cart.stock = deleted;
         localStorage.setItem('shoppingCart', JSON.stringify([cart]));
-        Router.push("/cart");
+        Router.reload();
 
     }
 
@@ -25,10 +26,11 @@ const Local = () => {
         <>
             <CartItem data={data} handleDelete={handleDelete} />
             <CartTotal data={data} />
-            <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
-                <Link href="/settlement" legacyBehavior>
-                    購入手続きへ進む
-                </Link>
+            <div style={{display: data[0]?.stock.length? "block" : "none"}} className={styles.logoutFrame}>
+              <p style={{color: "red", fontWeight: "bold"}}>購入するにはログインしてください</p>
+              <Link href="/login/loginPage" legacyBehavior>
+                  <a className={styles.linkDeco}>ログインはこちら</a>
+              </Link>
             </div>
         </>
     );
