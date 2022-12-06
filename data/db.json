@@ -1375,13 +1375,16 @@
       "prefecture": "神奈川県",
       "city": "横浜市鶴見区矢向",
       "address": "1-1",
-      "building": "aaaa@gmail.com",
+      "building": ""ラクスマンション101号室",
       "password": "Password1",
       "id": 1
     }
   ],
   "order": [],
-  "shoppingCart": [],
+  "shoppingCart": [{
+  "id":1,
+  stock:[]
+  }],
   "favoriteItems": [],
   "usedItems": []
 }
