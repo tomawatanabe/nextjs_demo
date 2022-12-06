@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookie } from "../../components/useCookie";
 import useSWR from "swr";
 import router from "next/router";
 import Link from "next/link";
 import Address from "../../components/settlement/adress";
-import CartTotal from "../../components/cart/cartTotal";
 import Image from "next/image";
+import Header from "../../components/Header";
+import SignIn from "../../components/SignIn";
 
 
 
-export default function settlement() {
+export default function Settlement() {
 
     const today = new Date();
 
@@ -33,10 +34,21 @@ export default function settlement() {
         `http://localhost:3000/api/shoppingCart/${userId}`,
         fetcher
     );
-    if (error) return <div>failed to load</div>;
-    if (!cart) return <div>loading...</div>;
+   
     const ItemList = cart?.stock;
     console.log("itemlist", ItemList);
+
+    // 合計金額計算
+    const initial: number = ItemList?.map((stock: any) => stock.price).reduce((prev: number, curr: number) => prev + curr, 0);
+    console.log(initial);
+    const [total, setTotal] = useState(initial);
+
+    useEffect(() => {
+        setTotal(initial);
+    }, [cart]);
+
+    if (error) return <div>failed to load</div>;
+    if (!cart) return <div>loading...</div>;
 
 
 
@@ -70,7 +82,7 @@ export default function settlement() {
                 .then((getdata) => {
                     console.log('Success:', getdata);
                     alert("購入手続きが完了しました！");
-                    router.push('/');
+                    router.replace('http://localhost:3000/settlement/close');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -114,28 +126,9 @@ export default function settlement() {
 
     return (
         <div>
+            <SignIn>
+            <Header />
             <Address />
-            <h3>支払い方法</h3>
-            <div>
-                <input
-                    type="radio"
-                    id="credit"
-                    name="支払い方法"
-                    value="credit"
-                    required
-                    onClick={() => setPaymentMethod("credit")}
-                />
-                <label htmlFor="credit">クレジット</label>
-                <input
-                    type="radio"
-                    id="cashOnDelivery"
-                    name="支払い方法"
-                    value="cashOnDelivery"
-                    onClick={() => setPaymentMethod("cashOnDelivery")}
-                />
-                <label htmlFor="cashOnDelivery">代引き手数料</label>
-            </div>
-            {flag && <p>支払い方法を選択してください</p>}
 
             <h3>購入商品</h3>
             <div>
@@ -173,27 +166,69 @@ export default function settlement() {
                         })}
                     </tbody>
                 </table>
-                {/* <table>
-                <tbody>
-                        <tr>
-                            <th>小計{'('}税込{')'}:</th>
-                            <td>￥{totalPrice}</td>
-                        </tr>
-                        <tr>
-                            <th>送料{'('}一律{')'}:</th>
-                            <td>￥{cartItems.length ? 500 : 0}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><b> 合計</b>：￥{cartItems.length ? totalPrice + 500 : 0}</p> */}
+                {paymentMethod === "credit" ? (
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>小計{'('}税込{')'}:</th>
+                                <td>￥{total}</td>
+                            </tr>
+                            <tr>
+                                <th>送料{'('}一律{')'}:</th>
+                                <td>￥500</td>
+                            </tr>
+                            <p><b> 合計</b>：￥{total + 500}</p>
+                        </tbody>
+                    </table>
+                ) : (
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>小計{'('}税込{')'}:</th>
+                                <td>￥{total}</td>
+                            </tr>
+                            <tr>
+                                <th>送料{'('}一律{')'}:</th>
+                                <td>￥500</td>
+                            </tr>
+                            <tr>
+                                <th>代引き手数料{'('}一律{')'}:</th>
+                                <td>￥330</td>
+                            </tr>
+                            <p><b> 合計</b>：￥{total + 500 + 330}</p>
+                        </tbody>
+                    </table>
+                )}
             </div><br />
             <p></p>
             {/* 商品の合計個数と小計、合計金額を出す。代引きを選択された場合代引き手数料を表示するか金額が0→330になるようにする */}
             <b>発送予定日</b>
             <p>購入日から3～5営業日以内に発送いたします</p>
-            <form method="post" >
+            <form >
                 {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
                 <input type="hidden" name="shipstatus" value={shipStatus} />
+                <h3>支払い方法</h3>
+                <div>
+                    <input
+                        type="radio"
+                        id="credit"
+                        name="支払い方法"
+                        value="credit"
+                        required
+                        onClick={() => setPaymentMethod("credit")}
+                    />
+                    <label htmlFor="credit">クレジット</label>
+                    <input
+                        type="radio"
+                        id="cashOnDelivery"
+                        name="支払い方法"
+                        value="cashOnDelivery"
+                        onClick={() => setPaymentMethod("cashOnDelivery")}
+                    />
+                    <label htmlFor="cashOnDelivery">代引き手数料 <br />*代引き手数料￥330</label>
+                </div>
+                {flag && <p>支払い方法を選択してください</p>}
+
                 <p>発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。</p>
                 {/* 上記文言は赤字にする */}
 
@@ -205,6 +240,7 @@ export default function settlement() {
                     <input type="button" onClick={handleClick} value="購入する" />
                 </div>
             </form><br /><br />
+            </SignIn>
         </div>
     );
 }
