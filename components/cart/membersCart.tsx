@@ -1,3 +1,4 @@
+
 import useSWR, { mutate } from "swr";
 import { useEffect, useState } from "react";
 import { useCookie } from "../useCookie";
@@ -10,7 +11,8 @@ import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
-  fetch(resource).then((res) => res.json());
+    fetch(resource).then((res) => res.json());
+
 
 const Members = () => {
   const userID = useCookie();
