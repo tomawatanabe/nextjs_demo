@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
 import styles from "../../styles/purchase.module.css";
+import PageTop from "../../components/pageTop";
 
 const Purchase = () => {
   //inputに登録された画像のバイナリデータを保持するstate
@@ -109,6 +110,7 @@ const Purchase = () => {
       <Link href="/" className={styles.link}>
         トップページへ
       </Link>
+      <PageTop />
       <Footer />
     </div>
   );
