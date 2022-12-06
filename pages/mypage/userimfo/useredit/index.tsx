@@ -233,7 +233,7 @@ const UserImfo = () => {
             ></input>
             <input
               type="button"
-              className="btn"
+              className="zipCodeBtn"
               onClick={citySuggest}
               value="住所を自動入力"
             />
