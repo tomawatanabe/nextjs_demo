@@ -72,7 +72,7 @@ export type Order = {
   id: number;
   userId: string;
   totalPrice: number;
-  orderDate: Date;
+  orderDate: string;
   note: string;
   paymentMethod: string;
   orderItemList: any[];

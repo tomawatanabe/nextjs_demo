@@ -10,30 +10,30 @@ import SignIn from "../../components/SignIn";
 import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
 
-
-
-
 export default function Settlement() {
+    const todayYear = new Date().getFullYear();
+    const todayMonth = new Date().getMonth() + 1;
+    const todayDate = new Date().getDate();
 
-    
+
     const today = new Date();
-    
 
     // 購入手続き完了でDB/orderに送るデータ内容
-    const [orderDate, setOrderDate] = useState();
+    // const [ userID, setUserID] = useState(0);
+    const [orderDate, setOrderDate] = useState(
+        `${todayYear}年${todayMonth}月${todayDate}日`
+    );
     const [note, setNote] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("");
     const [shipStatus, setShipStatus] = useState("未発送");
     const [flag, setFlag] = useState(false);
     const userId = useCookie();
-    
-
-
-
 
     // カート情報を引き出す
-    const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
-        fetch(resource, init).then((res) => res.json());
+    const fetcher = (
+        resource: RequestInfo | URL,
+        init: RequestInit | undefined
+    ) => fetch(resource, init).then((res) => res.json());
     const { data: cart, error } = useSWR(
         `http://localhost:3000/api/shoppingCart/${userId}`,
         fetcher
@@ -42,8 +42,12 @@ export default function Settlement() {
     const ItemList = cart?.stock;
     console.log("itemlist", ItemList);
 
+
     // 合計金額計算
-    const initial: number = ItemList?.map((stock: any) => stock.price).reduce((prev: number, curr: number) => prev + curr, 0);
+    const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
+        (prev: number, curr: number) => prev + curr,
+        0
+    );
     console.log(initial);
     const [total, setTotal] = useState(initial);
 
@@ -54,9 +58,6 @@ export default function Settlement() {
     if (error) return <div>failed to load</div>;
     if (!cart) return <div>loading...</div>;
 
-
-
-
     const getdata = {
         userID: userId,
         // totalPrice: totalPrice,
@@ -65,30 +66,29 @@ export default function Settlement() {
         paymentMethod: paymentMethod,
         orderItemList: ItemList,
         shipStatus: shipStatus,
-
+        totalPrice: total,
     };
 
     // 購入手続きをDBにpostする
     const sendOrder = () => {
         if (!paymentMethod) {
-            setFlag(true)
-            return
+            setFlag(true);
+            return;
         } else {
-
-            fetch('http://localhost:3000/api/order', {
-                method: 'POST',
+            fetch("http://localhost:3000/api/order", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(getdata),
             })
                 .then((response) => response.json())
                 .then((getdata) => {
-                    console.log('Success:', getdata);
-                    router.replace('http://localhost:3000/settlement/close');
+                    console.log("Success:", getdata);
+                    router.replace("http://localhost:3000/settlement/close");
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
+                    console.error("Error:", error);
                 });
         }
     };
@@ -97,43 +97,41 @@ export default function Settlement() {
     const DeletedItems = () => {
         const deletedList: any[] = [];
 
-
         fetch(`http://localhost:3000/api/shoppingCart/${userId}`, {
-            method: 'PATCH',
+            method: "PATCH",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "stock": deletedList
+                stock: deletedList,
             }),
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Success:', data);
+                console.log("Success:", data);
             })
             .catch((error) => {
-                console.error('Error:', error);
+                console.error("Error:", error);
             });
-    }
+    };
 
-
-    const handleClick = (event: { target: any; }) => {
+    const handleClick = (event: { target: any }) => {
         console.log(event.target);
 
         sendOrder();
         setShipStatus("未発送");
-        // setOrderDate();
+        // setOrderDate(`${todayYear}年${todayMonth}月${todayDate}日`);
         DeletedItems();
     };
 
     return (
-        <div >
+        <div>
             <SignIn>
                 <Header />
                 <div className={styles.outside}>
-
                     <Address />
-                    <h3 className={styles.content_title}>購入商品</h3><br />
+                    <h3 className={styles.content_title}>購入商品</h3>
+                    <br />
                     <table className={styles.table_list}>
                         <thead>
                             <tr>
@@ -161,28 +159,35 @@ export default function Settlement() {
                                             <br />
                                         </td>
                                         <td className={styles.td_center}>{Item.condition}</td>
-                                        <td>
-                                        </td>
+                                        <td></td>
                                     </tr>
                                 );
                             })}
                         </tbody>
-                    </table><br />
+                    </table>
+                    <br />
                     {paymentMethod === "credit" ? (
                         <div className={styles.total_wrapper}>
                             <table className="right-side-colored">
                                 <tbody>
                                     <tr className={styles.total_table_list}>
-                                        <th>小計{'('}税込{')'}:</th>
+                                        <th>
+                                            小計{"("}税込{")"}:
+                                        </th>
                                         <td>￥{total}</td>
                                     </tr>
                                     <tr className={styles.total_table_list}>
-                                        <th>送料{'('}一律{')'}:</th>
+                                        <th>
+                                            送料{"("}一律{")"}:
+                                        </th>
                                         <td>￥500</td>
                                     </tr>
+
                                     <tr className={styles.total_table_last_list}>
-                                        <th>合計{'('}税込{')'}:</th>
-                                        <td>￥{total + 500}</td>
+                                        <th>
+                                            合計{"("}税込{")"}:
+                                        </th>
+                                        <td>￥{total}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -191,13 +196,17 @@ export default function Settlement() {
                         <div className={styles.total_wrapper}>
                             <div className="right-side-colored">
                                 <table>
-                                    <tbody >
+                                    <tbody>
                                         <tr className={styles.total_table_list}>
-                                            <th >小計{'('}税込{')'}:</th>
+                                            <th>
+                                                小計{"("}税込{")"}:
+                                            </th>
                                             <td>￥{total}</td>
                                         </tr>
                                         <tr className={styles.total_table_list}>
-                                            <th>送料{'('}一律{')'}:</th>
+                                            <th>
+                                                送料{"("}一律{")"}:
+                                            </th>
                                             <td>￥500</td>
                                         </tr>
                                         <tr className={styles.total_table_list}>
@@ -205,7 +214,9 @@ export default function Settlement() {
                                             <td>￥330</td>
                                         </tr>
                                         <tr className={styles.total_table_last_list}>
-                                            <th>合計{'('}税込{')'}:</th>
+                                            <th>
+                                                合計{"("}税込{")"}:
+                                            </th>
                                             <td>￥{total + 500 + 330}</td>
                                         </tr>
                                     </tbody>
@@ -215,7 +226,7 @@ export default function Settlement() {
                     )}
                     <b>発送予定日</b>
                     <p>購入日から3～5営業日以内に発送いたします</p>
-                    <form >
+                    <form>
                         {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
                         <input type="hidden" name="shipstatus" value={shipStatus} />
                         <h3>支払い方法</h3>
@@ -229,20 +240,30 @@ export default function Settlement() {
                                 name="支払い方法"
                                 value="credit"
                                 required
-                                onClick={() => setPaymentMethod("credit")}
+                                onClick={() => {
+                                    setPaymentMethod("credit");
+                                    setTotal(total + 500);
+                                }}
                             />
                             <label htmlFor="cashOnDelivery">
-                                <span className="label-fit label-danger">必須</span>代引き手数料 <br />*代引き手数料 +￥330
+                                <span className="label-fit label-danger">必須</span>代引き手数料{" "}
+                                <br />
+                                *代引き手数料 +￥330
                             </label>
                             <input
                                 type="radio"
                                 id="cashOnDelivery"
                                 name="支払い方法"
                                 value="cashOnDelivery"
-                                onClick={() => setPaymentMethod("cashOnDelivery")}
+                                onClick={() => {
+                                    setPaymentMethod("cashOnDelivery");
+                                    setTotal(total + 830);
+                                }}
                             />
                         </div>
-                        {flag && <p className={styles.attention}>*支払い方法を選択してください</p>}
+                        {flag && (
+                            <p className={styles.attention}>*支払い方法を選択してください</p>
+                        )}
                         <br />
                         <p>
                             発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。
@@ -267,14 +288,25 @@ export default function Settlement() {
                                 value={note}
                                 className={styles.form}
                             />
-                        </div><br />
-                        <div className={styles.btn}>
-                            <input type="button" className="idbutton" onClick={handleClick} value="購入する" />
-                        </div><br />
-                        <div className={styles.btn}>
-                            <Link href="/cart" className={styles.link}>カートに戻る</Link>
                         </div>
-                    </form><br /><br />
+                        <br />
+                        <div className={styles.btn}>
+                            <input
+                                type="button"
+                                className="idbutton"
+                                onClick={handleClick}
+                                value="購入する"
+                            />
+                        </div>
+                        <br />
+                        <div className={styles.btn}>
+                            <Link href="/cart" className={styles.link}>
+                                カートに戻る
+                            </Link>
+                        </div>
+                    </form>
+                    <br />
+                    <br />
                 </div>
                 <Footer />
             </SignIn>
