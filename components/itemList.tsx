@@ -23,6 +23,7 @@ export default function ItemList(props: any) {
                   src={`/${stock.image1}`}
                   alt="item"
                   layout="fill"
+                  sizes="(max-width: 1170px) 25vw"
                   className={styles.image}
                 />
               </div>

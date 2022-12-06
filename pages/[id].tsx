@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Stock } from "../types";
 import ToggleFavButton from "../components/ToggleFavButton";
+import PageTop from "../components/pageTop";
 
 export const getStaticPaths = async () => {
   const res = await fetch("http://localhost:8000/stock");
@@ -83,24 +84,26 @@ export default function Detail({ stock }: { stock: Stock }) {
             </div>
           </div>
           <div className="right-side-wrapper">
-            <dl>
-              <dt>価格（税込）</dt>
-              <dd>¥{stock.price.toLocaleString()}</dd>
-            </dl>
-            <dl>
-              <dt>サイズ</dt>
-              <dd>{stock.size}cm</dd>
-            </dl>
-            <dl>
-              <dt>在庫数</dt>
-              <dd>{stock.amount}</dd>
-            </dl>
-            <dl>
-              <dt>コンディション</dt>
-              <dd>{stock.condition}</dd>
-            </dl>
-            <CartButton stock={stock} />
+            <div className="right-side-colored">
+              <dl>
+                <dt>価格（税込）</dt>
+                <dd>¥{stock.price.toLocaleString()}</dd>
+              </dl>
+              <dl>
+                <dt>サイズ</dt>
+                <dd>{stock.size}cm</dd>
+              </dl>
+              <dl>
+                <dt>在庫数</dt>
+                <dd>{stock.amount}</dd>
+              </dl>
+              <dl>
+                <dt>コンディション</dt>
+                <dd>{stock.condition}</dd>
+              </dl>
+            </div>
             <ToggleFavButton stock={stock} />
+            <CartButton stock={stock} />
           </div>
         </div>
         <div className="explanation-wrapper">
@@ -108,6 +111,7 @@ export default function Detail({ stock }: { stock: Stock }) {
           <p className="explanation">{stock.item.description}</p>
         </div>
       </div>
+      <PageTop />
       <Footer />
     </div>
   );

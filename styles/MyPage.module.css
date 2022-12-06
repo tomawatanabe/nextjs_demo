@@ -29,6 +29,7 @@
 .table_list {
   width: 100%;
   border-collapse: collapse;
+  text-align: center;
 }
 
 .table_list th {

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
+import PageTop from "../../components/pageTop";
 
 export default function Loginpage() {
   const [id, setId] = useState("");
@@ -86,6 +87,7 @@ export default function Loginpage() {
         </div>
       </div>
       {loginFlag()}
+      <PageTop />
       <Footer />
     </>
   );

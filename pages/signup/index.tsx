@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
 import styles from "../../styles/purchase.module.css";
+import PageTop from "../../components/pageTop";
 
 const Contact = () => {
   const router = useRouter();
@@ -34,6 +35,7 @@ const Contact = () => {
       <Link href="/" className={styles.link}>
         トップページへ
       </Link>
+      <PageTop />
       <Footer />
     </div>
   );
