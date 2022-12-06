@@ -15,9 +15,6 @@ export default function Settlement() {
     const todayMonth = new Date().getMonth() + 1;
     const todayDate = new Date().getDate();
 
-
-    const today = new Date();
-
     // 購入手続き完了でDB/orderに送るデータ内容
     // const [ userID, setUserID] = useState(0);
     const [orderDate, setOrderDate] = useState(
@@ -41,7 +38,6 @@ export default function Settlement() {
 
     const ItemList = cart?.stock;
     console.log("itemlist", ItemList);
-
 
     // 合計金額計算
     const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
@@ -183,130 +179,133 @@ export default function Settlement() {
                                         <td>￥500</td>
                                     </tr>
 
-                  <tr className={styles.total_table_last_list}>
-                    <th>
-                      合計{"("}税込{")"}:
-                    </th>
-                    <td>￥{total}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className={styles.total_wrapper}>
-              <div className="right-side-colored">
-                <table>
-                  <tbody>
-                    <tr className={styles.total_table_list}>
-                      <th>
-                        小計{"("}税込{")"}:
-                      </th>
-                      <td>￥{total}</td>
-                    </tr>
-                    <tr className={styles.total_table_list}>
-                      <th>
-                        送料{"("}一律{")"}:
-                      </th>
-                      <td>￥500</td>
-                    </tr>
-                    <tr className={styles.total_table_list}>
-                      <th>代引き手数料:</th>
-                      <td>￥330</td>
-                    </tr>
-                    <tr className={styles.total_table_last_list}>
-                      <th>
-                        合計{"("}税込{")"}:
-                      </th>
-                      <td>￥{total + 500 + 330}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-          <b>発送予定日</b>
-          <p>購入日から3～5営業日以内に発送いたします</p>
-          <form>
-            {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
-            <input type="hidden" name="shipstatus" value={shipStatus} />
-            <h3>支払い方法</h3>
-            <div>
-              <label htmlFor="credit">
-                <span className="label-fit label-danger">必須</span>クレジット
-              </label>
-              <input
-                type="radio"
-                id="credit"
-                name="支払い方法"
-                value="credit"
-                required
-                onClick={() => {
-                  setPaymentMethod("credit");
-                  setTotal(total + 500);
-                }}
-              />
-              <label htmlFor="cashOnDelivery">
-                <span className="label-fit label-danger">必須</span>代引き{" "}
-                <br />
-                *代引き手数料 +￥330
-              </label>
-              <input
-                type="radio"
-                id="cashOnDelivery"
-                name="支払い方法"
-                value="cashOnDelivery"
-                onClick={() => {
-                  setPaymentMethod("cashOnDelivery");
-                  setTotal(total + 830);
-                }}
-              />
-            </div>
-            {flag && (
-              <p className={styles.attention}>*支払い方法を選択してください</p>
-            )}
-            <br />
-            <p>
-              発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。
-              <br /> 下記をコピーしてお使いください。
-              <br />
-              ----------------------------
-              <br /> 郵便番号:
-              <br /> 住所（建物名・号室）:
-              <br /> 宛名:
-            </p>
-            <div>
-              <label htmlFor="note">
-                <span className="label-fit label-warning">任意</span>備考
-              </label>
-              <br />
-              <textarea
-                cols={120}
-                rows={15}
-                id="note"
-                placeholder="宛先変更があればご記入ください"
-                onChange={(e) => setNote(e.target.value)}
-                value={note}
-                className={styles.form}
-              />
-            </div>
-            <br />
-            <div className={styles.btn}>
-              <input
-                type="button"
-                className="idbutton"
-                onClick={handleClick}
-                value="購入する"
-              />
-            </div>
-            <br />
-            <div className={styles.btn}>
-              <Link href="/cart" className={styles.link}>
-                カートに戻る
-              </Link>
-            </div>
-          </form>
-          <br />
-          <br />
+                                    <tr className={styles.total_table_last_list}>
+                                        <th>
+                                            合計{"("}税込{")"}:
+                                        </th>
+                                        <td>￥{total}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <div className={styles.total_wrapper}>
+                            <div className="right-side-colored">
+                                <table>
+                                    <tbody>
+                                        <tr className={styles.total_table_list}>
+                                            <th>
+                                                小計{"("}税込{")"}:
+                                            </th>
+                                            <td>￥{total}</td>
+                                        </tr>
+                                        <tr className={styles.total_table_list}>
+                                            <th>
+                                                送料{"("}一律{")"}:
+                                            </th>
+                                            <td>￥500</td>
+                                        </tr>
+                                        <tr className={styles.total_table_list}>
+                                            <th>代引き手数料:</th>
+                                            <td>￥330</td>
+                                        </tr>
+                                        <tr className={styles.total_table_last_list}>
+                                            <th>
+                                                合計{"("}税込{")"}:
+                                            </th>
+                                            <td>￥{total + 500 + 330}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+                    <b>発送予定日</b>
+                    <p>購入日から3～5営業日以内に発送いたします</p>
+                    <form>
+                        {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
+                        <input type="hidden" name="shipstatus" value={shipStatus} />
+                        <h3>支払い方法</h3>
+                        <div>
+                            <label htmlFor="credit">
+                                <span className="label-fit label-danger">必須</span>クレジット
+                            </label>
+                            <input
+                                type="radio"
+                                id="credit"
+                                name="支払い方法"
+                                value="credit"
+                                required
+                                onClick={() => {
+                                    setPaymentMethod("credit");
+                                    setTotal(total + 500);
+                                }}
+                            />
+                            <label htmlFor="cashOnDelivery">
+                                <span className="label-fit label-danger">必須</span>代引き{" "}
+                                <br />
+                                *代引き手数料 +￥330
+                            </label>
+                            <input
+                                type="radio"
+                                id="cashOnDelivery"
+                                name="支払い方法"
+                                value="cashOnDelivery"
+                                onClick={() => {
+                                    setPaymentMethod("cashOnDelivery");
+                                    setTotal(total + 830);
+                                }}
+                            />
+                        </div>
+                        {flag && (
+                            <p className={styles.attention}>*支払い方法を選択してください</p>
+                        )}
+                        <br />
+                        <p>
+                            発送先の住所を変更をご希望の際は備考欄にて【郵便番号・住所（建物名・号室）・宛名】をご記入下さい。
+                            <br /> 下記をコピーしてお使いください。
+                            <br />
+                            ----------------------------
+                            <br /> 郵便番号:
+                            <br /> 住所（建物名・号室）:
+                            <br /> 宛名:
+                        </p>
+                        <div>
+                            <label htmlFor="note">
+                                <span className="label-fit label-warning">任意</span>備考
+                            </label>
+                            <br />
+                            <textarea
+                                cols={120}
+                                rows={15}
+                                id="note"
+                                placeholder="宛先変更があればご記入ください"
+                                onChange={(e) => setNote(e.target.value)}
+                                value={note}
+                                className={styles.form}
+                            />
+                        </div>
+                        <br />
+                        <div className={styles.btn}>
+                            <input
+                                type="button"
+                                className="idbutton"
+                                onClick={handleClick}
+                                value="購入する"
+                            />
+                        </div>
+                        <br />
+                        <div className={styles.btn}>
+                            <Link href="/cart" className={styles.link}>
+                                カートに戻る
+                            </Link>
+                        </div>
+                    </form>
+                    <br />
+                    <br />
+                </div>
+                <Footer />
+            </SignIn>
         </div>
     );
 }
