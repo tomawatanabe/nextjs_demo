@@ -6,6 +6,7 @@ import Link from "next/link";
 import Address from "../../components/settlement/adress";
 import Image from "next/image";
 import Header from "../../components/Header";
+import SignIn from "../../components/SignIn";
 
 
 
@@ -81,7 +82,7 @@ export default function Settlement() {
                 .then((getdata) => {
                     console.log('Success:', getdata);
                     alert("購入手続きが完了しました！");
-                    router.push('/');
+                    router.replace('http://localhost:3000/settlement/close');
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -125,6 +126,7 @@ export default function Settlement() {
 
     return (
         <div>
+            <SignIn>
             <Header />
             <Address />
 
@@ -223,7 +225,7 @@ export default function Settlement() {
                         value="cashOnDelivery"
                         onClick={() => setPaymentMethod("cashOnDelivery")}
                     />
-                    <label htmlFor="cashOnDelivery">代引き手数料 <br />*代引き手数料330円</label>
+                    <label htmlFor="cashOnDelivery">代引き手数料 <br />*代引き手数料￥330</label>
                 </div>
                 {flag && <p>支払い方法を選択してください</p>}
 
@@ -238,6 +240,7 @@ export default function Settlement() {
                     <input type="button" onClick={handleClick} value="購入する" />
                 </div>
             </form><br /><br />
+            </SignIn>
         </div>
     );
 }
