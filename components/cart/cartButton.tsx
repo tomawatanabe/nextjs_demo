@@ -3,6 +3,7 @@ import Router from "next/router";
 import type { Stock } from "../../types";
 import { useCookie } from "../useCookie";
 import useSWR from "swr";
+import styles from "../../styles/CartButton.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -71,11 +72,14 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     <div>
       {data?.stock?.some((item: any) => item.id === stock.id) ||
       localData[0]?.stock.some((item: any) => item.id === stock.id) ? (
-        <button onClick={addCartItem} disabled>
-          カートに追加済みです
+        <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+          カートに追加済み
         </button>
       ) : (
-        <button onClick={addCartItem} className="idbutton">
+        <button
+          className={styles.addCartBtn}
+          onClick={addCartItem}
+        >
           カートへ追加
         </button>
       )}

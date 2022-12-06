@@ -3329,10 +3329,11 @@
             "deleted": "false"
           }
         }
-      ],
-      "id": 6
+      ]
+      
     }
   ],
+  
   "favoriteItems": [
     {
       "itemId": 1,
@@ -3433,13 +3434,40 @@
     {
       "itemId": 4,
       "cookieName": "6",
+      "id": 1
+    },
+    {
+      "itemId": 5,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE PRO",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 2
+    },
+    {
+      "itemId": 4,
+      "cookieName": "1",
       "name": "AIR FOAMPOSITE ONE SUPREME SP",
       "price": 121000,
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
       "condition": "A",
       "deleted": false,
-      "id": 10
+      "id": 3
+    },
+    {
+      "itemId": 1,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 4
     }
   ],
   "usedItems": []

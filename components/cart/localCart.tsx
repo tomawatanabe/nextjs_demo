@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import CartItem from "./cartItem";
 import CartTotal from "./cartTotal";
