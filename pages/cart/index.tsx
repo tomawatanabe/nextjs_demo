@@ -5,7 +5,7 @@ import { useCookie } from "../../components/useCookie";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import styles from "../../styles/Cart.module.css";
-
+import PageTop from "../../components/pageTop";
 
 const ShoppingCart = () => {
   const userID = useCookie();
@@ -25,6 +25,7 @@ const ShoppingCart = () => {
           トップページへ
         </Link>
       </div>
+      <PageTop />
       <Footer />
     </>
   );

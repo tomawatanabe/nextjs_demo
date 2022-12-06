@@ -242,7 +242,7 @@ export default function Settlement() {
                 }}
               />
               <label htmlFor="cashOnDelivery">
-                <span className="label-fit label-danger">必須</span>代引き手数料{" "}
+                <span className="label-fit label-danger">必須</span>代引き{" "}
                 <br />
                 *代引き手数料 +￥330
               </label>

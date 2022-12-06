@@ -20,8 +20,6 @@ const SignUpForm = () => {
     console.log("確認ボタンが押されました");
   };
 
-  // console.log(errors);
-
   //郵便番号APIから住所を取得する関数
   const citySuggest = async () => {
     const values = getValues();
@@ -185,7 +183,7 @@ const SignUpForm = () => {
           ></input>
           <input
             type="button"
-            className="btn"
+            className="zipCodeBtn"
             onClick={citySuggest}
             value="住所を自動入力"
           />
