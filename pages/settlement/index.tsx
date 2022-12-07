@@ -24,6 +24,7 @@ export default function Settlement() {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [shipStatus, setShipStatus] = useState("未発送");
   const [flag, setFlag] = useState(false);
+
   const userId = useCookie();
 
   // カート情報を引き出す
@@ -45,8 +46,11 @@ export default function Settlement() {
     0
   );
   console.log(initial);
-  const [total, setTotal] = useState(initial);
-
+  const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    setSubTotal(initial);
+  });
   useEffect(() => {
     setTotal(initial);
   }, [cart]);
@@ -170,7 +174,7 @@ export default function Settlement() {
                     <th>
                       小計{"("}税込{")"}:
                     </th>
-                    <td>￥{total}</td>
+                    <td>￥{subTotal}</td>
                   </tr>
                   <tr className={styles.total_table_list}>
                     <th>
@@ -183,7 +187,7 @@ export default function Settlement() {
                     <th>
                       合計{"("}税込{")"}:
                     </th>
-                    <td>￥{total}</td>
+                    <td>￥{subTotal + 500}</td>
                   </tr>
                 </tbody>
               </table>
@@ -197,7 +201,7 @@ export default function Settlement() {
                       <th>
                         小計{"("}税込{")"}:
                       </th>
-                      <td>￥{total}</td>
+                      <td>￥{subTotal}</td>
                     </tr>
                     <tr className={styles.total_table_list}>
                       <th>
@@ -213,7 +217,7 @@ export default function Settlement() {
                       <th>
                         合計{"("}税込{")"}:
                       </th>
-                      <td>￥{total + 500 + 330}</td>
+                      <td>￥{subTotal + 500 + 330}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -238,7 +242,7 @@ export default function Settlement() {
                 required
                 onClick={() => {
                   setPaymentMethod("credit");
-                  setTotal(total + 500);
+                  setTotal(initial + 500);
                 }}
               />
               <label htmlFor="cashOnDelivery">
@@ -253,7 +257,7 @@ export default function Settlement() {
                 value="cashOnDelivery"
                 onClick={() => {
                   setPaymentMethod("cashOnDelivery");
-                  setTotal(total + 830);
+                  setTotal(initial + 830);
                 }}
               />
             </div>
