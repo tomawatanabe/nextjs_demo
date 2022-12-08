@@ -39,7 +39,7 @@ function UsedItemList() {
         itemCode: sortedData[i]?.itemCode,
         itemSize: sortedData[i]?.itemSize,
         itemColor: sortedData[i]?.itemColor,
-        id: sortedData[i]?.itemId,
+        id: sortedData[i]?.id,
       });
     }
     return sortedTopData;
