@@ -319,6 +319,10 @@ const UserImfo = () => {
                   value: 8,
                   message: "パスワードは8文字以上で入力してください",
                 },
+                maxLength: {
+                  value: 24,
+                  message: "パスワードは24文字以下で入力してください",
+                },
                 pattern: {
                   value: /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/,
                   message:
