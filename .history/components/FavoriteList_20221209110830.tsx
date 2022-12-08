@@ -60,8 +60,9 @@ function FavoriteList() {
       }
     )
       .then(() =>
-        mutate()
+        mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`)
       )
+      .then(router.reload());
   };
 
   if (!data.length) {
