@@ -84,7 +84,7 @@ export default function Settlement() {
         .then((response) => response.json())
         .then((getdata) => {
           console.log("Success:", getdata);
-          router.replace("${process.env. NEXT_PUBLIC_API}/settlement/close");
+          router.replace("${process.env. NEXT_PUBLIC_API}/api/settlement/close");
 
         })
         .catch((error) => {
