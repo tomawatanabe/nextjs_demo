@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../../styles/purchase.module.css";
 import { useCookie } from "../useCookie";
@@ -23,36 +23,36 @@ const PurchaseForm = ({
 
   const cookieName = useCookie();
 
-  // ログインしてたら（cookie持ってたら会員情報を自動入力）
-  if (cookieName === "userID=" || undefined) {
-  } else {
-    //DBから値を読み込み
-    const get = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/users?id=${cookieName}`
-      );
-      const data = await res.json();
-      return data;
-    };
-    get();
+  const [loading, setLoading] = useState(true);
 
-    //デフォルト値としてセット
-    const setDefaultUserValue = async () => {
-      const data = await get();
-      setValue("lastName", data[0]?.lastName);
-      setValue("firstName", data[0]?.firstName);
-      setValue("kanaLastName", data[0]?.kanaLastName);
-      setValue("kanaFirstName", data[0]?.kanaFirstName);
-      setValue("phone", data[0]?.phoneNumber);
-      setValue("email", data[0]?.email);
-      setValue("zipCode", data[0]?.zipCode);
-      setValue("prefecture", data[0]?.prefecture);
-      setValue("city", data[0]?.city);
-      setValue("address", data[0]?.address);
-      setValue("building", data[0]?.building);
-    };
-    setDefaultUserValue();
-  }
+  useEffect(() => {
+    // ログインしてたら（cookie持ってたら会員情報を自動入力）
+    if (cookieName === "userID=" || undefined) {
+    } else {
+      //DBから値を読み込み
+      const get = async () => {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/API/users?id=${cookieName}`
+        );
+        const data = await res.json();
+        //デフォルト値としてセット
+        setValue("lastName", data[0]?.lastName);
+        setValue("firstName", data[0]?.firstName);
+        setValue("kanaLastName", data[0]?.kanaLastName);
+        setValue("kanaFirstName", data[0]?.kanaFirstName);
+        setValue("phone", data[0]?.phoneNumber);
+        setValue("email", data[0]?.email);
+        setValue("zipCode", data[0]?.zipCode);
+        setValue("prefecture", data[0]?.prefecture);
+        setValue("city", data[0]?.city);
+        setValue("address", data[0]?.address);
+        setValue("building", data[0]?.building);
+        //setterを呼び出して再レンダリングをかける
+        setLoading(false);
+      };
+      get();
+    }
+  }, [loading]);
 
   const onSubmit = (e: any) => {
     router.push(`/purchase?confirm=1`);
@@ -67,7 +67,6 @@ const PurchaseForm = ({
       }
     );
     const result = await res.json();
-    console.log(result);
 
     //存在しない郵便番号の場合、アラートを返す
     if (result.code === 404 || result.code === 400) {
@@ -145,7 +144,7 @@ const PurchaseForm = ({
           )) ||
             (errors.kanaFirstName?.message && (
               <span className="formError">
-                {errors.kanaLastName?.message as string}
+                {errors.kanaFirstName?.message as string}
               </span>
             ))}
         </div>

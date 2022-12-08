@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import styles from "../../styles/purchase.module.css";
 import { useCookie } from "../useCookie";
 
 const ContactForm = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   const {
     register,
@@ -15,31 +17,28 @@ const ContactForm = () => {
 
   const cookieName = useCookie();
 
-  // ログインしてたら（cookie持ってたら会員情報を自動入力）
-  if (cookieName === "userID=" || undefined) {
-  } else {
-    //DBから値を読み込み
-    const get = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/users?id=${cookieName}`
-      );
-      const data = await res.json();
-      return data;
-    };
-    get();
-
-    //デフォルト値としてセット
-    const setDefaultUserValue = async () => {
-      const data = await get();
-      setValue("lastname", data[0]?.lastName);
-      setValue("firstname", data[0]?.firstName);
-      setValue("kanalastname", data[0]?.kanaLastName);
-      setValue("kanafirstname", data[0]?.kanaFirstName);
-      setValue("phone", data[0]?.phoneNumber);
-      setValue("email", data[0]?.email);
-    };
-    setDefaultUserValue();
-  }
+  useEffect(() => {
+    // ログインしてたら（cookie持ってたら会員情報を自動入力）
+    if (cookieName === "userID=" || undefined) {
+    } else {
+      //DBから値を読み込み
+      const get = async () => {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/API/users?id=${cookieName}`
+        );
+        const data = await res.json();
+        //デフォルト値としてセット
+        setValue("lastname", data[0]?.lastName);
+        setValue("firstname", data[0]?.firstName);
+        setValue("kanalastname", data[0]?.kanaLastName);
+        setValue("kanafirstname", data[0]?.kanaFirstName);
+        setValue("phone", data[0]?.phoneNumber);
+        setValue("email", data[0]?.email);
+        setLoading(false);
+      };
+      get();
+    }
+  }, [loading]);
   const onSubmit = async (data: any) => {
     router.push(`/contact?confirm=1`);
   };

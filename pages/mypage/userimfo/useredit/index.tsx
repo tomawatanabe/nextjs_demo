@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SignIn from "../../../../components/SignIn";
 import Link from "next/link";
 import Header from "../../../../components/Header";
@@ -9,19 +9,20 @@ import { useCookie } from "../../../../components/useCookie";
 
 const UserImfo = () => {
   const router = useRouter();
+  const cookieName = useCookie();
 
   const {
     register,
     getValues,
     setValue,
     formState: { errors },
+    handleSubmit,
   } = useForm({
-    mode: "onSubmit",
+    mode: "onChange",
     reValidateMode: "onChange",
     criteriaMode: "all",
-    shouldFocusError: false,
+    shouldUnregister: false,
   });
-  const cookieName = useCookie();
 
   //郵便番号APIから住所を取得する関数
   const citySuggest = async () => {
@@ -45,41 +46,43 @@ const UserImfo = () => {
     setValue("city", result.data.address);
   };
 
-  //DBから値を読み込み
-  const get = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/api/users?id=${cookieName}`
-    );
-    const data = await res.json();
-    return data;
-  };
-  get();
+  const [loading, setLoading] = useState(true);
 
-  //デフォルト値としてセット
-  const setDefaultUserValue = async () => {
-    const data = await get();
-    setValue("lastName", data[0]?.lastName);
-    setValue("firstName", data[0]?.firstName);
-    setValue("kanaLastName", data[0]?.kanaLastName);
-    setValue("kanaFirstName", data[0]?.kanaFirstName);
-    setValue("phoneNumber", data[0]?.phoneNumber);
-    setValue("email", data[0]?.email);
-    setValue("zipCode", data[0]?.zipCode);
-    setValue("prefecture", data[0]?.prefecture);
-    setValue("city", data[0]?.city);
-    setValue("address", data[0]?.address);
-    setValue("building", data[0]?.building);
-    setValue("password", data[0]?.password);
-  };
-  setDefaultUserValue();
+  useEffect(() => {
+    // ログインしてたら（cookie持ってたら会員情報を自動入力）
+    if (cookieName === "userID=" || undefined) {
+    } else {
+      //DBから値を読み込み
+      const get = async () => {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/API/users?id=${cookieName}`
+        );
+        const data = await res.json();
+        //デフォルト値としてセット
+        setValue("lastName", data[0]?.lastName);
+        setValue("firstName", data[0]?.firstName);
+        setValue("kanaLastName", data[0]?.kanaLastName);
+        setValue("kanaFirstName", data[0]?.kanaFirstName);
+        setValue("phoneNumber", data[0]?.phoneNumber);
+        setValue("email", data[0]?.email);
+        setValue("zipCode", data[0]?.zipCode);
+        setValue("prefecture", data[0]?.prefecture);
+        setValue("city", data[0]?.city);
+        setValue("address", data[0]?.address);
+        setValue("building", data[0]?.building);
+        setValue("password", data[0]?.password);
+        //setterを呼び出して再レンダリングをかける
+        setLoading(false);
+      };
+      get();
+    }
+  }, [loading]);
 
   //onClickでデータベースに登録
-  const handleSubmit = async () => {
+  const onSubmit = async (e: any) => {
     const values = getValues();
-    const data = await get();
-    const userId = data[0]?.id;
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/users/${userId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/users/${cookieName}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -99,15 +102,13 @@ const UserImfo = () => {
         password: values?.password,
       }),
     });
-    alert("会員情報を変更しました");
-    router.reload();
   };
 
   return (
     <>
       <SignIn>
         <Header />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h1>お客様情報</h1>
           <h2>
             <span>お客様情報を変更してください。</span>
@@ -115,60 +116,75 @@ const UserImfo = () => {
           <hr />
           <div>
             <label htmlFor="lastName">
-              <span className="label-fit label-danger">必須</span>氏名（姓）
+              <span className="label-fit label-danger">必須</span>氏名
             </label>
+
             <input
-              required
               id="lastName"
+              placeholder="山田"
               {...register("lastName", {
                 required: "必須項目です。",
               })}
             />
-          </div>
-          <div>
-            <label htmlFor="lastName">
-              <span className="label-fit label-danger">必須</span>氏名（名）
-            </label>
+
             <input
-              required
               id="firstName"
+              placeholder="太郎"
               {...register("firstName", {
                 required: "必須項目です。",
               })}
             />
+
+            {(errors.firstName?.message && (
+              <span className="formError">
+                {errors.firstName?.message as string}
+              </span>
+            )) ||
+              (errors.lastName?.message && (
+                <span className="formError">
+                  {errors.lastName?.message as string}
+                </span>
+              ))}
           </div>
           <div>
             <label htmlFor="kanaLastName">
-              <span className="label-fit label-danger">必須</span>氏名（カナ姓）
+              <span className="label-fit label-danger">必須</span>氏名（カナ）
             </label>
+
             <input
-              required
               id="kanaLastName"
+              placeholder="ヤマダ"
               {...register("kanaLastName", {
                 required: "必須項目です。",
               })}
             />
-          </div>
-          <div>
-            <label htmlFor="kanaLastName">
-              <span className="label-fit label-danger">必須</span>氏名（カナ名）
-            </label>
             <input
-              required
               id="kanaFirstName"
+              placeholder="タロウ"
               {...register("kanaFirstName", {
                 required: "必須項目です。",
               })}
             />
+
+            {(errors.kanaLastName?.message && (
+              <span className="formError">
+                {errors.kanaLastName?.message as string}
+              </span>
+            )) ||
+              (errors.kanaFirstName?.message && (
+                <span className="formError">
+                  {errors.kanaLastName?.message as string}
+                </span>
+              ))}
           </div>
           <div>
             <div>
               <label htmlFor="phoneNumber">
                 <span className="label-fit label-danger">必須</span>電話番号
               </label>
+
               <input
-                required
-                id="phoneNumber"
+                id="phone"
                 placeholder="0312345678"
                 {...register("phoneNumber", {
                   required: "必須項目です。",
@@ -178,9 +194,9 @@ const UserImfo = () => {
                   },
                 })}
               />
-              {errors.phone?.message && (
+              {errors.phoneNumber?.message && (
                 <span className="formError">
-                  {errors.phone?.message as string}
+                  {errors.phoneNumber?.message as string}
                 </span>
               )}
             </div>
@@ -189,14 +205,12 @@ const UserImfo = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="email">
+            <label htmlFor="mail">
               <span className="label-fit label-danger">必須</span>メールアドレス
             </label>
 
             <input
-              required
-              type="email"
-              id="email"
+              id="mail"
               placeholder="sample@sample.co.jp"
               {...register("email", {
                 required: "必須項目です。",
@@ -208,8 +222,8 @@ const UserImfo = () => {
               })}
             />
 
-            {errors.mail?.message && (
-              <span className="formError">{errors.mail.message as string}</span>
+            {errors.email?.message && (
+              <span className="formError">{errors.email.message as string}</span>
             )}
             <div>
               <span className="notice">
@@ -218,11 +232,10 @@ const UserImfo = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="zipCode">
+            <label htmlFor="postCode">
               <span className="label-fit label-danger">必須</span>郵便番号
             </label>
             <input
-              required
               type="text"
               placeholder="1600022"
               {...register("zipCode", {
@@ -251,7 +264,6 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>都道府県
             </label>
             <input
-              required
               type="text"
               placeholder="東京都"
               id="prefecture"
@@ -268,7 +280,6 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>市区町村
             </label>
             <input
-              required
               type="text"
               placeholder="新宿区新宿"
               id="city"
@@ -283,7 +294,6 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>番地
             </label>
             <input
-              required
               type="text"
               placeholder="4-3-25"
               id="address"
@@ -300,7 +310,6 @@ const UserImfo = () => {
               <span className="label-fit label-warning">任意</span>建物名
             </label>
             <input
-              required
               type="text"
               placeholder="TOKYU REIT新宿ビル8F"
               id="building"
@@ -312,8 +321,7 @@ const UserImfo = () => {
               <span className="label-fit label-danger">必須</span>パスワード
             </label>
             <input
-              required
-              type="text"
+              type="password"
               id="password"
               {...register("password", {
                 required: "必須項目です。",
@@ -326,7 +334,7 @@ const UserImfo = () => {
                   message: "パスワードは24文字以下で入力してください",
                 },
                 pattern: {
-                  value: /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}/,
+                  value: /(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-z0-9]{8,}$/,
                   message:
                     "パスワードは大文字、小文字、数字を少なくとも１つ入力してください",
                 },
