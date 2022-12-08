@@ -16,7 +16,7 @@ function FavoriteList() {
   const router: any = useRouter();
 
   const { data, error, mutate } = useSWR(
-    `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}`,
+    `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}`,
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -52,9 +52,12 @@ function FavoriteList() {
 
   //お気に入りから削除する関数
   const deleteFav = (favoriteItem: FavoriteItem2) => {
-    fetch(`http://localhost:8000/favoriteItems/${favoriteItem?.id}`, {
-      method: "DELETE",
-    }).then(router.reload());
+    fetch(
+      `${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${favoriteItem?.id}`,
+      {
+        method: "DELETE",
+      }
+    ).then(router.reload());
   };
 
   if (!data.length) {
@@ -130,7 +133,7 @@ function FavoriteList() {
                       <td>
                         <a
                           target="_blank"
-                          href={`http://localhost:3000/${favoriteItem.itemId}`}
+                          href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
                         >
                           <Image
                             className={styles.btn}
@@ -179,7 +182,7 @@ function FavoriteList() {
                       <td>
                         <a
                           target="_blank"
-                          href={`http://localhost:3000/${favoriteItem.itemId}`}
+                          href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
                         >
                           <Image
                             className={styles.btn}

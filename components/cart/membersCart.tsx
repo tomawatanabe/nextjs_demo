@@ -10,8 +10,7 @@ import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
-    fetch(resource).then((res) => res.json());
-
+  fetch(resource).then((res) => res.json());
 
 const Members = () => {
   const userID = useCookie();
@@ -25,12 +24,12 @@ const Members = () => {
 
   // サーバ上のデータを取得
   let { data, error } = useSWR(
-    `http://localhost:8000/shoppingCart?id=${userID}`,
+    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`,
     fetcher
   );
 
   useEffect(() => {
-    mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
+    mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
   }, []);
 
   if (error) return <div>failed to load</div>;
@@ -41,7 +40,7 @@ const Members = () => {
     const stock = cart.stock;
     const deleted = stock.filter((item: Stock) => item.id !== id);
 
-    fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +51,7 @@ const Members = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
+        mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
         Router.push("/cart");
       })
       .catch((error) => {
@@ -70,7 +69,7 @@ const Members = () => {
       stock.push(localItem);
     }
 
-    fetch(`http://localhost:8000/shoppingCart/${userID}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

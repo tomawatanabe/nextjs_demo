@@ -1656,28 +1656,6 @@
   ],
   "favoriteItems": [
     {
-      "itemId": 11,
-      "cookieName": "1",
-      "name": "AIR JORDAN 1",
-      "price": 27500,
-      "size": 27,
-      "imagePath": "images/sneakers/AIR JORDAN 1/AIR JORDAN 1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 1
-    },
-    {
-      "itemId": 12,
-      "cookieName": "1",
-      "name": "AIR JORDAN 1 HIGH 85",
-      "price": 71500,
-      "size": 29,
-      "imagePath": "images/sneakers/AIR JORDAN 1 HIGH 85/AIR JORDAN 1 HIGH 85_1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 2
-    },
-    {
       "itemId": 13,
       "cookieName": "1",
       "name": "AIR JORDAN 1 LOW OG SP",
