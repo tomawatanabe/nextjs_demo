@@ -40,7 +40,6 @@ const Members = () => {
   const handleDelete = (cart: any, id: any) => {
     const stock = cart.stock;
     const deleted = stock.filter((item: Stock) => item.id !== id);
-    console.log(deleted);
 
     fetch(`http://localhost:8000/shoppingCart/${userID}`, {
       method: "PATCH",
@@ -53,7 +52,6 @@ const Members = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         mutate(`http://localhost:8000/shoppingCart?id=${userID}`);
         Router.push("/cart");
       })
@@ -83,7 +81,6 @@ const Members = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         localStorage.clear();
         Router.reload();
       })
