@@ -46,7 +46,7 @@ export default function Loginpage() {
           console.log(`ユーザー認証完了`);
           document.cookie =
             `userID=${data.cookieId};  Path=/; expires=` + expire.toUTCString();
-          router.replace("/");
+          history.back();
         }
       });
   }
