@@ -7,7 +7,7 @@ const CartTotal = (props: any) => {
   const initial: number = cart?.stock
     .map((stock: any) => stock.price)
     .reduce((prev: number, curr: number) => prev + curr, 0);
-  console.log(initial);
+  
   const [total, setTotal] = useState(initial);
 
   useEffect(() => {
