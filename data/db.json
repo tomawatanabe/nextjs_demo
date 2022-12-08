@@ -1406,19 +1406,7 @@
       "id": 2
     }
   ],
-  "favoriteItems": [
-    {
-      "itemId": 7,
-      "cookieName": "1",
-      "name": "AIR FORCE 1 07/CLOT/FRGMT",
-      "price": 66000,
-      "size": 26,
-      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 1
-    }
-  ],
+  "favoriteItems": [],
   "usedItems": [
     {
       "receptionDate": "2022/12/6",
