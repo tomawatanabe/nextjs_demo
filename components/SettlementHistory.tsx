@@ -109,7 +109,7 @@ function SettlementHistory() {
                     <tr key={order.id}>
                       <td className={styles.td_center}>{order.shipStatus}</td>
                       <td className={styles.td_center}>
-                        {order.orderDate.toString()}
+                        {order.orderDate}
                       </td>
                       <td className={styles.td_center}>
                         ¥{order.totalPrice.toLocaleString()}
