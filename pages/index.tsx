@@ -10,6 +10,8 @@ import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";
 
 export default function Home() {
+  
+
   const userID = useCookie();
 
   // 検索機能
@@ -32,7 +34,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/stock")
+    fetch("${process.env.NEXT_PUBLIC_API}/stock")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

@@ -16,7 +16,7 @@ function FavoriteList() {
   const router: any = useRouter();
 
   const { data, error, mutate } = useSWR(
-    `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}`,
+    `${process.env.NEXT_PUBLIC_API}/favoriteItems?deleted=false&cookieName=${cookieName}`,
     fetcher
   );
   if (error) return <div>failed to load</div>;

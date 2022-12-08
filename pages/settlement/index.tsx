@@ -16,7 +16,6 @@ export default function Settlement() {
   const todayDate = new Date().getDate();
 
   // 購入手続き完了でDB/orderに送るデータ内容
-  // const [ userID, setUserID] = useState(0);
   const [orderDate, setOrderDate] = useState(
     `${todayYear}年${todayMonth}月${todayDate}日`
   );
@@ -33,19 +32,19 @@ export default function Settlement() {
     init: RequestInit | undefined
   ) => fetch(resource, init).then((res) => res.json());
   const { data: cart, error } = useSWR(
-    `http://localhost:3000/api/shoppingCart/${userId}`,
+    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`,
     fetcher
   );
 
   const ItemList = cart?.stock;
-  console.log("itemlist", ItemList);
+  
 
   // 合計金額計算
   const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
     (prev: number, curr: number) => prev + curr,
     0
   );
-  console.log(initial);
+  
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -60,7 +59,6 @@ export default function Settlement() {
 
   const getdata = {
     userID: userId,
-    // totalPrice: totalPrice,
     orderDate: orderDate,
     note: note,
     paymentMethod: paymentMethod,
@@ -75,7 +73,7 @@ export default function Settlement() {
       setFlag(true);
       return;
     } else {
-      fetch("http://localhost:3000/api/order", {
+      fetch("${process.env.NEXT_PUBLIC_API}/api/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +83,7 @@ export default function Settlement() {
         .then((response) => response.json())
         .then((getdata) => {
           console.log("Success:", getdata);
-          router.replace("http://localhost:3000/settlement/close");
+          router.replace("${process.env.NEXT_PUBLIC_API}/settlement/close");
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -97,7 +95,7 @@ export default function Settlement() {
   const DeletedItems = () => {
     const deletedList: any[] = [];
 
-    fetch(`http://localhost:3000/api/shoppingCart/${userId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -120,7 +118,6 @@ export default function Settlement() {
 
     sendOrder();
     setShipStatus("未発送");
-    // setOrderDate(`${todayYear}年${todayMonth}月${todayDate}日`);
     DeletedItems();
   };
 
@@ -227,7 +224,6 @@ export default function Settlement() {
           <b>発送予定日</b>
           <p>購入日から3～5営業日以内に発送いたします</p>
           <form>
-            {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
             <input type="hidden" name="shipstatus" value={shipStatus} />
             <h3>支払い方法</h3>
             <div>
