@@ -16,7 +16,6 @@ export default function Settlement() {
   const todayDate = new Date().getDate();
 
   // 購入手続き完了でDB/orderに送るデータ内容
-  // const [ userID, setUserID] = useState(0);
   const [orderDate, setOrderDate] = useState(
     `${todayYear}年${todayMonth}月${todayDate}日`
   );
@@ -38,14 +37,14 @@ export default function Settlement() {
   );
 
   const ItemList = cart?.stock;
-  console.log("itemlist", ItemList);
+  
 
   // 合計金額計算
   const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
     (prev: number, curr: number) => prev + curr,
     0
   );
-  console.log(initial);
+  
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -60,7 +59,6 @@ export default function Settlement() {
 
   const getdata = {
     userID: userId,
-    // totalPrice: totalPrice,
     orderDate: orderDate,
     note: note,
     paymentMethod: paymentMethod,
@@ -76,6 +74,7 @@ export default function Settlement() {
       return;
     } else {
       fetch("${process.env. NEXT_PUBLIC_API}/api/order", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,6 +85,7 @@ export default function Settlement() {
         .then((getdata) => {
           console.log("Success:", getdata);
           router.replace("${process.env. NEXT_PUBLIC_API}/settlement/close");
+
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -120,7 +120,6 @@ export default function Settlement() {
 
     sendOrder();
     setShipStatus("未発送");
-    // setOrderDate(`${todayYear}年${todayMonth}月${todayDate}日`);
     DeletedItems();
   };
 
@@ -227,7 +226,6 @@ export default function Settlement() {
           <b>発送予定日</b>
           <p>購入日から3～5営業日以内に発送いたします</p>
           <form>
-            {/* <input type="hidden" name="totalPrice" value={totalPrice} /> */}
             <input type="hidden" name="shipstatus" value={shipStatus} />
             <h3>支払い方法</h3>
             <div>

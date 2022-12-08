@@ -17,6 +17,7 @@ function FavoriteList() {
 
   const { data, error, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}`,
+
     fetcher
   );
   if (error) return <div>failed to load</div>;
