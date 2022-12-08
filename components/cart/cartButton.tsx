@@ -17,8 +17,6 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   );
   const [localData, setLocalData] = useState<any[]>([]);
 
-  console.log(stock);
-
   const dataType = {
     stock: [stock],
   };
@@ -76,10 +74,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           カートに追加済み
         </button>
       ) : (
-        <button
-          className={styles.addCartBtn}
-          onClick={addCartItem}
-        >
+        <button className={styles.addCartBtn} onClick={addCartItem}>
           カートへ追加
         </button>
       )}

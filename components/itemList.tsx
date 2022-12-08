@@ -22,9 +22,11 @@ export default function ItemList(props: any) {
                 <Image
                   src={`/${stock.image1}`}
                   alt="item"
-                  layout="fill"
+                  width={140}
+                  height={140}
                   className={styles.image}
                   key={stock.id}
+                  priority
                 />
               </div>
             </Link>
