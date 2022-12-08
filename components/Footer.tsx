@@ -8,10 +8,10 @@ export default function Footer() {
       <div className={styles.left}>
         <ul className={styles.ultag}>
           <li key={"purchase"} className={styles.litag}>
-            <Link href="http://localhost:3000/purchase">買取受付</Link>
+            <Link href="/purchase">買取受付</Link>
           </li>
           <li key={"inquiry"} className={styles.litag}>
-            <Link href="http://localhost:3000/contact">お問い合わせ</Link>
+            <Link href="/contact">お問い合わせ</Link>
           </li>
         </ul>
         <div className={styles.images}>
