@@ -5,11 +5,9 @@
 
 .image {
   cursor: pointer;
-  position: relative;
 }
 
 .images {
-  position: relative;
   width: 12vw;
   height: 12vw;
 }
