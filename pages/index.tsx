@@ -40,6 +40,10 @@ export default function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    AddObj();
+  }, []);
+
   const initializedData = {
     notifyFrequency: "",
   };
@@ -63,7 +67,6 @@ export default function Home() {
     }
   };
 
-  console.log(AddObj());
   return (
     <div className={styles.container}>
       <Head>
