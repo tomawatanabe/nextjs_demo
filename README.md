@@ -6,7 +6,7 @@
 
 
 ### コンソールに表示されたエラーの解消方法  
-- ItemList,mypage
+- ItemList,mypage  
 mapメソッド内のdiv,Link,Imageタグにkeyを付与  
 Imageタグに「priority」を記載(書けとコンソールにでていたから書いた、詳細不明なので後ほど調べる)  
   
