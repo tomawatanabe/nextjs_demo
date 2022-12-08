@@ -13,9 +13,6 @@ const ContactForm = () => {
     formState: { errors },
   } = useFormContext();
 
-  console.log(errors);
-
-  // console.log(errors);
   const cookieName = useCookie();
 
   // ログインしてたら（cookie持ってたら会員情報を自動入力）
@@ -42,7 +39,6 @@ const ContactForm = () => {
     setDefaultUserValue();
   }
   const onSubmit = async (data: any) => {
-    console.log(data);
     router.push(`/contact?confirm=1`);
   };
 

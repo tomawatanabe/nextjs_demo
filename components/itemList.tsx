@@ -16,19 +16,22 @@ export default function ItemList(props: any) {
     <>
       {props.searchQuery.map((stock: Stock) => {
         return (
-          <div className={styles.itemdiv}>
-            <Link legacyBehavior href={`/${stock.id}`}>
-              <div className={styles.images}>
+          <div className={styles.itemdiv} key={`image${stock.id}`}>
+            <Link legacyBehavior href={`/${stock.id}`} key={stock.id}>
+              <div className={styles.images} key={stock.item.name}>
                 <Image
                   src={`/${stock.image1}`}
                   alt="item"
-                  layout="fill"
+                  width={140}
+                  height={140}
                   className={styles.image}
+                  key={stock.id}
+                  priority
                 />
               </div>
             </Link>
             <br />
-            <Link legacyBehavior href={`/${stock.id}`}>
+            <Link legacyBehavior href={`/${stock.id}`} key={`name${stock.id}`}>
               {stock.item.name}
             </Link>
             <br />￥{stock.price}
