@@ -39,13 +39,13 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    fetch("${process.env. NEXT_PUBLIC_API}/api/favoriteItems", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(stockData),
-    }).then(() => mutate("${process.env. NEXT_PUBLIC_API}/api/favoriteItems"));
+    }).then(() => mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems`));
   };
 
   const deleteFav = () => {

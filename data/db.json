@@ -1642,12 +1642,13 @@
       "shipStatus": "未発送",
       "totalPrice": 55500,
       "id": 5
-    }
-  ],
-  "shoppingCart": [
+    },
     {
-      "id": 1,
-      "stock": [
+      "userID": "1",
+      "orderDate": "2022年12月8日",
+      "note": "",
+      "paymentMethod": "credit",
+      "orderItemList": [
         {
           "id": 1,
           "itemID": 1,
@@ -1671,49 +1672,48 @@
             "color": "OPTI YELLOW/OPTI YELLOW-BLACK",
             "deleted": "false"
           }
+        },
+        {
+          "id": 3,
+          "itemID": 3,
+          "price": 66000,
+          "size": 27,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 3,
+            "name": "AIR FOAMPOSITE ONE SP",
+            "series": "POSITE SERIES",
+            "year": 2021,
+            "description": "[ナイキ エア フォームポジット ワン SP \"コムデギャルソン オム プラス\" サミットホワイト/サミットホワイト DJ7952-100] デザイナー川久保玲氏が手掛けるファッションブランド\"COMME des GARÇONS\"のハイエンドライン\"COMME des GARÇONS HOMME PLUS\"とのコラボレーションモデル「AIR FOAMPOSITE ONE SP」の登場です。1997年に発売された「AIR FOAMPOSITE ONE」をベースに、既存の流線形のデザインから波紋柄のデザインへブラッシュアップ。ヒールには\"COMME des GARÇONS HOMME PLUS\"のロゴをデザインしたスペシャルエディションとなっています。",
+            "setprice": "2021年11月発売、日本定価57,200円",
+            "color": "\"CDG\"SUMMIT WHITE/SUMMIT WHITE",
+            "deleted": "false"
+          }
         }
-      ]
+      ],
+      "shipStatus": "未発送",
+      "totalPrice": 105000,
+      "id": 6
+    }
+  ],
+  "shoppingCart": [
+    {
+      "id": 1,
+      "stock": []
     },
     {
       "stock": [],
       "id": 2
     }
   ],
-  "favoriteItems": [
-    {
-      "itemId": 13,
-      "cookieName": "1",
-      "name": "AIR JORDAN 1 LOW OG SP",
-      "price": 220000,
-      "size": 25.5,
-      "imagePath": "images/sneakers/AIR JORDAN 1 LOW OG SP/AIR JORDAN 1 LOW OG SP_1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 3
-    },
-    {
-      "itemId": 14,
-      "cookieName": "1",
-      "name": "AIR JORDAN 1 MID",
-      "price": 22000,
-      "size": 28,
-      "imagePath": "images/sneakers/AIR JORDAN 1 MID/AIR JORDAN 1 MID_1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 4
-    },
-    {
-      "itemId": 1,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 5
-    }
-  ],
+  "favoriteItems": [],
   "usedItems": [
     {
       "receptionDate": "2022/12/6",

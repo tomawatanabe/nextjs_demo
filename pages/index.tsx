@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetch("${process.env. NEXT_PUBLIC_API}/api/stock")
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/stock`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
