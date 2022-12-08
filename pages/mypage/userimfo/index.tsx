@@ -13,7 +13,7 @@ const UserImfo = () => {
     fetch(resource).then((res) => res.json());
 
   const { data, error } = useSWR(
-    `http://localhost:8000/users?id=${cookieName}`,
+    `${process.env.NEXT_PUBLIC_API}/api/users?id=${cookieName}`,
     fetcher
   );
 

@@ -24,7 +24,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
     fetch(resource).then((res) => res.json());
 
   const { data, error, mutate } = useSWR(
-    `http://localhost:8000/favoriteItems?deleted=false&cookieName=${cookieName}&itemId=${stockData.itemId}`,
+    `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}&itemId=${stockData.itemId}`,
     fetcher
   );
 
@@ -39,13 +39,13 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    fetch("http://localhost:8000/favoriteItems", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(stockData),
-    }).then(() => mutate("http://localhost:8000/favoriteItems"));
+    }).then(() => mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems`));
   };
 
   const deleteFav = () => {
@@ -55,9 +55,11 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    fetch(`http://localhost:8000/favoriteItems/${data[0].id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`, {
       method: "DELETE",
-    }).then(() => mutate(`http://localhost:8000/favoriteItems/${data[0].id}`));
+    }).then(() =>
+      mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`)
+    );
   };
 
   return (

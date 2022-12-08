@@ -73,7 +73,8 @@ export default function Settlement() {
       setFlag(true);
       return;
     } else {
-      fetch("${process.env.NEXT_PUBLIC_API}/api/order", {
+      fetch("${process.env. NEXT_PUBLIC_API}/api/order", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +84,8 @@ export default function Settlement() {
         .then((response) => response.json())
         .then((getdata) => {
           console.log("Success:", getdata);
-          router.replace("${process.env.NEXT_PUBLIC_API}/settlement/close");
+          router.replace("${process.env. NEXT_PUBLIC_API}/settlement/close");
+
         })
         .catch((error) => {
           console.error("Error:", error);

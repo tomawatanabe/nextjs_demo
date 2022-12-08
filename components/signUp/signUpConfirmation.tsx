@@ -12,7 +12,7 @@ const SignUpConfirmation = () => {
   //データベースに登録する関数
   const handleSubmitUserValue = () => {
     const values = getValues();
-    fetch("http://localhost:8000/users", {
+    fetch("${process.env. NEXT_PUBLIC_API}/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const SignUpConfirmation = () => {
       }),
     });
 
-    fetch("http://localhost:8000/shoppingCart", {
+    fetch("${process.env. NEXT_PUBLIC_API}/api/shoppingCart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   const userID = useCookie();
 
   const { data, mutate } = useSWR(
-    `http://localhost:8000/shoppingCart/${userID}`,
+    `${process.env.NEXT_PUBLIC_API}/api//shoppingCart/${userID}`,
     fetcher
   );
   const [localData, setLocalData] = useState<any[]>([]);
@@ -47,7 +47,9 @@ const CartButton = ({ stock }: { stock: Stock }) => {
       }
     } else {
       // ログイン状態でカート商品追加
-      const res = await fetch(`http://localhost:8000/shoppingCart/${userID}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`
+      );
       const user = await res.json();
       const target = stock;
 
@@ -60,7 +62,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ stockID: stock.id }),
         });
-        mutate(`http://localhost:8000/shoppingCart/${userID}`);
+        mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`);
         Router.reload();
       }
     }

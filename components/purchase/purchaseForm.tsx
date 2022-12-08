@@ -20,7 +20,7 @@ const PurchaseForm = ({
     setValue,
     formState: { errors },
   } = useFormContext();
-  
+
   const cookieName = useCookie();
 
   // ログインしてたら（cookie持ってたら会員情報を自動入力）
@@ -28,7 +28,9 @@ const PurchaseForm = ({
   } else {
     //DBから値を読み込み
     const get = async () => {
-      const res = await fetch(`http://localhost:8000/users?id=${cookieName}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API}/api/users?id=${cookieName}`
+      );
       const data = await res.json();
       return data;
     };

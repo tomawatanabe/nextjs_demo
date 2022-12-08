@@ -47,7 +47,9 @@ const UserImfo = () => {
 
   //DBから値を読み込み
   const get = async () => {
-    const res = await fetch(`http://localhost:8000/users?id=${cookieName}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/api/users?id=${cookieName}`
+    );
     const data = await res.json();
     return data;
   };
@@ -77,7 +79,7 @@ const UserImfo = () => {
     const data = await get();
     const userId = data[0]?.id;
 
-    fetch(`http://localhost:8000/users/${userId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

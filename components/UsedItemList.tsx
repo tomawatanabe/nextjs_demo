@@ -13,7 +13,9 @@ function UsedItemList() {
   const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/usedItems?cookieName=${cookieName}`,
+
+    `${process.env.NEXT_PUBLIC_API}/api/usedItems?cookieName=${cookieName}`,
+
     fetcher
   );
   if (error) return <div>failed to load</div>;

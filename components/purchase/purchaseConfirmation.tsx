@@ -15,7 +15,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
     const date = new Date();
     const today: string = date.toLocaleDateString();
 
-    fetch("http://localhost:8000/usedItems", {
+    fetch("${process.env. NEXT_PUBLIC_API}/api/usedItems", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
     });
 
     if (values.itemNameB) {
-      fetch("http://localhost:8000/usedItems", {
+      fetch("${process.env. NEXT_PUBLIC_API}/api/usedItems", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

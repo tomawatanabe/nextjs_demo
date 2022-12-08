@@ -8,7 +8,8 @@ import ToggleFavButton from "../components/ToggleFavButton";
 import PageTop from "../components/pageTop";
 
 export const getStaticPaths = async () => {
-  const res = await fetch("${process.env.NEXT_PUBLIC_API}/stock");
+  const res = await fetch(`${process.env.API_BASE_URL}/stock`);
+
   const stocks = await res.json();
   const getpaths = stocks.map((stock: { id: any }) => {
     return { params: { id: stock.id.toString() } };
@@ -20,7 +21,9 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps({ params }: { params: any }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/stock/${params.id}`);
+
+  const res = await fetch(`${process.env.API_BASE_URL}/stock/${params.id}`);
+
   const stock = await res.json();
 
   return { props: { stock } };

@@ -13,7 +13,7 @@ function SettlementHistory() {
   const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
-    `http://localhost:8000/order?userId=${cookie}`,
+    `${process.env.NEXT_PUBLIC_API}/api/order?userId=${cookie}`,
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -154,4 +154,3 @@ function SettlementHistory() {
 }
 
 export default SettlementHistory;
-
