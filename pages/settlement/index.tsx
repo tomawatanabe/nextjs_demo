@@ -73,7 +73,7 @@ export default function Settlement() {
       setFlag(true);
       return;
     } else {
-      fetch("${process.env. NEXT_PUBLIC_API}/api/order", {
+      fetch(`${process.env. NEXT_PUBLIC_API}/api/order`, {
 
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ export default function Settlement() {
         .then((response) => response.json())
         .then((getdata) => {
           console.log("Success:", getdata);
-          router.replace("${process.env. NEXT_PUBLIC_API}/api/settlement/close");
+          router.replace(`${process.env. NEXT_PUBLIC_API}/settlement/close`);
 
         })
         .catch((error) => {
@@ -169,7 +169,7 @@ export default function Settlement() {
             <div className={styles.total_wrapper}>
               <table className="right-side-colored">
                 <tbody>
-                  <tr className={styles.total_table_list}>
+                  <tr className={styles.total_table_list} key="credit">
                     <th>
                       小計{"("}税込{")"}:
                     </th>
@@ -196,7 +196,7 @@ export default function Settlement() {
               <div className="right-side-colored">
                 <table>
                   <tbody>
-                    <tr className={styles.total_table_list}>
+                    <tr className={styles.total_table_list} key="cash">
                       <th>
                         小計{"("}税込{")"}:
                       </th>
