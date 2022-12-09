@@ -1430,6 +1430,41 @@
       "shipStatus": "未発送",
       "totalPrice": 39330,
       "id": 1
+    },
+    {
+      "userID": "1",
+      "orderDate": "2022年12月9日",
+      "note": "",
+      "paymentMethod": "credit",
+      "orderItemList": [
+        {
+          "id": 2,
+          "itemID": 2,
+          "price": 132000,
+          "size": 27.5,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 2,
+            "name": "AIR FOAMPOSITE ONE NRG",
+            "series": "POSITE SERIES",
+            "year": 2012,
+            "description": "[ナイキ エアフォームポジット ワン \"ギャラクシー\" 521286-800]「AIR FOAMPOSITE ONE」は1997年に「アンファニー\"ペニー\"ハーダウェイ」モデルとしてヒールに\"ペニー\"のシグネチャーロゴ\"1CENT\"が入って売り出されたナイキを代表するバスケットシューズです。1993.4年頃から開発をしていたが技術が追い付かず発売まで数年を要したモデルで、\"ペニー\"はこの開発チームにプレイヤーとして助言するなど深い関りがあったことからシグネチャーモデルとは別で\"ペニー\"モデルとして売り出された背景があります。ちなみにデザインを担当したのは「KOBE BRYANT」シリーズのデザインも手掛けている\"エリック・エイバー\"で、サングラスケースや甲虫類の昆虫などからインスピレーションを受け作り上げていったそうです。現在はバスケットシューズからライフスタイルシューズとなり、さまざまなカラーバリエーションが存在しています。 今作のは\"NBA ALLSTAR GAME 2012\"を記念してリリースされた宇宙空間のグラフィックを全面にプリントした通称「GALAXY」。 ※作りがタイトなため、普段履いているNIKEのシューズより1cmから1.5cmアップをおすすめします。※こちらの商品は製造から年数が経過しております。そのため劣化により今後ご使用の際に破損する可能性がございますのでご注意ください。ご購入後の返品・交換は一切お受けできませんので予めご了承ください。",
+            "setprice": "2012年2月発売、日本定価23,100円",
+            "color": "\"GALAXY\" OBSIDIAN/ANTHRACITE-BLACK",
+            "deleted": "false"
+          }
+        }
+      ],
+      "shipStatus": "未発送",
+      "totalPrice": 132500,
+      "id": 2
     }
   ],
   "shoppingCart": [
