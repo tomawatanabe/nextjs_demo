@@ -76,7 +76,6 @@ export default function Home() {
         <title>-JORDANS-中古NIKEスニーカー販売</title>
         <meta name="jordans" content="sneakers NIKE" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <main className={styles.main}>
