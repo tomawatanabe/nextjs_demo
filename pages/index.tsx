@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/sidebar";
 import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
+import AddObj from "./api/stocks";
 import { useState, useRef, useEffect } from "react";
 import Footer from "../components/Footer";
 import { useCookie } from "../components/useCookie";
@@ -38,8 +39,6 @@ export default function Home() {
         setSearchQuery(data);
       });
   }, []);
-
-
   const initializedData = {
     notifyFrequency: "",
   };
