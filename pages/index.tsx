@@ -40,10 +40,6 @@ export default function Home() {
       });
   }, []);
 
-  useEffect(() => {
-    AddObj();
-  }, []);
-
   const initializedData = {
     notifyFrequency: "",
   };
