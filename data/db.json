@@ -1395,11 +1395,13 @@
       "id": 2
     }
   ],
-  "order": [],
-  "shoppingCart": [
+  "order": [
     {
-      "id": 1,
-      "stock": [
+      "userID": "1",
+      "orderDate": "2022年12月9日",
+      "note": "",
+      "paymentMethod": "cashOnDelivery",
+      "orderItemList": [
         {
           "id": 1,
           "itemID": 1,
@@ -1424,7 +1426,16 @@
             "deleted": "false"
           }
         }
-      ]
+      ],
+      "shipStatus": "未発送",
+      "totalPrice": 39330,
+      "id": 1
+    }
+  ],
+  "shoppingCart": [
+    {
+      "id": 1,
+      "stock": []
     },
     {
       "stock": [],
