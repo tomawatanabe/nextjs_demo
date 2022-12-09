@@ -54,13 +54,13 @@ function FavoriteList() {
   //お気に入りから削除する関数
   const deleteFav = (favoriteItem: FavoriteItem2) => {
     fetch(
-      `${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${favoriteItem?.id}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/favoriteItems/${favoriteItem?.id}`,
       {
         method: "DELETE",
       }
     )
       .then(() =>
-        mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`)
+        mutate(`${process.env.NEXT_PUBLIC_API_BASE_URL}/favoriteItems/${data[0].id}`)
       )
       .then(router.reload());
   };
