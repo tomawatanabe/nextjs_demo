@@ -1431,19 +1431,7 @@
       "id": 2
     }
   ],
-  "favoriteItems": [
-    {
-      "itemId": 5,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE PRO",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 2
-    }
-  ],
+  "favoriteItems": [],
   "usedItems": [
     {
       "receptionDate": "2022/12/6",
