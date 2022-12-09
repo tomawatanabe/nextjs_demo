@@ -2,9 +2,9 @@ import { Item } from "../../types";
 import { Stock } from "../../types";
 
 export default async function Stocks() {
-  const item = await fetch(`${process.env.NEXT_PUBLIC_API}/api/items`);
+  const item = await fetch("${process.env. NEXT_PUBLIC_API}/api/items");
   const itemsdata = await item.json();
-  const stock = await fetch(`${process.env.NEXT_PUBLIC_API}/api/stock`);
+  const stock = await fetch("${process.env. NEXT_PUBLIC_API}/api/stock");
   const stocksdata = await stock.json();
 
   stocksdata.map((stock: Stock) => {
