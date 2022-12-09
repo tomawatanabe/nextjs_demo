@@ -57,7 +57,10 @@ function FavoriteList() {
       {
         method: "DELETE",
       }
-    ).then(() => mutate());
+    )
+      .then(() =>
+        mutate()
+      )
   };
 
   if (!data.length) {
