@@ -2,9 +2,11 @@ import { Item } from "../../types";
 import { Stock } from "../../types";
 
 export default async function Stocks() {
-  const item = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/items`);
+  const item = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/items`);
   const itemsdata = await item.json();
-  const stock = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/stock`);
+  const stock = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/stock`
+  );
   const stocksdata = await stock.json();
 
   stocksdata.map((stock: Stock) => {
@@ -12,7 +14,7 @@ export default async function Stocks() {
     const items = itemsdata.filter((item: Item) => stock.itemID === item.id);
     stock.item = items[0];
 
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/stock/${stock.itemID}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/stock/${stock.itemID}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
