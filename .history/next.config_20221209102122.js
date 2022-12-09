@@ -42,10 +42,6 @@ const nextConfig = {
         destination: "http://localhost:8000/favoriteItems",
       },
       {
-        source: "/api/favoriteItems/:slug",
-        destination: "http://localhost:8000/favoriteItems/:slug",
-      },
-      {
         source: "/api/usedItems",
         destination: "http://localhost:8000/usedItems",
       },

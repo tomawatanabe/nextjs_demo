@@ -58,11 +58,7 @@ function FavoriteList() {
       {
         method: "DELETE",
       }
-    )
-      .then(() =>
-        mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`)
-      )
-      .then(router.reload());
+    ).then(router.reload());
   };
 
   if (!data.length) {

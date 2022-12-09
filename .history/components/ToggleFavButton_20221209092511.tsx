@@ -55,11 +55,14 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`, {
-      mode: "cors",
-      method: "DELETE",
-    }).then(() =>
-      mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/favoriteItems/${data[0].id}`,
+      {
+        mode: "cors",
+        method: "DELETE",
+      }
+    ).then(() =>
+      mutate(`${process.env.API_BASE_URL}/favoriteItems/${data[0].id}`)
     );
   };
 
