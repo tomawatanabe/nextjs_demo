@@ -3,7 +3,6 @@ import { FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
 
