@@ -33,7 +33,7 @@ const SignUpConfirmation = () => {
       }),
     });
 
-    fetch("${process.env. NEXT_PUBLIC_API}/api/shoppingCart", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
