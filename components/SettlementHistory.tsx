@@ -4,6 +4,8 @@ import { Order, Stock } from "../types";
 import { useCookie } from "./useCookie";
 import styles from "../styles/MyPage.module.css";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAnglesUp, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
@@ -62,24 +64,18 @@ function SettlementHistory() {
           <h2 className={styles.content_title}>購入履歴</h2>
           {flag ? (
             <>
-              <Image
-                className={styles.btn}
-                src="/images/angles-down-solid.svg"
-                alt="アコーディオンを開く"
-                width={20}
-                height={20}
+              <FontAwesomeIcon
+                icon={faAnglesDown}
                 onClick={() => setFlag(!flag)}
+                className={styles.btn}
               />
             </>
           ) : (
             <>
-              <Image
-                className={styles.btn}
-                src="/images/angles-up-solid.svg"
-                alt="アコーディオンを閉じる"
-                width={20}
-                height={20}
+              <FontAwesomeIcon
+                icon={faAnglesUp}
                 onClick={() => setFlag(!flag)}
+                className={styles.btn}
               />
             </>
           )}
@@ -108,9 +104,7 @@ function SettlementHistory() {
                   return (
                     <tr key={order.id}>
                       <td className={styles.td_center}>{order.shipStatus}</td>
-                      <td className={styles.td_center}>
-                        {order.orderDate}
-                      </td>
+                      <td className={styles.td_center}>{order.orderDate}</td>
                       <td className={styles.td_center}>
                         ¥{order.totalPrice.toLocaleString()}
                       </td>
@@ -134,9 +128,7 @@ function SettlementHistory() {
                   return (
                     <tr key={order.id}>
                       <td className={styles.td_center}>{order.shipStatus}</td>
-                      <td className={styles.td_center}>
-                        {order.orderDate}
-                      </td>
+                      <td className={styles.td_center}>{order.orderDate}</td>
                       <td className={styles.td_center}>
                         ¥{order.totalPrice.toLocaleString()}
                       </td>

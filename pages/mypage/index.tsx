@@ -7,8 +7,9 @@ import FavoriteList from "../../components/FavoriteList";
 import UsedItemList from "../../components/UsedItemList";
 import SettlementHistory from "../../components/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
-import Image from "next/image";
 import PageTop from "../../components/pageTop";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const MyPage = () => {
   return (
@@ -16,20 +17,14 @@ const MyPage = () => {
       <SignIn>
         <Header />
         <div className={styles.mypage_main_content}>
-          <div className={styles.title_wrapper}>
-            <h1 className={styles.content_title}>マイページ</h1>
-            <span className={styles.user_imfo_icon}>
+          <div className={styles.main_title_wrapper}>
+            <h1>マイページ</h1>
+            <div className={styles.user_imfo_icon}>
               <Link href="/mypage/userimfo/">
-                <Image
-                  className={styles.btn}
-                  src="/images/user_icon.png"
-                  alt="詳細ページにジャンプするボタン"
-                  width={20}
-                  height={20}
-                />
-                会員情報
+                <FontAwesomeIcon icon={faUser} />
+                <span> 会員情報</span>
               </Link>
-            </span>
+            </div>
           </div>
           <hr />
           <div>
