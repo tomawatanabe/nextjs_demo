@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import Footer from "../components/Footer";
 import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";
+import SignCheck from "../components/signUp/Signcheck";
 
 export default function Home() {
   const userID = useCookie();
