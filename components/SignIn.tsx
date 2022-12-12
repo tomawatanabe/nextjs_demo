@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useCookieOriginal } from "./useCookie";
 
 const SignIn = ({ children }: any) => {
+  const cookie = useCookieOriginal();
   const router = useRouter();
   useEffect(() => {
-    const signIn = document.cookie;
-    if (signIn === "userID=" || undefined) {
-      console.log("ユーザー認証失敗");
+    if (cookie === "userID=" || undefined) {
       router.push("/login/loginPage");
     }
   }, []);

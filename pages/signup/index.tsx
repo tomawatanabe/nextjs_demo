@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import styles from "../../styles/purchase.module.css";
 import PageTop from "../../components/pageTop";
+import SignCheck from "../../components/signUp/Signcheck";
 
 const Contact = () => {
   const router = useRouter();
@@ -19,24 +20,26 @@ const Contact = () => {
 
   return (
     <div className="wrapper">
-      <Header />
-      <h1 className={styles.kaitorititle}>会員登録フォーム</h1>
-      <FormProvider {...methods}>
-        {isConfirm ? (
-          <>
-            <SignUpConfirmation />
-          </>
-        ) : (
-          <>
-            <SignUpForm />
-          </>
-        )}
-      </FormProvider>
-      <Link href="/" className={styles.link}>
-        トップページへ
-      </Link>
-      <PageTop />
-      <Footer />
+      <SignCheck>
+        <Header />
+        <h1 className={styles.kaitorititle}>会員登録フォーム</h1>
+        <FormProvider {...methods}>
+          {isConfirm ? (
+            <>
+              <SignUpConfirmation />
+            </>
+          ) : (
+            <>
+              <SignUpForm />
+            </>
+          )}
+        </FormProvider>
+        <Link href="/" className={styles.link}>
+          トップページへ
+        </Link>
+        <PageTop />
+        <Footer />
+      </SignCheck>
     </div>
   );
 };
