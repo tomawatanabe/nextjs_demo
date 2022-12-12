@@ -12,7 +12,7 @@ const SignUpConfirmation = () => {
   //データベースに登録する関数
   const handleSubmitUserValue = () => {
     const values = getValues();
-    fetch("${process.env. NEXT_PUBLIC_API}/api/users", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
