@@ -68,19 +68,34 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     }
   };
 
+  // ログイン/ログアウト状態で表示するボタンを分ける　↓
   return (
-    <div>
-      {data?.stock?.some((item: any) => item.id === stock.id) ||
-      localData[0]?.stock.some((item: any) => item.id === stock.id) ? (
-        <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
-          カートに追加済み
-        </button>
-      ) : (
-        <button className={styles.addCartBtn} onClick={addCartItem}>
-          カートへ追加
-        </button>
-      )}
-    </div>
+    <>
+      <div style={{display: userID ? "block" : "none"}} className={"member"} >
+        {data?.stock?.some((item: any) => item.id === stock.id) ? 
+        (
+          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+            カートに追加済み
+          </button>
+        ) : (
+          <button className={styles.addCartBtn} onClick={addCartItem}>
+            カートへ追加
+          </button>
+        )}
+      </div>
+      <div style={{display: userID ? "none" : "block"}} className={"nonMember"} >
+        {localData[0]?.stock.some((item: any) => item.id === stock.id) ? 
+        (
+          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+            カートに追加済み
+          </button>
+        ) : (
+          <button className={styles.addCartBtn} onClick={addCartItem}>
+            カートへ追加
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 
