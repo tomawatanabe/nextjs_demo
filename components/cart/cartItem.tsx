@@ -3,14 +3,14 @@ import useSWR from "swr";
 import Image from "next/image";
 import router from "next/router";
 import { useCookie } from "../useCookie";
-import type { Stock } from "../../types";
+import type { Stock, ShoppingCart } from "../../types";
 import styles from "../../styles/Cart.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
 
-const CartItem = (props: any) => {
+const CartItem = (props: {data: [ShoppingCart] | [], handleDelete: (cart: ShoppingCart, id: number) => void} ) => {
   const userID = useCookie();
   const [cart, setCart] = useState(props.data[0]);
 
@@ -24,7 +24,7 @@ const CartItem = (props: any) => {
 
   const cartList = (
     <ul className={styles.cart_ul}>
-      {cart?.stock.map((content: any) => (
+      {cart?.stock.map((content: Stock) => (
         <li className={styles.cart_li} key={content.id}>
           <div>
             <div>
