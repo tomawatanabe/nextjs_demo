@@ -9,8 +9,6 @@ import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";
 
 export default function Home() {
-  
-
   const userID = useCookie();
 
   // 検索機能
@@ -34,17 +32,12 @@ export default function Home() {
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API}/api/stock`)
-
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
         setSearchQuery(data);
       });
   }, []);
-
-  // useEffect(() => {
-  //   AddObj();
-  // }, []);
 
   const initializedData = {
     notifyFrequency: "",
@@ -75,7 +68,6 @@ export default function Home() {
         <title>-JORDANS-中古NIKEスニーカー販売</title>
         <meta name="jordans" content="sneakers NIKE" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        
       </Head>
       <Header />
       <main className={styles.main}>
