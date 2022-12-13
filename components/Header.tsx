@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useCookie, useCookieOriginal } from "./useCookie";
+import { mutate } from "swr";
 
 export default function Header() {
   const router = useRouter();
