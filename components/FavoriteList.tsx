@@ -2,7 +2,6 @@ import useSWR from "swr";
 import { FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
 
@@ -12,7 +11,6 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 function FavoriteList() {
   const cookieName = useCookie();
   const [flag, setFlag] = useState(true);
-  const router: any = useRouter();
 
   const { data, error, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}`,
@@ -57,10 +55,7 @@ function FavoriteList() {
       {
         method: "DELETE",
       }
-    )
-      .then(() =>
-        mutate()
-      )
+    ).then(() => mutate());
   };
 
   if (!data.length) {
