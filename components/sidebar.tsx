@@ -1,27 +1,22 @@
 import styles from "../styles/Sidebar.module.css";
 import { useRef, useState, useEffect } from "react";
 import Note from "./Note";
+import Image from "next/image";
 
 export default function Sidebar(props: any) {
   return (
     <div className={styles.sidebarBox}>
       <Note />
-      <form className={styles.itemSearch}>
-        <input
-          type="text"
-          name="filter"
-          className={styles.search}
-          placeholder="商品名検索"
-          onChange={props.onChange}
+      <div className={styles.imageIcon}>
+        <Image
+          src="/shoplogo.png"
+          alt="syoplogo"
+          height={150}
+          width={210}
+          className={styles.image}
         />
-        <br />
-        <input
-          type="submit"
-          value="検索"
-          className={styles.searchBtn}
-          onClick={props.onClick}
-        />
-      </form>
+      </div>
+
       <h3 className={styles.title}>SERIES</h3>
       <div className={styles.box}>
         {/* input onChange={event} ===> if(e.target.checked)  filter e.target.value === item.series   filterで出来た配列を一覧として表示　elseの場合は全画面表示 */}
