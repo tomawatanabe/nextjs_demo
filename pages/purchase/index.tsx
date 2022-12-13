@@ -13,8 +13,12 @@ import PageTop from "../../components/pageTop";
 const Purchase = () => {
   //inputに登録された画像のバイナリデータを保持するstate
   //型名、要検討
-  const [imagePreview, setImagePreview] = useState<any>(undefined);
-  const [imagePreviewB, setImagePreviewB] = useState<any>(undefined);
+  const [imagePreview, setImagePreview] = useState<
+    string | ArrayBuffer | null | undefined
+  >(undefined);
+  const [imagePreviewB, setImagePreviewB] = useState<
+    string | ArrayBuffer | null | undefined
+  >(undefined);
 
   //inputに登録された画像のバイナリデータをstateに保持する関数
   const onChangeFileInput = (
@@ -45,7 +49,7 @@ const Purchase = () => {
     };
 
     // ファイル読み込み。読み込まれたファイルはデータURL形式で受け取れる（上記onload参照）
-    console.log(reader.readAsDataURL(event.target?.files[0]));
+    reader.readAsDataURL(event.target?.files[0]);
   };
 
   const onChangeFileInputB = (

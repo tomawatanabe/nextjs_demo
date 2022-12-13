@@ -38,7 +38,6 @@ export default function Home() {
         setSearchQuery(data);
       });
   }, []);
-
   const initializedData = {
     notifyFrequency: "",
   };
