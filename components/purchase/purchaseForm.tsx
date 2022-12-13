@@ -10,8 +10,7 @@ const PurchaseForm = ({
   handleChangeB,
   imageData,
   imageDataB,
-}:any ) => {
-
+}: any) => {
   const router = useRouter();
 
   const {
@@ -22,13 +21,23 @@ const PurchaseForm = ({
     formState: { errors },
   } = useFormContext();
 
+  const values = getValues();
   const cookieName = useCookie();
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // ログインしてたら（cookie持ってたら会員情報を自動入力）
+    //RHFのvaluesオブジェクトの値を配列として定義
+    const valuesArr = Object.values(values).slice(0,11);
+
+    // ログインしてなかったら何もしない
     if (cookieName === "userID=" || undefined) {
+      return;
+      //valuesArrにひとつでもtruthyなものがあったら初期値はセットしない
+    } else if (valuesArr.some((ele) => Boolean(ele) === true)) {
+      setLoading(false);
+      return;
+      //valuesArrが全てfalsyだったら初期値をセットする
     } else {
       //DBから値を読み込み
       const get = async () => {

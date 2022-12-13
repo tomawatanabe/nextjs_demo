@@ -15,7 +15,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
     const date = new Date();
     const today: string = date.toLocaleDateString();
 
-    fetch("${process.env. NEXT_PUBLIC_API}/api/usedItems", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/usedItems`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
     });
 
     if (values.itemNameB) {
-      fetch("${process.env. NEXT_PUBLIC_API}/api/usedItems", {
+      fetch(`${process.env. NEXT_PUBLIC_API}/api/usedItems`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,8 +72,6 @@ const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
         }),
       });
     }
-
-    alert("入力内容を送信しました");
   };
 
   return (
