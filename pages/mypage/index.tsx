@@ -4,7 +4,7 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FavoriteList from "../../components/FavoriteList";
-import TestUsedItemList from "../../components/UsedItemList";
+import UsedItemList from "../../components/UsedItemList";
 import SettlementHistory from "../../components/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import PageTop from "../../components/pageTop";
@@ -36,7 +36,7 @@ const MyPage = () => {
           </div>
           <hr />
           <div>
-            <TestUsedItemList />
+            <UsedItemList />
           </div>
         </div>
         <PageTop />
