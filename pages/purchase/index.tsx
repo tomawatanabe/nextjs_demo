@@ -13,8 +13,12 @@ import PageTop from "../../components/pageTop";
 const Purchase = () => {
   //inputに登録された画像のバイナリデータを保持するstate
   //型名、要検討
-  const [imagePreview, setImagePreview] = useState<any>(undefined);
-  const [imagePreviewB, setImagePreviewB] = useState<any>(undefined);
+  const [imagePreview, setImagePreview] = useState<
+    string | ArrayBuffer | null | undefined
+  >(undefined);
+  const [imagePreviewB, setImagePreviewB] = useState<
+    string | ArrayBuffer | null | undefined
+  >(undefined);
 
   //inputに登録された画像のバイナリデータをstateに保持する関数
   const onChangeFileInput = (

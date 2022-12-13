@@ -1366,7 +1366,7 @@
   "users": [
     {
       "lastName": "新宿",
-      "firstName": "楽子",
+      "firstName": "楽男",
       "kanaLastName": "シンジュク",
       "kanaFirstName": "ラクコ",
       "phoneNumber": "09010000002",
@@ -1430,12 +1430,13 @@
       "shipStatus": "未発送",
       "totalPrice": 39330,
       "id": 1
-    }
-  ],
-  "shoppingCart": [
+    },
     {
-      "id": 1,
-      "stock": [
+      "userID": "1",
+      "orderDate": "2022年12月12日",
+      "note": "",
+      "paymentMethod": "credit",
+      "orderItemList": [
         {
           "id": 1,
           "itemID": 1,
@@ -1460,7 +1461,86 @@
             "deleted": "false"
           }
         }
-      ]
+      ],
+      "shipStatus": "未発送",
+      "totalPrice": 39000,
+      "id": 2
+    },
+    {
+      "userID": "1",
+      "orderDate": "2022年12月12日",
+      "note": "",
+      "paymentMethod": "credit",
+      "orderItemList": [
+        {
+          "id": 7,
+          "itemID": 7,
+          "price": 66000,
+          "size": 26,
+          "image1": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
+          "image2": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT2.jpg",
+          "image3": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT3.jpg",
+          "image4": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT4.jpg",
+          "image5": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 7,
+            "name": "AIR FORCE 1 07/CLOT/FRGMT",
+            "series": "AIR FORCE 1 LOW",
+            "year": 2019,
+            "description": "[ナイキ エアフォース 1 07 \"クロット/フラグメントデザイン\" ブラック/ユニバーシティレッド-ホワイト CZ3986-001] 1982年に登場した「AIR FORCE 1」は、その時その時代のカルチャーとも密接にリンクしバスケットボールシューズという枠を超え長い間ストリートの定番となっています。今作は藤原ヒロシ氏によるデザインプロジェクト\"FRAGMENT DESIGN\"とエディソン・チャン氏が手掛ける香港発のブランド\"CLOT\"とのコラボレーションモデルです。黒のアッパーを剥がすと赤の下地に\"FRAGMENT DESIGN\"のロゴが現れる仕様になっています。",
+            "setprice": "2019年11月発売、日本定価31,350円",
+            "color": "\"CLOT×FRAGMENT DESIGN\"BLACK/UNIVERSITY RED-WHITE",
+            "deleted": "false"
+          }
+        }
+      ],
+      "shipStatus": "未発送",
+      "totalPrice": 66500,
+      "id": 3
+    },
+    {
+      "userID": "1",
+      "orderDate": "2022年12月12日",
+      "note": "",
+      "paymentMethod": "cashOnDelivery",
+      "orderItemList": [
+        {
+          "id": 7,
+          "itemID": 7,
+          "price": 66000,
+          "size": 26,
+          "image1": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
+          "image2": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT2.jpg",
+          "image3": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT3.jpg",
+          "image4": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT4.jpg",
+          "image5": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT5.jpg",
+          "amount": 1,
+          "arrival": "2022/11/24",
+          "condition": "A",
+          "item": {
+            "id": 7,
+            "name": "AIR FORCE 1 07/CLOT/FRGMT",
+            "series": "AIR FORCE 1 LOW",
+            "year": 2019,
+            "description": "[ナイキ エアフォース 1 07 \"クロット/フラグメントデザイン\" ブラック/ユニバーシティレッド-ホワイト CZ3986-001] 1982年に登場した「AIR FORCE 1」は、その時その時代のカルチャーとも密接にリンクしバスケットボールシューズという枠を超え長い間ストリートの定番となっています。今作は藤原ヒロシ氏によるデザインプロジェクト\"FRAGMENT DESIGN\"とエディソン・チャン氏が手掛ける香港発のブランド\"CLOT\"とのコラボレーションモデルです。黒のアッパーを剥がすと赤の下地に\"FRAGMENT DESIGN\"のロゴが現れる仕様になっています。",
+            "setprice": "2019年11月発売、日本定価31,350円",
+            "color": "\"CLOT×FRAGMENT DESIGN\"BLACK/UNIVERSITY RED-WHITE",
+            "deleted": "false"
+          }
+        }
+      ],
+      "shipStatus": "未発送",
+      "totalPrice": 66830,
+      "id": 4
+    }
+  ],
+  "shoppingCart": [
+    {
+      "id": 1,
+      "stock": []
     },
     {
       "stock": [],
@@ -1511,6 +1591,17 @@
       "condition": "A",
       "deleted": false,
       "id": 4
+    },
+    {
+      "itemId": 7,
+      "cookieName": "1",
+      "name": "AIR FORCE 1 07/CLOT/FRGMT",
+      "price": 66000,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 5
     }
   ],
   "usedItems": [
@@ -1531,7 +1622,7 @@
       "itemName": "NIKE AIR JORDAN",
       "itemCode": "12345",
       "itemSize": "25",
-      "itemColor": "white",
+      "itemColor": "緑",
       "itemNote": "",
       "itemStatus": "受付済",
       "id": 1

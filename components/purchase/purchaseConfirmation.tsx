@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCookie } from "../useCookie";
 import styles from "../../styles/purchase.module.css";
 
-const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
+const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
   const cookieName = useCookie();
 
   const { getValues } = useFormContext();

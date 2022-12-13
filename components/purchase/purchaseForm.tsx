@@ -10,7 +10,8 @@ const PurchaseForm = ({
   handleChangeB,
   imageData,
   imageDataB,
-}: any) => {
+}:any ) => {
+
   const router = useRouter();
 
   const {
@@ -54,7 +55,7 @@ const PurchaseForm = ({
     }
   }, [loading]);
 
-  const onSubmit = (e: any) => {
+  const onSubmit = () => {
     router.push(`/purchase?confirm=1`);
   };
 

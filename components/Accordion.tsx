@@ -9,7 +9,7 @@ import { faAnglesUp, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
-function UsedItemList() {
+const Accordion = (props:any) => {
   const cookieName = useCookie();
   const [flag, setFlag] = useState(true);
 
@@ -94,24 +94,18 @@ function UsedItemList() {
               <>
                 {sortedTopData.map((usedItem: TopUsedItems) => {
                   return (
-                      <tr key={usedItem.id}>
-                        <td className={styles.td_center}>
-                          {usedItem.itemStatus}
-                        </td>
-                        <td className={styles.td_center}>
-                          {usedItem.receptionDate}
-                        </td>
-                        <td>{usedItem.itemName}</td>
-                        <td className={styles.td_center}>
-                          {usedItem.itemCode}
-                        </td>
-                        <td className={styles.td_center}>
-                          {usedItem.itemSize}
-                        </td>
-                        <td className={styles.td_center}>
-                          {usedItem.itemColor}
-                        </td>
-                      </tr>
+                    <tr key={usedItem.id}>
+                      <td className={styles.td_center}>
+                        {usedItem.itemStatus}
+                      </td>
+                      <td className={styles.td_center}>
+                        {usedItem.receptionDate}
+                      </td>
+                      <td>{usedItem.itemName}</td>
+                      <td className={styles.td_center}>{usedItem.itemCode}</td>
+                      <td className={styles.td_center}>{usedItem.itemSize}</td>
+                      <td className={styles.td_center}>{usedItem.itemColor}</td>
+                    </tr>
                   );
                 })}
               </>
@@ -140,6 +134,6 @@ function UsedItemList() {
       </div>
     );
   }
-}
+};
 
-export default UsedItemList;
+export default Accordion;

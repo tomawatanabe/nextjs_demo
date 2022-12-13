@@ -5,11 +5,12 @@ import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesUp, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { animated } from '@react-spring/web'
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
-function UsedItemList() {
+function TestUsedItemList() {
   const cookieName = useCookie();
   const [flag, setFlag] = useState(true);
 
@@ -142,4 +143,4 @@ function UsedItemList() {
   }
 }
 
-export default UsedItemList;
+export default TestUsedItemList;

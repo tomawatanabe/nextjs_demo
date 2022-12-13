@@ -4,12 +4,12 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FavoriteList from "../../components/FavoriteList";
-import UsedItemList from "../../components/UsedItemList";
+import TestUsedItemList from "../../components/UsedItemList";
 import SettlementHistory from "../../components/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import PageTop from "../../components/pageTop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser,faSpaghettiMonsterFlying } from "@fortawesome/free-solid-svg-icons";
 
 const MyPage = () => {
   return (
@@ -36,7 +36,7 @@ const MyPage = () => {
           </div>
           <hr />
           <div>
-            <UsedItemList />
+            <TestUsedItemList />
           </div>
         </div>
         <PageTop />

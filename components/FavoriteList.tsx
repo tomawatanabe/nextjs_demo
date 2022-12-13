@@ -19,7 +19,6 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 function FavoriteList() {
   const cookieName = useCookie();
   const [flag, setFlag] = useState(true);
-  const router: any = useRouter();
 
   const { data, error, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}`,
