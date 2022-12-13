@@ -50,7 +50,6 @@ const ContactForm = () => {
       get();
     }
   }, [loading]);
-
   const onSubmit = async () => {
     router.push(`/contact?confirm=1`);
   };

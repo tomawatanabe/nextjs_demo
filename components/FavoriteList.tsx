@@ -2,7 +2,6 @@ import useSWR from "swr";
 import { FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

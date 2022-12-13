@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Router from "next/router";
-import type { Stock } from "../../types";
+import type { Stock, Item } from "../../types";
 import { useCookie } from "../useCookie";
 import useSWR from "swr";
 import styles from "../../styles/CartButton.module.css";
@@ -12,7 +12,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   const userID = useCookie();
 
   const { data, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api//shoppingCart/${userID}`,
+    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`,
     fetcher
   );
   const [localData, setLocalData] = useState<any[]>([]);
@@ -31,7 +31,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
       if (localStorage.getItem("shoppingCart")) {
         const target = stock;
 
-        if (localData[0].stock.some((item: any) => item.id === target.id)) {
+        if (localData[0].stock.some((item: Item) => item.id === target.id)) {
           alert("既にカートに追加済みです");
           return;
         } else {
@@ -53,7 +53,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
       const user = await res.json();
       const target = stock;
 
-      if (user?.stock.some((item: any) => item.id === target.id)) {
+      if (user?.stock.some((item: Item) => item.id === target.id)) {
         alert("既にカートに追加済みです");
         return;
       } else {
@@ -68,19 +68,34 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     }
   };
 
+  // ログイン/ログアウト状態で表示するボタンを分ける　↓
   return (
-    <div>
-      {data?.stock?.some((item: any) => item.id === stock.id) ||
-      localData[0]?.stock.some((item: any) => item.id === stock.id) ? (
-        <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
-          カートに追加済み
-        </button>
-      ) : (
-        <button className={styles.addCartBtn} onClick={addCartItem}>
-          カートへ追加
-        </button>
-      )}
-    </div>
+    <>
+      <div style={{display: userID ? "block" : "none"}} className={"member"} >
+        {data?.stock?.some((item: Item) => item.id === stock.id) ? 
+        (
+          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+            カートに追加済み
+          </button>
+        ) : (
+          <button className={styles.addCartBtn} onClick={addCartItem}>
+            カートへ追加
+          </button>
+        )}
+      </div>
+      <div style={{display: userID ? "none" : "block"}} className={"nonMember"} >
+        {localData[0]?.stock.some((item: Item) => item.id === stock.id) ? 
+        (
+          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+            カートに追加済み
+          </button>
+        ) : (
+          <button className={styles.addCartBtn} onClick={addCartItem}>
+            カートへ追加
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 
