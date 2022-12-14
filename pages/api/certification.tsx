@@ -9,7 +9,7 @@ export default async function handler(
 
   try {
     const checkData = await fetch(
-      `http://localhost:8000/users?email=${loginData.userId}&password=${loginData.userPw}`
+      `${process.env.API_BASE_URL}/users?email=${loginData.userId}&password=${loginData.userPw}`
     );
 
     const obj = await checkData.json();
