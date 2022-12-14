@@ -7,13 +7,13 @@ import { Stock } from "../types";
 import ToggleFavButton from "../components/ToggleFavButton";
 import PageTop from "../components/pageTop";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import '@splidejs/splide/css';
+import "@splidejs/splide/css";
 
 export const getStaticPaths = async () => {
   const res = await fetch(`${process.env.API_BASE_URL}/stock`);
 
   const stocks = await res.json();
-  const getpaths = stocks.map((stock: { id: any }) => {
+  const getpaths = stocks.map((stock: { id: number }) => {
     return { params: { id: stock.id.toString() } };
   });
   return {
@@ -22,8 +22,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }: { params: any }) {
-
+export async function getStaticProps({ params }: { params: { id: string } }) {
   const res = await fetch(`${process.env.API_BASE_URL}/stock/${params.id}`);
 
   const stock = await res.json();
@@ -54,8 +53,7 @@ export default function Detail({ stock }: { stock: Stock }) {
                   width: 600,
                   rewind: true,
                   rewindSpeed: 1000,
-                  paginationKeyboard: true
-
+                  paginationKeyboard: true,
                 }}
               >
                 <SplideSlide className="splide-container">
@@ -111,13 +109,13 @@ export default function Detail({ stock }: { stock: Stock }) {
 
               {/* 画像の高さを揃えて表示させるために以下スタイルを適用 */}
               <style jsx>{`
-        .slide-img {
-          display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      `}</style>
+                .slide-img {
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              `}</style>
             </div>
           </div>
           <div className="right-side-wrapper">
