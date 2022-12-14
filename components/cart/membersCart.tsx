@@ -4,7 +4,7 @@ import { useCookie } from "../useCookie";
 import CartItem from "./cartItem";
 import CartTotal from "./cartTotal";
 import Router from "next/router";
-import type { Stock } from "../../types";
+import type { Stock, ShoppingCart } from "../../types";
 import cart from "../../pages/api/cart";
 import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
@@ -36,7 +36,7 @@ const Members = () => {
   if (!data) return <div>loading...</div>;
 
   // カート内商品削除
-  const handleDelete = (cart: any, id: any) => {
+  const handleDelete = (cart: ShoppingCart, id: number) => {
     const stock = cart.stock;
     const deleted = stock.filter((item: Stock) => item.id !== id);
 
@@ -60,7 +60,7 @@ const Members = () => {
   };
 
   // ログイン前のカート内商品をログイン後のカートに移動
-  const handleCombine = (cart: any) => {
+  const handleCombine = (cart: ShoppingCart) => {
     const stock = cart.stock;
     for (const localItem of localData[0]?.stock) {
       if (stock.some((serverItem: any) => serverItem.id === localItem.id)) {
@@ -127,8 +127,6 @@ const Members = () => {
       <CartItem
         data={data}
         handleDelete={handleDelete}
-        handleCombine={handleCombine}
-        localData={localData}
       />
       <CartTotal data={data} />
       <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>

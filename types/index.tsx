@@ -65,7 +65,7 @@ export type FavoriteItem2 = {
 
 export type ShoppingCart = {
   id: number;
-  stock: any[];
+  stock: Stock[];
 };
 
 export type Order = {

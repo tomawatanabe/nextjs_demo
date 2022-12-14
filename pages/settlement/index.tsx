@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 import SignIn from "../../components/SignIn";
 import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
+import { Item, Stock } from "../../types";
 
 export default function Settlement() {
   const todayYear = new Date().getFullYear();
@@ -37,14 +38,13 @@ export default function Settlement() {
   );
 
   const ItemList = cart?.stock;
-  
 
   // 合計金額計算
-  const initial: number = ItemList?.map((stock: any) => stock.price).reduce(
+  const initial: number = ItemList?.map((stock: Stock) => stock.price).reduce(
     (prev: number, curr: number) => prev + curr,
     0
   );
-  
+
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -73,8 +73,7 @@ export default function Settlement() {
       setFlag(true);
       return;
     } else {
-      fetch(`${process.env. NEXT_PUBLIC_API}/api/order`, {
-
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,8 +83,7 @@ export default function Settlement() {
         .then((response) => response.json())
         .then((getdata) => {
           console.log("Success:", getdata);
-          router.replace(`${process.env. NEXT_PUBLIC_API}/settlement/close`);
-
+          router.replace(`${process.env.NEXT_PUBLIC_API}/settlement/close`);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -95,7 +93,7 @@ export default function Settlement() {
 
   // カートの中身を削除する
   const DeletedItems = () => {
-    const deletedList: any[] = [];
+    const deletedList: string[] = [];
 
     fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`, {
       method: "PATCH",
@@ -142,9 +140,9 @@ export default function Settlement() {
               </tr>
             </thead>
             <tbody>
-              {cart?.stock?.map((Item: any) => {
+              {cart?.stock?.map((Item: Stock) => {
                 return (
-                  <tr key={Item.itemId}>
+                  <tr key={Item.id}>
                     <td>{Item.item.name}</td>
                     <td>{Item.amount}</td>
                     <td>¥{Item.price}</td>

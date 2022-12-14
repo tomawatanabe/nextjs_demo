@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "../../styles/Cart.module.css";
+import type {Stock} from "../../types"
 
 const CartTotal = (props: any) => {
   const [cart, setCart] = useState(props.data[0]);
 
   const initial: number = cart?.stock
-    .map((stock: any) => stock.price)
+    .map((stock: Stock) => stock.price)
     .reduce((prev: number, curr: number) => prev + curr, 0);
   
   const [total, setTotal] = useState(initial);

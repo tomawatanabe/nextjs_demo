@@ -12,14 +12,25 @@ const ContactForm = () => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useFormContext();
 
+  const values = getValues();
   const cookieName = useCookie();
 
   useEffect(() => {
-    // ログインしてたら（cookie持ってたら会員情報を自動入力）
+    //RHFのvaluesオブジェクトの値を配列として定義
+    const valuesArr = Object.values(values);
+
+    // ログインしてなかったら何もしない
     if (cookieName === "userID=" || undefined) {
+      return;
+      //valuesArrにひとつでもtruthyなものがあったら初期値はセットしない
+    } else if (valuesArr.some((ele) => Boolean(ele) === true)) {
+      setLoading(false);
+      return;
+      //valuesArrが全てfalsyだったら初期値をセットする
     } else {
       //DBから値を読み込み
       const get = async () => {
@@ -39,7 +50,7 @@ const ContactForm = () => {
       get();
     }
   }, [loading]);
-  const onSubmit = async (data: any) => {
+  const onSubmit = async () => {
     router.push(`/contact?confirm=1`);
   };
 

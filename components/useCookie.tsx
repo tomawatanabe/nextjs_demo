@@ -6,7 +6,7 @@ export const useCookie = () => {
   useEffect(() => {
     const cookies = document.cookie;
     if (!cookies) {
-      undefined;
+      return undefined;
     } else {
       const cookiesArray = cookies.split("; ");
 

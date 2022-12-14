@@ -11,7 +11,7 @@ export const getStaticPaths = async () => {
   const res = await fetch(`${process.env.API_BASE_URL}/stock`);
 
   const stocks = await res.json();
-  const getpaths = stocks.map((stock: { id: any }) => {
+  const getpaths = stocks.map((stock: { id: number }) => {
     return { params: { id: stock.id.toString() } };
   });
   return {
@@ -20,8 +20,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({ params }: { params: any }) {
-
+export async function getStaticProps({ params }: { params: { id: string } }) {
   const res = await fetch(`${process.env.API_BASE_URL}/stock/${params.id}`);
 
   const stock = await res.json();

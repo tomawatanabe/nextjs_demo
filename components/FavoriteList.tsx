@@ -2,9 +2,15 @@ import useSWR from "swr";
 import { FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAnglesUp,
+  faAnglesDown,
+  faArrowUpRightFromSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
@@ -12,7 +18,6 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 function FavoriteList() {
   const cookieName = useCookie();
   const [flag, setFlag] = useState(true);
-  const router: any = useRouter();
 
   const { data, error, mutate } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}`,
@@ -57,10 +62,7 @@ function FavoriteList() {
       {
         method: "DELETE",
       }
-    )
-      .then(() =>
-        mutate()
-      )
+    ).then(() => mutate());
   };
 
   if (!data.length) {
@@ -77,24 +79,18 @@ function FavoriteList() {
           <h2 className={styles.content_title}>お気に入り</h2>
           {flag ? (
             <>
-              <Image
-                className={styles.btn}
-                src="/images/angles-down-solid.svg"
-                alt="アコーディオンを開く"
-                width={20}
-                height={20}
+              <FontAwesomeIcon
+                icon={faAnglesDown}
                 onClick={() => setFlag(!flag)}
+                className={styles.btn}
               />
             </>
           ) : (
             <>
-              <Image
-                className={styles.btn}
-                src="/images/angles-up-solid.svg"
-                alt="アコーディオンを閉じる"
-                width={20}
-                height={20}
+              <FontAwesomeIcon
+                icon={faAnglesUp}
                 onClick={() => setFlag(!flag)}
+                className={styles.btn}
               />
             </>
           )}
@@ -138,23 +134,17 @@ function FavoriteList() {
                           target="_blank"
                           href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
                         >
-                          <Image
+                          <FontAwesomeIcon
                             className={styles.btn}
-                            src="/images/new_window.png"
-                            alt="詳細ページにジャンプするボタン"
-                            width={20}
-                            height={20}
+                            icon={faArrowUpRightFromSquare}
                           />
                         </a>
                       </td>
                       <td>
-                        <Image
-                          className={styles.btn}
-                          src="/images/trashbox.png"
-                          alt="削除ボタン"
-                          width={30}
-                          height={30}
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
                           onClick={() => deleteFav(favoriteItem)}
+                          className={styles.btn}
                         />
                       </td>
                     </tr>
@@ -187,23 +177,17 @@ function FavoriteList() {
                           target="_blank"
                           href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
                         >
-                          <Image
+                          <FontAwesomeIcon
+                            icon={faArrowUpRightFromSquare}
                             className={styles.btn}
-                            src="/images/new_window.png"
-                            alt="詳細ページにジャンプするボタン"
-                            width={20}
-                            height={20}
                           />
                         </a>
                       </td>
                       <td>
-                        <Image
-                          className={styles.myPageDeleteBtn}
-                          src="/images/trashbox.png"
-                          alt="削除ボタン"
-                          width={30}
-                          height={30}
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
                           onClick={() => deleteFav(favoriteItem)}
+                          className={styles.btn}
                         />
                       </td>
                     </tr>
