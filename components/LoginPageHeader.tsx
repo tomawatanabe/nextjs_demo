@@ -1,18 +1,25 @@
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
-import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useCookieOriginal } from "./useCookie";
+import { useCookie, useCookieOriginal, useName } from "./useCookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faSpaghettiMonsterFlying,
+} from "@fortawesome/free-solid-svg-icons";
 
-export default function LoginPageHeader() {
+export default function Header() {
   const router = useRouter();
   const cookieOriginal = useCookieOriginal();
+  const cookie = useCookie();
+  const name = useName();
 
   const [reload, setReload] = useState(0);
 
   const logout = (event: React.MouseEvent<HTMLInputElement>) => {
-    document.cookie = `userID=;max-age=-86400s`;
+    document.cookie = `userID=; `;
+    document.cookie = `userName=; `;
     setReload((event) => reload + 1);
   };
 
@@ -21,7 +28,7 @@ export default function LoginPageHeader() {
   };
 
   const correction = () => {
-    if (cookieOriginal === "userID=" || "") {
+    if (cookieOriginal === "userID=" || "" || undefined) {
       return (
         <div className={styles.headerin}>
           <li key="signup" className={styles.lis}>
@@ -36,31 +43,21 @@ export default function LoginPageHeader() {
         <div className={styles.headerin}>
           <li key="signup" className={styles.lis}>
             <Link href="/mypage" className={styles.link}>
-              マイページ
+              <FontAwesomeIcon icon={faUser} />
+              {name}さん
             </Link>
           </li>
-          <input
-            type="button"
-            onClick={logout}
-            value="ログアウト"
-            className={styles.button2}
-          />
         </div>
       );
     }
   };
   return (
-    <header className={styles.header}>
-      <Link href="/">
-        <Image
-          src="/shoplogo.png"
-          alt="syoplogo"
-          height={160}
-          width={200}
-          className={styles.image}
-        />
-      </Link>
-      <div className={styles.header__inner}>
+    <header>
+      <div className={styles.header} />
+      <div className={styles.header2}>
+        <Link href={"/"} className={styles.titleLink}>
+          JORDANS
+        </Link>
         <ul className={styles.ul}>
           <li key="mypage" className={styles.lis}>
             <Link href="/cart" className={styles.link}>
