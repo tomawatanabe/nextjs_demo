@@ -9,7 +9,7 @@ export default async function handler(
 
   try {
     const checkData = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/api/users?email=${loginData.userId}&password=${loginData.userPw}`
+      `${process.env.API_BASE_URL}/api/users?email=${loginData.userId}&password=${loginData.userPw}`
     );
 
     const obj = await checkData.json();
