@@ -119,8 +119,12 @@ textarea {
   width: 100%;
 }
 
+.splide-container {
+  text-align: center;
+}
+
 .right-side-wrapper {
-  margin-left: 80px;
+  margin-left: 13%;
   width: 25%;
   height: 420px;
   text-align: center;
@@ -165,7 +169,6 @@ textarea {
 .idbutton {
   margin-left: 5px;
   margin-top: 10px;
-  font-family: "Yu Gothic";
   font-weight: 600;
   background-color: rgb(113, 164, 183);
   border-bottom: 5px solid rgb(84, 124, 137);

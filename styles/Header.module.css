@@ -1,19 +1,42 @@
 .header {
   width: 100%;
-  height: 340px;
+  height: 275px;
   padding: 30px 4% 5px;
   background-image: url("/header.jpg");
-  background-size: 1500px 340px;
+  background-size: 1500px 305px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  align-items: flex-end;
+}
+
+.header2 {
+  width: 100%;
+  height: 40px;
+  background-color: #f2f3f7;
+  padding: 10px 1% 5px;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  top: 0;
+  position: fixed;
+  z-index: 10;
+}
+
+.header2.fixed {
+  position: fixed; /*fixedを設定して固定*/
+  z-index: 999; /*最前面へ*/
+  top: 0; /*位置指定*/
+  left: 0; /*位置指定*/
 }
 
 @media (max-width: 1170px) {
   .header {
     display: block;
+  }
+  .header2 {
+    height: 60px;
+    width: max-content;
   }
 }
 
@@ -26,17 +49,17 @@
   display: flex;
   text-align: center;
   margin-bottom: 0;
+  margin-left: 100px;
 }
 
 .lis {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   display: inline-block;
   box-sizing: border-box;
-  padding: 14px 20px;
   padding-bottom: 0;
-  width: 155px;
-  color: rgb(76, 77, 80);
+  width: 120px;
+  color: #2c3047ba;
 }
 
 .lis:hover {
@@ -54,29 +77,28 @@
 .button {
   background-color: rgb(94, 177, 207);
   border-bottom: 5px solid rgb(61, 143, 173);
-  margin-left: 5px;
-  margin-top: 10px;
+  margin-left: 18px;
   font-family: "Yu Gothic";
   font-weight: bold;
-  margin-bottom: 10px;
-  width: 150px;
+  margin-bottom: 23px;
+  width: 90px;
   color: rgb(255, 255, 255);
 }
 .button2 {
   background-color: rgb(94, 177, 207);
   border-bottom: 5px solid rgb(61, 143, 173);
-  color: rgb(255, 255, 255);
-  margin-left: 5px;
-  margin-top: 16px;
+  margin-left: 18px;
   font-family: "Yu Gothic";
   font-weight: bold;
-  height: 32px;
+  margin-bottom: 23px;
+  width: 90px;
+  color: rgb(255, 255, 255);
 }
 @media (max-width: 1170px) {
   .lis {
     font-size: 13px;
     padding: 7px 10px;
-    width: 80px;
+    width: 120px;
     margin-top: 31px;
   }
 
@@ -87,6 +109,7 @@
 
   .ul {
     padding: 0;
+    display: flex;
   }
 
   .button {
@@ -111,4 +134,21 @@
   background-color: rgb(125, 188, 211);
   border-bottom: 5px solid rgb(79, 148, 173);
   color: rgb(255, 255, 255);
+}
+
+.titleLink {
+  text-align: left;
+  color: #35325c;
+  font-weight: 900;
+  font-size: 30px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding-right: 350px;
+}
+
+.name {
+  display: block;
+  padding: 10px 0px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 100%;
 }

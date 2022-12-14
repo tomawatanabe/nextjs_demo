@@ -17,7 +17,10 @@ export default async function handler(
     if (obj[0] === undefined) {
       res.status(404).json({ massage: "ログイン情報が見つかりません" });
     } else {
-      res.status(200).json({ cookieId: obj[0].id });
+      res.status(200).json({
+        cookieId: obj[0].id,
+        userName: obj[0].lastName + obj[0].firstName,
+      });
     }
   } catch (error) {
     return res.status(404).json({ massage: "見つかりません" });
