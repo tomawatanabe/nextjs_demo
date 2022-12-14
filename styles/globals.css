@@ -119,8 +119,12 @@ textarea {
   width: 100%;
 }
 
+.splide-container {
+  text-align: center;
+}
+
 .right-side-wrapper {
-  margin-left: 80px;
+  margin-left: 13%;
   width: 25%;
   height: 420px;
   text-align: center;
