@@ -13,7 +13,7 @@ export const getStaticPaths = async () => {
   const res = await fetch(`${process.env.API_BASE_URL}/stock`);
 
   const stocks = await res.json();
-  const getpaths = stocks.map((stock: { id: any }) => {
+  const getpaths = stocks.map((stock: { id: number }) => {
     return { params: { id: stock.id.toString() } };
   });
   return {
