@@ -13,7 +13,7 @@ export default function Sidebar(props: any) {
           alt="syoplogo"
           height={150}
           width={210}
-          className={styles.image}
+          className={styles.imagefile}
         />
       </div>
 

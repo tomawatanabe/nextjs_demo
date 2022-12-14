@@ -2,8 +2,7 @@ import Link from "next/link";
 import styles from "../styles/Header.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useCookie, useCookieOriginal } from "./useCookie";
-import { useName } from "./useName";
+import { useCookie, useCookieOriginal, useName } from "./useCookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -19,7 +18,8 @@ export default function Header() {
   const [reload, setReload] = useState(0);
 
   const logout = (event: React.MouseEvent<HTMLInputElement>) => {
-    document.cookie = `userID=;`;
+    document.cookie = `userID=; `;
+    document.cookie = `userName=; `;
     setReload((event) => reload + 1);
   };
 
@@ -28,7 +28,7 @@ export default function Header() {
   };
 
   const correction = () => {
-    if (cookieOriginal === "userID=" || "") {
+    if (cookieOriginal === "userID=" || "" || undefined) {
       return (
         <div className={styles.headerin}>
           <li key="signup" className={styles.lis}>

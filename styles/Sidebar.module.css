@@ -14,6 +14,9 @@
   color: #e6da9e;
   margin-top: 10px;
 }
+.imagefile {
+  text-align: center;
+}
 
 @media (max-width: 1170px) {
   .sidebarBox {
@@ -34,6 +37,10 @@
   }
   .ptag {
     font-size: 12px;
+  }
+  .imagefile {
+    width: 85px;
+    height: 60px;
   }
 }
 

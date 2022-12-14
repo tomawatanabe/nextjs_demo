@@ -1,25 +1,41 @@
 .itemSearch {
+  height: 90px;
+  width: 95%;
+  margin-left: 30px;
+  padding-top: 10px;
   display: flex;
+  justify-content: center;
+  background-color: rgba(237, 240, 245, 0.354);
 }
 .search {
-  width: 200px;
-  height: 30px;
-  margin: auto;
+  width: 350px;
+  height: 35px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 8px;
+  border: 1px solid #333947;
+  border-radius: 1.5rem 1.5rem 1.5rem 1.5rem;
 }
 .searchBtn {
   height: 30px;
   width: 50px;
   cursor: pointer;
-  color: #ffffff;
-  background-color: rgb(78, 173, 208);
-  border-bottom: 5px solid rgb(40, 119, 148);
   margin-top: 10px;
-  margin-left: 10px;
-  font-family: "Yu Gothic";
-  font-weight: bold;
+  margin-left: 15px;
   margin-bottom: 13px;
+  cursor: pointer;
+  border-radius: 1.5rem 1.5rem 1.5rem 1.5rem;
+  border: none;
+  background-color: #3c4767;
+  color: #fff;
+  font-size: 0.75rem;
 }
 .searchBtn:hover {
-  background-color: rgb(108, 191, 222);
-  border-bottom: 5px solid rgb(83, 138, 158);
+  background-color: rgb(99, 114, 139);
+  border-bottom: 2px solid rgb(89, 93, 95);
+}
+
+.mains {
+  display: flex;
+  flex-direction: column;
 }

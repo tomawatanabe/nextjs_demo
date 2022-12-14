@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import Footer from "../components/Footer";
 import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";
+import Search from "../components/Search";
 
 export default function Home() {
   const userID = useCookie();
@@ -73,13 +74,22 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.mainFlex}>
           <Sidebar
-            onChange={handleSearch}
             onClick={handleClick}
             data={data}
             handleFrequencyChange={handleFrequencyChange}
           />
-          <div className={styles.gridBox}>
-            <ItemList searchQuery={searchQuery} />
+          <div className={styles.mains}>
+            <div className={styles.search}>
+              <Search
+                onChange={handleSearch}
+                onClick={handleClick}
+                data={data}
+                handleFrequencyChange={handleFrequencyChange}
+              />
+            </div>
+            <div className={styles.gridBox}>
+              <ItemList searchQuery={searchQuery} />
+            </div>
           </div>
         </div>
       </main>

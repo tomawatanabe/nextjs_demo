@@ -10,7 +10,6 @@ export default function Search(props: any) {
         placeholder="商品名検索"
         onChange={props.onChange}
       />
-      <br />
       <input
         type="submit"
         value="検索"
