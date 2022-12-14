@@ -35,7 +35,6 @@ export default function Detail({ stock }: { stock: Stock }) {
     <div>
       <Header />
       <div className="outside">
-        <Link href="/">トップページへ</Link>
         <div className="top-wrapper">
           <h1>{stock.item.name}</h1>
           <p>年代：{stock.item.year}年代</p>

@@ -17,8 +17,6 @@ export default function Loginpage() {
     setPw(e.target.value);
   };
   const router = useRouter();
-  var expire = new Date();
-  expire.setTime(expire.getTime() + 1000 * 3600 * 24);
 
   function postCarti() {
     const loginData: { userId: string; userPw: string } = {
@@ -43,9 +41,8 @@ export default function Loginpage() {
           setFlag(true);
           console.log(flag);
         } else {
-          console.log(`ユーザー認証完了`);
-          document.cookie =
-            `userID=${data.cookieId};  Path=/; expires=` + expire.toUTCString();
+          document.cookie = `userID=${data.cookieId}; Path=/; `;
+          document.cookie = `userName=${data.userName}; `;
           history.back();
         }
       });

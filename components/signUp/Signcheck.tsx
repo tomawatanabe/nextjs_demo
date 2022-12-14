@@ -7,8 +7,7 @@ const SignCheck = ({ children }: any) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (cookie === "" || undefined) {
-      console.log(cookie);
+    if (cookie === "userID=" || "" || undefined) {
       //持っていなかったらそのままページを表示
     } else {
       router.push("/");

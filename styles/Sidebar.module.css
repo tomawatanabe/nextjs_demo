@@ -1,33 +1,7 @@
-.itemSearch {
-  padding: 10px 0;
-}
-.search {
-  width: 200px;
-  height: 30px;
-  padding: 10px;
-  margin: auto;
-}
-.searchBtn {
-  height: 30px;
-  width: 50px;
-  cursor: pointer;
-  color: #ffffff;
-  background-color: rgb(78, 173, 208);
-  border-bottom: 5px solid rgb(40, 119, 148);
-  margin-left: 5px;
-  margin-top: 10px;
-  font-family: "Yu Gothic";
-  font-weight: bold;
-  margin-bottom: 3px;
-}
-.searchBtn:hover {
-  background-color: rgb(108, 191, 222);
-  border-bottom: 5px solid rgb(83, 138, 158);
-}
 .sidebarBox {
   background-color: #35325c;
   min-width: 240px;
-  height: 700px;
+  height: 760px;
   text-align: center;
   padding: 10px;
   color: white;
@@ -38,6 +12,10 @@
   width: 200px;
   margin: 20px auto;
   color: #e6da9e;
+  margin-top: 10px;
+}
+.imagefile {
+  text-align: center;
 }
 
 @media (max-width: 1170px) {
@@ -59,6 +37,10 @@
   }
   .ptag {
     font-size: 12px;
+  }
+  .imagefile {
+    width: 85px;
+    height: 60px;
   }
 }
 
