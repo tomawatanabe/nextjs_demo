@@ -19,10 +19,12 @@ export default function Loginpage() {
   const router = useRouter();
 
   function postCarti() {
-    const loginData: { userId: string; userPw: string } = {
-      userId: id,
-      userPw: pw,
+    const loginData: { userID: string; userPW: string } = {
+      userID: id,
+      userPW: pw,
     };
+
+    console.log(loginData, "ろぐいんでーた");
 
     setFlag(false);
 
@@ -39,7 +41,7 @@ export default function Loginpage() {
       .then((data) => {
         if (!data.cookieId) {
           setFlag(true);
-          console.log(flag);
+          console.log(data);
         } else {
           document.cookie = `userID=${data.cookieId}; Path=/; `;
           document.cookie = `userName=${data.userName}; `;

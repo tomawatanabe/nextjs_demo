@@ -5,12 +5,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const loginData: { userId: string; userPw: string } = req.body;
+  const loginData: { userID: string; userPW: string } = req.body;
 
   try {
     const checkData = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/api/users?email=${loginData.userId}&password=${loginData.userPw}`
+      `${process.env.NEXT_PUBLIC_API}/api/users?email=${loginData.userID}&password=${loginData.userPW}`
     );
+    console.log(checkData, "ちぇっくでーた");
 
     const obj = await checkData.json();
 
