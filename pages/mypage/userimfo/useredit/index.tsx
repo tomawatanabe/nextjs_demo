@@ -173,7 +173,7 @@ const UserImfo = () => {
             )) ||
               (errors.kanaFirstName?.message && (
                 <span className="formError">
-                  {errors.kanaLastName?.message as string}
+                  {errors.kanaFirstName?.message as string}
                 </span>
               ))}
           </div>

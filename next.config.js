@@ -50,12 +50,12 @@ const nextConfig = {
         destination: "http://localhost:8000/usedItems",
       },
       {
-        source: "/api/items",
-        destination: "http://localhost:8000/items",
-      },
-      {
         source: "/api/items/:slug",
         destination: "http://localhost:8000/items/:slug",
+      },
+      {
+        source: "/api/items",
+        destination: "http://localhost:8000/items",
       },
     ];
   },

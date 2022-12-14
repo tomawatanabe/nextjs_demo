@@ -1366,7 +1366,7 @@
   "users": [
     {
       "lastName": "新宿",
-      "firstName": "楽子",
+      "firstName": "楽男",
       "kanaLastName": "シンジュク",
       "kanaFirstName": "ラクコ",
       "phoneNumber": "09010000002",
@@ -1433,7 +1433,7 @@
     },
     {
       "userID": "1",
-      "orderDate": "2022年12月9日",
+      "orderDate": "2022年12月12日",
       "note": "",
       "paymentMethod": "credit",
       "orderItemList": [
@@ -1598,6 +1598,17 @@
   ],
   "favoriteItems": [
     {
+      "itemId": 1,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 1
+    },
+    {
       "itemId": 2,
       "cookieName": "1",
       "name": "AIR FOAMPOSITE ONE NRG",
@@ -1606,7 +1617,40 @@
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE NRG/AIR FOAMPOSITE ONE NRG1.jpg",
       "condition": "A",
       "deleted": false,
-      "id": 1
+      "id": 2
+    },
+    {
+      "itemId": 3,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE SP",
+      "price": 66000,
+      "size": 27,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 3
+    },
+    {
+      "itemId": 4,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 4
+    },
+    {
+      "itemId": 7,
+      "cookieName": "1",
+      "name": "AIR FORCE 1 07/CLOT/FRGMT",
+      "price": 66000,
+      "size": 26,
+      "imagePath": "images/sneakers/AIR FORCE 1 07-CLOT-FRGMT/AIR FORCE 1 07 CLOT FRGMT1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 5
     }
   ],
   "usedItems": [
@@ -1627,7 +1671,7 @@
       "itemName": "NIKE AIR JORDAN",
       "itemCode": "12345",
       "itemSize": "25",
-      "itemColor": "white",
+      "itemColor": "緑",
       "itemNote": "",
       "itemStatus": "受付済",
       "id": 1

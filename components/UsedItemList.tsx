@@ -2,8 +2,9 @@ import useSWR from "swr";
 import { useCookie } from "./useCookie";
 import { UsedItems, TopUsedItems } from "../types";
 import { useState } from "react";
-import Image from "next/image";
 import styles from "../styles/MyPage.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAnglesUp, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
@@ -13,7 +14,6 @@ function UsedItemList() {
   const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
-
     `${process.env.NEXT_PUBLIC_API}/api/usedItems?cookieName=${cookieName}`,
 
     fetcher
@@ -29,7 +29,7 @@ function UsedItemList() {
   //降順のTop3を抽出した配列を定義
   const sortTopData = () => {
     const sortedTopData = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       if (typeof sortedData[i]?.itemName === "undefined") {
         break;
       }
@@ -62,24 +62,18 @@ function UsedItemList() {
           <h2 className={styles.content_title}>買取受付状況</h2>
           {flag ? (
             <>
-              <Image
-                className={styles.btn}
-                src="/images/angles-down-solid.svg"
-                alt="アコーディオンを開く"
-                width={20}
-                height={20}
+              <FontAwesomeIcon
+                icon={faAnglesDown}
                 onClick={() => setFlag(!flag)}
+                className={styles.btn}
               />
             </>
           ) : (
             <>
-              <Image
-                className={styles.btn}
-                src="/images/angles-up-solid.svg"
-                alt="アコーディオンを閉じる"
-                width={20}
-                height={20}
+              <FontAwesomeIcon
+                icon={faAnglesUp}
                 onClick={() => setFlag(!flag)}
+                className={styles.btn}
               />
             </>
           )}
@@ -100,18 +94,24 @@ function UsedItemList() {
               <>
                 {sortedTopData.map((usedItem: TopUsedItems) => {
                   return (
-                    <tr key={usedItem.id}>
-                      <td className={styles.td_center}>
-                        {usedItem.itemStatus}
-                      </td>
-                      <td className={styles.td_center}>
-                        {usedItem.receptionDate}
-                      </td>
-                      <td>{usedItem.itemName}</td>
-                      <td className={styles.td_center}>{usedItem.itemCode}</td>
-                      <td className={styles.td_center}>{usedItem.itemSize}</td>
-                      <td className={styles.td_center}>{usedItem.itemColor}</td>
-                    </tr>
+                      <tr key={usedItem.id}>
+                        <td className={styles.td_center}>
+                          {usedItem.itemStatus}
+                        </td>
+                        <td className={styles.td_center}>
+                          {usedItem.receptionDate}
+                        </td>
+                        <td>{usedItem.itemName}</td>
+                        <td className={styles.td_center}>
+                          {usedItem.itemCode}
+                        </td>
+                        <td className={styles.td_center}>
+                          {usedItem.itemSize}
+                        </td>
+                        <td className={styles.td_center}>
+                          {usedItem.itemColor}
+                        </td>
+                      </tr>
                   );
                 })}
               </>

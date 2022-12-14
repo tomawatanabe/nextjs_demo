@@ -1,11 +1,21 @@
 .mypage_main_content {
-  width: 1160px;
+  width: 80%;
   margin: 0 auto;
   margin-bottom: 50px;
 }
+.main_title_wrapper {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .user_imfo_icon {
-  padding-left: 800px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0.5em;
+  margin-right: 30px;
+  height: max-content;
 }
 
 .btn {
@@ -17,12 +27,11 @@
 }
 
 .title_wrapper {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .content_title {
-  display: inline;
   padding-right: 30px;
 }
 
@@ -57,4 +66,10 @@
 
 .th_name {
   width: 400px;
+}
+
+.animation {
+  transition: height 0.2s linear, opacity 0.2s ease-in;
+
+  overflow: hidden; /* heightをはみ出す子要素を表示させないようにすることで、上から徐々に子要素が表示されるアニメーションを実現 */
 }
