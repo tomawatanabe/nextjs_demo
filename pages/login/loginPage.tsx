@@ -24,8 +24,6 @@ export default function Loginpage() {
       userPW: pw,
     };
 
-    console.log(loginData, "ろぐいんでーた");
-
     setFlag(false);
 
     fetch(`/api/certification`, {

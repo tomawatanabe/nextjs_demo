@@ -9,9 +9,8 @@ export default async function handler(
 
   try {
     const checkData = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/api/users?email=${loginData.userID}&password=${loginData.userPW}`
+      `${process.env.API_BASE_URL}/users?email=${loginData.userID}&password=${loginData.userPW}`
     );
-    console.log(checkData, "ちぇっくでーた");
 
     const obj = await checkData.json();
 
@@ -24,6 +23,7 @@ export default async function handler(
       });
     }
   } catch (error) {
+    console.error(error);
     return res.status(404).json({ massage: "見つかりません" });
   }
 }
