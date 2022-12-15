@@ -5,11 +5,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const loginData: { userId: string; userPw: string } = req.body;
+  const loginData: { userID: string; userPW: string } = req.body;
 
   try {
     const checkData = await fetch(
-      `${process.env.API_BASE_URL}/users?email=${loginData.userId}&password=${loginData.userPw}`
+      `${process.env.API_BASE_URL}/users?email=${loginData.userID}&password=${loginData.userPW}`
     );
 
     const obj = await checkData.json();
@@ -23,6 +23,7 @@ export default async function handler(
       });
     }
   } catch (error) {
+    console.error(error);
     return res.status(404).json({ massage: "見つかりません" });
   }
 }
