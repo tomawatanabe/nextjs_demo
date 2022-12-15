@@ -4,7 +4,7 @@
 中古品なので基本在庫は各一点のみ
 
 ### インストールするライブラリ
-  　"@fortawesome/fontawesome-svg-core": "^6.2.1",  
+  "@fortawesome/fontawesome-svg-core": "^6.2.1",  
     "@fortawesome/free-regular-svg-icons": "^6.2.1",  
     "@fortawesome/free-solid-svg-icons": "^6.2.1",  
     "@fortawesome/react-fontawesome": "^0.2.0",  
