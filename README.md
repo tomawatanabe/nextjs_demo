@@ -10,7 +10,6 @@
     "@fortawesome/react-fontawesome": "^0.2.0",  
     "@react-spring/web": "^9.6.0",  
     "@splidejs/react-splide": "^0.7.12",  
-    "@splidejs/splide": "^4.1.4",   
     "@supabase/supabase-js": "^2.2.0",  
     "@types/formidable": "^2.0.5",  
 
