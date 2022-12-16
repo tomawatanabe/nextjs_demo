@@ -9,7 +9,8 @@ export default async function cart(req: NextApiRequest, res: NextApiResponse) {
     console.log("未ログイン");
   } else {
     const cart = await fetch(
-      `http://localhost:8000/shoppingCart?id=${userID}`
+
+      `${process.env.API_BASE_URL}/shoppingCart?id=${userID}`
     );
     const shoppingcartData: ShoppingCart[] = await cart.json();
     const cartData = shoppingcartData[0];
@@ -17,13 +18,14 @@ export default async function cart(req: NextApiRequest, res: NextApiResponse) {
     const addCart: { stockID: number } = req.body;
     //{stockID:~}が取得できる
     const stock = await fetch(
-      `http://localhost:8000/stock?id=${addCart.stockID}`
+
+      `${process.env.API_BASE_URL}/stock?id=${addCart.stockID}`
+
     );
     const stockData: Stock[] = await stock.json();
 
     cartData.stock.push(stockData[0]);
-
-    fetch(`http://localhost:8000/shoppingCart/${cartData.id}`, {
+    fetch(`${process.env.API_BASE_URL}/shoppingCart/${cartData.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

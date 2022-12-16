@@ -82,7 +82,6 @@ export default function Settlement() {
       })
         .then((response) => response.json())
         .then((getdata) => {
-          console.log("Success:", getdata);
           router.replace(`${process.env.NEXT_PUBLIC_API}/settlement/close`);
         })
         .catch((error) => {
@@ -105,17 +104,13 @@ export default function Settlement() {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
   const handleClick = (event: { target: any }) => {
-    console.log(event.target);
-
     sendOrder();
     setShipStatus("未発送");
     DeletedItems();

@@ -88,6 +88,10 @@ const Members = () => {
       });
   };
 
+  const handleClick = () => {
+    return Router.push("/settlement");
+  };
+
   // ログイン前のカート内商品をログイン後のカートに移動したくない場合
   const rejectCombine = () => {
     localStorage.clear();
@@ -124,15 +128,15 @@ const Members = () => {
           </button>
         </div>
       </div>
-      <CartItem
-        data={data}
-        handleDelete={handleDelete}
-      />
+      <CartItem data={data} handleDelete={handleDelete} />
       <CartTotal data={data} />
       <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
-        <Link href="/settlement" legacyBehavior>
-          購入手続きへ進む
-        </Link>
+        <input
+          type="button"
+          className="idbutton"
+          onClick={handleClick}
+          value="購入手続きへ"
+        />
       </div>
     </>
   );

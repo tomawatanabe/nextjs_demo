@@ -44,7 +44,6 @@ const Purchase = () => {
     reader.onload = (e) => {
       // imagePreviewに読み込み結果（データURL/バイナリデータ）を代入する
       // imagePreviewに値を入れると<output>に画像が表示される
-      console.log(e.target);
       setImagePreview(e.target?.result);
     };
 
@@ -68,11 +67,8 @@ const Purchase = () => {
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      console.log(e.target);
       setImagePreviewB(e.target?.result);
     };
-
-    console.log(reader.readAsDataURL(event.target?.files[0]));
   };
 
   const router = useRouter();
@@ -111,9 +107,6 @@ const Purchase = () => {
           </>
         )}
       </FormProvider>
-      <Link href="/" className={styles.link}>
-        トップページへ
-      </Link>
       <PageTop />
       <Footer />
     </div>

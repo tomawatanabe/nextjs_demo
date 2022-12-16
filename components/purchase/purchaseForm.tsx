@@ -28,7 +28,7 @@ const PurchaseForm = ({
 
   useEffect(() => {
     //RHFのvaluesオブジェクトの値を配列として定義
-    const valuesArr = Object.values(values).slice(0,11);
+    const valuesArr = Object.values(values).slice(0, 11);
 
     // ログインしてなかったら何もしない
     if (cookieName === "userID=" || undefined) {
@@ -521,7 +521,7 @@ const PurchaseForm = ({
               id="note"
               placeholder="買取情報を入力してください"
               {...register("itemAdd")}
-              className={styles.form}
+              className={styles.purchaseform}
             />
           </div>
         </div>
