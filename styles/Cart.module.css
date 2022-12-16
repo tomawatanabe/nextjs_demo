@@ -1,5 +1,6 @@
 .cart_main_content {
   padding-left: 45px;
+  margin-left: 180px;
 }
 
 .cart_li {
@@ -31,7 +32,8 @@
 .attention {
   width: fit-content;
   font-weight: bold;
-  text-align: center;border-radius: 3px;
+  text-align: center;
+  border-radius: 3px;
 }
 
 .yes_btn {
@@ -81,9 +83,9 @@
   border-radius: 3px;
   background-color: #fff;
   border-color: #ff4500;
- }
+}
 
- .frame_title {
+.frame_title {
   position: absolute;
   top: -13px;
   left: 20px;
@@ -92,9 +94,9 @@
   border: 2px solid #ff4500;
   color: #fff;
   border-radius: 3px;
- }
+}
 
- .logoutFrame{
+.logoutFrame {
   text-align: center;
   width: 300px;
   padding: 10px;
@@ -102,10 +104,19 @@
   background-color: #fff;
   border: 3px solid #aaa;
   border-color: #ff4500;
- }
+}
 
- .linkDeco{
+.linkDeco {
   font-weight: bold;
   color: #0070f3;
   border-bottom: 1px #0070f3 solid;
- }
+}
+
+.precautionary {
+  color: #d36754;
+}
+
+.carthi {
+  color: rgb(37, 56, 116);
+  font-weight: 500;
+}

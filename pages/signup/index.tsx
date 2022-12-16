@@ -34,9 +34,6 @@ const Contact = () => {
             </>
           )}
         </FormProvider>
-        <Link href="/" className={styles.link}>
-          トップページへ
-        </Link>
         <PageTop />
         <Footer />
       </SignCheck>

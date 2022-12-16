@@ -1,19 +1,19 @@
 ._main_content {
-   display: block;
-    width: 1160px;
-    margin: 0 auto;
-    margin-bottom: 50px;
+  display: block;
+  width: 1160px;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 
-
 .close_tenn {
-display: block;
+  display: block;
   padding-left: 200px;
   padding-right: 200px;
   padding-top: 200px;
   padding-bottom: 200px;
   align-items: center;
   text-align: center;
+  color: rgb(37, 56, 116);
 }
 
 .outside {
@@ -22,7 +22,7 @@ display: block;
   margin-right: 120px;
 }
 
-.user_imfo_icon{
+.user_imfo_icon {
   padding-left: 800px;
 }
 
@@ -30,9 +30,8 @@ display: block;
   cursor: pointer;
 }
 
-
 .title_wrapper {
-  padding-top:  20px;
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -52,10 +51,9 @@ display: block;
 .total_table_last_list {
   width: 100%;
   padding-left: 220px;
-  
 }
 
-.total_wrapper  {
+.total_wrapper {
   margin-left: 80px;
   width: 25%;
   height: 220px;
