@@ -17,7 +17,6 @@ const SignUpForm = () => {
   //submitが押されたとき、確認画面に遷移する
   const onSubmit = () => {
     router.push(`/signup?confirm=1`);
-    console.log("確認ボタンが押されました");
   };
 
   //郵便番号APIから住所を取得する関数

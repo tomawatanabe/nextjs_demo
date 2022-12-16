@@ -39,7 +39,6 @@ export default function Loginpage() {
       .then((data) => {
         if (!data.cookieId) {
           setFlag(true);
-          console.log(data);
         } else {
           document.cookie = `userID=${data.cookieId}; Path=/; `;
           document.cookie = `userName=${data.userName}; `;
