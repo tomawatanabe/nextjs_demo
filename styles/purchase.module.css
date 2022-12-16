@@ -4,7 +4,8 @@
 }
 
 .outside {
-  margin-left: 160px;
+  margin: 0 auto;
+  width: 700px;
 }
 
 .back {
@@ -36,6 +37,9 @@
 .form {
   margin-left: 80px;
 }
+.purchaseform {
+  margin-left: 0;
+}
 
 .btn {
   margin-left: 400px;
@@ -44,7 +48,7 @@
   font-weight: 500;
 }
 .kaitorititle {
-  margin-left: 150px;
+  margin-left: 180px;
   color: rgb(37, 56, 116);
   font-weight: 500;
 }

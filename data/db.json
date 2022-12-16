@@ -1542,50 +1542,26 @@
       "id": 1,
       "stock": [
         {
-          "id": 5,
-          "itemID": 5,
-          "price": 38500,
-          "size": 27.5,
-          "image1": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO1.jpg",
-          "image2": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO2.jpg",
-          "image3": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO3.jpg",
-          "image4": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO4.jpg",
-          "image5": "images/sneakers/AIR FOAMPOSITE PRO/AIR FOAMPOSITE PRO5.jpg",
+          "id": 3,
+          "itemID": 3,
+          "price": 66000,
+          "size": 27,
+          "image1": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP1.jpg",
+          "image2": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP2.jpg",
+          "image3": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP3.jpg",
+          "image4": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP4.jpg",
+          "image5": "images/sneakers/AIR FOAMPOSITE ONE SP/AIR FOAMPOSITE ONE SP5.jpg",
           "amount": 1,
           "arrival": "2022/11/24",
           "condition": "A",
           "item": {
-            "id": 5,
-            "name": "AIR FOAMPOSITE PRO",
+            "id": 3,
+            "name": "AIR FOAMPOSITE ONE SP",
             "series": "POSITE SERIES",
-            "year": 2015,
-            "description": "[ナイキ エア フォームポジットプロ \"グッチ\" ホワイト/ホワイト-ジム レッド 624041-102] 1997年に発売された「AIR FOAMPOSITE PRO」は、「AIR FOAMPOSITE ONE」の派生モデルとして登場したバスケットシューズです。「AIR FOAMPOSITE ONE」との大きな違いはサイドパネルに\"SWOOSH\"が入り、シュータンやヒール部分などにはアンファニー・ハーダウェイの\"PENNY\"ロゴが配置されていないのも特徴の一つです。  ※作りがタイトなため、普段履いているNIKEのシューズより0.5cmから1.0cmアップをおすすめします。 ",
-            "setprice": "2015年10月発売、日本定価25,920円",
-            "color": "WHITE/WHITE-GYM RED-GORGE GREEN",
-            "deleted": "false"
-          }
-        },
-        {
-          "id": 10,
-          "itemID": 10,
-          "price": 55000,
-          "size": 28,
-          "image1": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI1.jpg",
-          "image2": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI2.jpg",
-          "image3": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI3.jpg",
-          "image4": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI4.jpg",
-          "image5": "images/sneakers/AIR FORCE 1 SP - TISCI/AIR FORCE 1 SP  TISCI5.jpg",
-          "amount": 1,
-          "arrival": "2022/11/24",
-          "condition": "A",
-          "item": {
-            "id": 10,
-            "name": "AIR FORCE 1 SP / TISCI",
-            "series": "AIR FORCE 1 LOW",
-            "year": 2014,
-            "description": "[ナイキ エアフォース 1 スペシャル \"リカルド ティッシ\" バケッタタン 669917-200] NIKE LABからイタリア出身のファッションデザイナー\"RICCARDO TISCI\"とのコラボレーションモデル「AIR FORCE 1 SP / TISCI」の登場です。クラシカルな印象を残しつつ、細部にマルチカラーの装飾を施すことでクラフト感を演出しています。またミッドソールにあるAIRの刻印下に、\"RT\"のイニシャルを付け加えるなど、\"RICCARDO TISCI\"らしいデザインを盛り込まれている1足となっています。",
-            "setprice": "2014年10月発売、日本定価24,840円",
-            "color": "VACHETTA TAN/BLACK",
+            "year": 2021,
+            "description": "[ナイキ エア フォームポジット ワン SP \"コムデギャルソン オム プラス\" サミットホワイト/サミットホワイト DJ7952-100] デザイナー川久保玲氏が手掛けるファッションブランド\"COMME des GARÇONS\"のハイエンドライン\"COMME des GARÇONS HOMME PLUS\"とのコラボレーションモデル「AIR FOAMPOSITE ONE SP」の登場です。1997年に発売された「AIR FOAMPOSITE ONE」をベースに、既存の流線形のデザインから波紋柄のデザインへブラッシュアップ。ヒールには\"COMME des GARÇONS HOMME PLUS\"のロゴをデザインしたスペシャルエディションとなっています。",
+            "setprice": "2021年11月発売、日本定価57,200円",
+            "color": "\"CDG\"SUMMIT WHITE/SUMMIT WHITE",
             "deleted": "false"
           }
         }
@@ -1597,17 +1573,6 @@
     }
   ],
   "favoriteItems": [
-    {
-      "itemId": 1,
-      "cookieName": "1",
-      "name": "AIR FOAMPOSITE ONE",
-      "price": 38500,
-      "size": 27.5,
-      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
-      "condition": "A",
-      "deleted": false,
-      "id": 1
-    },
     {
       "itemId": 2,
       "cookieName": "1",
@@ -1651,6 +1616,17 @@
       "condition": "A",
       "deleted": false,
       "id": 5
+    },
+    {
+      "itemId": 1,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE",
+      "price": 38500,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
+      "condition": "A",
+      "deleted": false,
+      "id": 6
     }
   ],
   "usedItems": [
