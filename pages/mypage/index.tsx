@@ -9,7 +9,11 @@ import SettlementHistory from "../../components/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import PageTop from "../../components/pageTop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser,faSpaghettiMonsterFlying } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faSpaghettiMonsterFlying,
+} from "@fortawesome/free-solid-svg-icons";
+import Chatbot from "../../components/Chatbot";
 
 const MyPage = () => {
   return (
@@ -40,6 +44,7 @@ const MyPage = () => {
           </div>
         </div>
         <PageTop />
+        <Chatbot />
         <Footer />
       </SignIn>
     </>
