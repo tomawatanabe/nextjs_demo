@@ -35,10 +35,12 @@ export type Users = {
   kanaLastName: string;
   email: string;
   password: string;
-  zipcode: string;
+  zipCode: string;
+  prefecture: string;
+  city: string;
   address: string;
-  telephone: string;
-  deleted: string;
+  building: string | null;
+  phoneNumber: string;
 };
 
 export type FavoriteItem = {
