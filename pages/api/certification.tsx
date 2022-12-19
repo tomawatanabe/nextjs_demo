@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const loginData: { userID: string; userPW: string } = req.body;
-
   try {
     const checkData = await fetch(
       `${process.env.API_BASE_URL}/users?email=${loginData.userID}&password=${loginData.userPW}`
