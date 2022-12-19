@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { useRouter } from "next/router";
 import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
@@ -16,7 +15,6 @@ export default function Loginpage() {
   const handleChangePw = (e: ChangeEvent<HTMLInputElement>) => {
     setPw(e.target.value);
   };
-  const router = useRouter();
 
   function postCarti() {
     const loginData: { userID: string; userPW: string } = {
@@ -57,7 +55,6 @@ export default function Loginpage() {
     <>
       <LoginPageHeader />
       <div className={styles.login}>
-        {/* <h3 className={styles.login_header}>ログイン</h3> */}
         <div className={styles.login_container}>
           <p>メールアドレス</p>
           <input
