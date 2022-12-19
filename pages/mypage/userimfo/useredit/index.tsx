@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import React, { useEffect, useState } from "react";
 import SignIn from "../../../../components/SignIn";
@@ -6,9 +5,12 @@ import Link from "next/link";
 import Header from "../../../../components/Header";
 import Footer from "../../../../components/Footer";
 import { useCookie } from "../../../../components/useCookie";
+import { supabase } from "../../../../lib/supabase-client";
+import { Users } from "../../../../types";
+
+type FetchError = string | null;
 
 const UserImfo = () => {
-  const router = useRouter();
   const cookieName = useCookie();
 
   const {
@@ -47,61 +49,74 @@ const UserImfo = () => {
   };
 
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<FetchError>(null);
 
   useEffect(() => {
     // ログインしてたら（cookie持ってたら会員情報を自動入力）
     if (cookieName === "userID=" || undefined) {
     } else {
       //DBから値を読み込み
-      const get = async () => {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API}/API/users?id=${cookieName}`
-        );
-        const data = await res.json();
-        //デフォルト値としてセット
-        setValue("lastName", data[0]?.lastName);
-        setValue("firstName", data[0]?.firstName);
-        setValue("kanaLastName", data[0]?.kanaLastName);
-        setValue("kanaFirstName", data[0]?.kanaFirstName);
-        setValue("phoneNumber", data[0]?.phoneNumber);
-        setValue("email", data[0]?.email);
-        setValue("zipCode", data[0]?.zipCode);
-        setValue("prefecture", data[0]?.prefecture);
-        setValue("city", data[0]?.city);
-        setValue("address", data[0]?.address);
-        setValue("building", data[0]?.building);
-        setValue("password", data[0]?.password);
-        //setterを呼び出して再レンダリングをかける
-        setLoading(false);
+      const fetchUsers = async () => {
+        const { data, error } = await supabase
+          .from("users")
+          .select()
+          .eq("id", Number(cookieName));
+
+        if (error) {
+          setFetchError("couldn't fetch data");
+          console.log(error);
+        }
+
+        if (data) {
+          setFetchError(null);
+          //デフォルト値としてセット
+          setValue("lastName", data[0]?.lastName);
+          setValue("firstName", data[0]?.firstName);
+          setValue("kanaLastName", data[0]?.kanaLastName);
+          setValue("kanaFirstName", data[0]?.kanaFirstName);
+          setValue("phoneNumber", data[0]?.phoneNumber);
+          setValue("email", data[0]?.email);
+          setValue("zipCode", data[0]?.zipCode);
+          setValue("prefecture", data[0]?.prefecture);
+          setValue("city", data[0]?.city);
+          setValue("address", data[0]?.address);
+          setValue("building", data[0]?.building);
+          setValue("password", data[0]?.password);
+          //setterを呼び出して再レンダリングをかける
+          setLoading(false);
+        }
       };
-      get();
+      fetchUsers();
     }
   }, [loading]);
 
-  //onClickでデータベースに登録
   const onSubmit = async (e: any) => {
     const values = getValues();
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/users/${cookieName}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        lastName: values?.lastName,
-        firstName: values?.firstName,
-        kanaLastName: values?.kanaLastName,
-        kanaFirstName: values?.kanaFirstName,
-        phoneNumber: values?.phoneNumber,
-        email: values?.email,
-        zipCode: values?.zipCode,
-        prefecture: values?.prefecture,
-        city: values?.city,
-        address: values?.address,
-        building: values?.building,
-        password: values?.password,
-      }),
-    });
+    const { error } = await supabase
+      .from("users")
+      .update([
+        {
+          lastName: values?.lastName,
+          firstName: values?.firstName,
+          kanaLastName: values?.kanaLastName,
+          kanaFirstName: values?.kanaFirstName,
+          phoneNumber: values?.phoneNumber,
+          email: values?.email,
+          zipCode: values?.zipCode,
+          prefecture: values?.prefecture,
+          city: values?.city,
+          address: values?.address,
+          building: values?.building,
+          password: values?.password,
+        },
+      ])
+      .eq("id", cookieName);
+
+    if (error) {
+      console.log(error);
+    }
+    alert("会員情報が更新されました");
   };
 
   return (
@@ -110,6 +125,7 @@ const UserImfo = () => {
         <Header />
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>お客様情報</h1>
+          {fetchError && <div>{fetchError}</div>}
           <h2>
             <span>お客様情報を変更してください。</span>
           </h2>
@@ -173,7 +189,7 @@ const UserImfo = () => {
             )) ||
               (errors.kanaFirstName?.message && (
                 <span className="formError">
-                  {errors.kanaFirstName?.message as string}
+                  {errors.kanaName?.message as string}
                 </span>
               ))}
           </div>
@@ -223,7 +239,9 @@ const UserImfo = () => {
             />
 
             {errors.email?.message && (
-              <span className="formError">{errors.email.message as string}</span>
+              <span className="formError">
+                {errors.email.message as string}
+              </span>
             )}
             <div>
               <span className="notice">
