@@ -32,15 +32,6 @@ const SignUpConfirmation = () => {
       },
     ]);
 
-    if (error) {
-      console.log(error);
-    }
-
-    if (data) {
-      console.log(data);
-      alert("入力内容を送信しました");
-    }
-
     //shopppingCartにレコードを追加
     fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart`, {
       method: "POST",
@@ -61,80 +52,79 @@ const SignUpConfirmation = () => {
       alert("入力内容を送信しました");
       router.reload();
     }
-
-    return (
-      <>
-        <form onSubmit={handleSubmitUserValue}>
-          <h1>会員登録フォーム</h1>
-          <h2>入力内容を確認してください</h2>
-          <hr />
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>氏名
-            </span>
-            {values.lastName}&nbsp;
-            {values.firstName}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>
-              氏名（フリガナ）
-            </span>
-            {values.kanaLastName}&nbsp;
-            {values.kanaFirstName}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>電話番号
-            </span>
-            {values.phone}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>メールアドレス
-            </span>
-            {values.mail}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>郵便番号
-            </span>
-            {values.postCode}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>都道府県
-            </span>
-            {values.prefecture}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>市区町村
-            </span>
-            {values.city}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-danger">必須</span>番地
-            </span>
-            {values.address}
-          </p>
-          <p>
-            <span className="subtitle">
-              <span className="label-fit label-warning">任意</span>
-              建物名
-            </span>
-            {values?.building}
-          </p>
-          <div className="form-submit-btn">
-            <Link href="/signup">入力内容を修正</Link>
-          </div>
-          <div className="form-submit-btn">
-            <input type="submit" value="入力内容を送信" />
-          </div>
-        </form>
-      </>
-    );
   };
+  return (
+    <>
+      <form onSubmit={handleSubmitUserValue}>
+        <h1>会員登録フォーム</h1>
+        <h2>入力内容を確認してください</h2>
+        <hr />
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>氏名
+          </span>
+          {values.lastName}&nbsp;
+          {values.firstName}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>
+            氏名（フリガナ）
+          </span>
+          {values.kanaLastName}&nbsp;
+          {values.kanaFirstName}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>電話番号
+          </span>
+          {values.phone}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>メールアドレス
+          </span>
+          {values.mail}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>郵便番号
+          </span>
+          {values.postCode}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>都道府県
+          </span>
+          {values.prefecture}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>市区町村
+          </span>
+          {values.city}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-danger">必須</span>番地
+          </span>
+          {values.address}
+        </p>
+        <p>
+          <span className="subtitle">
+            <span className="label-fit label-warning">任意</span>
+            建物名
+          </span>
+          {values?.building}
+        </p>
+        <div className="form-submit-btn">
+          <Link href="/signup">入力内容を修正</Link>
+        </div>
+        <div className="form-submit-btn">
+          <input type="submit" value="入力内容を送信" />
+        </div>
+      </form>
+    </>
+  );
 };
 export default SignUpConfirmation;
