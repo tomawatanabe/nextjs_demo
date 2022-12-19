@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Order, Stock } from "../types";
 import { useCookie } from "./useCookie";
 import styles from "../styles/MyPage.module.css";
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesUp, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 

@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import { useCookie } from "./useCookie";
 import { UsedItems, TopUsedItems } from "../types";
 import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
@@ -10,12 +9,10 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
 function UsedItemList() {
-  const cookieName = useCookie();
   const [flag, setFlag] = useState(true);
 
   const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/usedItems?cookieName=${cookieName}`,
-
+    `${process.env.NEXT_PUBLIC_API}/api/getUsedItems`,
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -94,24 +91,18 @@ function UsedItemList() {
               <>
                 {sortedTopData.map((usedItem: TopUsedItems) => {
                   return (
-                      <tr key={usedItem.id}>
-                        <td className={styles.td_center}>
-                          {usedItem.itemStatus}
-                        </td>
-                        <td className={styles.td_center}>
-                          {usedItem.receptionDate}
-                        </td>
-                        <td>{usedItem.itemName}</td>
-                        <td className={styles.td_center}>
-                          {usedItem.itemCode}
-                        </td>
-                        <td className={styles.td_center}>
-                          {usedItem.itemSize}
-                        </td>
-                        <td className={styles.td_center}>
-                          {usedItem.itemColor}
-                        </td>
-                      </tr>
+                    <tr key={usedItem.id}>
+                      <td className={styles.td_center}>
+                        {usedItem.itemStatus}
+                      </td>
+                      <td className={styles.td_center}>
+                        {usedItem.receptionDate}
+                      </td>
+                      <td>{usedItem.itemName}</td>
+                      <td className={styles.td_center}>{usedItem.itemCode}</td>
+                      <td className={styles.td_center}>{usedItem.itemSize}</td>
+                      <td className={styles.td_center}>{usedItem.itemColor}</td>
+                    </tr>
                   );
                 })}
               </>
