@@ -1,8 +1,7 @@
-import useSWR from "swr";
-import { FavoriteItem2 } from "../types";
+import { FavoriteItem, FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useCookie } from "./useCookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,31 +10,56 @@ import {
   faArrowUpRightFromSquare,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
+import { supabase } from "../lib/supabase-client";
 
-const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
-  fetch(resource, init).then((res) => res.json());
+type FetchError = string | null;
+type Favorites = Array<FavoriteItem> | null;
 
 function FavoriteList() {
   const cookieName = useCookie();
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(false);
+  const [fetchError, setFetchError] = useState<FetchError>(null);
+  const [favorites, setFavorites] = useState<Favorites>(null);
+  const [loading, setLoading] = useState(true);
 
-  const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}`,
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const { data, error } = await supabase
+        .from("favorite_items")
+        .select()
+        .eq("cookieName", Number(cookieName));
 
-    fetcher
-  );
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+      if (error) {
+        setFetchError("couldn't fetch data");
+        setFavorites(null);
+        console.log(error);
+      }
+
+      if (data) {
+        setFavorites(data);
+        console.log(favorites);
+        setFetchError(null);
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, [loading]);
+
+  if (loading) <div>Loading...</div>;
 
   //idの降順で並び替える
-  const sortedData = data.sort((a: FavoriteItem2, b: FavoriteItem2) => {
+  const sortedData = favorites?.sort((a: FavoriteItem, b: FavoriteItem) => {
     return a.id < b.id ? 1 : -1;
   });
 
-  //降順のTop3を抽出した配列を定義
+  //降順のTop2を抽出した配列を定義
   const sortTopData = () => {
     const sortedTopData = [];
-    for (let i = 0; i < 3; i++) {
+    if (sortedData === undefined) {
+      return;
+    }
+
+    for (let i = 0; i < 2; i++) {
       if (typeof sortedData[i]?.name === "undefined") {
         break;
       }
@@ -55,17 +79,33 @@ function FavoriteList() {
   };
   const sortedTopData = sortTopData();
 
-  //お気に入りから削除する関数
-  const deleteFav = (favoriteItem: FavoriteItem2) => {
-    fetch(
-      `${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${favoriteItem?.id}`,
-      {
-        method: "DELETE",
+  //Top3以から漏れた配列を定義
+  const sortRestData = () => {
+    const sortedRestData = [];
+    if (sortedData === undefined) {
+      return;
+    }
+    for (let i = 2; i < sortedData.length; i++) {
+      if (typeof sortedData[i]?.name === "undefined") {
+        break;
       }
-    ).then(() => mutate());
-  };
 
-  if (!data.length) {
+      sortedRestData.push({
+        name: sortedData[i]?.name,
+        condition: sortedData[i]?.condition,
+        imagePath: sortedData[i]?.imagePath,
+        size: sortedData[i]?.size,
+        price: sortedData[i]?.price,
+        itemId: sortedData[i]?.itemId,
+        cookieName: sortedData[i]?.cookieName,
+        id: sortedData[i]?.id,
+      });
+    }
+    return sortedRestData;
+  };
+  const sortedRestData = sortRestData();
+
+  if (favorites === undefined) {
     return (
       <>
         <h2>お気に入り</h2>
@@ -77,10 +117,11 @@ function FavoriteList() {
       <div>
         <div className={styles.title_wrapper}>
           <h2 className={styles.content_title}>お気に入り</h2>
+          {fetchError && <div>{fetchError}</div>}
           {flag ? (
             <>
               <FontAwesomeIcon
-                icon={faAnglesDown}
+                icon={faAnglesUp}
                 onClick={() => setFlag(!flag)}
                 className={styles.btn}
               />
@@ -88,7 +129,7 @@ function FavoriteList() {
           ) : (
             <>
               <FontAwesomeIcon
-                icon={faAnglesUp}
+                icon={faAnglesDown}
                 onClick={() => setFlag(!flag)}
                 className={styles.btn}
               />
@@ -108,9 +149,53 @@ function FavoriteList() {
             </tr>
           </thead>
           <tbody>
-            {flag ? (
+            {sortedTopData?.map((favoriteItem: FavoriteItem2) => {
+              return (
+                <tr key={favoriteItem.itemId}>
+                  <td>{favoriteItem.name}</td>
+                  <td>¥{favoriteItem.price.toLocaleString()}</td>
+                  <td className={styles.td_center}>{favoriteItem.size}</td>
+                  <td>
+                    <Image
+                      src={`/${favoriteItem.imagePath}`}
+                      height={120}
+                      width={120}
+                      alt={favoriteItem.name}
+                      priority
+                    />
+                    <br />
+                  </td>
+                  <td className={styles.td_center}>{favoriteItem.condition}</td>
+                  <td>
+                    <a
+                      target="_blank"
+                      href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
+                    >
+                      <FontAwesomeIcon
+                        className={styles.btn}
+                        icon={faArrowUpRightFromSquare}
+                      />
+                    </a>
+                  </td>
+                  <td>
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      onClick={async () => {
+                        const { data, error } = await supabase
+                          .from("favorite_items")
+                          .delete()
+                          .eq("id", favoriteItem?.id);
+                        setLoading(!loading);
+                      }}
+                      className={styles.btn}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
+            {flag && (
               <>
-                {sortedTopData.map((favoriteItem: FavoriteItem2) => {
+                {sortedRestData?.map((favoriteItem: FavoriteItem2) => {
                   return (
                     <tr key={favoriteItem.itemId}>
                       <td>{favoriteItem.name}</td>
@@ -143,50 +228,13 @@ function FavoriteList() {
                       <td>
                         <FontAwesomeIcon
                           icon={faTrashCan}
-                          onClick={() => deleteFav(favoriteItem)}
-                          className={styles.btn}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </>
-            ) : (
-              <>
-                {sortedData.map((favoriteItem: FavoriteItem2) => {
-                  return (
-                    <tr key={favoriteItem.itemId}>
-                      <td>{favoriteItem.name}</td>
-                      <td>¥{favoriteItem.price.toLocaleString()}</td>
-                      <td className={styles.td_center}>{favoriteItem.size}</td>
-                      <td>
-                        <Image
-                          src={`/${favoriteItem.imagePath}`}
-                          height={120}
-                          width={120}
-                          alt={favoriteItem.name}
-                          priority
-                        />
-                        <br />
-                      </td>
-                      <td className={styles.td_center}>
-                        {favoriteItem.condition}
-                      </td>
-                      <td>
-                        <a
-                          target="_blank"
-                          href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
-                        >
-                          <FontAwesomeIcon
-                            icon={faArrowUpRightFromSquare}
-                            className={styles.btn}
-                          />
-                        </a>
-                      </td>
-                      <td>
-                        <FontAwesomeIcon
-                          icon={faTrashCan}
-                          onClick={() => deleteFav(favoriteItem)}
+                          onClick={async () => {
+                            const { data, error } = await supabase
+                              .from("favorite_items")
+                              .delete()
+                              .eq("id", favoriteItem?.id);
+                            setLoading(!loading);
+                          }}
                           className={styles.btn}
                         />
                       </td>

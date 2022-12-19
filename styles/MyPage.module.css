@@ -65,11 +65,9 @@
 }
 
 .th_name {
-  width: 400px;
+  width: 55%;
 }
 
-.animation {
-  transition: height 0.2s linear, opacity 0.2s ease-in;
-
-  overflow: hidden; /* heightをはみ出す子要素を表示させないようにすることで、上から徐々に子要素が表示されるアニメーションを実現 */
+.th_ui_size {
+  width: 100px;
 }

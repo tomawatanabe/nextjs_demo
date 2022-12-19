@@ -79,10 +79,10 @@ function UsedItemList() {
           <thead>
             <tr>
               <th>受付状況</th>
-              <th>受付日</th>
-              <th>品名</th>
-              <th>品番</th>
-              <th>サイズ</th>
+              <th className={styles.th_ui_size}>受付日</th>
+              <th className={styles.th_name}>品名</th>
+              <th className={styles.th_ui_size}>品番</th>
+              <th className={styles.th_ui_size}>サイズ</th>
               <th>色</th>
             </tr>
           </thead>
