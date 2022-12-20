@@ -3,6 +3,8 @@ import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
 import PageTop from "../../components/pageTop";
+import SignIn from "../../components/SignIn";
+import SignCheck from "../../components/signUp/Signcheck";
 
 export default function Loginpage() {
   const [id, setId] = useState("");
@@ -51,7 +53,7 @@ export default function Loginpage() {
   }
 
   return (
-    <>
+    <SignCheck>
       <LoginPageHeader />
       <div className={styles.login}>
         <div className={styles.login_container}>
@@ -85,6 +87,6 @@ export default function Loginpage() {
       {loginFlag()}
       <PageTop />
       <Footer />
-    </>
+    </SignCheck>
   );
 }

@@ -17,7 +17,7 @@ const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
   return res
     .status(200)
     .json([
-      { cookieId: data[0].id, userName: data[0].lastName + data[0].firstName },
+      { userID: data[0].id, userName: data[0].lastName + data[0].firstName },
     ]);
 };
 
