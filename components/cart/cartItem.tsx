@@ -9,8 +9,10 @@ import styles from "../../styles/Cart.module.css";
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
-
-const CartItem = (props: {data: [ShoppingCart] | [], handleDelete: (cart: ShoppingCart, id: number) => void} ) => {
+const CartItem = (props: {
+  data: [ShoppingCart] | [];
+  handleDelete: (cart: ShoppingCart, id: number) => void;
+}) => {
   const userID = useCookie();
   const [cart, setCart] = useState(props.data[0]);
 
@@ -18,9 +20,7 @@ const CartItem = (props: {data: [ShoppingCart] | [], handleDelete: (cart: Shoppi
     setCart(props.data[0]);
   }, [props.data]);
 
-
   const noItem = <p>カートの中身はありません</p>;
-
 
   const cartList = (
     <ul className={styles.cart_ul}>
@@ -65,9 +65,7 @@ const CartItem = (props: {data: [ShoppingCart] | [], handleDelete: (cart: Shoppi
     </ul>
   );
 
-
   return <div>{cart?.stock.length ? cartList : noItem}</div>;
 };
-
 
 export default CartItem;

@@ -56,7 +56,6 @@ const SignUpConfirmation = () => {
   return (
     <>
       <form onSubmit={handleSubmitUserValue}>
-        <h1>会員登録フォーム</h1>
         <h2>入力内容を確認してください</h2>
         <hr />
         <p>
@@ -121,7 +120,8 @@ const SignUpConfirmation = () => {
           <Link href="/signup">入力内容を修正</Link>
         </div>
         <div className="form-submit-btn">
-          <input type="submit" value="入力内容を送信" />
+          <input type="submit" value="入力内容を送信" className="idbutton" />
+
         </div>
       </form>
     </>

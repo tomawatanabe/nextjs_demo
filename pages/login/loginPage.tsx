@@ -16,15 +16,14 @@ export default function Loginpage() {
     setPw(e.target.value);
   };
 
-  function postCarti() {
+  function postAPI() {
     const loginData: { userID: string; userPW: string } = {
       userID: id,
       userPW: pw,
     };
-
     setFlag(false);
 
-    fetch(`/api/certification`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getUsers`, {
       method: `POST`,
       headers: {
         "Content-Type": `application/json`,
@@ -35,12 +34,12 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (!data.cookieId) {
+        if (data[0] === undefined) {
           setFlag(true);
         } else {
           history.back();
-          document.cookie = `userID=${data.cookieId}; Path=/; `;
-          document.cookie = `userName=${data.userName};  Path=/;`;
+          document.cookie = `userID=${data[0].userID}; Path=/; `;
+          document.cookie = `userName=${data[0].userName};  Path=/;`;
         }
       });
   }
@@ -78,7 +77,7 @@ export default function Loginpage() {
               className={styles.login_btn}
               type="button"
               value="ログイン"
-              onClick={postCarti}
+              onClick={postAPI}
             />
           </span>
         </div>
