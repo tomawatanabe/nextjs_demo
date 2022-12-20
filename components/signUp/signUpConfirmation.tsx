@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useFormContext } from "react-hook-form";
+import { supabase } from "../../lib/supabase-client";
 
 const SignUpConfirmation = () => {
   const router = useRouter();
@@ -10,14 +11,12 @@ const SignUpConfirmation = () => {
   const values = getValues();
 
   //データベースに登録する関数
-  const handleSubmitUserValue = () => {
+  const handleSubmitUserValue = async (e: any) => {
+    e.preventDefault();
     const values = getValues();
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+
+    const { data, error } = await supabase.from("users").insert([
+      {
         lastName: values.lastName,
         firstName: values.firstName,
         kanaLastName: values.kanaLastName,
@@ -30,9 +29,10 @@ const SignUpConfirmation = () => {
         address: values.address,
         building: values.building,
         password: values.password,
-      }),
-    });
+      },
+    ]);
 
+    //shopppingCartにレコードを追加
     fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart`, {
       method: "POST",
       headers: {
@@ -43,12 +43,19 @@ const SignUpConfirmation = () => {
       }),
     });
 
-    alert("入力内容を送信しました");
-  };
+    if (error) {
+      console.log(error);
+    }
 
+    if (data) {
+      console.log(data);
+      alert("入力内容を送信しました");
+      router.reload();
+    }
+  };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmitUserValue}>
         <h1>会員登録フォーム</h1>
         <h2>入力内容を確認してください</h2>
         <hr />
@@ -61,7 +68,8 @@ const SignUpConfirmation = () => {
         </p>
         <p>
           <span className="subtitle">
-            <span className="label-fit label-danger">必須</span>氏名（フリガナ）
+            <span className="label-fit label-danger">必須</span>
+            氏名（フリガナ）
           </span>
           {values.kanaLastName}&nbsp;
           {values.kanaFirstName}
@@ -113,13 +121,10 @@ const SignUpConfirmation = () => {
           <Link href="/signup">入力内容を修正</Link>
         </div>
         <div className="form-submit-btn">
-          <Link href="/" onClick={handleSubmitUserValue}>
-            入力内容を送信
-          </Link>
+          <input type="submit" value="入力内容を送信" />
         </div>
       </form>
     </>
   );
 };
-
 export default SignUpConfirmation;

@@ -3,24 +3,23 @@ import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 import { useCookie } from "../useCookie";
 import styles from "../../styles/purchase.module.css";
+import { supabase } from "../../lib/supabase-client";
 
-const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
+const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
   const cookieName = useCookie();
 
   const { getValues } = useFormContext();
   const values = getValues();
 
-  const handleSubmitUsedItemValue = () => {
+  const handleSubmitUsedItemValue = async (e: any) => {
+    e.preventDefault();
+
     const values = getValues();
     const date = new Date();
     const today: string = date.toLocaleDateString();
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/usedItems`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const { data, error } = await supabase.from("useditems").insert([
+      {
         receptionDate: today,
         cookieName: cookieName,
         sellerLastName: values.lastName,
@@ -40,43 +39,79 @@ const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
         itemColor: values.itemColor,
         itemNote: values.itemNote,
         itemStatus: "受付済",
-      }),
-    });
+      },
+    ]);
 
-    if (values.itemNameB) {
-      fetch(`${process.env. NEXT_PUBLIC_API}/api/usedItems`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          receptionDate: today,
-          cookieName: cookieName,
-          sellerLastName: values.lastName,
-          sellerFirstName: values.firstName,
-          sellerKanaLastName: values.kanaFirstName,
-          sellerKanaFirstName: values.kanaLastName,
-          sellerPhoneNumber: values.phone,
-          sellerEmail: values.email,
-          sellerZipCode: values.zipCode,
-          sellerPrefecture: values.prefecture,
-          sellerCity: values.city,
-          sellerAddress: values.address,
-          sellerBuilding: values.building,
-          itemName: values.itemNameB,
-          itemCode: values.itemCodeB,
-          itemSize: values.itemSizeB,
-          itemColor: values.itemColorB,
-          itemNote: values.itemNoteB,
-          itemStatus: "受付済",
-        }),
-      });
+    if (error) {
+      console.log(error);
     }
+
+    if (data) {
+      console.log(data);
+    }
+
+    //   fetch(`${process.env.NEXT_PUBLIC_API}/api/usedItems`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    // receptionDate: today,
+    // cookieName: cookieName,
+    // sellerLastName: values.lastName,
+    // sellerFirstName: values.firstName,
+    // sellerKanaLastName: values.kanaFirstName,
+    // sellerKanaFirstName: values.kanaLastName,
+    // sellerPhoneNumber: values.phone,
+    // sellerEmail: values.email,
+    // sellerZipCode: values.zipCode,
+    // sellerPrefecture: values.prefecture,
+    // sellerCity: values.city,
+    // sellerAddress: values.address,
+    // sellerBuilding: values.building,
+    // itemName: values.itemName,
+    // itemCode: values.itemCode,
+    // itemSize: values.itemSize,
+    // itemColor: values.itemColor,
+    // itemNote: values.itemNote,
+    // itemStatus: "受付済",
+    //     }),
+    //   });
+
+    //   if (values.itemNameB) {
+    //     fetch(`${process.env. NEXT_PUBLIC_API}/api/usedItems`, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         receptionDate: today,
+    //         cookieName: cookieName,
+    //         sellerLastName: values.lastName,
+    //         sellerFirstName: values.firstName,
+    //         sellerKanaLastName: values.kanaFirstName,
+    //         sellerKanaFirstName: values.kanaLastName,
+    //         sellerPhoneNumber: values.phone,
+    //         sellerEmail: values.email,
+    //         sellerZipCode: values.zipCode,
+    //         sellerPrefecture: values.prefecture,
+    //         sellerCity: values.city,
+    //         sellerAddress: values.address,
+    //         sellerBuilding: values.building,
+    //         itemName: values.itemNameB,
+    //         itemCode: values.itemCodeB,
+    //         itemSize: values.itemSizeB,
+    //         itemColor: values.itemColorB,
+    //         itemNote: values.itemNoteB,
+    //         itemStatus: "受付済",
+    //       }),
+    //     });
+    //   }
   };
 
   return (
     <div className={styles.outside}>
-      <form>
+      <form onSubmit={handleSubmitUsedItemValue}>
         <h1 className={styles.midashi}>入力内容を確認してください</h1>
         <h2 className={styles.kaitori}>お客様情報の確認</h2>
         <hr />
@@ -259,15 +294,13 @@ const PurchaseConfirmation = ({ imageData, imageDataB }:any) => {
             </Link>
           </div>
         </div>
-        <div className="button001">
+        <div>
           <div className={styles.btn}>
-            <Link
-              href="/"
-              onClick={handleSubmitUsedItemValue}
+            <input
+              type="submit"
               className="idbutton"
-            >
-              入力内容を送信する
-            </Link>
+              value="入力内容を送信する"
+            />
           </div>
         </div>
       </form>

@@ -5,7 +5,7 @@ const SignIn = ({ children }: any) => {
   const router = useRouter();
   useEffect(() => {
     const cookie = document.cookie;
-    if (cookie === "userID=; userName=" || undefined) {
+    if (cookie === "" || undefined) {
       router.push("/login/loginPage");
     }
   }, []);

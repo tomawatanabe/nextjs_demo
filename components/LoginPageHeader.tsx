@@ -28,7 +28,7 @@ export default function Header() {
   };
 
   const correction = () => {
-    if (cookieOriginal === "userID=" || "" || undefined) {
+    if (cookieOriginal === "" || undefined) {
       return (
         <div className={styles.headerin}>
           <li key="signup" className={styles.lis}>
