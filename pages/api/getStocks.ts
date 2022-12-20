@@ -1,8 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../lib/supabase-client";
 
-const getUsedItems = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { data, error } = await supabase.from("used_items").select();
+const getStocks = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { data, error } = await supabase.from("stocks").select(`
+  size,
+  price,
+  items (
+    name
+  )
+`);
 
   // 401 Unauthorized、認証が必要
   if (error) return res.status(401).json({ error: error.message });
@@ -11,4 +17,4 @@ const getUsedItems = async (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(200).json(data);
 };
 
-export default getUsedItems;
+export default getStocks;
