@@ -18,9 +18,9 @@ export default function Header() {
   const [reload, setReload] = useState(0);
 
   const logout = (event: React.MouseEvent<HTMLInputElement>) => {
-    document.cookie = `userID=; `;
-    document.cookie = `userName=; `;
-    setReload((event) => reload + 1);
+    document.cookie = `userID=; Path=/; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
+    document.cookie = `userName=; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
+    router.reload();
   };
 
   const login = () => {
@@ -28,7 +28,7 @@ export default function Header() {
   };
 
   const correction = () => {
-    if (cookieOriginal === "userID=" || "" || undefined) {
+    if (cookieOriginal === "" || undefined) {
       return (
         <div className={styles.headerin}>
           <li key="signup" className={styles.lis}>
