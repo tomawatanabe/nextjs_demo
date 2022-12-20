@@ -5,8 +5,21 @@ const getStocks = async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase.from("stocks").select(`
   size,
   price,
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  arrival,
+  condition,
   items (
-    name
+    name,
+    series,
+    year,
+    description,
+    setprice,
+    color,
+    deleted
   )
 `);
 
