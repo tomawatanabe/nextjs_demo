@@ -18,7 +18,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
     const date = new Date();
     const today: string = date.toLocaleDateString();
 
-    const { data, error } = await supabase.from("useditems").insert([
+    const { data, error } = await supabase.from("used_items").insert([
       {
         receptionDate: today,
         cookieName: cookieName,
@@ -49,35 +49,7 @@ const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
     if (data) {
       console.log(data);
     }
-
-    //   fetch(`${process.env.NEXT_PUBLIC_API}/api/usedItems`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    // receptionDate: today,
-    // cookieName: cookieName,
-    // sellerLastName: values.lastName,
-    // sellerFirstName: values.firstName,
-    // sellerKanaLastName: values.kanaFirstName,
-    // sellerKanaFirstName: values.kanaLastName,
-    // sellerPhoneNumber: values.phone,
-    // sellerEmail: values.email,
-    // sellerZipCode: values.zipCode,
-    // sellerPrefecture: values.prefecture,
-    // sellerCity: values.city,
-    // sellerAddress: values.address,
-    // sellerBuilding: values.building,
-    // itemName: values.itemName,
-    // itemCode: values.itemCode,
-    // itemSize: values.itemSize,
-    // itemColor: values.itemColor,
-    // itemNote: values.itemNote,
-    // itemStatus: "受付済",
-    //     }),
-    //   });
-
+    
     //   if (values.itemNameB) {
     //     fetch(`${process.env. NEXT_PUBLIC_API}/api/usedItems`, {
     //       method: "POST",

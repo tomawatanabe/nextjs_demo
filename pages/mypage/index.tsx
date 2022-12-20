@@ -13,7 +13,6 @@ import {
   faUser,
   faSpaghettiMonsterFlying,
 } from "@fortawesome/free-solid-svg-icons";
-import Chatbot from "../../components/Chatbot";
 
 const MyPage = () => {
   return (
@@ -44,7 +43,6 @@ const MyPage = () => {
           </div>
         </div>
         <PageTop />
-        <Chatbot />
         <Footer />
       </SignIn>
     </>
