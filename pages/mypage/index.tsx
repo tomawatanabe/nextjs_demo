@@ -43,6 +43,7 @@ const MyPage = () => {
           </div>
         </div>
         <PageTop />
+        <Chatbot />
         <Footer />
       </SignIn>
     </>
