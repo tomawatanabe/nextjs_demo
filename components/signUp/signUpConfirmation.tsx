@@ -121,6 +121,7 @@ const SignUpConfirmation = () => {
         </div>
         <div className="form-submit-btn">
           <input type="submit" value="入力内容を送信" className="idbutton" />
+
         </div>
       </form>
     </>

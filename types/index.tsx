@@ -44,6 +44,7 @@ export type Users = {
 };
 
 export type FavoriteItem = {
+  id:number;
   itemId: number;
   cookieName: string | undefined;
   name: string;
