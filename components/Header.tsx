@@ -20,7 +20,7 @@ export default function Header() {
   const logout = (event: React.MouseEvent<HTMLInputElement>) => {
     document.cookie = `userID=; Path=/; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
     document.cookie = `userName=; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
-    setReload((event) => reload + 1);
+    router.reload();
   };
 
   const login = () => {

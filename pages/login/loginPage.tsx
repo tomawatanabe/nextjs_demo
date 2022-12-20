@@ -38,9 +38,9 @@ export default function Loginpage() {
         if (!data.cookieId) {
           setFlag(true);
         } else {
-          document.cookie = `userID=${data.cookieId}; Path=/; `;
-          document.cookie = `userName=${data.userName}; `;
           history.back();
+          document.cookie = `userID=${data.cookieId}; Path=/; `;
+          document.cookie = `userName=${data.userName};  Path=/;`;
         }
       });
   }
