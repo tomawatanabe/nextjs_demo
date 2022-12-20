@@ -1,14 +1,13 @@
 import type { Stock } from "../types";
-import type { FavoriteItem } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import styles from "../styles/FavButton.module.css";
 
 const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
 
-  const stockData: FavoriteItem = {
+  const stockData = {
     itemId: stock.id,
     cookieName: cookieName,
     name: stock.item.name,
@@ -16,7 +15,6 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
     size: stock.size,
     imagePath: stock.image1,
     condition: stock.condition,
-    deleted: false,
   };
 
   //自分がお気に入りしたこのstockの配列を取得
@@ -24,7 +22,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
     fetch(resource).then((res) => res.json());
 
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/favoriteItems?deleted=false&cookieName=${cookieName}&itemId=${stockData.itemId}`,
+    `${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stockData.itemId}`,
     fetcher
   );
 

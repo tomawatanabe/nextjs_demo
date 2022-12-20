@@ -2,8 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../lib/supabase-client";
 
 const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { data, error } = await supabase.from("users").select();
-  // .eq("id", cookieName);
+  const { data, error } = await supabase
+    .from("users")
+    .select()
+    .eq("id", req.cookies.userID);
 
   // 401 Unauthorized、認証が必要
   if (error) return res.status(401).json({ error: error.message });

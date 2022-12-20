@@ -1,6 +1,5 @@
 import { FavoriteItem, FavoriteItem2 } from "../types";
 import Image from "next/image";
-import { useCookie } from "./useCookie";
 import { useEffect, useState } from "react";
 import styles from "../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,48 +10,30 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { supabase } from "../lib/supabase-client";
+import useSWR from "swr";
 
-type FetchError = string | null;
-type Favorites = Array<FavoriteItem> | null;
+const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
+  fetch(resource, init).then((res) =>
+    res.json().then((res) =>
+      res.sort((a: FavoriteItem, b: FavoriteItem) => {
+        return a.id < b.id ? 1 : -1;
+      })
+    )
+  );
 
 function FavoriteList() {
-  const cookieName = useCookie();
   const [flag, setFlag] = useState(false);
-  const [fetchError, setFetchError] = useState<FetchError>(null);
-  const [favorites, setFavorites] = useState<Favorites>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const { data, error } = await supabase
-        .from("favorite_items")
-        .select()
-        .eq("cookieName", Number(cookieName));
+  const {
+    data: sortedData,
+    error,
+    mutate,
+  } = useSWR(`${process.env.NEXT_PUBLIC_API}/api/getFavoriteItems`, fetcher);
 
-      if (error) {
-        setFetchError("couldn't fetch data");
-        setFavorites(null);
-        console.log(error);
-      }
+  if (error) return <div>failed to load</div>;
+  if (!sortedData) return <div>loading...</div>;
 
-      if (data) {
-        setFavorites(data);
-        console.log(favorites);
-        setFetchError(null);
-        setLoading(false);
-      }
-    };
-    fetchUsers();
-  }, [loading]);
-
-  if (loading) <div>Loading...</div>;
-
-  //idの降順で並び替える
-  const sortedData = favorites?.sort((a: FavoriteItem, b: FavoriteItem) => {
-    return a.id < b.id ? 1 : -1;
-  });
-
-  //降順のTop2を抽出した配列を定義
+  //Top2を抽出した配列を定義
   const sortTopData = () => {
     const sortedTopData = [];
     if (sortedData === undefined) {
@@ -77,9 +58,10 @@ function FavoriteList() {
     }
     return sortedTopData;
   };
+
   const sortedTopData = sortTopData();
 
-  //Top3以から漏れた配列を定義
+  //Top2から漏れた配列を定義
   const sortRestData = () => {
     const sortedRestData = [];
     if (sortedData === undefined) {
@@ -103,9 +85,10 @@ function FavoriteList() {
     }
     return sortedRestData;
   };
+
   const sortedRestData = sortRestData();
 
-  if (favorites === undefined) {
+  if (!sortedData.length) {
     return (
       <>
         <h2>お気に入り</h2>
@@ -117,7 +100,6 @@ function FavoriteList() {
       <div>
         <div className={styles.title_wrapper}>
           <h2 className={styles.content_title}>お気に入り</h2>
-          {fetchError && <div>{fetchError}</div>}
           {flag ? (
             <>
               <FontAwesomeIcon
@@ -185,7 +167,10 @@ function FavoriteList() {
                           .from("favorite_items")
                           .delete()
                           .eq("id", favoriteItem?.id);
-                        setLoading(!loading);
+
+                        mutate(
+                          `${process.env.NEXT_PUBLIC_API}/api/getFavoriteItems`
+                        );
                       }}
                       className={styles.btn}
                     />
@@ -233,7 +218,9 @@ function FavoriteList() {
                               .from("favorite_items")
                               .delete()
                               .eq("id", favoriteItem?.id);
-                            setLoading(!loading);
+                            mutate(
+                              `${process.env.NEXT_PUBLIC_API}/api/getFavoriteItems`
+                            );
                           }}
                           className={styles.btn}
                         />
