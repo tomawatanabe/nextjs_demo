@@ -24,6 +24,7 @@ export type Stock = {
   amount: number;
   arrival: Date;
   condition: string;
+  deleted: boolean;
   item: Item;
 };
 
