@@ -10,6 +10,8 @@ import SignIn from "../../components/SignIn";
 import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
 import { Item, Stock } from "../../types";
+import { supabase } from "../../lib/supabase-client";
+import Stocks from "../api/stocks";
 
 export default function Settlement() {
   const todayYear = new Date().getFullYear();
@@ -39,6 +41,11 @@ export default function Settlement() {
 
   const ItemList = cart?.stock;
 
+  // orderItemListに送る値を取得する
+  const Items = ItemList?.map((stock:Stock) => stock.id);
+
+  console.log(Items);
+
   // 合計金額計算
   const initial: number = ItemList?.map((stock: Stock) => stock.price).reduce(
     (prev: number, curr: number) => prev + curr,
@@ -57,38 +64,9 @@ export default function Settlement() {
   if (error) return <div>failed to load</div>;
   if (!cart) return <div>loading...</div>;
 
-  const getdata = {
-    userID: userId,
-    orderDate: orderDate,
-    note: note,
-    paymentMethod: paymentMethod,
-    orderItemList: ItemList,
-    shipStatus: shipStatus,
-    totalPrice: total,
-  };
 
-  // 購入手続きをDBにpostする
-  const sendOrder = () => {
-    if (!paymentMethod) {
-      setFlag(true);
-      return;
-    } else {
-      fetch(`${process.env.NEXT_PUBLIC_API}/api/order`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(getdata),
-      })
-        .then((response) => response.json())
-        .then((getdata) => {
-          router.replace(`${process.env.NEXT_PUBLIC_API}/settlement/close`);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-  };
+
+
 
   // カートの中身を削除する
   const DeletedItems = () => {
@@ -110,10 +88,28 @@ export default function Settlement() {
       });
   };
 
-  const handleClick = (event: { target: any }) => {
-    sendOrder();
-    setShipStatus("未発送");
+  const handleClick = async (event: { target: any }) => {
+    const { data, error } = await supabase.from("order").insert([ {
+      userID: userId,
+      orderDate: orderDate,
+      note: note,
+      paymentMethod: paymentMethod,
+      shipStatus: shipStatus,
+      totalPrice: total,
+    }
+  ]); 
+  const { data: Items, error: Error } = await supabase.from("orderItemList").insert([ {
+    orderItemList: ItemList,
+    
+  }
+]); 
+
     DeletedItems();
+    if(error){
+      console.log('error',error)
+      return
+    }
+    router.replace(`${process.env.NEXT_PUBLIC_API}/settlement/close`);
   };
 
   return (

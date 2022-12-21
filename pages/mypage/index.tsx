@@ -39,7 +39,7 @@ const MyPage = () => {
           </div>
           <hr />
           <div>
-            {/* <UsedItemList /> */}
+            <UsedItemList />
           </div>
         </div>
         <PageTop />
