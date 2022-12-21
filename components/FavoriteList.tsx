@@ -1,6 +1,6 @@
 import { FavoriteItem, FavoriteItem2 } from "../types";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

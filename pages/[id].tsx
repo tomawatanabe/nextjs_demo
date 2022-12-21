@@ -1,18 +1,21 @@
 import Image from "next/image";
-import Link from "next/link";
+import { supabase } from "../lib/supabase-client";
 import CartButton from "../components/cart/cartButton";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Stock } from "../types";
+import { Item, Stock } from "../types";
 import ToggleFavButton from "../components/ToggleFavButton";
 import PageTop from "../components/pageTop";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/css";
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.API_BASE_URL}/stock`);
-
-  const stocks = await res.json();
+  const { data, error } = await supabase.from("stocks").select();
+  if (!data) return;
+  if (error) {
+    console.log(error);
+  }
+  const stocks = await data;
   const getpaths = stocks.map((stock: { id: number }) => {
     return { params: { id: stock.id.toString() } };
   });
@@ -23,22 +26,34 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-  const res = await fetch(`${process.env.API_BASE_URL}/stock/${params.id}`);
+  const { data, error } = await supabase
+    .from("stocks")
+    .select()
+    .eq("id", `${params.id}`);
 
-  const stock = await res.json();
+  if (!data) return;
 
-  return { props: { stock } };
+  if (error) {
+    console.log(error);
+  }
+  const stock = await data[0];
+
+  const items = await supabase.from("items").select().eq("id", `${params.id}`);
+  if (!items.data) return;
+  const item = await items.data[0];
+
+  return { props: { stock, item } };
 }
 
-export default function Detail({ stock }: { stock: Stock }) {
+export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
   return (
     <div>
       <Header />
       <div className="outside">
         <div className="top-wrapper">
-          <h1>{stock.item.name}</h1>
-          <p>年代：{stock.item.year}年代</p>
-          <p>色：{stock.item.color}</p>
+          <h1>{item.name}</h1>
+          <p>年代：{item.year}年代</p>
+          <p>色：{item.color}</p>
         </div>
         <div className="main-content">
           <div className="image-wrapper">
@@ -60,7 +75,7 @@ export default function Detail({ stock }: { stock: Stock }) {
                     src={`/${stock.image1}`}
                     height={300}
                     width={400}
-                    alt={stock.item.name}
+                    alt={item.name}
                     priority
                   />
                 </SplideSlide>
@@ -70,7 +85,7 @@ export default function Detail({ stock }: { stock: Stock }) {
                     src={`/${stock.image2}`}
                     height={300}
                     width={400}
-                    alt={stock.item.name}
+                    alt={item.name}
                     priority
                   />
                 </SplideSlide>
@@ -80,7 +95,7 @@ export default function Detail({ stock }: { stock: Stock }) {
                     src={`/${stock.image3}`}
                     height={300}
                     width={400}
-                    alt={stock.item.name}
+                    alt={item.name}
                     priority
                   />
                 </SplideSlide>
@@ -90,7 +105,7 @@ export default function Detail({ stock }: { stock: Stock }) {
                     src={`/${stock.image4}`}
                     height={300}
                     width={400}
-                    alt={stock.item.name}
+                    alt={item.name}
                     priority
                   />
                 </SplideSlide>
@@ -100,7 +115,7 @@ export default function Detail({ stock }: { stock: Stock }) {
                     src={`/${stock.image5}`}
                     height={300}
                     width={400}
-                    alt={stock.item.name}
+                    alt={item.name}
                     priority
                   />
                 </SplideSlide>
@@ -121,7 +136,7 @@ export default function Detail({ stock }: { stock: Stock }) {
             <div className="right-side-colored">
               <dl>
                 <dt>価格（税込）</dt>
-                <dd>¥{stock.price.toLocaleString()}</dd>
+                <dd>¥{stock.price}</dd>
               </dl>
               <dl>
                 <dt>サイズ</dt>
@@ -136,13 +151,13 @@ export default function Detail({ stock }: { stock: Stock }) {
                 <dd>{stock.condition}</dd>
               </dl>
             </div>
-            <ToggleFavButton stock={stock} />
-            <CartButton stock={stock} />
+            <ToggleFavButton stock={stock} item={item} />
+            {/* <CartButton stock={stock,item} /> */}
           </div>
         </div>
         <div className="explanation-wrapper">
           <h2>商品説明</h2>
-          <p className="explanation">{stock.item.description}</p>
+          <p className="explanation">{item.description}</p>
         </div>
       </div>
       <PageTop />

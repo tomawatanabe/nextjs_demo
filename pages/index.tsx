@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/sidebar";
 import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";

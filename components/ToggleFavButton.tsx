@@ -1,28 +1,18 @@
-import type { Stock } from "../types";
+import type { Item, Stock } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR from "swr";
 import styles from "../styles/FavButton.module.css";
+import { supabase } from "../lib/supabase-client";
 
-const ToggleFavButton = ({ stock }: { stock: Stock }) => {
+const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   const cookieName = useCookie();
 
-  const stockData = {
-    itemId: stock.id,
-    cookieName: cookieName,
-    name: stock.item.name,
-    price: stock.price,
-    size: stock.size,
-    imagePath: stock.image1,
-    condition: stock.condition,
-  };
-
-  //自分がお気に入りしたこのstockの配列を取得
   const fetcher = (resource: string) =>
     fetch(resource).then((res) => res.json());
 
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stockData.itemId}`,
+    `${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`,
     fetcher
   );
 
@@ -30,35 +20,42 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   if (!data) return <div>loading...</div>;
 
   //onClick処理
-  const addFav = () => {
+  const addFav = async () => {
     //cookie持ってなかったらログイン画面へ
     if (!cookieName) {
       Router.push("/login/loginPage");
       return;
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const { data, error } = await supabase.from("favorite_items").insert([
+      {
+        itemId: stock.id,
+        cookieName: cookieName,
+        name: item.name,
+        price: stock.price,
+        size: stock.size,
+        imagePath: stock.image1,
+        condition: stock.condition,
       },
-      body: JSON.stringify(stockData),
-    }).then(() => mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems`));
+    ]);
+
+    mutate(`${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`);
   };
 
-  const deleteFav = () => {
+  const deleteFav = async () => {
     //cookie持ってなかったらログイン画面へ
     if (!cookieName) {
       Router.push("/login/loginPage");
       return;
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`, {
-      mode: "cors",
-      method: "DELETE",
-    }).then(() =>
-      mutate(`${process.env.NEXT_PUBLIC_API}/api/favoriteItems/${data[0].id}`)
-    );
+    const { data, error } = await supabase
+      .from("favorite_items")
+      .delete()
+      .eq("cookieName", cookieName)
+      .eq("itemId", stock.id);
+
+    mutate(`${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`);
   };
 
   return (
