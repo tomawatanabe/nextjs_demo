@@ -24,7 +24,8 @@ export type Stock = {
   amount: number;
   arrival: Date;
   condition: string;
-  item: Item;
+  deleted: boolean;
+  items: Item;
 };
 
 export type Users = {

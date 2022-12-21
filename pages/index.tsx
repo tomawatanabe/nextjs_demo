@@ -23,13 +23,13 @@ export default function Home() {
     setData(initializedData);
     setSearchQuery(
       items.filter((stock: any) =>
-        stock.item.name.toLowerCase().includes(searchValue?.toLowerCase())
+        stock.items.name.toLowerCase().includes(searchValue?.toLowerCase())
       )
     );
   };
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/stock`)
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getStock`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -52,7 +52,7 @@ export default function Home() {
 
     if (e.target.checked) {
       setSearchQuery(
-        items.filter((stock: any) => e.target.value === stock.item.series)
+        items.filter((stock: any) => e.target.value === stock.items.series)
       );
     } else {
       setSearchQuery(items);

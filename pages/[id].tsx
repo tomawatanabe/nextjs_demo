@@ -152,7 +152,7 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
               </dl>
             </div>
             <ToggleFavButton stock={stock} item={item} />
-            {/* <CartButton stock={stock,item} /> */}
+            {/* <CartButton stock={stock} item={item} /> */}
           </div>
         </div>
         <div className="explanation-wrapper">
