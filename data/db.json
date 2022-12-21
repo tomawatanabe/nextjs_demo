@@ -1603,46 +1603,6 @@
     {
       "stock": [],
       "id": 4
-    },
-    {
-      "stock": [],
-      "id": 5
-    },
-    {
-      "stock": [],
-      "id": 6
-    },
-    {
-      "stock": [],
-      "id": 7
-    },
-    {
-      "stock": [],
-      "id": 8
-    },
-    {
-      "stock": [],
-      "id": 9
-    },
-    {
-      "stock": [],
-      "id": 10
-    },
-    {
-      "stock": [],
-      "id": 11
-    },
-    {
-      "stock": [],
-      "id": 12
-    },
-    {
-      "stock": [],
-      "id": 13
-    },
-    {
-      "stock": [],
-      "id": 14
     }
   ],
   "favoriteItems": [
@@ -1698,8 +1658,47 @@
       "size": 27.5,
       "imagePath": "images/sneakers/AIR FOAMPOSITE ONE/AIR FOAMPOSITE ONE1.jpg",
       "condition": "A",
-      "deleted": false,
       "id": 6
+    },
+    {
+      "itemId": 4,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "id": 7
+    },
+    {
+      "itemId": 4,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "id": 8
+    },
+    {
+      "itemId": 4,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "id": 9
+    },
+    {
+      "itemId": 4,
+      "cookieName": "1",
+      "name": "AIR FOAMPOSITE ONE SUPREME SP",
+      "price": 121000,
+      "size": 27.5,
+      "imagePath": "images/sneakers/AIR FOAMPOSITE ONE SUPREME SP/AIR FOAMPOSITE ONE SUPREME SP1.jpg",
+      "condition": "A",
+      "id": 10
     }
   ],
   "usedItems": [
