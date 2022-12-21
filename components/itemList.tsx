@@ -22,7 +22,7 @@ export default function ItemList(props: any) {
         return (
           <div className={styles.itemdiv} key={`image${stock.id}`}>
             <Link legacyBehavior href={`/${stock.id}`} key={stock.id}>
-              <div className={styles.images} key={stock.item.name}>
+              <div className={styles.images} key={stock.items.name}>
                 <Image
                   src={`/${stock.image1}`}
                   alt="item"
@@ -36,7 +36,7 @@ export default function ItemList(props: any) {
             </Link>
             <br />
             <Link legacyBehavior href={`/${stock.id}`} key={`name${stock.id}`}>
-              {stock.item.name}
+              {stock.items.name}
             </Link>
             <br />￥{stock.price}
             <br />
