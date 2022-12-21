@@ -3,22 +3,27 @@ import { supabase } from "../../lib/supabase-client";
 
 const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
   const loginData: { userID: string; userPW: string } = req.body;
-
-  const { data, error } = await supabase
+  // try {
+  const checkData = await supabase
     .from("users")
     .select()
     .eq("email", `${loginData.userID}`)
     .eq("password", `${loginData.userPW}`);
 
-  // 401 Unauthorized、認証が必要
-  if (error) return res.status(401).json({ error: error.message });
+  //   const obj = await checkData;
 
-  // 200番台は、処理が成功して正常にレスポンスができている状態
-  return res
-    .status(200)
-    .json([
-      { userID: data[0].id, userName: data[0].lastName + data[0].firstName },
-    ]);
+  //   if (obj[0] === undefined) {
+  //     res.status(404).json({ massage: "ログイン情報が見つかりません" });
+  //   } else {
+  //     res.status(200).json({
+  //       userID: obj[0].id,
+  //       userName: obj[0].lastName + obj[0].firstName,
+  //     });
+  //   }
+  // } catch (error) {
+  //   console.error(error);
+  //   return res.status(404).json({ massage: "見つかりません" });
+  // }
+  return checkData;
 };
-
 export default getUsers;
