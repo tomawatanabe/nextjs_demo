@@ -12,7 +12,7 @@ const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
     fetch(resource).then((res) => res.json());
 
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`,
+    `${process.env.NEXT_PUBLIC_API}/api/eachFav/read/${stock.id}`,
     fetcher
   );
 

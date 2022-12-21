@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../../lib/supabase-client";
+import { supabase } from "../../../../lib/supabase-client";
 
-const getEachFavoriteItems = async (
+const addStockToFavorites = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
@@ -18,4 +18,4 @@ const getEachFavoriteItems = async (
   return res.status(200).json(data);
 };
 
-export default getEachFavoriteItems;
+export default addStockToFavorites;
