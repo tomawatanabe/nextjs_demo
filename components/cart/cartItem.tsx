@@ -32,12 +32,12 @@ const CartItem = (props: {
                 src={`/${content.image1}`}
                 width={200}
                 height={200}
-                alt={content.item.name}
+                alt={content.items.name}
                 priority
               />
             </div>
             <ul className={styles.cart_ul}>
-              <li className={styles.cart_li}>商品名　{content.item.name}</li>
+              <li className={styles.cart_li}>商品名　{content.items.name}</li>
               <li className={styles.cart_li}>
                 ¥ {content.price.toLocaleString()}（税込）
               </li>

@@ -5,8 +5,6 @@ import CartItem from "./cartItem";
 import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type { Stock, ShoppingCart } from "../../types";
-import cart from "../../pages/api/cart";
-import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
@@ -22,41 +20,20 @@ const Members = () => {
     setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
   }, []);
 
-  // サーバ上のデータを取得
+  // OK サーバ上のデータを取得
   let { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`,
+    `${process.env.NEXT_PUBLIC_API}/api/getCart/${userID}`,
     fetcher
   );
-
-  useEffect(() => {
-    mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
-  }, []);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
   // カート内商品削除
   const handleDelete = (cart: ShoppingCart, id: number) => {
-    const stock = cart.stock;
-    const deleted = stock.filter((item: Stock) => item.id !== id);
-
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        stock: deleted,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
-        Router.push("/cart");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${id}`, {
+      method: "DELETE",
+    });
   };
 
   // ログイン前のカート内商品をログイン後のカートに移動
@@ -114,7 +91,7 @@ const Members = () => {
           </p>
           <ul>
             {localData[0]?.stock.map((cartItem: Stock) => {
-              <li>{cartItem?.item.name}</li>;
+              <li>{cartItem?.items.name}</li>;
             })}
           </ul>
           <button
