@@ -43,15 +43,7 @@ const SignUpConfirmation = () => {
       }),
     });
 
-    if (error) {
-      console.log(error);
-    }
-
-    if (data) {
-      console.log(data);
-      alert("入力内容を送信しました");
-      router.reload();
-    }
+    router.push("/");
   };
   return (
     <>
@@ -116,12 +108,13 @@ const SignUpConfirmation = () => {
           </span>
           {values?.building}
         </p>
-        <div className="form-submit-btn">
-          <Link href="/signup">入力内容を修正</Link>
+        <div>
+          <Link href="/signup" className="idbutton">
+            入力内容を修正
+          </Link>
         </div>
         <div className="form-submit-btn">
-          <input type="submit" value="入力内容を送信" className="idbutton" />
-
+          <input type="submit" className="idbutton" value="入力内容を送信" />
         </div>
       </form>
     </>

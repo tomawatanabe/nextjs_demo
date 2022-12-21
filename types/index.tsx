@@ -53,7 +53,6 @@ export type FavoriteItem = {
   size: number;
   imagePath: string;
   condition: string;
-  deleted: boolean;
 };
 
 export type FavoriteItem2 = {
