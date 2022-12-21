@@ -37,7 +37,6 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     console.log(error);
   }
   const stock = await data[0];
-  console.log(stock, "あいてむ");
 
   const items = await supabase.from("items").select().eq("id", `${params.id}`);
   if (!items.data) return;
@@ -47,7 +46,6 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 }
 
 export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
-  console.log(stock, "すとっく");
   return (
     <div>
       <Header />
@@ -153,8 +151,8 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                 <dd>{stock.condition}</dd>
               </dl>
             </div>
-            {/* <ToggleFavButton stock={stock,item} />
-            <CartButton stock={stock,item} /> */}
+            <ToggleFavButton stock={stock} item={item} />
+            <CartButton stock={stock} item={item} />
           </div>
         </div>
         <div className="explanation-wrapper">

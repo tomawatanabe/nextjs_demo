@@ -37,13 +37,11 @@ export default function Loginpage() {
       .then((data) => {
         if (data.status === 500) {
           setFlag(true);
-          console.log(data, "でーた");
-          document.cookie = data;
+          console.log(data.message);
         } else {
-          console.log(data, "でーた２");
           history.back();
-          document.cookie = `userID=${data[0].userID}; Path=/; `;
-          document.cookie = `userName=${data[0].userName};  Path=/;`;
+          document.cookie = `userID=${data.userID}; Path=/; `;
+          document.cookie = `userName=${data.userName};  Path=/;`;
         }
       });
   }

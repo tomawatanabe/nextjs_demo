@@ -8,7 +8,7 @@ import styles from "../../styles/CartButton.module.css";
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
-const CartButton = ({ stock }: { stock: Stock }) => {
+const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   const userID = useCookie();
 
   const { data, mutate } = useSWR(
@@ -71,10 +71,13 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   // ログイン/ログアウト状態で表示するボタンを分ける　↓
   return (
     <>
-      <div style={{display: userID ? "block" : "none"}} className={"member"} >
-        {data?.stock?.some((item: Item) => item.id === stock.id) ? 
-        (
-          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+      <div style={{ display: userID ? "block" : "none" }} className={"member"}>
+        {data?.stock?.some((item: Item) => item.id === stock.id) ? (
+          <button
+            className={styles.addedCartBtn}
+            onClick={addCartItem}
+            disabled
+          >
             カートに追加済み
           </button>
         ) : (
@@ -83,10 +86,16 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           </button>
         )}
       </div>
-      <div style={{display: userID ? "none" : "block"}} className={"nonMember"} >
-        {localData[0]?.stock.some((item: Item) => item.id === stock.id) ? 
-        (
-          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+      <div
+        style={{ display: userID ? "none" : "block" }}
+        className={"nonMember"}
+      >
+        {localData[0]?.stock.some((item: Item) => item.id === stock.id) ? (
+          <button
+            className={styles.addedCartBtn}
+            onClick={addCartItem}
+            disabled
+          >
             カートに追加済み
           </button>
         ) : (

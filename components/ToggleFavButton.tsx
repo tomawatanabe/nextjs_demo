@@ -1,17 +1,18 @@
-import type { Stock } from "../types";
+import type { Item, Stock } from "../types";
 import type { FavoriteItem } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR, { mutate } from "swr";
 import styles from "../styles/FavButton.module.css";
 
-const ToggleFavButton = ({ stock }: { stock: Stock }) => {
+const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   const cookieName = useCookie();
 
   const stockData: FavoriteItem = {
-    itemId: stock.id,
+    id: stock.id,
+    itemId: item.id,
     cookieName: cookieName,
-    name: stock.item.name,
+    name: item.name,
     price: stock.price,
     size: stock.size,
     imagePath: stock.image1,
