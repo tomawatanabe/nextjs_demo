@@ -3,6 +3,7 @@ import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
 import PageTop from "../../components/pageTop";
+import SignCheck from "../../components/signUp/Signcheck";
 
 export default function Loginpage() {
   const [id, setId] = useState("");
@@ -16,15 +17,14 @@ export default function Loginpage() {
     setPw(e.target.value);
   };
 
-  function postCarti() {
+  function postAPI() {
     const loginData: { userID: string; userPW: string } = {
       userID: id,
       userPW: pw,
     };
-
     setFlag(false);
 
-    fetch(`/api/certification`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getUsers`, {
       method: `POST`,
       headers: {
         "Content-Type": `application/json`,
@@ -35,11 +35,12 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (!data.cookieId) {
+        if (data.status === 500) {
           setFlag(true);
+          console.log(data.message);
         } else {
           history.back();
-          document.cookie = `userID=${data.cookieId}; Path=/; `;
+          document.cookie = `userID=${data.userID}; Path=/; `;
           document.cookie = `userName=${data.userName};  Path=/;`;
         }
       });
@@ -52,7 +53,7 @@ export default function Loginpage() {
   }
 
   return (
-    <>
+    <SignCheck>
       <LoginPageHeader />
       <div className={styles.login}>
         <div className={styles.login_container}>
@@ -78,7 +79,7 @@ export default function Loginpage() {
               className={styles.login_btn}
               type="button"
               value="ログイン"
-              onClick={postCarti}
+              onClick={postAPI}
             />
           </span>
         </div>
@@ -86,6 +87,6 @@ export default function Loginpage() {
       {loginFlag()}
       <PageTop />
       <Footer />
-    </>
+    </SignCheck>
   );
 }

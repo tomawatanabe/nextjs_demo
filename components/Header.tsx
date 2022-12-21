@@ -12,14 +12,11 @@ import {
 export default function Header() {
   const router = useRouter();
   const cookieOriginal = useCookieOriginal();
-  const cookie = useCookie();
   const name = useName();
-
-  const [reload, setReload] = useState(0);
 
   const logout = (event: React.MouseEvent<HTMLInputElement>) => {
     document.cookie = `userID=; Path=/; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
-    document.cookie = `userName=; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
+    document.cookie = `userName=; Path=/; expires=Fri, 31-Dec-1999 23:59:59 GMT;`;
     router.reload();
   };
 
