@@ -35,7 +35,7 @@ const MyPage = () => {
           </div>
           <hr />
           <div>
-            <FavoriteList />
+            {/* <FavoriteList /> */}
           </div>
           <hr />
           <div>

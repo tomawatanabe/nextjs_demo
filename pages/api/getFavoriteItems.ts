@@ -3,13 +3,14 @@ import { supabase } from "../../lib/supabase-client";
 
 const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase
-    .from("favorite_items")
+    .from("favorite_items_dupulicate")
     .select()
-    .eq("cookieName", req.cookies.userID)
+    .eq("user_id", req.cookies.userID);
 
   // 401 Unauthorized、認証が必要
   if (error) return res.status(401).json({ error: error.message });
 
+  console.log("data", data);
   // 200番台は、処理が成功して正常にレスポンスができている状態
   return res.status(200).json(data);
 };
