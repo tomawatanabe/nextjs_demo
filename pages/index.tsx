@@ -5,13 +5,10 @@ import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
 import { useState, useRef, useEffect } from "react";
 import Footer from "../components/Footer";
-import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";
 import Search from "../components/Search";
 
 export default function Home() {
-  const userID = useCookie();
-
   // 検索機能
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState([]);

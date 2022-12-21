@@ -3,7 +3,6 @@ import LoginPageHeader from "../../components/LoginPageHeader";
 import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
 import PageTop from "../../components/pageTop";
-import SignIn from "../../components/SignIn";
 import SignCheck from "../../components/signUp/Signcheck";
 
 export default function Loginpage() {
@@ -36,12 +35,13 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (data[0] === undefined) {
+        if (data.status === 500) {
           setFlag(true);
+          console.log(data.message);
         } else {
           history.back();
-          document.cookie = `userID=${data[0].userID}; Path=/; `;
-          document.cookie = `userName=${data[0].userName};  Path=/;`;
+          document.cookie = `userID=${data.userID}; Path=/; `;
+          document.cookie = `userName=${data.userName};  Path=/;`;
         }
       });
   }
