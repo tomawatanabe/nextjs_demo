@@ -24,7 +24,8 @@ export type Stock = {
   amount: number;
   arrival: Date;
   condition: string;
-  item: Item;
+  deleted: boolean;
+  items: Item;
 };
 
 export type Users = {
@@ -44,7 +45,7 @@ export type Users = {
 };
 
 export type FavoriteItem = {
-  id:number;
+  id: number;
   itemId: number;
   cookieName: string | undefined;
   name: string;
@@ -52,7 +53,6 @@ export type FavoriteItem = {
   size: number;
   imagePath: string;
   condition: string;
-  deleted: boolean;
 };
 
 export type FavoriteItem2 = {

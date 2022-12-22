@@ -3,15 +3,12 @@ import Header from "../components/Header";
 import Sidebar from "../components/sidebar";
 import ItemList from "../components/itemList";
 import styles from "../styles/Home.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
-import { useCookie } from "../components/useCookie";
 import PageTop from "../components/pageTop";
 import Search from "../components/Search";
 
 export default function Home() {
-  const userID = useCookie();
-
   // 検索機能
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState([]);
@@ -26,13 +23,13 @@ export default function Home() {
     setData(initializedData);
     setSearchQuery(
       items.filter((stock: any) =>
-        stock.item.name.toLowerCase().includes(searchValue?.toLowerCase())
+        stock.items.name.toLowerCase().includes(searchValue?.toLowerCase())
       )
     );
   };
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/stock`)
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getStock`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -55,7 +52,7 @@ export default function Home() {
 
     if (e.target.checked) {
       setSearchQuery(
-        items.filter((stock: any) => e.target.value === stock.item.series)
+        items.filter((stock: any) => e.target.value === stock.items.series)
       );
     } else {
       setSearchQuery(items);

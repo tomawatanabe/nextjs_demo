@@ -9,7 +9,7 @@ import { supabase } from "../../lib/supabase-client";
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
-const CartButton = ({ stock }: { stock: Stock }) => {
+const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   const userID = useCookie();
   
   const { data: cart } = useSWR(
@@ -80,10 +80,16 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           </button>
         )}
       </div>
-      <div style={{display: userID ? "none" : "block"}} className={"nonMember"} >
-        {localData[0]?.stock.some((item: Item) => item.id === stock.id) ? 
-        (
-          <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
+      <div
+        style={{ display: userID ? "none" : "block" }}
+        className={"nonMember"}
+      >
+        {localData[0]?.stock.some((item: Item) => item.id === stock.id) ? (
+          <button
+            className={styles.addedCartBtn}
+            onClick={addCartItem}
+            disabled
+          >
             カートに追加済み
           </button>
         ) : (
