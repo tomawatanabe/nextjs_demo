@@ -8,7 +8,7 @@ const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase
     .from("users")
     .select("*")
-    .eq("id", cookieNumber)
+    .eq("id", 1)
     .limit(1)
     .single();
 
