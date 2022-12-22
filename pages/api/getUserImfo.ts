@@ -13,7 +13,7 @@ const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
   if (error) return res.status(401).json({ error: error.message });
 
   // 200番台は、処理が成功して正常にレスポンスができている状態
-  return res.status(200).json(data);
+  res.status(200).json(data);
 };
 
 export default getUserImfo;

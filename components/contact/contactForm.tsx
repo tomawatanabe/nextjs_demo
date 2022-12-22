@@ -38,9 +38,7 @@ const ContactForm = () => {
       //valuesArrが全てfalsyだったら初期値をセットする
     } else {
       const setUserImfo = async () => {
-        const data = await fetch(
-          `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
-        )
+        const data = await fetch(`$/api/getUserImfo`)
           .then((res) => res.json())
           .catch((err) => {
             setFetchError("Coudn't fetch user imformation.");
