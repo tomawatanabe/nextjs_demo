@@ -26,11 +26,14 @@ const Members = () => {
   let { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`,
     fetcher
+    // ユーザのカートのデータを取得
   );
 
   useEffect(() => {
     mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
   }, []);
+// 
+
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
