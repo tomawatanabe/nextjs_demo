@@ -8,7 +8,7 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
 function UsedItemList() {
-  const [flag, setFlag] = useState(true);
+  const [flag, setFlag] = useState(false);
 
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/myPage/getUsedItems`,
