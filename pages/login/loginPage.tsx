@@ -35,9 +35,8 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (data.status === 500) {
+        if (data.datastatus === 404) {
           setFlag(true);
-          console.log(data.message);
         } else {
           history.back();
           document.cookie = `userID=${data.userID}; Path=/; `;
@@ -90,3 +89,4 @@ export default function Loginpage() {
     </SignCheck>
   );
 }
+
