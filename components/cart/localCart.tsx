@@ -7,15 +7,15 @@ import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
 
 const Local = () => {
-  const [data, setData] = useState<[ShoppingCart] | []>([]);
+  const [data, setData] = useState<[{stock_id: Stock[]}] | []>([]);
 
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
   }, []);
 
   const handleDelete = (cart: any, id: number) => {
-    const deleted = cart.stock.filter((item: Stock) => item.id !== id);
-    cart.stock = deleted;
+    const deleted = cart.stock_id.filter((item: Stock) => item.id !== id);
+    cart.stock_id = deleted;
     localStorage.setItem("shoppingCart", JSON.stringify([cart]));
     Router.reload();
   };
@@ -23,7 +23,7 @@ const Local = () => {
   return (
     <>
       <CartItem data={data} handleDelete={handleDelete} />
-      {/* <CartTotal data={data} /> */}
+      <CartTotal data={data} />
       <div
         style={{ display: data[0]?.stock_id.length ? "block" : "none" }}
         className={styles.logoutFrame}

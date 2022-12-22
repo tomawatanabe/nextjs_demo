@@ -4,7 +4,6 @@ import type { Stock, Item } from "../../types";
 import { useCookie } from "../useCookie";
 import useSWR from "swr";
 import styles from "../../styles/CartButton.module.css";
-import { supabase } from "../../lib/supabase-client";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -12,11 +11,11 @@ const fetcher = (resource: string): Promise<any> =>
 const CartButton = ({ stock }: { stock: Stock }) => {
   const userID = useCookie();
 
-  const { data: cart } = useSWR(
+  const { data: cart, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`,
     fetcher
   );
-
+  
   type Memo = { id: number; userID: number; stock: any[] } | null;
 
   const [localData, setLocalData] = useState<any[]>([]);
@@ -50,7 +49,6 @@ const CartButton = ({ stock }: { stock: Stock }) => {
         setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
       }
     } else {
-      // Supabase
 
       fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`, {
         method: "POST",
@@ -60,10 +58,9 @@ const CartButton = ({ stock }: { stock: Stock }) => {
     }
   };
 
-  // ログイン/ログアウト状態で表示するボタンを分ける　↓
-  return (
-    <>
-      <div style={{ display: userID ? "block" : "none" }} className={"member"}>
+  // ログイン状態
+  const memberCartButton = (
+    <div className={"member"}>
         {cart?.some((cartItem: any) => cartItem.stock_id === stock.id) ? (
           <button
             className={styles.addedCartBtn}
@@ -78,10 +75,11 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           </button>
         )}
       </div>
-      <div
-        style={{ display: userID ? "none" : "block" }}
-        className={"nonMember"}
-      >
+  )
+
+  // ログアウト状態
+  const localCartButton = (
+    <div className={"nonMember"}>
         {localData[0]?.stock_id.some((item: Item) => item.id === stock.id) ? (
           <button
             className={styles.addedCartBtn}
@@ -96,6 +94,12 @@ const CartButton = ({ stock }: { stock: Stock }) => {
           </button>
         )}
       </div>
+  )
+
+  // ログイン/ログアウト状態で表示するボタンを分ける　↓
+  return (
+    <>
+      {userID? memberCartButton : localCartButton}
     </>
   );
 };

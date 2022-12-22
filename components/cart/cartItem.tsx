@@ -9,8 +9,8 @@ const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
 const CartItem = (props: {
-  data: [ShoppingCart] | [];
-  handleDelete: (cart: ShoppingCart, id: number) => void;
+  data: [{stock_id: Stock[]}] | [];
+  handleDelete: (cart: {stock_id: Stock[]}, id: number) => void;
 }) => {
   const userID = useCookie();
   const [cart, setCart] = useState(props.data[0]);
@@ -31,7 +31,7 @@ const CartItem = (props: {
                 src={`/${content.image1}`}
                 width={200}
                 height={200}
-                alt={content.stock_id}
+                alt={content.items.name}
                 priority
               />
             </div>

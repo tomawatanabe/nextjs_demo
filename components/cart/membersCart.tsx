@@ -1,7 +1,7 @@
 import useSWR, { mutate } from "swr";
 import { useEffect, useState } from "react";
 import { useCookie } from "../useCookie";
-import CartTotal from "./cartTotal";
+import CartTotalMember from "./cartTotal_member";
 import Router from "next/router";
 import type { Stock, ShoppingCart } from "../../types";
 import styles from "../../styles/Cart.module.css";
@@ -41,16 +41,18 @@ const Members = () => {
   };
 
   // ログイン前のカート内商品をログイン後のカートに移動
-  const handleCombine = (cart: ShoppingCart) => {
-    const stocks = cart.stocks;
-    for (const localItem of localData[0]?.stock) {
-      // if (stocks.some((serverItem: any) => serverItem.id === localItem.id)) {
-      //   continue;
-      // }
-      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${stocks}`, {
-        method: "PATCH",
-      });
+  const handleCombine = (cart: ShoppingCart[]) => {
+    console.log(cart);
+    for (const localItem of localData[0]?.stock_id) {
+      if (cart?.some((serverItem: any) => serverItem.stock_id === localItem.id)) {
+        continue;
+      }
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${localItem.id}`, {
+        method: "POST",
+      })
     }
+      localStorage.clear();
+      Router.reload();
   };
 
   const handleClick = () => {
@@ -84,7 +86,7 @@ const Members = () => {
           </ul>
           <button
             className={styles.yes_btn}
-            onClick={() => handleCombine(data[0])}
+            onClick={() => handleCombine(data)}
           >
             はい
           </button>
@@ -94,7 +96,7 @@ const Members = () => {
         </div>
       </div>
       <CartItem_members data={data} handleDelete={handleDelete} />
-      {/* <CartTotal data={data} /> */}
+      <CartTotalMember data={data} />
       <div style={{ display: data?.length ? "block" : "none" }}>
         <input
           type="button"

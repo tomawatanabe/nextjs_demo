@@ -16,7 +16,6 @@ const CartItem_members = (props: {
     setCart(props.data);
   }, [props.data]);
 
-  console.log(cart, "かーと2");
   const noItem = <p>カートの中身はありません</p>;
 
   const cartList = (
