@@ -48,7 +48,10 @@ const PurchaseForm = ({
           `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
         )
           .then((res) => res.json())
-          .catch((err) => console.log(`エラー: ${err}`));
+          .catch((err) => {
+            setFetchError("Coudn't fetch user imformation.");
+            console.log(`エラー: ${err}`);
+          });
 
         if (data) {
           //デフォルト値としてセット
@@ -97,7 +100,7 @@ const PurchaseForm = ({
 
   return (
     <div className={styles.outside}>
-      {fetchError && <div>Coudn't fetch user imformation.</div>}
+      {fetchError && <div>{fetchError}</div>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2 className={styles.kaitori}>
           <span className={styles.midashi}>お客様情報を入力してください。</span>

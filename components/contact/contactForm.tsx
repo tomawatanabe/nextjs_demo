@@ -42,7 +42,10 @@ const ContactForm = () => {
           `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
         )
           .then((res) => res.json())
-          .catch((err) => console.log(`エラー: ${err}`));
+          .catch((err) => {
+            setFetchError("Coudn't fetch user imformation.");
+            console.log(`エラー: ${err}`);
+          });
 
         if (data) {
           //デフォルト値としてセット
@@ -66,7 +69,7 @@ const ContactForm = () => {
 
   return (
     <div className={styles.outside}>
-      {fetchError && <div>Coudn't fetch user imformation.</div>}
+      {fetchError && <div>{fetchError}</div>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>お問い合わせフォーム</h1>
         <h2 className={styles.kaitori}>

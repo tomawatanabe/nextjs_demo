@@ -60,7 +60,10 @@ const UserImfo = () => {
           `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
         )
           .then((res) => res.json())
-          .catch((err) => console.log(`エラー: ${err}`));
+          .catch((err) => {
+            setFetchError("Coudn't fetch user imformation.");
+            console.log(`エラー: ${err}`);
+          });
 
         if (data) {
           setFetchError(null);
