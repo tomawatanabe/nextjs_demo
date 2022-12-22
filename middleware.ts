@@ -1,16 +1,29 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 const config = {
-  matcher: ['/', '/index','/:path*'],
+  matcher: [
+    "/",
+    "/[id]",
+    "/signup",
+    "/cart",
+    "/contact",
+    "/login/loginPage",
+    "/mypage",
+    "/mypage/userimfo",
+    "/mypage/userimfo/useredit",
+    "/purchase",
+    "/settlement",
+    "/signup",
+  ],
 };
 
 const middleware = (req: NextRequest) => {
-  const authBasic = req.headers.get('authorization');
+  const authBasic = req.headers.get("authorization");
   const url = req.nextUrl;
 
   if (authBasic) {
-    const [_, val] = authBasic.split(' ');
-    const [user, pass] = atob(val).split(':');
+    const [_, val] = authBasic.split(" ");
+    const [user, pass] = atob(val).split(":");
 
     if (
       user === process.env.BASIC_AUTH_USER &&
@@ -20,7 +33,7 @@ const middleware = (req: NextRequest) => {
     }
   }
 
-  url.pathname = '/api/auth-basic';
+  url.pathname = "/api/auth-basic";
 
   return NextResponse.rewrite(url);
 };
