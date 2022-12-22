@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../lib/supabase-client";
 
 const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { data, error } = await supabase
     .from("users")
     .select("*")
     // .eq("id", parseInt(cookieInt))
