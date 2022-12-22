@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 import { useCookie } from "../useCookie";
-import type { Stock, ShoppingCart, LocalCart } from "../../types";
+import type { Stock, ShoppingCart } from "../../types";
 import styles from "../../styles/Cart.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
