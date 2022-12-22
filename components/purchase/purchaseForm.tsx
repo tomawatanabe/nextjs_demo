@@ -5,6 +5,8 @@ import Image from "next/image";
 import styles from "../../styles/purchase.module.css";
 import { useCookie } from "../useCookie";
 
+type FetchError = string | null;
+
 const PurchaseForm = ({
   handleChange,
   handleChangeB,
@@ -25,6 +27,7 @@ const PurchaseForm = ({
   const cookieName = useCookie();
 
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<FetchError>(null);
 
   useEffect(() => {
     //RHFのvaluesオブジェクトの値を配列として定義
@@ -40,27 +43,31 @@ const PurchaseForm = ({
       //valuesArrが全てfalsyだったら初期値をセットする
     } else {
       //DBから値を読み込み
-      const get = async () => {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API}/API/users?id=${cookieName}`
-        );
-        const data = await res.json();
-        //デフォルト値としてセット
-        setValue("lastName", data[0]?.lastName);
-        setValue("firstName", data[0]?.firstName);
-        setValue("kanaLastName", data[0]?.kanaLastName);
-        setValue("kanaFirstName", data[0]?.kanaFirstName);
-        setValue("phone", data[0]?.phoneNumber);
-        setValue("email", data[0]?.email);
-        setValue("zipCode", data[0]?.zipCode);
-        setValue("prefecture", data[0]?.prefecture);
-        setValue("city", data[0]?.city);
-        setValue("address", data[0]?.address);
-        setValue("building", data[0]?.building);
-        //setterを呼び出して再レンダリングをかける
-        setLoading(false);
+      const setUserImfo = async () => {
+        const data = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
+        )
+          .then((res) => res.json())
+          .catch((err) => console.log(`エラー: ${err}`));
+
+        if (data) {
+          //デフォルト値としてセット
+          setValue("lastName", data?.last_name);
+          setValue("firstName", data?.first_name);
+          setValue("kanaLastName", data?.kana_last_name);
+          setValue("kanaFirstName", data?.kana_first_name);
+          setValue("phone", data?.phone);
+          setValue("email", data?.email);
+          setValue("zipCode", data?.zip_code);
+          setValue("prefecture", data?.prefecture);
+          setValue("city", data?.city);
+          setValue("address", data?.address);
+          setValue("building", data?.building);
+          //setterを呼び出して再レンダリングをかける
+          setLoading(false);
+        }
       };
-      get();
+      setUserImfo();
     }
   }, [loading]);
 
@@ -90,6 +97,7 @@ const PurchaseForm = ({
 
   return (
     <div className={styles.outside}>
+      {fetchError && <div>Coudn't fetch user imformation.</div>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2 className={styles.kaitori}>
           <span className={styles.midashi}>お客様情報を入力してください。</span>

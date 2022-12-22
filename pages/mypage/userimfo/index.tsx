@@ -11,7 +11,7 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 const UserImfo = () => {
 
   const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/myPage/getUserImfo`,
+    `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`,
     fetcher
   );
 

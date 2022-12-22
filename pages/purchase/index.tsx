@@ -3,7 +3,6 @@ import PurchaseForm from "../../components/purchase/purchaseForm";
 import PurchaseConfirmation from "../../components/purchase/purchaseConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
 import { useState } from "react";
-import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
