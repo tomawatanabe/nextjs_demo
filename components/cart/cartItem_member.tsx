@@ -5,40 +5,40 @@ import { useCookie } from "../useCookie";
 import type { Stock, ShoppingCart } from "../../types";
 import styles from "../../styles/Cart.module.css";
 
-const fetcher = (resource: string): Promise<any> =>
-  fetch(resource).then((res) => res.json());
-
-const CartItem = (props: {
+const CartItem_members = (props: {
   data: [ShoppingCart] | [];
   handleDelete: (cart: ShoppingCart, id: number) => void;
 }) => {
   const userID = useCookie();
-  const [cart, setCart] = useState(props.data[0]);
+  const [cart, setCart] = useState(props.data);
 
   useEffect(() => {
-    setCart(props.data[0]);
+    setCart(props.data);
   }, [props.data]);
 
+  console.log(cart, "かーと2");
   const noItem = <p>カートの中身はありません</p>;
 
   const cartList = (
     <ul className={styles.cart_ul}>
-      {cart?.stocks.map((content: Stock) => (
+      {cart?.map((content: ShoppingCart) => (
         <li className={styles.cart_li} key={content.id}>
           <div>
             <div>
               <Image
-                src={`/${content.image1}`}
+                src={`/${content.stocks.image1}`}
                 width={200}
                 height={200}
-                alt={content.items.name}
+                alt={content.stocks.items.name}
                 priority
               />
             </div>
             <ul className={styles.cart_ul}>
-              <li className={styles.cart_li}>商品名　{content.items.name}</li>
               <li className={styles.cart_li}>
-                ¥ {content.price.toLocaleString()}（税込）
+                商品名　{content.stocks.items.name}
+              </li>
+              <li className={styles.cart_li}>
+                ¥ {content.stocks.price.toLocaleString()}（税込）
               </li>
               <li className={styles.cart_quantity}>
                 <label htmlFor="count" className={styles.cart_count_label}>
@@ -53,7 +53,7 @@ const CartItem = (props: {
                   alt="削除ボタン"
                   width={30}
                   height={30}
-                  onClick={() => props.handleDelete(cart, content.id)}
+                  onClick={() => props.handleDelete(content, content.stocks.id)}
                 />
               </li>
             </ul>
@@ -64,7 +64,7 @@ const CartItem = (props: {
     </ul>
   );
 
-  return <div>{cart?.stocks.length ? cartList : noItem}</div>;
+  return <div>{cart?.length ? cartList : noItem}</div>;
 };
 
-export default CartItem;
+export default CartItem_members;

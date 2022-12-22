@@ -35,9 +35,9 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (data.status === 500) {
+        if (data.status === 404 || undefined) {
           setFlag(true);
-          console.log(data.message);
+          console.log("エラー", data.status, data.message);
         } else {
           history.back();
           document.cookie = `userID=${data.userID}; Path=/; `;

@@ -18,7 +18,7 @@ const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   const [localData, setLocalData] = useState<any[]>([]);
 
   const dataType = {
-    stock: [stock],
+    stocks: [stock],
   };
 
   useEffect(() => {
