@@ -5,7 +5,7 @@ const favoriteHundler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
       const { data: getData, error: getError } = await supabase
-        .from("favorite_items_duplicate")
+        .from("favorite_items")
         .select()
         .eq("user_id", req.cookies.userID)
         .eq("stock_id", req.query.fav);
@@ -16,7 +16,7 @@ const favoriteHundler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     case "POST":
       const { data: postData, error: postError } = await supabase
-        .from("favorite_items_duplicate")
+        .from("favorite_items")
         .insert([
           {
             user_id: req.cookies.userID,
@@ -32,7 +32,7 @@ const favoriteHundler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     case "DELETE":
       const { data: deleteData, error: deleteError } = await supabase
-        .from("favorite_items_duplicate")
+        .from("favorite_items")
         .delete()
         .eq("user_id", req.cookies.userID)
         .eq("stock_id", req.query.fav);

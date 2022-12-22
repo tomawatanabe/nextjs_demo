@@ -6,7 +6,6 @@ import Header from "../../../../components/Header";
 import Footer from "../../../../components/Footer";
 import { useCookie } from "../../../../components/useCookie";
 import { supabase } from "../../../../lib/supabase-client";
-import { Users } from "../../../../types";
 
 type FetchError = string | null;
 
