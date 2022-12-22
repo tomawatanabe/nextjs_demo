@@ -4,17 +4,23 @@ import type { Stock, Item } from "../../types";
 import { useCookie } from "../useCookie";
 import useSWR from "swr";
 import styles from "../../styles/CartButton.module.css";
+import { supabase } from "../../lib/supabase-client";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
 const CartButton = ({ stock }: { stock: Stock }) => {
   const userID = useCookie();
-
-  const { data, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`,
+  
+  const { data: cart } = useSWR(
+    `${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`,
     fetcher
   );
+
+  console.log(cart);
+
+  type Memo = {id: number; userID: number, stock: any[]} | null;
+
   const [localData, setLocalData] = useState<any[]>([]);
 
   const dataType = {
@@ -24,7 +30,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   useEffect(() => {
     setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
   }, []);
-
+  
   const addCartItem = async () => {
     if (!userID === true) {
       // ログアウト状態でカートに商品追加
@@ -46,25 +52,16 @@ const CartButton = ({ stock }: { stock: Stock }) => {
         setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
       }
     } else {
-      // ログイン状態でカート商品追加
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`
-      );
-      const user = await res.json();
-      const target = stock;
 
-      if (user?.stock.some((item: Item) => item.id === target.id)) {
-        alert("既にカートに追加済みです");
-        return;
-      } else {
-        fetch("/api/cart", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ stockID: stock.id }),
-        });
-        mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`);
+      // Supabase
+
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`, {
+        method: "POST",
+      })
+      .then((data) => {
         Router.reload();
-      }
+      })
+
     }
   };
 
@@ -72,7 +69,7 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   return (
     <>
       <div style={{display: userID ? "block" : "none"}} className={"member"} >
-        {data?.stock?.some((item: Item) => item.id === stock.id) ? 
+        {cart?.some((cartItem: any) => cartItem.stock_id === stock.id) ? 
         (
           <button className={styles.addedCartBtn} onClick={addCartItem} disabled>
             カートに追加済み
