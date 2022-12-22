@@ -37,12 +37,30 @@ const getCart = async (req: NextApiRequest, res: NextApiResponse) => {
         .eq("user_id", req.cookies.userID)
         .eq("stock_id", req.query.cart);
 
-      // 401 Unauthorized、認証が必要
       if (deleteError)
         return res.status(401).json({ error: deleteError.message });
 
       // 200番台は、処理が成功して正常にレスポンスができている状態
       return res.status(200).json(deleteData);
+
+    case "PATCH":
+      const { data: patchData, error: patchError } = await supabase
+        .from("shopping_cart")
+        .upsert([
+          {
+            user_id: req.cookies.userID,
+            stock_id: req.query.cart,
+          },
+        ])
+        .eq("user_id", req.cookies.userID);
+
+      // 401 Unauthorized、認証が必要
+      if (patchError)
+        return res.status(401).json({ error: patchError.message });
+
+      // 200番台は、処理が成功して正常にレスポンスができている状態
+      return res.status(200).json(patchData);
+
     default:
       break;
   }
