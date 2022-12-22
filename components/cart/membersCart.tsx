@@ -5,7 +5,7 @@ import CartItem from "./cartItem";
 import CartTotal from "./cartTotal";
 import Router from "next/router";
 import type { Stock, ShoppingCart } from "../../types";
-import cart from "../../pages/api/cart";
+// import cart from "../../pages/api/cart";
 import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
 
@@ -117,7 +117,7 @@ const Members = () => {
           </p>
           <ul>
             {localData[0]?.stock.map((cartItem: Stock) => {
-              <li>{cartItem?.item.name}</li>;
+              // <li>{cartItem?.item.name}</li>;
             })}
           </ul>
           <button
