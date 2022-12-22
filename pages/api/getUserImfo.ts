@@ -2,14 +2,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../lib/supabase-client";
 
 const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
+  const cookieNumber = Number(req.cookies.userID);
+
   const { data, error } = await supabase
     .from("users")
     .select("*")
     // .eq("id", parseInt(cookieInt))
-    .eq("id", 1)
+    .eq("id", cookieNumber)
     .limit(1)
     .single();
 
+  // console.log("req.cookies", req.cookies);
+  // console.log("Id", parseInt(cookieNumber));
   console.log("req.cookies", req.cookies);
   // console.log("Id", parseInt(cookieNumber));
 
