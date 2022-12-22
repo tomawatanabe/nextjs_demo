@@ -13,9 +13,13 @@ const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!checkData.data) return;
     const obj = await checkData.data[0];
     if (obj === undefined) {
-      return res.status(404).json({ message: "ログイン情報が見つかりません" });
+      return res.json({
+        datastatus: 404,
+        message: "ログイン情報が見つかりません",
+      });
     } else {
-      return res.status(200).json({
+      return res.json({
+        datastatus: 200,
         userID: obj.id,
         userName: obj.last_name + obj.first_name,
       });

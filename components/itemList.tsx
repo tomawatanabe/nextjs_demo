@@ -1,6 +1,6 @@
 import Link from "next/link";
 import useSWR from "swr";
-import { Item, Stock } from "../types";
+import { Stock } from "../types";
 import Image from "next/image";
 import styles from "../styles/itemList.module.css";
 

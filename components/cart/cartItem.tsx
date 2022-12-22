@@ -36,7 +36,7 @@ const CartItem = (props: {
               />
             </div>
             <ul className={styles.cart_ul}>
-              {/* <li className={styles.cart_li}>商品名　{content.items.name}</li> */}
+              <li className={styles.cart_li}>商品名　{content.items.name}</li>
               <li className={styles.cart_li}>
                 ¥ {content.price.toLocaleString()}（税込）
               </li>

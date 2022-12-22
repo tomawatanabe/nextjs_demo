@@ -9,15 +9,13 @@ import { supabase } from "../../lib/supabase-client";
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
-const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
+const CartButton = ({ stock }: { stock: Stock }) => {
   const userID = useCookie();
 
   const { data: cart } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`,
     fetcher
   );
-
-  console.log(cart);
 
   type Memo = { id: number; userID: number; stock: any[] } | null;
 

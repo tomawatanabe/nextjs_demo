@@ -1,11 +1,11 @@
-import type { Item, Stock } from "../types";
+import type { Stock } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR from "swr";
 import styles from "../styles/FavButton.module.css";
 import { supabase } from "../lib/supabase-client";
 
-const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
+const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
 
   const fetcher = (resource: string) =>
@@ -31,7 +31,7 @@ const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
       {
         itemId: stock.id,
         cookieName: cookieName,
-        name: item.name,
+        name: stock.items.name,
         price: stock.price,
         size: stock.size,
         imagePath: stock.image1,
