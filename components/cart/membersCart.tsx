@@ -117,7 +117,7 @@ const Members = () => {
           </p>
           <ul>
             {localData[0]?.stock.map((cartItem: Stock) => {
-              <li>{cartItem?.item.name}</li>;
+              <li>{cartItem?.items.name}</li>;
             })}
           </ul>
           <button
