@@ -14,8 +14,8 @@ const Local = () => {
   }, []);
 
   const handleDelete = (cart: any, id: number) => {
-    const deleted = cart.stocks.filter((item: Stock) => item.id !== id);
-    cart.stocks = deleted;
+    const deleted = cart.stock.filter((item: Stock) => item.id !== id);
+    cart.stock = deleted;
     localStorage.setItem("shoppingCart", JSON.stringify([cart]));
     Router.reload();
   };
@@ -23,9 +23,9 @@ const Local = () => {
   return (
     <>
       <CartItem data={data} handleDelete={handleDelete} />
-      <CartTotal data={data} />
+      {/* <CartTotal data={data} /> */}
       <div
-        style={{ display: data[0]?.stocks.length ? "block" : "none" }}
+        style={{ display: data[0]?.stock_id.length ? "block" : "none" }}
         className={styles.logoutFrame}
       >
         <p style={{ color: "red", fontWeight: "bold" }}>

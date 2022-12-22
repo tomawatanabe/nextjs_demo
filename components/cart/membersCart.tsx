@@ -68,7 +68,7 @@ const Members = () => {
       <div
         className={styles.attention}
         style={{
-          display: localData[0]?.stock.length ? "block" : "none",
+          display: localData[0]?.stock_id.length ? "block" : "none",
         }}
       >
         <div className={styles.frame}>
@@ -78,7 +78,7 @@ const Members = () => {
             <br /> 現在のアカウントのカートにその商品を移動しますか？
           </p>
           <ul>
-            {localData[0]?.stock.map((cartItem: Stock) => {
+            {localData[0]?.stock_id.map((cartItem: Stock) => {
               <li>{cartItem?.items.name}</li>;
             })}
           </ul>

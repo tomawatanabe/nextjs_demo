@@ -4,6 +4,7 @@ import type { Stock, Item } from "../../types";
 import { useCookie } from "../useCookie";
 import useSWR from "swr";
 import styles from "../../styles/CartButton.module.css";
+import { supabase } from "../../lib/supabase-client";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -11,14 +12,19 @@ const fetcher = (resource: string): Promise<any> =>
 const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   const userID = useCookie();
 
-  const { data, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`,
+  const { data: cart } = useSWR(
+    `${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`,
     fetcher
   );
+
+  console.log(cart);
+
+  type Memo = { id: number; userID: number; stock: any[] } | null;
+
   const [localData, setLocalData] = useState<any[]>([]);
 
   const dataType = {
-    stocks: [stock],
+    stock_id: [stock],
   };
 
   useEffect(() => {
@@ -31,11 +37,11 @@ const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
       if (localStorage.getItem("shoppingCart")) {
         const target = stock;
 
-        if (localData[0].stock.some((item: Item) => item.id === target.id)) {
+        if (localData[0].stock_id.some((item: Item) => item.id === target.id)) {
           alert("既にカートに追加済みです");
           return;
         } else {
-          localData[0].stock.push(stock);
+          localData[0].stock_id.push(stock);
           localStorage.setItem("shoppingCart", JSON.stringify(localData));
           setLocalData(
             JSON.parse(localStorage.getItem("shoppingCart") || "{}")
@@ -46,25 +52,13 @@ const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
         setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
       }
     } else {
-      // ログイン状態でカート商品追加
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`
-      );
-      const user = await res.json();
-      const target = stock;
+      // Supabase
 
-      if (user?.stock.some((item: Item) => item.id === target.id)) {
-        alert("既にカートに追加済みです");
-        return;
-      } else {
-        fetch("/api/cart", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ stockID: stock.id }),
-        });
-        mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`);
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`, {
+        method: "POST",
+      }).then((data) => {
         Router.reload();
-      }
+      });
     }
   };
 
@@ -72,7 +66,7 @@ const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
   return (
     <>
       <div style={{ display: userID ? "block" : "none" }} className={"member"}>
-        {data?.stock?.some((item: Item) => item.id === stock.id) ? (
+        {cart?.some((cartItem: any) => cartItem.stock_id === stock.id) ? (
           <button
             className={styles.addedCartBtn}
             onClick={addCartItem}
@@ -90,7 +84,7 @@ const CartButton = ({ stock, item }: { stock: Stock; item: Item }) => {
         style={{ display: userID ? "none" : "block" }}
         className={"nonMember"}
       >
-        {localData[0]?.stock.some((item: Item) => item.id === stock.id) ? (
+        {localData[0]?.stock_id.some((item: Item) => item.id === stock.id) ? (
           <button
             className={styles.addedCartBtn}
             onClick={addCartItem}

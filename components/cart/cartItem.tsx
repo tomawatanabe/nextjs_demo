@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 import { useCookie } from "../useCookie";
-import type { Stock, ShoppingCart } from "../../types";
+import type { Stock, ShoppingCart, LocalCart } from "../../types";
 import styles from "../../styles/Cart.module.css";
 
 const fetcher = (resource: string): Promise<any> =>
@@ -23,7 +23,7 @@ const CartItem = (props: {
 
   const cartList = (
     <ul className={styles.cart_ul}>
-      {cart?.stocks.map((content: Stock) => (
+      {cart?.stock_id.map((content: any) => (
         <li className={styles.cart_li} key={content.id}>
           <div>
             <div>
@@ -31,12 +31,12 @@ const CartItem = (props: {
                 src={`/${content.image1}`}
                 width={200}
                 height={200}
-                alt={content.items.name}
+                alt={content.stock_id}
                 priority
               />
             </div>
             <ul className={styles.cart_ul}>
-              <li className={styles.cart_li}>商品名　{content.items.name}</li>
+              {/* <li className={styles.cart_li}>商品名　{content.items.name}</li> */}
               <li className={styles.cart_li}>
                 ¥ {content.price.toLocaleString()}（税込）
               </li>
@@ -64,7 +64,7 @@ const CartItem = (props: {
     </ul>
   );
 
-  return <div>{cart?.stocks.length ? cartList : noItem}</div>;
+  return <div>{cart?.stock_id.length ? cartList : noItem}</div>;
 };
 
 export default CartItem;

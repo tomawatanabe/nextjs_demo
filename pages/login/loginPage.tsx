@@ -35,10 +35,11 @@ export default function Loginpage() {
         return response.json();
       })
       .then((data) => {
-        if (data.status === 404 || undefined) {
+        if (data.status === 404) {
           setFlag(true);
-          console.log("エラー", data.status, data.message);
+          console.log("error", data.message);
         } else {
+          console.log("でーた", data.status);
           history.back();
           document.cookie = `userID=${data.userID}; Path=/; `;
           document.cookie = `userName=${data.userName};  Path=/;`;
