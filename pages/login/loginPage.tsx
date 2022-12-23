@@ -40,7 +40,7 @@ export default function Loginpage() {
         } else {
           history.back();
           document.cookie = `userID=${data.userID}; Path=/; `;
-          document.cookie = `userName=${data.userName};  Path=/;`;
+          document.cookie = `userName=${encodeURI(data.userName)};  Path=/;`;
         }
       });
   }
