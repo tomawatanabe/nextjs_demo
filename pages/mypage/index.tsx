@@ -27,13 +27,7 @@ const MyPage = () => {
             </div>
           </div>
           <hr />
-<<<<<<< HEAD
-          <div>
-            {/* <SettlementHistory /> */}
-          </div>
-=======
           <div>{/* <SettlementHistory /> */}</div>
->>>>>>> 70d873782cf5b1834acfadbb713a96a94efdc6ab
           <hr />
           <div>
             <FavoriteItemList />

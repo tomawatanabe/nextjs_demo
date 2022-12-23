@@ -4,11 +4,6 @@ import { useCookie } from "../useCookie";
 import CartTotalMember from "./cartTotal_member";
 import Router from "next/router";
 import type { Stock, ShoppingCart } from "../../types";
-<<<<<<< HEAD
-// import cart from "../../pages/api/cart";
-import Link from "next/link";
-=======
->>>>>>> 70d873782cf5b1834acfadbb713a96a94efdc6ab
 import styles from "../../styles/Cart.module.css";
 import CartItem_members from "./cartItem_member";
 
@@ -97,13 +92,8 @@ const Members = () => {
             <br /> 現在のアカウントのカートにその商品を移動しますか？
           </p>
           <ul>
-<<<<<<< HEAD
-            {localData[0]?.stock.map((cartItem: Stock) => {
-              // <li>{cartItem?.item.name}</li>;
-=======
             {localData[0]?.stock_id.map((cartItem: Stock) => {
               <li>{cartItem?.items.name}</li>;
->>>>>>> 70d873782cf5b1834acfadbb713a96a94efdc6ab
             })}
           </ul>
           <button

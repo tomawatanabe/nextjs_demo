@@ -144,11 +144,7 @@ export default function Settlement() {
               {cart?.stock?.map((Item: Stock) => {
                 return (
                   <tr key={Item.id}>
-<<<<<<< HEAD
-                    {/* <td>{Item.item.name}</td> */}
-=======
                     <td>{Item.items.name}</td>
->>>>>>> 70d873782cf5b1834acfadbb713a96a94efdc6ab
                     <td>{Item.amount}</td>
                     <td>¥{Item.price}</td>
                     <td>
@@ -156,13 +152,8 @@ export default function Settlement() {
                         src={`/${Item.image1}`}
                         height={150}
                         width={150}
-<<<<<<< HEAD
                         alt={Item.item.name}
                       /> */}
-=======
-                        alt={Item.items.name}
-                      />
->>>>>>> 70d873782cf5b1834acfadbb713a96a94efdc6ab
                       <br />
                     </td>
                     <td className={styles.td_center}>{Item.condition}</td>
