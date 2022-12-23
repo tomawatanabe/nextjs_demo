@@ -11,7 +11,7 @@ const getCart = async (req: NextApiRequest, res: NextApiResponse) => {
 
       // 401 Unauthorized、認証が必要
       // { error: getError.message }
-      if (getError) return res.status(401).json([]);
+      if (getError) return res.status(401).json([{ error: getError.message }]);
       // 200番台は、処理が成功して正常にレスポンスができている状態
       return res.status(200).json(getData);
 
