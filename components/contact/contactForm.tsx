@@ -40,10 +40,6 @@ const ContactForm = () => {
       const setUserImfo = async () => {
         const data = await fetch(`/api/getUserImfo`)
           .then((res) => res.json())
-          .catch((err) => {
-            setFetchError("Coudn't fetch user imformation.");
-            console.log(`エラー: ${err}`);
-          });
 
         if (data) {
           //デフォルト値としてセット

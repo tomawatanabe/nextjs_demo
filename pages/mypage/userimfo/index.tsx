@@ -10,7 +10,11 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 const UserImfo = () => {
   const { data, error } = useSWR(`/api/getUserImfo`, fetcher);
 
-  if (error) return <div>failed to load</div>;
+  if (error) {
+    console.log(error);
+    return <div>failed to load</div>;
+  }
+
   if (!data) return <div>loading...</div>;
 
   return (

@@ -16,7 +16,6 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
-  //onClick処理
   const addFav = async () => {
     //cookie持ってなかったらログイン画面へ
     if (!cookieName) {
@@ -24,19 +23,11 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    const { data, error } = await supabase.from("favorite_items").insert([
-      {
-        itemId: stock.id,
-        cookieName: cookieName,
-        name: stock.items.name,
-        price: stock.price,
-        size: stock.size,
-        imagePath: stock.image1,
-        condition: stock.condition,
-      },
-    ]);
-
-    mutate(`/api/getEachFav/${stock.id}`);
+    fetch(`/api/favorite/${stock.id}`, {
+      method: "POST",
+    }).then(() => {
+      mutate(`/api/favorite/${stock.id}`);
+    });
   };
 
   const deleteFav = async () => {
@@ -46,15 +37,10 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    fetch(
-      `
-    /api/favorite/${stock.id}`,
-      {
-        method: "DELETE",
-      }
-    ).then(() => {
-      mutate(`
-      /api/favorite/${stock.id}`);
+    fetch(`/api/favorite/${stock.id}`, {
+      method: "DELETE",
+    }).then(() => {
+      mutate(`/api/favorite/${stock.id}`);
     });
   };
 
