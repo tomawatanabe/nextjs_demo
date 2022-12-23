@@ -8,10 +8,14 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
 const UserImfo = () => {
+<<<<<<< HEAD
   const { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`,
     fetcher
   );
+=======
+  const { data, error } = useSWR(`/api/getUserImfo`, fetcher);
+>>>>>>> 70d873782cf5b1834acfadbb713a96a94efdc6ab
 
   if (error) {
     console.log(error);

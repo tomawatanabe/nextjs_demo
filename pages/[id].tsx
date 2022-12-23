@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
 export async function getStaticProps({ params }: { params: { id: string } }) {
   const { data, error } = await supabase
     .from("stocks")
-    .select()
+    .select(`*,items(*)`)
     .eq("id", `${params.id}`);
 
   if (!data) return;
@@ -38,22 +38,18 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   }
   const stock = await data[0];
 
-  const items = await supabase.from("items").select().eq("id", `${params.id}`);
-  if (!items.data) return;
-  const item = await items.data[0];
-
-  return { props: { stock, item } };
+  return { props: { stock } };
 }
 
-export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
+export default function Detail({ stock }: { stock: Stock }) {
   return (
     <div>
       <Header />
       <div className="outside">
         <div className="top-wrapper">
-          <h1>{item.name}</h1>
-          <p>年代：{item.year}年代</p>
-          <p>色：{item.color}</p>
+          <h1>{stock.items.name}</h1>
+          <p>年代：{stock.items.year}年代</p>
+          <p>色：{stock.items.color}</p>
         </div>
         <div className="main-content">
           <div className="image-wrapper">
@@ -75,7 +71,7 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                     src={`/${stock.image1}`}
                     height={300}
                     width={400}
-                    alt={item.name}
+                    alt={stock.items.name}
                     priority
                   />
                 </SplideSlide>
@@ -85,7 +81,7 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                     src={`/${stock.image2}`}
                     height={300}
                     width={400}
-                    alt={item.name}
+                    alt={stock.items.name}
                     priority
                   />
                 </SplideSlide>
@@ -95,7 +91,7 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                     src={`/${stock.image3}`}
                     height={300}
                     width={400}
-                    alt={item.name}
+                    alt={stock.items.name}
                     priority
                   />
                 </SplideSlide>
@@ -105,7 +101,7 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                     src={`/${stock.image4}`}
                     height={300}
                     width={400}
-                    alt={item.name}
+                    alt={stock.items.name}
                     priority
                   />
                 </SplideSlide>
@@ -115,7 +111,7 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                     src={`/${stock.image5}`}
                     height={300}
                     width={400}
-                    alt={item.name}
+                    alt={stock.items.name}
                     priority
                   />
                 </SplideSlide>
@@ -151,13 +147,13 @@ export default function Detail({ stock, item }: { stock: Stock; item: Item }) {
                 <dd>{stock.condition}</dd>
               </dl>
             </div>
-            <ToggleFavButton stock={stock} item={item} />
-            {/* <CartButton stock={stock} item={item} /> */}
+            <ToggleFavButton stock={stock} />
+            <CartButton stock={stock} />
           </div>
         </div>
         <div className="explanation-wrapper">
           <h2>商品説明</h2>
-          <p className="explanation">{item.description}</p>
+          <p className="explanation">{stock.items.description}</p>
         </div>
       </div>
       <PageTop />

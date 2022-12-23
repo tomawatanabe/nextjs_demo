@@ -68,7 +68,8 @@ export type FavoriteItem2 = {
 
 export type ShoppingCart = {
   id: number;
-  stock: Stock[];
+  stock_id: number[];
+  stocks: Stock;
 };
 
 export type Order = {
@@ -114,3 +115,4 @@ export type TopUsedItems = {
   itemStatus: "完了" | "買取処理中";
   id: number;
 };
+

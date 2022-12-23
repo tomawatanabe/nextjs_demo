@@ -18,7 +18,8 @@ function FavoriteList() {
   const [flag, setFlag] = useState(false);
 
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/myPage/getFavoriteItems`,
+    `
+    /api/myPage/getFavoriteItems`,
     fetcher
   );
 
@@ -143,7 +144,8 @@ function FavoriteList() {
                   <td>
                     <a
                       target="_blank"
-                      href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
+                      href={`
+                      /${favoriteItem.itemId}`}
                     >
                       <FontAwesomeIcon
                         className={styles.btn}
@@ -161,7 +163,8 @@ function FavoriteList() {
                           .eq("id", favoriteItem?.id);
 
                         mutate(
-                          `${process.env.NEXT_PUBLIC_API}/api/getFavoriteItems`
+                          `
+                          /api/getFavoriteItems`
                         );
                       }}
                       className={styles.btn}
@@ -194,7 +197,8 @@ function FavoriteList() {
                       <td>
                         <a
                           target="_blank"
-                          href={`${process.env.NEXT_PUBLIC_API}/${favoriteItem.itemId}`}
+                          href={`
+                          /${favoriteItem.itemId}`}
                         >
                           <FontAwesomeIcon
                             className={styles.btn}
@@ -210,9 +214,7 @@ function FavoriteList() {
                               .from("favorite_items")
                               .delete()
                               .eq("id", favoriteItem?.id);
-                            mutate(
-                              `${process.env.NEXT_PUBLIC_API}/api/getFavoriteItems`
-                            );
+                            mutate(`/api/getFavoriteItems`);
                           }}
                           className={styles.btn}
                         />

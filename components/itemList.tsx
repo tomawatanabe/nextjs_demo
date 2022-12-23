@@ -1,6 +1,6 @@
 import Link from "next/link";
 import useSWR from "swr";
-import { Item, Stock } from "../types";
+import { Stock } from "../types";
 import Image from "next/image";
 import styles from "../styles/itemList.module.css";
 
@@ -8,10 +8,7 @@ const fetcher = (resource: any, init: any) =>
   fetch(resource, init).then((res) => res.json());
 
 export default function ItemList(props: any) {
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getStock`,
-    fetcher
-  );
+  const { data, error } = useSWR(`/api/getStock`, fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   const stock = data;
