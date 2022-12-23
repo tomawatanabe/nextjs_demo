@@ -18,7 +18,7 @@ const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
     } else {
       res.status(200).json({
         userID: obj.id,
-        userName: obj.lastName + obj.firstName,
+        userName: obj.last_name + obj.first_name,
       });
     }
   } catch (error) {
