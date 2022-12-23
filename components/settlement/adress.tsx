@@ -9,10 +9,7 @@ export default function Address() {
   const fetcher = (resource: string) =>
     fetch(resource).then((res) => res.json());
 
-  const { data: user, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/users/${userId}`,
-    fetcher
-  );
+  const { data: user, error } = useSWR(`/api/users/${userId}`, fetcher);
   if (error) return <div>failed to load</div>;
   if (!user) return <div>loading...</div>;
 

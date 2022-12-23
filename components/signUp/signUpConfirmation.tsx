@@ -33,7 +33,7 @@ const SignUpConfirmation = () => {
     ]);
 
     //shopppingCartにレコードを追加
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart`, {
+    fetch(`/api/shoppingCart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
