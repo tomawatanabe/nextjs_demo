@@ -12,9 +12,6 @@ const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
     .limit(1)
     .single();
 
-  // console.log("req.cookies", req.cookies);
-  // console.log("Id", parseInt(cookieNumber));
-
   // 401 Unauthorized、認証が必要
   if (error) res.status(401).json({ error: error.message });
 
