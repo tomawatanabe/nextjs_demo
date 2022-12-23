@@ -148,12 +148,12 @@ export default function Settlement() {
                     <td>{Item.amount}</td>
                     <td>¥{Item.price}</td>
                     <td>
-                      <Image
+                      {/* <Image
                         src={`/${Item.image1}`}
                         height={150}
                         width={150}
-                        alt={Item.items.name}
-                      />
+                        alt={Item.item.name}
+                      /> */}
                       <br />
                     </td>
                     <td className={styles.td_center}>{Item.condition}</td>
