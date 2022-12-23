@@ -12,39 +12,49 @@ import styles from "/styles/Settlement.module.css";
 import { Item, Stock } from "../../types";
 import { supabase } from "../../lib/supabase-client";
 import Stocks from "../api/stocks";
+import ShoppingCart from "../cart";
+
+
+const fetcher = (resource: string ): Promise<any> => 
+  fetch(resource).then((res) => res.json());
+
 
 export default function Settlement() {
-  const todayYear = new Date().getFullYear();
-  const todayMonth = new Date().getMonth() + 1;
-  const todayDate = new Date().getDate();
+  
 
   // 購入手続き完了でDB/orderに送るデータ内容
-  const [orderDate, setOrderDate] = useState(
-    `${todayYear}年${todayMonth}月${todayDate}日`
-  );
+  
   const [note, setNote] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [payment_method, setPayment_method] = useState("");
   const [shipStatus, setShipStatus] = useState("未発送");
   const [flag, setFlag] = useState(false);
 
   const userId = useCookie();
 
   // カート情報を引き出す
-  const fetcher = (
-    resource: RequestInfo | URL,
-    init: RequestInit | undefined
-  ) => fetch(resource, init).then((res) => res.json());
-  const { data: cart, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`,
+
+   const {data, error} = useSWR(`${process.env.NEXT_PUBLIC_API}/api/getCart/${userId}`,
     fetcher
-  );
+ );
+    if(error) return <div>failed to load</div>
+    if(!data) return <div> loading </div>
+  const ItemList = data;
 
-  const ItemList = cart?.stock;
-
+  console.log(data,"データ")
   // orderItemListに送る値を取得する
-  const Items = ItemList?.map((stock:Stock) => stock.id);
 
-  console.log(Items);
+ const stockDelete = {deleted: true};
+  for( const patchStock of ItemList.stocks) {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getStock/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stockDelete),
+  }
+  // = ItemList?.map( fetch (shoppingCart: ShoppingCart) => shoppingCart.stocks.deleted = true);
+
+  
 
   // 合計金額計算
   const initial: number = ItemList?.map((stock: Stock) => stock.price).reduce(
@@ -64,6 +74,29 @@ export default function Settlement() {
   if (error) return <div>failed to load</div>;
   if (!cart) return <div>loading...</div>;
 
+  const getdata = {
+    note: note,
+    payment_method: payment_method,
+    user_id: userId,
+    ship_status: shipStatus,
+    total_price: total,
+  };
+
+  // 購入手続きをDBにpostする
+  const sendOrder = () => {
+    if (!payment_method) {
+      setFlag(true);
+      return;
+    } else {
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/getOrder/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(getdata),
+      })
+    }
+  };
 
 
 
@@ -88,28 +121,14 @@ export default function Settlement() {
       });
   };
 
+  
   const handleClick = async (event: { target: any }) => {
-    const { data, error } = await supabase.from("order").insert([ {
-      userID: userId,
-      orderDate: orderDate,
-      note: note,
-      paymentMethod: paymentMethod,
-      shipStatus: shipStatus,
-      totalPrice: total,
-    }
-  ]); 
-  const { data: Items, error: Error } = await supabase.from("orderItemList").insert([ {
-    orderItemList: ItemList,
-    
-  }
-]); 
-
+    sendOrder();
     DeletedItems();
     if(error){
       console.log('error',error)
       return
     }
-    router.replace(`${process.env.NEXT_PUBLIC_API}/settlement/close`);
   };
 
   return (
@@ -154,7 +173,7 @@ export default function Settlement() {
             </tbody>
           </table>
           <br />
-          {paymentMethod === "credit" ? (
+          {payment_method === "credit" ? (
             <div className={styles.total_wrapper}>
               <table className="right-side-colored">
                 <tbody>
@@ -228,7 +247,7 @@ export default function Settlement() {
                 value="credit"
                 required
                 onClick={() => {
-                  setPaymentMethod("credit");
+                  setPayment_method("credit");
                   setTotal(initial + 500);
                 }}
               />
@@ -243,7 +262,7 @@ export default function Settlement() {
                 name="支払い方法"
                 value="cashOnDelivery"
                 onClick={() => {
-                  setPaymentMethod("cashOnDelivery");
+                  setPayment_method("cashOnDelivery");
                   setTotal(initial + 830);
                 }}
               />
