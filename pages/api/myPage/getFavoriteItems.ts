@@ -1,15 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../../lib/supabase-client";
 
-const getEachFavoriteItems = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-) => {
+const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase
     .from("favorite_items")
-    .select()
-    .eq("cookieName", req.cookies.userID)
-    .eq("itemId", req.query.fav);
+    .select("id,user_id,stocks(itemID,image1,size,price,condition,items(name))")
+    .eq("user_id", req.cookies.userID)
+    .order("id", { ascending: false });
 
   // 401 Unauthorized、認証が必要
   if (error) return res.status(401).json({ error: error.message });
@@ -18,4 +15,4 @@ const getEachFavoriteItems = async (
   return res.status(200).json(data);
 };
 
-export default getEachFavoriteItems;
+export default getUsers;

@@ -4,8 +4,6 @@ import ContactConfirmation from "../../components/contact/contactConfirmation";
 import { useForm, FormProvider } from "react-hook-form";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import Link from "next/link";
-import styles from "../../styles/purchase.module.css";
 import PageTop from "../../components/pageTop";
 
 const Contact = () => {

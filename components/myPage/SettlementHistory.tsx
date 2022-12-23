@@ -1,8 +1,8 @@
 import useSWR from "swr";
 import React, { useState } from "react";
-import { Order, Stock } from "../types";
-import { useCookie } from "./useCookie";
-import styles from "../styles/MyPage.module.css";
+import { Order, Stock } from "../../types";
+import { useCookie } from "../useCookie";
+import styles from "../../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesUp, faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,7 +17,7 @@ function SettlementHistory() {
     `${process.env.NEXT_PUBLIC_API}/api/order?userId=${cookie}`,
     fetcher
   );
-  if (error) return <div>failed to load</div>;
+  if (error) return <div>購入履歴はありません</div>;
   if (!data) return <div>loading...</div>;
 
   //idの降順で並び替える

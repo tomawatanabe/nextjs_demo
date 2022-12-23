@@ -4,9 +4,12 @@ import { useFormContext } from "react-hook-form";
 import styles from "../../styles/purchase.module.css";
 import { useCookie } from "../useCookie";
 
+type FetchError = string | null;
+
 const ContactForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<FetchError>(null);
 
   const {
     register,
@@ -26,36 +29,47 @@ const ContactForm = () => {
     // ログインしてなかったら何もしない
     if (cookieName === "userID=" || undefined) {
       return;
+
       //valuesArrにひとつでもtruthyなものがあったら初期値はセットしない
     } else if (valuesArr.some((ele) => Boolean(ele) === true)) {
       setLoading(false);
       return;
+
       //valuesArrが全てfalsyだったら初期値をセットする
     } else {
-      //DBから値を読み込み
-      const get = async () => {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API}/API/users?id=${cookieName}`
-        );
-        const data = await res.json();
-        //デフォルト値としてセット
-        setValue("lastname", data[0]?.lastName);
-        setValue("firstname", data[0]?.firstName);
-        setValue("kanalastname", data[0]?.kanaLastName);
-        setValue("kanafirstname", data[0]?.kanaFirstName);
-        setValue("phone", data[0]?.phoneNumber);
-        setValue("email", data[0]?.email);
-        setLoading(false);
+      const setUserImfo = async () => {
+        const data = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
+        )
+          .then((res) => res.json())
+          .catch((err) => {
+            setFetchError("Coudn't fetch user imformation.");
+            console.log(`エラー: ${err}`);
+          });
+
+        if (data) {
+          //デフォルト値としてセット
+          setFetchError(null);
+          setValue("lastname", data?.last_name);
+          setValue("firstname", data?.first_name);
+          setValue("kanalastname", data?.kana_last_name);
+          setValue("kanafirstname", data?.kana_first_name);
+          setValue("phone", data?.phone);
+          setValue("email", data?.email);
+          setLoading(false);
+        }
       };
-      get();
+      setUserImfo();
     }
   }, [loading]);
+
   const onSubmit = async () => {
     router.push(`/contact?confirm=1`);
   };
 
   return (
     <div className={styles.outside}>
+      {fetchError && <div>{fetchError}</div>}
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className={styles.title}>お問い合わせフォーム</h1>
         <h2 className={styles.kaitori}>

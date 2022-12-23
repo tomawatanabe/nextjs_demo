@@ -1,7 +1,6 @@
-import { FavoriteItem, FavoriteItem2 } from "../types";
 import Image from "next/image";
 import { useState } from "react";
-import styles from "../styles/MyPage.module.css";
+import styles from "../../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAnglesUp,
@@ -9,86 +8,79 @@ import {
   faArrowUpRightFromSquare,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
-import { supabase } from "../lib/supabase-client";
+import { supabase } from "../../lib/supabase-client";
 import useSWR from "swr";
 
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
-  fetch(resource, init).then((res) =>
-    res.json().then((res) =>
-      res.sort((a: FavoriteItem, b: FavoriteItem) => {
-        return a.id < b.id ? 1 : -1;
-      })
-    )
-  );
+  fetch(resource, init).then((res) => res.json());
 
 function FavoriteList() {
   const [flag, setFlag] = useState(false);
 
-  const {
-    data: sortedData,
-    error,
-    mutate,
-  } = useSWR(`${process.env.NEXT_PUBLIC_API}/api/getFavoriteItems`, fetcher);
+  const { data, error, mutate } = useSWR(
+    `${process.env.NEXT_PUBLIC_API}/api/myPage/getFavoriteItems`,
+    fetcher
+  );
 
   if (error) return <div>failed to load</div>;
-  if (!sortedData) return <div>loading...</div>;
+  if (!data) return <div>loading...</div>;
 
   //Top2を抽出した配列を定義
-  const sortTopData = () => {
-    const sortedTopData = [];
-    if (sortedData === undefined) {
+  const createTopData = () => {
+    const topData = [];
+    if (data === undefined) {
       return;
     }
 
     for (let i = 0; i < 2; i++) {
-      if (typeof sortedData[i]?.name === "undefined") {
+      if (typeof data[i]?.id === "undefined") {
         break;
       }
 
-      sortedTopData.push({
-        name: sortedData[i]?.name,
-        condition: sortedData[i]?.condition,
-        imagePath: sortedData[i]?.imagePath,
-        size: sortedData[i]?.size,
-        price: sortedData[i]?.price,
-        itemId: sortedData[i]?.itemId,
-        cookieName: sortedData[i]?.cookieName,
-        id: sortedData[i]?.id,
+      topData.push({
+        id: data[i]?.id,
+        userId: data[i]?.user_id,
+        name: data[i]?.stocks.items.name,
+        condition: data[i]?.stocks.condition,
+        imagePath: data[i]?.stocks.image1,
+        size: data[i]?.stocks.size,
+        price: data[i]?.stocks.price,
+        itemId: data[i]?.stocks.itemID,
       });
     }
-    return sortedTopData;
+    return topData;
   };
 
-  const sortedTopData = sortTopData();
+  const topData = createTopData();
 
   //Top2から漏れた配列を定義
-  const sortRestData = () => {
-    const sortedRestData = [];
-    if (sortedData === undefined) {
+  const createRestData = () => {
+    const restData = [];
+    if (data === undefined) {
       return;
     }
-    for (let i = 2; i < sortedData.length; i++) {
-      if (typeof sortedData[i]?.name === "undefined") {
+    for (let i = 2; i < data.length; i++) {
+      if (typeof data[i]?.id === "undefined") {
         break;
       }
 
-      sortedRestData.push({
-        name: sortedData[i]?.name,
-        condition: sortedData[i]?.condition,
-        imagePath: sortedData[i]?.imagePath,
-        size: sortedData[i]?.size,
-        price: sortedData[i]?.price,
-        itemId: sortedData[i]?.itemId,
-        cookieName: sortedData[i]?.cookieName,
-        id: sortedData[i]?.id,
+      restData.push({
+        id: data[i]?.id,
+        userId: data[i]?.user_id,
+        name: data[i]?.stocks.items.name,
+        condition: data[i]?.stocks.condition,
+        imagePath: data[i]?.stocks.image1,
+        size: data[i]?.stocks.size,
+        price: data[i]?.stocks.price,
+        itemId: data[i]?.stocks.itemID,
       });
     }
-    return sortedRestData;
+    return restData;
   };
 
-  const sortedRestData = sortRestData();
+  const restData = createRestData();
 
-  if (!sortedData.length) {
+  if (!data.length) {
     return (
       <>
         <h2>お気に入り</h2>
@@ -131,7 +123,7 @@ function FavoriteList() {
             </tr>
           </thead>
           <tbody>
-            {sortedTopData?.map((favoriteItem: FavoriteItem2) => {
+            {topData?.map((favoriteItem) => {
               return (
                 <tr key={favoriteItem.itemId}>
                   <td>{favoriteItem.name}</td>
@@ -180,7 +172,7 @@ function FavoriteList() {
             })}
             {flag && (
               <>
-                {sortedRestData?.map((favoriteItem: FavoriteItem2) => {
+                {restData?.map((favoriteItem) => {
                   return (
                     <tr key={favoriteItem.itemId}>
                       <td>{favoriteItem.name}</td>

@@ -3,7 +3,6 @@ import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR from "swr";
 import styles from "../styles/FavButton.module.css";
-import { supabase } from "../lib/supabase-client";
 
 const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
@@ -12,7 +11,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
     fetch(resource).then((res) => res.json());
 
   const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`,
+    `${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`,
     fetcher
   );
 
@@ -49,13 +48,11 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    const { data, error } = await supabase
-      .from("favorite_items")
-      .delete()
-      .eq("cookieName", cookieName)
-      .eq("itemId", stock.id);
-
-    mutate(`${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`);
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`, {
+      method: "DELETE",
+    }).then(() => {
+      mutate(`${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`);
+    });
   };
 
   return (

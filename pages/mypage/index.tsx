@@ -3,15 +3,14 @@ import SignIn from "../../components/SignIn";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import FavoriteList from "../../components/FavoriteList";
-import UsedItemList from "../../components/UsedItemList";
-import SettlementHistory from "../../components/SettlementHistory";
+import FavoriteItemList from "../../components/myPage/FavoriteItemList";
+import UsedItemList from "../../components/myPage/UsedItemList";
+import SettlementHistory from "../../components/myPage/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import PageTop from "../../components/pageTop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
-  faSpaghettiMonsterFlying,
 } from "@fortawesome/free-solid-svg-icons";
 
 const MyPage = () => {
@@ -35,7 +34,7 @@ const MyPage = () => {
           </div>
           <hr />
           <div>
-            <FavoriteList />
+            <FavoriteItemList />
           </div>
           <hr />
           <div>

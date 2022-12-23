@@ -24,6 +24,7 @@ const Members = () => {
   let { data, error } = useSWR(
     `${process.env.NEXT_PUBLIC_API}/api/getCart/${userID}`,
     fetcher
+    // ユーザのカートのデータを取得
   );
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -44,15 +45,17 @@ const Members = () => {
   const handleCombine = (cart: ShoppingCart[]) => {
     console.log(cart);
     for (const localItem of localData[0]?.stock_id) {
-      if (cart?.some((serverItem: any) => serverItem.stock_id === localItem.id)) {
+      if (
+        cart?.some((serverItem: any) => serverItem.stock_id === localItem.id)
+      ) {
         continue;
       }
       fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${localItem.id}`, {
         method: "POST",
-      })
+      });
     }
-      localStorage.clear();
-      Router.reload();
+    localStorage.clear();
+    Router.reload();
   };
 
   const handleClick = () => {

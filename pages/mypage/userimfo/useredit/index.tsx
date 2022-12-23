@@ -6,7 +6,6 @@ import Header from "../../../../components/Header";
 import Footer from "../../../../components/Footer";
 import { useCookie } from "../../../../components/useCookie";
 import { supabase } from "../../../../lib/supabase-client";
-import { Users } from "../../../../types";
 
 type FetchError = string | null;
 
@@ -56,37 +55,36 @@ const UserImfo = () => {
     if (cookieName === "userID=" || undefined) {
     } else {
       //DBから値を読み込み
-      const fetchUsers = async () => {
-        const { data, error } = await supabase
-          .from("users")
-          .select()
-          .eq("id", Number(cookieName));
-
-        if (error) {
-          setFetchError("couldn't fetch data");
-          console.log(error);
-        }
+      const setUserImfo = async () => {
+        const data = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
+        )
+          .then((res) => res.json())
+          .catch((err) => {
+            setFetchError("Coudn't fetch user imformation.");
+            console.log(`エラー: ${err}`);
+          });
 
         if (data) {
           setFetchError(null);
           //デフォルト値としてセット
-          setValue("lastName", data[0]?.lastName);
-          setValue("firstName", data[0]?.firstName);
-          setValue("kanaLastName", data[0]?.kanaLastName);
-          setValue("kanaFirstName", data[0]?.kanaFirstName);
-          setValue("phoneNumber", data[0]?.phoneNumber);
-          setValue("email", data[0]?.email);
-          setValue("zipCode", data[0]?.zipCode);
-          setValue("prefecture", data[0]?.prefecture);
-          setValue("city", data[0]?.city);
-          setValue("address", data[0]?.address);
-          setValue("building", data[0]?.building);
-          setValue("password", data[0]?.password);
+          setValue("lastName", data?.last_name);
+          setValue("firstName", data?.first_name);
+          setValue("kanaLastName", data?.kana_last_name);
+          setValue("kanaFirstName", data?.kana_first_name);
+          setValue("phoneNumber", data?.phone);
+          setValue("email", data?.email);
+          setValue("zipCode", data?.zip_code);
+          setValue("prefecture", data?.prefecture);
+          setValue("city", data?.city);
+          setValue("address", data?.address);
+          setValue("building", data?.building);
+          setValue("password", data?.password);
           //setterを呼び出して再レンダリングをかける
           setLoading(false);
         }
       };
-      fetchUsers();
+      setUserImfo();
     }
   }, [loading]);
 
@@ -97,13 +95,13 @@ const UserImfo = () => {
       .from("users")
       .update([
         {
-          lastName: values?.lastName,
-          firstName: values?.firstName,
-          kanaLastName: values?.kanaLastName,
-          kanaFirstName: values?.kanaFirstName,
-          phoneNumber: values?.phoneNumber,
+          last_name: values?.lastName,
+          first_name: values?.firstName,
+          kana_last_name: values?.kanaLastName,
+          kana_first_name: values?.kanaFirstName,
+          phone: values?.phoneNumber,
           email: values?.email,
-          zipCode: values?.zipCode,
+          zip_code: values?.zipCode,
           prefecture: values?.prefecture,
           city: values?.city,
           address: values?.address,
@@ -116,6 +114,7 @@ const UserImfo = () => {
     if (error) {
       console.log(error);
     }
+
     alert("会員情報が更新されました");
   };
 
