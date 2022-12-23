@@ -115,4 +115,3 @@ export type TopUsedItems = {
   itemStatus: "完了" | "買取処理中";
   id: number;
 };
-
