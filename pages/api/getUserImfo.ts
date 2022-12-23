@@ -8,6 +8,7 @@ const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
     .from("users")
     .select("*")
     // .eq("id", parseInt(cookieInt))
+    // .eq("id", 1)
     .eq("id", cookieNumber)
     .limit(1)
     .single();
