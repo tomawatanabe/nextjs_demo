@@ -15,31 +15,24 @@ const SignUpConfirmation = () => {
     e.preventDefault();
     const values = getValues();
 
-    const { data, error } = await supabase.from("users").insert([
-      {
-        lastName: values.lastName,
-        firstName: values.firstName,
-        kanaLastName: values.kanaLastName,
-        kanaFirstName: values.kanaFirstName,
-        phoneNumber: values.phone,
-        email: values.mail,
-        zipCode: values.postCode,
-        prefecture: values.prefecture,
-        city: values.city,
-        address: values.address,
-        building: values.building,
-        password: values.password,
-      },
-    ]);
-
-    //shopppingCartにレコードを追加
-    fetch(`/api/shoppingCart`, {
+    fetch("/api/userImfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        stock: [],
+        last_name: values.lastName,
+        first_name: values.firstName,
+        kana_last_name: values.kanaLastName,
+        kana_first_name: values.kanaFirstName,
+        phone: values.phone,
+        email: values.mail,
+        zip_code: values.postCode,
+        prefecture: values.prefecture,
+        city: values.city,
+        address: values.address,
+        building: values.building,
+        password: values.password,
       }),
     });
 
