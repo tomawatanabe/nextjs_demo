@@ -10,35 +10,47 @@ import SignIn from "../../components/SignIn";
 import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
 import { Item, Stock } from "../../types";
+import { supabase } from "../../lib/supabase-client";
+import Stocks from "../api/stocks";
+import ShoppingCart from "../cart";
+
+const fetcher = (resource: string): Promise<any> =>
+  fetch(resource).then((res) => res.json());
 
 export default function Settlement() {
-  const todayYear = new Date().getFullYear();
-  const todayMonth = new Date().getMonth() + 1;
-  const todayDate = new Date().getDate();
-
   // 購入手続き完了でDB/orderに送るデータ内容
-  const [orderDate, setOrderDate] = useState(
-    `${todayYear}年${todayMonth}月${todayDate}日`
-  );
+
   const [note, setNote] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [payment_method, setPayment_method] = useState("");
   const [shipStatus, setShipStatus] = useState("未発送");
   const [flag, setFlag] = useState(false);
 
   const userId = useCookie();
 
   // カート情報を引き出す
-  const fetcher = (
-    resource: RequestInfo | URL,
-    init: RequestInit | undefined
-  ) => fetch(resource, init).then((res) => res.json());
-  const { data: cart, error } = useSWR(
-    `
-    /api/shoppingCart/${userId}`,
+
+  const { data, error } = useSWR(
+    `${process.env.NEXT_PUBLIC_API}/api/getCart/${userId}`,
     fetcher
   );
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div> loading </div>;
+  const ItemList = data;
 
-  const ItemList = cart?.stock;
+  console.log(data, "データ");
+  // orderItemListに送る値を取得する
+
+  const stockDelete = { deleted: true };
+  for (const patchStock of ItemList.stocks) {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getStock/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stockDelete),
+    });
+  }
+  // = ItemList?.map( fetch (shoppingCart: ShoppingCart) => shoppingCart.stocks.deleted = true);
 
   // 合計金額計算
   const initial: number = ItemList?.map((stock: Stock) => stock.price).reduce(
@@ -48,6 +60,7 @@ export default function Settlement() {
 
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
+
   useEffect(() => {
     setSubTotal(initial);
   });
@@ -59,40 +72,26 @@ export default function Settlement() {
   if (!cart) return <div>loading...</div>;
 
   const getdata = {
-    userID: userId,
-    orderDate: orderDate,
     note: note,
-    paymentMethod: paymentMethod,
-    orderItemList: ItemList,
-    shipStatus: shipStatus,
-    totalPrice: total,
+    payment_method: payment_method,
+    user_id: userId,
+    ship_status: shipStatus,
+    total_price: total,
   };
 
   // 購入手続きをDBにpostする
   const sendOrder = () => {
-    if (!paymentMethod) {
+    if (!payment_method) {
       setFlag(true);
       return;
     } else {
-      fetch(
-        `
-      /api/order`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(getdata),
-        }
-      )
-        .then((response) => response.json())
-        .then((getdata) => {
-          router.replace(`
-          /settlement/close`);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/getOrder/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(getdata),
+      });
     }
   };
 
@@ -100,7 +99,7 @@ export default function Settlement() {
   const DeletedItems = () => {
     const deletedList: string[] = [];
 
-    fetch(`/api/shoppingCart/${userId}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -116,10 +115,13 @@ export default function Settlement() {
       });
   };
 
-  const handleClick = (event: { target: any }) => {
+  const handleClick = async (event: { target: any }) => {
     sendOrder();
-    setShipStatus("未発送");
     DeletedItems();
+    if (error) {
+      console.log("error", error);
+      return;
+    }
   };
 
   return (
@@ -164,11 +166,11 @@ export default function Settlement() {
             </tbody>
           </table>
           <br />
-          {paymentMethod === "credit" ? (
+          {payment_method === "credit" ? (
             <div className={styles.total_wrapper}>
               <table className="right-side-colored">
                 <tbody>
-                  <tr className={styles.total_table_list}>
+                  <tr className={styles.total_table_list} key="credit">
                     <th>
                       小計{"("}税込{")"}:
                     </th>
@@ -195,7 +197,7 @@ export default function Settlement() {
               <div className="right-side-colored">
                 <table>
                   <tbody>
-                    <tr className={styles.total_table_list}>
+                    <tr className={styles.total_table_list} key="cash">
                       <th>
                         小計{"("}税込{")"}:
                       </th>
@@ -238,7 +240,7 @@ export default function Settlement() {
                 value="credit"
                 required
                 onClick={() => {
-                  setPaymentMethod("credit");
+                  setPayment_method("credit");
                   setTotal(initial + 500);
                 }}
               />
@@ -253,7 +255,7 @@ export default function Settlement() {
                 name="支払い方法"
                 value="cashOnDelivery"
                 onClick={() => {
-                  setPaymentMethod("cashOnDelivery");
+                  setPayment_method("cashOnDelivery");
                   setTotal(initial + 830);
                 }}
               />
