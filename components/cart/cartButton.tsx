@@ -13,7 +13,8 @@ const CartButton = ({ stock }: { stock: Stock }) => {
   const userID = useCookie();
 
   const { data: cart, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`,
+    `
+    /api/getCart/${stock.id}`,
     fetcher
   );
 
@@ -50,9 +51,13 @@ const CartButton = ({ stock }: { stock: Stock }) => {
         setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
       }
     } else {
-      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${stock.id}`, {
-        method: "POST",
-      }).then((data) => {
+      fetch(
+        `
+      /api/getCart/${stock.id}`,
+        {
+          method: "POST",
+        }
+      ).then((data) => {
         Router.reload();
       });
     }

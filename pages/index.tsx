@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/getStock`)
+    fetch(`/api/getStock`)
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

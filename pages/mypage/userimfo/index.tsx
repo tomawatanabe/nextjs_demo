@@ -7,13 +7,8 @@ import useSWR from "swr";
 const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
-
 const UserImfo = () => {
-
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`,
-    fetcher
-  );
+  const { data, error } = useSWR(`/api/getUserImfo`, fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;

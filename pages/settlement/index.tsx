@@ -33,7 +33,8 @@ export default function Settlement() {
     init: RequestInit | undefined
   ) => fetch(resource, init).then((res) => res.json());
   const { data: cart, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`,
+    `
+    /api/shoppingCart/${userId}`,
     fetcher
   );
 
@@ -73,16 +74,21 @@ export default function Settlement() {
       setFlag(true);
       return;
     } else {
-      fetch(`${process.env.NEXT_PUBLIC_API}/api/order`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(getdata),
-      })
+      fetch(
+        `
+      /api/order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(getdata),
+        }
+      )
         .then((response) => response.json())
         .then((getdata) => {
-          router.replace(`${process.env.NEXT_PUBLIC_API}/settlement/close`);
+          router.replace(`
+          /settlement/close`);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -94,7 +100,7 @@ export default function Settlement() {
   const DeletedItems = () => {
     const deletedList: string[] = [];
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`, {
+    fetch(`/api/shoppingCart/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

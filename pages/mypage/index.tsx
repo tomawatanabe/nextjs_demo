@@ -9,9 +9,7 @@ import SettlementHistory from "../../components/myPage/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import PageTop from "../../components/pageTop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const MyPage = () => {
   return (
@@ -29,9 +27,7 @@ const MyPage = () => {
             </div>
           </div>
           <hr />
-          <div>
-            <SettlementHistory />
-          </div>
+          <div>{/* <SettlementHistory /> */}</div>
           <hr />
           <div>
             <FavoriteItemList />

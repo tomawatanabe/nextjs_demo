@@ -13,10 +13,7 @@ function SettlementHistory() {
   const cookie = useCookie();
   const [flag, setFlag] = useState(true);
 
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/order?userId=${cookie}`,
-    fetcher
-  );
+  const { data, error } = useSWR(`/api/order?userId=${cookie}`, fetcher);
   if (error) return <div>購入履歴はありません</div>;
   if (!data) return <div>loading...</div>;
 

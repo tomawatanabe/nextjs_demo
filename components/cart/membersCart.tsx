@@ -22,7 +22,8 @@ const Members = () => {
 
   // OK サーバ上のデータを取得
   let { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getCart/${userID}`,
+    `
+    /api/getCart/${userID}`,
     fetcher
     // ユーザのカートのデータを取得
   );
@@ -31,10 +32,18 @@ const Members = () => {
 
   // カート内商品削除
   const handleDelete = (cart: ShoppingCart, id: number) => {
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${id}`, {
-      method: "DELETE",
-    });
-    mutate(`${process.env.NEXT_PUBLIC_API}/api/getCart/${userID}`, fetcher);
+    fetch(
+      `
+    /api/getCart/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    mutate(
+      `
+    /api/getCart/${userID}`,
+      fetcher
+    );
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
 
@@ -50,7 +59,7 @@ const Members = () => {
       ) {
         continue;
       }
-      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${localItem.id}`, {
+      fetch(`/api/getCart/${localItem.id}`, {
         method: "POST",
       });
     }
