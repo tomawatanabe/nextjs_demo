@@ -49,7 +49,7 @@ export default function Header() {
           <li key="signup" className={styles.lis}>
             <Link href="/mypage" className={styles.link}>
               <FontAwesomeIcon icon={faUser} />
-              {name}さん
+              {decodeURI(name)}さん
             </Link>
           </li>
           <input
