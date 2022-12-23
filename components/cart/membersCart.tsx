@@ -1,13 +1,11 @@
 import useSWR, { mutate } from "swr";
 import { useEffect, useState } from "react";
 import { useCookie } from "../useCookie";
-import CartItem from "./cartItem";
-import CartTotal from "./cartTotal";
+import CartTotalMember from "./cartTotal_member";
 import Router from "next/router";
 import type { Stock, ShoppingCart } from "../../types";
-import cart from "../../pages/api/cart";
-import Link from "next/link";
 import styles from "../../styles/Cart.module.css";
+import CartItem_members from "./cartItem_member";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -22,73 +20,42 @@ const Members = () => {
     setLocalData(JSON.parse(localStorage.getItem("shoppingCart") || "{}"));
   }, []);
 
-  // サーバ上のデータを取得
+  // OK サーバ上のデータを取得
   let { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`,
+    `${process.env.NEXT_PUBLIC_API}/api/getCart/${userID}`,
     fetcher
     // ユーザのカートのデータを取得
   );
-
-  useEffect(() => {
-    mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
-  }, []);
-// 
-
-
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
   // カート内商品削除
   const handleDelete = (cart: ShoppingCart, id: number) => {
-    const stock = cart.stock;
-    const deleted = stock.filter((item: Stock) => item.id !== id);
+    fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${id}`, {
+      method: "DELETE",
+    });
+    mutate(`${process.env.NEXT_PUBLIC_API}/api/getCart/${userID}`, fetcher);
+    if (error) return <div>failed to load</div>;
+    if (!data) return <div>loading...</div>;
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        stock: deleted,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        mutate(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart?id=${userID}`);
-        Router.push("/cart");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    Router.push("/cart");
   };
 
   // ログイン前のカート内商品をログイン後のカートに移動
-  const handleCombine = (cart: ShoppingCart) => {
-    const stock = cart.stock;
-    for (const localItem of localData[0]?.stock) {
-      if (stock.some((serverItem: any) => serverItem.id === localItem.id)) {
+  const handleCombine = (cart: ShoppingCart[]) => {
+    console.log(cart);
+    for (const localItem of localData[0]?.stock_id) {
+      if (
+        cart?.some((serverItem: any) => serverItem.stock_id === localItem.id)
+      ) {
         continue;
       }
-      stock.push(localItem);
-    }
-
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userID}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        stock: stock,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.clear();
-        Router.reload();
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/getCart/${localItem.id}`, {
+        method: "POST",
       });
+    }
+    localStorage.clear();
+    Router.reload();
   };
 
   const handleClick = () => {
@@ -106,7 +73,7 @@ const Members = () => {
       <div
         className={styles.attention}
         style={{
-          display: localData[0]?.stock.length ? "block" : "none",
+          display: localData[0]?.stock_id.length ? "block" : "none",
         }}
       >
         <div className={styles.frame}>
@@ -116,13 +83,13 @@ const Members = () => {
             <br /> 現在のアカウントのカートにその商品を移動しますか？
           </p>
           <ul>
-            {localData[0]?.stock.map((cartItem: Stock) => {
+            {localData[0]?.stock_id.map((cartItem: Stock) => {
               <li>{cartItem?.items.name}</li>;
             })}
           </ul>
           <button
             className={styles.yes_btn}
-            onClick={() => handleCombine(data[0])}
+            onClick={() => handleCombine(data)}
           >
             はい
           </button>
@@ -131,9 +98,9 @@ const Members = () => {
           </button>
         </div>
       </div>
-      <CartItem data={data} handleDelete={handleDelete} />
-      <CartTotal data={data} />
-      <div style={{ display: data[0]?.stock.length ? "block" : "none" }}>
+      <CartItem_members data={data} handleDelete={handleDelete} />
+      <CartTotalMember data={data} />
+      <div style={{ display: data?.length ? "block" : "none" }}>
         <input
           type="button"
           className="idbutton"

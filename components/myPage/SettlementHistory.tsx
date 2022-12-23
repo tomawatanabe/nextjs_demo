@@ -94,8 +94,8 @@ function SettlementHistory() {
                 {sortedTopData.map((order: Order) => {
                   const item = order.orderItemList.map((stock: Stock) => {
                     return (
-                      <span key={stock.item.id}>
-                        ・{stock.item.name} <br />
+                      <span key={stock.items.id}>
+                        ・{stock.items.name} <br />
                       </span>
                     );
                   });
@@ -118,7 +118,7 @@ function SettlementHistory() {
                   const item = order.orderItemList.map((stock: Stock) => {
                     return (
                       <>
-                        ・{stock.item.name}
+                        ・{stock.items.name}
                         <br />
                       </>
                     );

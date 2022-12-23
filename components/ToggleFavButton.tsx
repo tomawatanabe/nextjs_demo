@@ -1,10 +1,10 @@
-import type { Item, Stock } from "../types";
+import type { Stock } from "../types";
 import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR from "swr";
 import styles from "../styles/FavButton.module.css";
 
-const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
+const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
 
   const fetcher = (resource: string) =>
@@ -26,11 +26,19 @@ const ToggleFavButton = ({ stock, item }: { stock: Stock; item: Item }) => {
       return;
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`, {
-      method: "POST",
-    }).then(() => {
-      mutate(`${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`);
-    });
+    const { data, error } = await supabase.from("favorite_items").insert([
+      {
+        itemId: stock.id,
+        cookieName: cookieName,
+        name: stock.items.name,
+        price: stock.price,
+        size: stock.size,
+        imagePath: stock.image1,
+        condition: stock.condition,
+      },
+    ]);
+
+    mutate(`${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`);
   };
 
   const deleteFav = async () => {
