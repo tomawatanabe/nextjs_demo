@@ -3,6 +3,7 @@ import Router from "next/router";
 import { useCookie } from "./useCookie";
 import useSWR from "swr";
 import styles from "../styles/FavButton.module.css";
+import { supabase } from "../lib/supabase-client";
 
 const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const cookieName = useCookie();
@@ -10,10 +11,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
   const fetcher = (resource: string) =>
     fetch(resource).then((res) => res.json());
 
-  const { data, error, mutate } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`,
-    fetcher
-  );
+  const { data, error, mutate } = useSWR(`/api/favorite/${stock.id}`, fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -38,7 +36,7 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       },
     ]);
 
-    mutate(`${process.env.NEXT_PUBLIC_API}/api/getEachFav/${stock.id}`);
+    mutate(`/api/getEachFav/${stock.id}`);
   };
 
   const deleteFav = async () => {
@@ -48,10 +46,15 @@ const ToggleFavButton = ({ stock }: { stock: Stock }) => {
       return;
     }
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`, {
-      method: "DELETE",
-    }).then(() => {
-      mutate(`${process.env.NEXT_PUBLIC_API}/api/favorite/${stock.id}`);
+    fetch(
+      `
+    /api/favorite/${stock.id}`,
+      {
+        method: "DELETE",
+      }
+    ).then(() => {
+      mutate(`
+      /api/favorite/${stock.id}`);
     });
   };
 

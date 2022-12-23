@@ -10,10 +10,7 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
 function UsedItemList() {
   const [flag, setFlag] = useState(false);
 
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/myPage/getUsedItems`,
-    fetcher
-  );
+  const { data, error } = useSWR(`/api/myPage/getUsedItems`, fetcher);
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;

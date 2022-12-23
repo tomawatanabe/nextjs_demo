@@ -24,7 +24,7 @@ export default function Loginpage() {
     };
     setFlag(false);
 
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/getUsers`, {
+    fetch(`/api/getUsers`, {
       method: `POST`,
       headers: {
         "Content-Type": `application/json`,
@@ -89,4 +89,3 @@ export default function Loginpage() {
     </SignCheck>
   );
 }
-

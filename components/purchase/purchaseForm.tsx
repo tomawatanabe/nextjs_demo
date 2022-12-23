@@ -44,9 +44,7 @@ const PurchaseForm = ({
     } else {
       //DBから値を読み込み
       const setUserImfo = async () => {
-        const data = await fetch(
-          `${process.env.NEXT_PUBLIC_API}/api/getUserImfo`
-        )
+        const data = await fetch(`/api/getUserImfo`)
           .then((res) => res.json())
           .catch((err) => {
             setFetchError("Coudn't fetch user imformation.");
