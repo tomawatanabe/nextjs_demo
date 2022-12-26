@@ -114,22 +114,21 @@ function SettlementHistory() {
             </tr>
           </thead>
           <tbody>            
-                {topData?.map((OrderItems) => {
+                {topData?.map((orderItem) => {
                   return (
-                    <tr key={OrderItems.itemId}>
-                      <td>{OrderItems.name}</td>
-                      <td className={styles.td_center}>{OrderItems.shipStatus}</td>
-                      <td className={styles.td_center}>{OrderItems.orderDate}</td>
+                    <tr key={orderItem.itemId}>
+                      <td>{orderItem.name}</td>
+                      <td className={styles.td_center}>{orderItem.order.shipStatus}</td>
+                      <td className={styles.td_center}>{orderItem.orderDate}</td>
                       <td className={styles.td_center}>
-                        ¥{OrderItems.totalPrice.toLocaleString()}                      </td>
-                      <td>{OrderItems.item}</td>
-                    </tr>
+                        ¥{orderItem.price.toLocaleString()}                      </td>
+                      <td>{orderItem.stocks}</td>
+                      </tr>
                   );
                 })}
-              </>
-            ) : (
+              {flag && (
               <>
-                {data.map((order: Order) => {
+                {restData?.map((orderItems) => {
                   const item = order.orderItemList.map((stock: Stock) => {
                     return (
                       <>
