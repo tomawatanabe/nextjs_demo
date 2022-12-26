@@ -12,7 +12,12 @@ const PurchaseForm = ({
   handleChangeB,
   imageData,
   imageDataB,
-}: any) => {
+}: {
+  handleChange: any;
+  handleChangeB: any;
+  imageData: any;
+  imageDataB: any;
+}) => {
   const router = useRouter();
 
   const {
