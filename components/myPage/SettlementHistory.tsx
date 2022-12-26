@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import React, { useState } from "react";
-import { Order, Stock } from "../../types";
+import { OrderItems, Stock } from "../../types";
 import { useCookie } from "../useCookie";
 import styles from "../../styles/MyPage.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,41 +10,69 @@ const fetcher = (resource: RequestInfo | URL, init: RequestInit | undefined) =>
   fetch(resource, init).then((res) => res.json());
 
 function SettlementHistory() {
-  const cookie = useCookie();
   const [flag, setFlag] = useState(true);
 
-  const { data, error } = useSWR(`/api/order?userId=${cookie}`, fetcher);
+  const { data, error } = useSWR(`/api/getOrderItems/orderItems`, fetcher);
   if (error) return <div>購入履歴はありません</div>;
   if (!data) return <div>loading...</div>;
 
-  //idの降順で並び替える
-  const sortedData = data.sort((a: Order, b: Order) => {
-    return a.id < b.id ? 1 : -1;
-  });
+  
 
-  //降順のTop3を抽出した配列を定義
-  const sortTopData = () => {
-    const sortedTopData = [];
-    for (let i = 0; i < 3; i++) {
-      if (typeof sortedData[i]?.id === "undefined") {
+  //Top2を抽出した配列を定義
+  const createTopData = () => {
+    const topData = [];
+    if (data === undefined) {
+      return;
+    }
+
+    for (let i = 0; i < 2; i++) {
+      if (typeof data[i]?.id === "undefined") {
         break;
       }
 
-      sortedTopData.push({
-        id: sortedData[i]?.id,
-        userId: sortedData[i]?.userId,
-        totalPrice: sortedData[i]?.totalPrice,
-        orderDate: sortedData[i]?.orderDate,
-        note: sortedData[i]?.note,
-        paymentMethod: sortedData[i]?.paymaentMethod,
-        shipStatus: sortedData[i]?.shipStatus,
-        orderItemList: sortedData[i]?.orderItemList,
+      topData.push({
+        id: data[i]?.id,
+        userId: data[i]?.user_id,
+        name: data[i]?.stocks.items.name,
+        condition: data[i]?.stocks.condition,
+        imagePath: data[i]?.stocks.image1,
+        size: data[i]?.stocks.size,
+        price: data[i]?.stocks.price,
+        itemId: data[i]?.stocks.item_id,
       });
     }
-    return sortedTopData;
+    return topData;
   };
 
-  const sortedTopData = sortTopData();
+  const topData = createTopData();
+
+    //Top2から漏れた配列を定義
+    const createRestData = () => {
+      const restData = [];
+      if (data === undefined) {
+        return;
+      }
+      for (let i = 2; i < data.length; i++) {
+        if (typeof data[i]?.id === "undefined") {
+          break;
+        }
+  
+        restData.push({
+          id: data[i]?.id,
+          userId: data[i]?.user_id,
+          name: data[i]?.stocks.items.name,
+          condition: data[i]?.stocks.condition,
+          imagePath: data[i]?.stocks.image1,
+          size: data[i]?.stocks.size,
+          price: data[i]?.stocks.price,
+          itemId: data[i]?.stocks.item_id,
+        });
+      }
+      return restData;
+    };
+  
+    const restData = createRestData();
+  
 
   if (!data.length) {
     return (
@@ -85,26 +113,16 @@ function SettlementHistory() {
               <th className={styles.th_name}>購入商品</th>
             </tr>
           </thead>
-          <tbody>
-            {flag ? (
-              <>
-                {sortedTopData.map((order: Order) => {
-                  const item = order.orderItemList.map((stock: Stock) => {
-                    return (
-                      <span key={stock.items.id}>
-                        ・{stock.items.name} <br />
-                      </span>
-                    );
-                  });
-
+          <tbody>            
+                {topData?.map((OrderItems) => {
                   return (
-                    <tr key={order.id}>
-                      <td className={styles.td_center}>{order.shipStatus}</td>
-                      <td className={styles.td_center}>{order.orderDate}</td>
+                    <tr key={OrderItems.itemId}>
+                      <td>{OrderItems.name}</td>
+                      <td className={styles.td_center}>{OrderItems.shipStatus}</td>
+                      <td className={styles.td_center}>{OrderItems.orderDate}</td>
                       <td className={styles.td_center}>
-                        ¥{order.totalPrice.toLocaleString()}
-                      </td>
-                      <td>{item}</td>
+                        ¥{OrderItems.totalPrice.toLocaleString()}                      </td>
+                      <td>{OrderItems.item}</td>
                     </tr>
                   );
                 })}

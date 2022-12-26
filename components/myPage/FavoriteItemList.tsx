@@ -46,7 +46,7 @@ function FavoriteList() {
         imagePath: data[i]?.stocks.image1,
         size: data[i]?.stocks.size,
         price: data[i]?.stocks.price,
-        itemId: data[i]?.stocks.itemID,
+        itemId: data[i]?.stocks.item_id,
       });
     }
     return topData;
@@ -73,7 +73,7 @@ function FavoriteList() {
         imagePath: data[i]?.stocks.image1,
         size: data[i]?.stocks.size,
         price: data[i]?.stocks.price,
-        itemId: data[i]?.stocks.itemID,
+        itemId: data[i]?.stocks.item_id,
       });
     }
     return restData;
