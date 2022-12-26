@@ -14,7 +14,7 @@ const fetcher = async (key: string, page: number, limit: number) => {
   return data;
 };
 
-export default function ItemList(props: any) {
+export default function ItemList() {
   // 1ページの商品数
   const limit = 15;
 
@@ -47,39 +47,54 @@ export default function ItemList(props: any) {
   
   return (
     <>
-      {stocks.map((stock: any) => {
-        return (
-            <div className={styles.itemdiv} key={`image${stock.id}`}>
-              <Link legacyBehavior href={`/${stock.id}`} key={stock.id}>
-                <div className={styles.images} key={stock.items.name}>
-                  <Image
-                    src={`/${stock.image1}`}
-                    alt="item"
-                    width={140}
-                    height={140}
-                    className={styles.image}
-                    key={stock.id}
-                    priority
-                  />
-                </div>
-              </Link>
-              <br />
-              <Link legacyBehavior href={`/${stock.id}`} key={`name${stock.id}`}>
-                {stock.items.name}
-              </Link>
-              <br />￥{stock.price}
-              <br />
-              size {stock.size}
-            </div>
-        );
-      })}
-      <div>
-        <div>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+      <div className={styles.gridBox}>
+        {stocks.map((stock: any) => {
+          return (
+              <div className={styles.itemdiv} key={`image${stock.id}`}>
+                <Link legacyBehavior href={`/${stock.id}`} key={stock.id}>
+                  <div className={styles.images} key={stock.items.name}>
+                    <Image
+                      src={`/${stock.image1}`}
+                      alt="item"
+                      width={140}
+                      height={140}
+                      className={styles.image}
+                      key={stock.id}
+                      priority
+                    />
+                  </div>
+                </Link>
+                <br />
+                <Link legacyBehavior href={`/${stock.id}`} key={`name${stock.id}`}>
+                  {stock.items.name}
+                </Link>
+                <br />￥{stock.price}
+                <br />
+                size {stock.size}
+              </div>
+          );
+        })}
+      </div>
+      <div className={styles.pagingPosition}>
+        <div className={styles.pagingGroup}>
+          <button 
+            onClick={() => setPage(page - 1)} 
+            disabled={page === 1}
+            className={styles.pagingBtn}
+          >
             Prev 
           </button>
-          <PagingList dataTotal={total} handlePage={handlePage} limit={limit} />          
-          <button onClick={() => setPage(page + 1)} disabled={page === Math.ceil(total / limit)} >
+          <PagingList 
+            dataTotal={total} 
+            handlePage={handlePage} 
+            limit={limit}
+            page={page} 
+          />          
+          <button 
+            onClick={() => setPage(page + 1)} 
+            disabled={page === Math.ceil(total / limit)} 
+            className={styles.pagingBtn}
+          >
             Next
           </button>
         </div>

@@ -12,6 +12,88 @@
   height: 12vw;
 }
 
+.gridBox {
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-rows: repeat(5, 1fr); */
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 95%;
+}
+
+@media (max-width: 1100px) {
+  .gridBox {
+    grid-template-columns: repeat(4, 1fr);
+    margin-left: 10px;
+  }
+}
+@media (max-width: 1150px) {
+  .gridBox {
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 10px;
+  }
+}
+@media (max-width: 850px) {
+  .gridBox {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 10px;
+  }
+}
+
+/* ページング機能 */
+.pagingPosition {
+  margin: 30px 0;
+}
+.pagingGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.pagingBtn {
+  border: none;
+  font-size: 18px;
+  color: #000;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.pagingBtn:hover {
+  background-color: rgba(147, 115, 176, .7);
+}
+.pagingBtn:disabled {
+  opacity: 0.5;
+}
+
+/* ページ番号(component/paging/paging) */
+.pagingListBtn {
+  border: none;
+  font-size: 18px;
+  color: #000;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.pagingListBtn:hover {
+  background-color: rgba(147, 115, 176, .7);
+}
+.pagingListBtn:disabled {
+  background-color: #35325c;
+  color: #fff;
+}
+
+.list_flex {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  gap: 40px;
+}
+.list_flex li {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 @media (max-width: 1170px) {
   .images {
     position: relative;
