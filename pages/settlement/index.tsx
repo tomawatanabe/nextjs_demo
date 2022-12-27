@@ -27,7 +27,7 @@ export default function Settlement() {
 
   const userID = useCookie();
 
-  // カート情報を引き出す
+  // カート情報を引き出す.
   const { data: itemList } = useSWR(`/api/getCart/${userID}`, fetcher);
   const { data: orderID } = useSWR(`/api/getOrder/${userID}`, fetcher);
 
