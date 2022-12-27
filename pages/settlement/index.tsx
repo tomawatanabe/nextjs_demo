@@ -73,8 +73,15 @@ export default function Settlement() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
-      });
-      router.replace(`/`);
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      router.replace(`/settlement/close`);
     }
   };
 

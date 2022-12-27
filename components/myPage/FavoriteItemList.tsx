@@ -46,7 +46,7 @@ function FavoriteList() {
         imagePath: data[i]?.stocks.image1,
         size: data[i]?.stocks.size,
         price: data[i]?.stocks.price,
-        itemId: data[i]?.stocks.itemID,
+        item_id: data[i]?.stocks.item_id,
       });
     }
     return topData;
@@ -73,7 +73,7 @@ function FavoriteList() {
         imagePath: data[i]?.stocks.image1,
         size: data[i]?.stocks.size,
         price: data[i]?.stocks.price,
-        itemId: data[i]?.stocks.itemID,
+        item_id: data[i]?.stocks.item_id,
       });
     }
     return restData;
@@ -126,7 +126,7 @@ function FavoriteList() {
           <tbody>
             {topData?.map((favoriteItem) => {
               return (
-                <tr key={favoriteItem.itemId}>
+                <tr key={favoriteItem.item_id}>
                   <td>{favoriteItem.name}</td>
                   <td>¥{favoriteItem.price.toLocaleString()}</td>
                   <td className={styles.td_center}>{favoriteItem.size}</td>
@@ -145,7 +145,7 @@ function FavoriteList() {
                     <a
                       target="_blank"
                       href={`
-                      /${favoriteItem.itemId}`}
+                      /${favoriteItem.item_id}`}
                     >
                       <FontAwesomeIcon
                         className={styles.btn}
@@ -177,7 +177,7 @@ function FavoriteList() {
               <>
                 {restData?.map((favoriteItem) => {
                   return (
-                    <tr key={favoriteItem.itemId}>
+                    <tr key={favoriteItem.item_id}>
                       <td>{favoriteItem.name}</td>
                       <td>¥{favoriteItem.price.toLocaleString()}</td>
                       <td className={styles.td_center}>{favoriteItem.size}</td>
@@ -198,7 +198,7 @@ function FavoriteList() {
                         <a
                           target="_blank"
                           href={`
-                          /${favoriteItem.itemId}`}
+                          /${favoriteItem.item_id}`}
                         >
                           <FontAwesomeIcon
                             className={styles.btn}

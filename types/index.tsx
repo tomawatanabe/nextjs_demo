@@ -46,7 +46,7 @@ export type Users = {
 
 export type FavoriteItem = {
   id: number;
-  itemId: number;
+  item_id: number;
   cookieName: string | undefined;
   name: string;
   price: number;
@@ -62,13 +62,13 @@ export type FavoriteItem2 = {
   price: number;
   name: string;
   id: number;
-  itemId: number;
+  item_id: number;
   cookieName: string | undefined;
 };
 
 export type ShoppingCart = {
   id: number;
-  user_id: number
+  user_id: number;
   stock_id: number[];
   stocks: Stock;
 };

@@ -11,28 +11,13 @@ const fetcher = (resource: string): Promise<any> =>
 export default function Close() {
   const userID = useCookie();
 
-  const { data: orderID, error: orderError } = useSWR(
-    `/api/getOrder/${userID}`,
-    fetcher
-  );
-  const { data: cartItem, error: cartError } = useSWR(
-    `/api/getCart/${userID}`,
-    fetcher
-  );
+  const { data: orderID } = useSWR(`/api/getOrder/${userID}`, fetcher);
+  const { data: cartItem } = useSWR(`/api/getCart/${userID}`, fetcher);
 
-  if (orderError) return <div>loading...</div>;
-  if (!orderID) return <div>loading...</div>;
-
-  if (cartError) return <div>loading...</div>;
-  if (!cartItem) return <div>loading...</div>;
-
-  console.log(orderID, "おーだーあいでぃ");
-
-  const getItems = () => {
+  const getItems = async () => {
     for (const post of cartItem) {
       const postData = [{ order_id: orderID.id, stock_id: post.stock_id }];
-      console.log(postData, "ぽすとでーた");
-      fetch(`/api/getOrderItems/${userID}`, {
+      await fetch(`/api/getOrderItems/${userID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +26,6 @@ export default function Close() {
       });
     }
   };
-  getItems();
 
   // カートの中身を削除する
   const DeletedItems = () => {
@@ -53,7 +37,8 @@ export default function Close() {
 
   setTimeout(() => {
     location.href = "/";
-  }, 3 * 1000);
+    getItems();
+  }, 2 * 1000);
 
   return (
     <div>
