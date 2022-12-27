@@ -39,8 +39,6 @@ const Members = () => {
     /api/getCart/${userID}`,
       fetcher
     );
-    if (error) return <div>failed to load</div>;
-    if (!data) return <div>loading...</div>;
 
     Router.push("/cart");
   };

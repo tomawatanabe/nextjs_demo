@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCookie } from "../../components/useCookie";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import router from "next/router";
 import Link from "next/link";
 import Address from "../../components/settlement/adress";
@@ -10,6 +10,7 @@ import SignIn from "../../components/SignIn";
 import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
 import { ShoppingCart } from "../../types";
+import Router from "next/router";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
@@ -28,6 +29,7 @@ export default function Settlement() {
 
   // カート情報を引き出す
   const { data: itemList } = useSWR(`/api/getCart/${userID}`, fetcher);
+  const { data: orderID } = useSWR(`/api/getOrder/${userID}`, fetcher);
 
   // 合計金額計算
   useEffect(() => {
@@ -81,12 +83,40 @@ export default function Settlement() {
         .catch((error) => {
           console.error("Error:", error);
         });
-      router.replace(`/settlement/close`);
     }
+  };
+
+  const getItems = () => {
+    mutate(`/api/getOrder/${userID}`, fetcher);
+
+    for (const post of itemList) {
+      const postData = {
+        order_id: orderID.id,
+        stock_id: post.stock_id,
+        user_id: userID,
+      };
+      fetch(`/api/getOrderItems/${userID}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+    }
+  };
+
+  // カートの中身を削除する
+  const DeletedItems = () => {
+    fetch(`api/getOrder/${userID}`, {
+      method: "DELETE",
+    });
   };
 
   const handleClick = async (event: { target: any }) => {
     sendOrder();
+    getItems();
+    router.replace(`/settlement/close`);
+    DeletedItems();
   };
 
   return (
