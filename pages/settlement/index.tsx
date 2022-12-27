@@ -19,7 +19,6 @@ export default function Settlement() {
   // 購入手続き完了でDB/orderに送るデータ内容
   const [note, setNote] = useState("");
   const [payment_method, setPayment_method] = useState("");
-  const [payment_method, setPayment_method] = useState("");
   const [shipStatus, setShipStatus] = useState("未発送");
   const [flag, setFlag] = useState(false);
 
