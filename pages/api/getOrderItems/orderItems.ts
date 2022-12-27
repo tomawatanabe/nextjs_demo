@@ -7,7 +7,7 @@ const getOrderItems = async (req: NextApiRequest, res: NextApiResponse) => {
         case "GET":
             const { data: getData, error: getError } = await supabase
                 .from("order_items")
-                .select("id,order_id,user_id,stocks(item_id,image1,size,price,condition,items(name))")
+                .select("id,orders(ship_status,payment_method,order_date,total_price),user_id,stocks(item_id,image1,size,price,condition,items(name))")
                 .eq("user_id", req.cookies.userID)
                 .order("id", { ascending: false });
 
@@ -18,22 +18,3 @@ const getOrderItems = async (req: NextApiRequest, res: NextApiResponse) => {
 
 
 export default getOrderItems;
-
-
-
-// const { data, error } = await supabase
-// .from('order_items')
-// .select(`
-//     order_id(
-//         order_date,
-//         payment_method,
-//         ship_status,
-//         total_price,
-//     ),
-//     stock_id(
-//         image1,
-//         items(*)
-//     )
-// `)
-// .eq("user_id", req.cookies.userID);
-// .order('name', { foreignTable: 'orders', ascending: false })

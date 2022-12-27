@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import React, { useState } from "react";
+import Image from "next/image";
 import { OrderItems, Stock } from "../../types";
 import { useCookie } from "../useCookie";
 import styles from "../../styles/MyPage.module.css";
@@ -37,8 +38,7 @@ function SettlementHistory() {
         shipStatus: data[i]?.orders.ship_status,
         orderDate: data[i]?.orders.order_date,
         imagePath: data[i]?.stocks.image1,
-        size: data[i]?.stocks.size,
-        price: data[i]?.stocks.price,
+        totalPrice: data[i]?.orders.total_price,
         itemId: data[i]?.stocks.item_id,
         stocks: data[i]?.stocks,
       });
@@ -67,7 +67,6 @@ function SettlementHistory() {
         orderDate: data[i]?.orders.order_date,
         imagePath: data[i]?.stocks.image1,
         totalPrice: data[i]?.orders.total_price,
-        price: data[i]?.stocks.price,
         itemId: data[i]?.stocks.item_id,
         stocks: data[i]?.stocks,
       });
@@ -116,51 +115,53 @@ function SettlementHistory() {
               <th>購入日</th>
               <th>画像</th>
               <th>発送状況</th>
-              <th className={styles.th_name}>購入商品</th>
             </tr>
           </thead>
           <tbody>
             {topData?.map((orderItems) => {
-              const item = orderItems.stocks.map((stock: Stock) => {
-                return (
-                  <>
-                    ・{stock.items.name}
-                    <br />
-                  </>
-                );
-              });
               return (
                 <tr key={orderItems.itemId}>
                   <td>{orderItems.name}</td>
-                  <td className={styles.td_center}>{orderItems.shipStatus}</td>
-                  <td className={styles.td_center}>{orderItems.orderDate}</td>
                   <td className={styles.td_center}>
-                    ¥{orderItems.price.toLocaleString()}    
+                    ¥{orderItems.totalPrice.toLocaleString()}
                   </td>
-                  <td>{orderItems.stocks}</td>
+                  <td className={styles.td_center}>{orderItems.orderDate}</td>
+                  <td>
+                    <Image
+                      src={`/${orderItems.imagePath}`}
+                      height={120}
+                      width={120}
+                      alt={orderItems.name}
+                      priority
+                    />
+                    <br />
+                  </td>
+                  <td className={styles.td_center}>{orderItems.shipStatus}</td>
                 </tr>
               );
             })}
             {flag && (
               <>
-                {restData?.map((orderItems) => { 
-                  const item = orderItems.stocks.map((stock: Stock) => {
-                    return (
-                      <>
-                        ・{stock.items.name}
-                        <br />
-                      </>
-                    );
-                  });
+                {restData?.map((orderItems) => {
 
                   return (
-                    <tr key={orderItems.id}>
-                      <td className={styles.td_center}>{orderItems.shipStatus}</td>
-                      <td className={styles.td_center}>{orderItems.orderDate}</td>
+                    <tr key={orderItems.itemId}>
+                      <td>{orderItems.name}</td>
                       <td className={styles.td_center}>
                         ¥{orderItems.totalPrice.toLocaleString()}
                       </td>
-                      <td>{item}</td>
+                      <td className={styles.td_center}>{orderItems.orderDate}</td>
+                      <td>
+                        <Image
+                          src={`/${orderItems.imagePath}`}
+                          height={120}
+                          width={120}
+                          alt={orderItems.name}
+                          priority
+                        />
+                        <br />
+                      </td>
+                      <td className={styles.td_center}>{orderItems.shipStatus}</td>
                     </tr>
                   );
                 })}
