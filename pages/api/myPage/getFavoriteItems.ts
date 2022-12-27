@@ -4,7 +4,7 @@ import { supabase } from "../../../lib/supabase-client";
 const getUsers = async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase
     .from("favorite_items")
-    .select("id,user_id,stocks(itemID,image1,size,price,condition,items(name))")
+    .select("id,user_id,stocks(item_id,image1,size,price,condition,items(name))")
     .eq("user_id", req.cookies.userID)
     .order("id", { ascending: false });
 

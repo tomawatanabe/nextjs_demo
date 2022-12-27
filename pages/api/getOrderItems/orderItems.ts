@@ -7,7 +7,7 @@ const getOrderItems = async (req: NextApiRequest, res: NextApiResponse) => {
         case "GET":
             const { data: getData, error: getError } = await supabase
                 .from("order_items")
-                .select("id,order_id,user_id,stocks(itemID,image1,size,price,condition,items(name))")
+                .select("id,order_id,user_id,stocks(item_id,image1,size,price,condition,items(name))")
                 .eq("user_id", req.cookies.userID)
                 .order("id", { ascending: false });
 
