@@ -12,7 +12,11 @@
   justify-content: center;
   align-items: center;
 }
-
+.main_product {
+  min-height: 100vh;
+  padding: 1rem 0;
+  flex: 1;
+}
 .footer {
   display: flex;
   flex: 1;
@@ -107,6 +111,15 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+/* /productsで使用する */
+.gotoTop {
+  text-align: center;
+  margin: 30px 0;
+}
+.gotoTop a{
+  border-bottom: #000 1px solid;
 }
 
 @media (prefers-color-scheme: dark) {
