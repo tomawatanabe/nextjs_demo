@@ -13,7 +13,7 @@ export type Item = {
 
 export type Stock = {
   id: number;
-  itemID: number;
+  item_id: number;
   price: number;
   size: number;
   image1: string;
@@ -115,4 +115,3 @@ export type TopUsedItems = {
   itemStatus: "完了" | "買取処理中";
   id: number;
 };
-

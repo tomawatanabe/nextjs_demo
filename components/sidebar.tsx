@@ -14,6 +14,7 @@ export default function Sidebar(props: any) {
           height={150}
           width={210}
           className={styles.imagefile}
+          priority
         />
       </div>
 

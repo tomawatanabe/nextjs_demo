@@ -21,12 +21,7 @@ const Members = () => {
   }, []);
 
   // OK サーバ上のデータを取得
-  let { data, error } = useSWR(
-    `
-    /api/getCart/${userID}`,
-    fetcher
-    // ユーザのカートのデータを取得
-  );
+  let { data, error } = useSWR(`/api/getCart/${userID}`, fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
@@ -52,7 +47,6 @@ const Members = () => {
 
   // ログイン前のカート内商品をログイン後のカートに移動
   const handleCombine = (cart: ShoppingCart[]) => {
-    console.log(cart);
     for (const localItem of localData[0]?.stock_id) {
       if (
         cart?.some((serverItem: any) => serverItem.stock_id === localItem.id)

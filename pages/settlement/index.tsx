@@ -9,75 +9,57 @@ import Header from "../../components/Header";
 import SignIn from "../../components/SignIn";
 import Footer from "../../components/Footer";
 import styles from "/styles/Settlement.module.css";
-import { Item, Stock } from "../../types";
-import { supabase } from "../../lib/supabase-client";
-import Stocks from "../api/stocks";
-import ShoppingCart from "../cart";
+import { ShoppingCart } from "../../types";
 
 const fetcher = (resource: string): Promise<any> =>
   fetch(resource).then((res) => res.json());
 
 export default function Settlement() {
   // 購入手続き完了でDB/orderに送るデータ内容
-
   const [note, setNote] = useState("");
   const [payment_method, setPayment_method] = useState("");
   const [shipStatus, setShipStatus] = useState("未発送");
   const [flag, setFlag] = useState(false);
 
-  const userId = useCookie();
-
-  // カート情報を引き出す
-
-  const { data, error } = useSWR(
-    `${process.env.NEXT_PUBLIC_API}/api/getCart/${userId}`,
-    fetcher
-  );
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div> loading </div>;
-  const ItemList = data;
-
-  console.log(data, "データ");
-  // orderItemListに送る値を取得する
-
-  const stockDelete = { deleted: true };
-  for (const patchStock of ItemList.stocks) {
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/getStock/${userId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(stockDelete),
-    });
-  }
-  // = ItemList?.map( fetch (shoppingCart: ShoppingCart) => shoppingCart.stocks.deleted = true);
-
-  // 合計金額計算
-  const initial: number = ItemList?.map((stock: Stock) => stock.price).reduce(
-    (prev: number, curr: number) => prev + curr,
-    0
-  );
-
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    setSubTotal(initial);
-  });
-  useEffect(() => {
-    setTotal(initial);
-  }, [cart]);
+  const userID = useCookie();
 
-  if (error) return <div>failed to load</div>;
-  if (!cart) return <div>loading...</div>;
+  // カート情報を引き出す
+  const { data: itemList } = useSWR(`/api/getCart/${userID}`, fetcher);
 
-  const getdata = {
-    note: note,
-    payment_method: payment_method,
-    user_id: userId,
-    ship_status: shipStatus,
-    total_price: total,
-  };
+  // 合計金額計算
+  useEffect(() => {
+    setSubTotal(
+      itemList
+        ?.map((stock: any) => stock.stocks.price)
+        .reduce((prev: number, curr: number) => prev + curr, 0)
+    );
+  }, [itemList]);
+
+  // 購入した商品の在庫を削除する
+  // const stockDelete = { deleted: true };
+
+  // for (const patchStock of ItemList) {
+  //   fetch(`/api/getStock/${userId}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(stockDelete),
+  //   });
+  // }
+
+  const orderData = [
+    {
+      note: note,
+      payment_method: payment_method,
+      user_id: userID,
+      ship_status: shipStatus,
+      total_price: total,
+    },
+  ];
 
   // 購入手続きをDBにpostする
   const sendOrder = () => {
@@ -85,43 +67,19 @@ export default function Settlement() {
       setFlag(true);
       return;
     } else {
-      fetch(`${process.env.NEXT_PUBLIC_API}/api/getOrder/${userId}`, {
+      fetch(`/api/getOrder/${userID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(getdata),
+        body: JSON.stringify(orderData),
       });
+      router.replace(`/`);
     }
-  };
-
-  // カートの中身を削除する
-  const DeletedItems = () => {
-    const deletedList: string[] = [];
-
-    fetch(`${process.env.NEXT_PUBLIC_API}/api/shoppingCart/${userId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        stock: deletedList,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {})
-      .catch((error) => {
-        console.error("Error:", error);
-      });
   };
 
   const handleClick = async (event: { target: any }) => {
     sendOrder();
-    DeletedItems();
-    if (error) {
-      console.log("error", error);
-      return;
-    }
   };
 
   return (
@@ -143,22 +101,24 @@ export default function Settlement() {
               </tr>
             </thead>
             <tbody>
-              {cart?.stock?.map((Item: Stock) => {
+              {itemList?.map((Item: ShoppingCart) => {
                 return (
                   <tr key={Item.id}>
-                    <td>{Item.items.name}</td>
-                    <td>{Item.amount}</td>
-                    <td>¥{Item.price}</td>
+                    <td>{Item.stocks.items.name}</td>
+                    <td>{Item.stocks.amount}</td>
+                    <td>¥{Item.stocks.price}</td>
                     <td>
                       <Image
-                        src={`/${Item.image1}`}
+                        src={`/${Item.stocks.image1}`}
                         height={150}
                         width={150}
-                        alt={Item.items.name}
+                        alt={Item.stocks.items.name}
                       />
                       <br />
                     </td>
-                    <td className={styles.td_center}>{Item.condition}</td>
+                    <td className={styles.td_center}>
+                      {Item.stocks.condition}
+                    </td>
                     <td></td>
                   </tr>
                 );
@@ -241,7 +201,7 @@ export default function Settlement() {
                 required
                 onClick={() => {
                   setPayment_method("credit");
-                  setTotal(initial + 500);
+                  setTotal(subTotal + 500);
                 }}
               />
               <label htmlFor="cashOnDelivery">
@@ -256,7 +216,7 @@ export default function Settlement() {
                 value="cashOnDelivery"
                 onClick={() => {
                   setPayment_method("cashOnDelivery");
-                  setTotal(initial + 830);
+                  setTotal(subTotal + 830);
                 }}
               />
             </div>
