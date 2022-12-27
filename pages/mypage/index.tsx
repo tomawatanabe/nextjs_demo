@@ -27,7 +27,7 @@ const MyPage = () => {
             </div>
           </div>
           <hr />
-          <div>{/* <SettlementHistory /> */}</div>
+          {/* <div><SettlementHistory /></div> */}
           <hr />
           <div>
             <FavoriteItemList />

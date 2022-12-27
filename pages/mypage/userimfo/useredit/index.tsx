@@ -5,7 +5,6 @@ import Link from "next/link";
 import Header from "../../../../components/Header";
 import Footer from "../../../../components/Footer";
 import { useCookie } from "../../../../components/useCookie";
-import { supabase } from "../../../../lib/supabase-client";
 
 type FetchError = string | null;
 
@@ -89,29 +88,26 @@ const UserImfo = () => {
   const onSubmit = async (e: any) => {
     const values = getValues();
 
-    const { error } = await supabase
-      .from("users")
-      .update([
-        {
-          last_name: values?.lastName,
-          first_name: values?.firstName,
-          kana_last_name: values?.kanaLastName,
-          kana_first_name: values?.kanaFirstName,
-          phone: values?.phoneNumber,
-          email: values?.email,
-          zip_code: values?.zipCode,
-          prefecture: values?.prefecture,
-          city: values?.city,
-          address: values?.address,
-          building: values?.building,
-          password: values?.password,
-        },
-      ])
-      .eq("id", cookieName);
-
-    if (error) {
-      console.log(error);
-    }
+    fetch("/api/userImfo", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        last_name: values.lastName,
+        first_name: values.firstName,
+        kana_last_name: values.kanaLastName,
+        kana_first_name: values.kanaFirstName,
+        phone: values.phone,
+        email: values.email,
+        zip_code: values.zipCode,
+        prefecture: values.prefecture,
+        city: values.city,
+        address: values.address,
+        building: values.building,
+        password: values.password,
+      }),
+    });
 
     alert("会員情報が更新されました");
   };
@@ -199,7 +195,7 @@ const UserImfo = () => {
               <input
                 id="phone"
                 placeholder="0312345678"
-                {...register("phoneNumber", {
+                {...register("phone", {
                   required: "必須項目です。",
                   pattern: {
                     value: /^0\d{9,10}$/,
@@ -207,9 +203,9 @@ const UserImfo = () => {
                   },
                 })}
               />
-              {errors.phoneNumber?.message && (
+              {errors.phone?.message && (
                 <span className="formError">
-                  {errors.phoneNumber?.message as string}
+                  {errors.phone?.message as string}
                 </span>
               )}
             </div>
