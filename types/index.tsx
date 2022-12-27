@@ -80,8 +80,15 @@ export type Order = {
   orderDate: string;
   note: string;
   paymentMethod: string;
-  orderItemList: any[];
   shipStatus: string;
+};
+
+export type OrderItems = {
+  id: number;
+  stockId: number[];
+  orderId: number[];
+  stocks: Stock;
+  order: Order
 };
 
 export type UsedItems = {

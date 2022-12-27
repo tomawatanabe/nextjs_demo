@@ -19,6 +19,7 @@ export default function Settlement() {
   // 購入手続き完了でDB/orderに送るデータ内容
   const [note, setNote] = useState("");
   const [payment_method, setPayment_method] = useState("");
+  const [payment_method, setPayment_method] = useState("");
   const [shipStatus, setShipStatus] = useState("未発送");
   const [flag, setFlag] = useState(false);
 
@@ -206,10 +207,7 @@ export default function Settlement() {
                       </th>
                       <td>￥500</td>
                     </tr>
-                    <tr className={styles.total_table_list}>
-                      <th>代引き手数料:</th>
-                      <td>￥330</td>
-                    </tr>
+
                     <tr className={styles.total_table_last_list}>
                       <th>
                         合計{"("}税込{")"}:

@@ -7,11 +7,10 @@ import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import PageTop from "../components/pageTop";
 import Search from "../components/Search";
+import Router from "next/router";
 
 export default function Home() {
   // 検索機能
-  const [items, setItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState([]);
   const [searchValue, setSearchValue] = useState<string | undefined>("");
 
   const handleSearch = (e: any) => {
@@ -20,27 +19,18 @@ export default function Home() {
 
   const handleClick = (e: any) => {
     e.preventDefault();
-    setData(initializedData);
-    setSearchQuery(
-      items.filter((stock: any) =>
-        stock.items.name.toLowerCase().includes(searchValue?.toLowerCase())
-      )
-    );
+    Router.push({
+      pathname: "/products",
+      query: {keyword: searchValue}
+    });
   };
 
-  useEffect(() => {
-    fetch(`/api/getStock`)
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data);
-        setSearchQuery(data);
-      });
-  }, []);
+  // カテゴリ絞り込み機能
+  
   const initializedData = {
     notifyFrequency: "",
   };
 
-  // カテゴリ絞り込み機能
 
   const [data, setData] = useState(initializedData);
 
@@ -51,11 +41,12 @@ export default function Home() {
     setData(newData);
 
     if (e.target.checked) {
-      setSearchQuery(
-        items.filter((stock: any) => e.target.value === stock.items.series)
-      );
-    } else {
-      setSearchQuery(items);
+      Router.push({
+        pathname: "/series",
+        query: {seriesName: newValue}
+      })
+    }else{
+      Router.push("/");
     }
   };
 
