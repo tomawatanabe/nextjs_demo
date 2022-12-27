@@ -73,8 +73,10 @@ function SettlementHistory() {
     }
     return restData;
   };
-
+  
   const restData = createRestData();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
 
 
   if (!data.length) {
