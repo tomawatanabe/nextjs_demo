@@ -5,12 +5,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FavoriteItemList from "../../components/myPage/FavoriteItemList";
 import UsedItemList from "../../components/myPage/UsedItemList";
-// import SettlementHistory from "../../components/myPage/SettlementHistory";
+import SettlementHistory from "../../components/myPage/SettlementHistory";
 import styles from "../../styles/MyPage.module.css";
 import PageTop from "../../components/pageTop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import SettlementHistory from "../../components/myPage/SettlementHistory";
 
 const MyPage = () => {
   return (

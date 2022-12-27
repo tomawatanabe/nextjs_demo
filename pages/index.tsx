@@ -83,9 +83,7 @@ export default function Home() {
                 handleFrequencyChange={handleFrequencyChange}
               />
             </div>
-            <div className={styles.gridBox}>
-              <ItemList searchQuery={searchQuery} />
-            </div>
+            <ItemList />
           </div>
         </div>
       </main>

@@ -3,82 +3,79 @@ import { useFormContext } from "react-hook-form";
 import Image from "next/image";
 import { useCookie } from "../useCookie";
 import styles from "../../styles/purchase.module.css";
-import { supabase } from "../../lib/supabase-client";
+import { useRouter } from "next/router";
 
 const PurchaseConfirmation = ({ imageData, imageDataB }: any) => {
   const cookieName = useCookie();
-
+  const router = useRouter();
   const { getValues } = useFormContext();
   const values = getValues();
 
   const handleSubmitUsedItemValue = async (e: any) => {
     e.preventDefault();
 
-    const values = getValues();
     const date = new Date();
     const today: string = date.toLocaleDateString();
 
-    const { data, error } = await supabase.from("used_items").insert([
-      {
-        receptionDate: today,
-        cookieName: cookieName,
-        sellerLastName: values.lastName,
-        sellerFirstName: values.firstName,
-        sellerKanaLastName: values.kanaFirstName,
-        sellerKanaFirstName: values.kanaLastName,
-        sellerPhoneNumber: values.phone,
-        sellerEmail: values.email,
-        sellerZipCode: values.zipCode,
-        sellerPrefecture: values.prefecture,
-        sellerCity: values.city,
-        sellerAddress: values.address,
-        sellerBuilding: values.building,
-        itemName: values.itemName,
-        itemCode: values.itemCode,
-        itemSize: values.itemSize,
-        itemColor: values.itemColor,
-        itemNote: values.itemNote,
-        itemStatus: "受付済",
+    const values = getValues();
+
+    fetch("/api/usedItems", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    ]);
+      body: JSON.stringify({
+        reception_date: today,
+        user_id: cookieName,
+        seller_last_name: values.lastName,
+        seller_first_name: values.firstName,
+        seller_kana_last_name: values.kanaFirstName,
+        seller_kana_first_name: values.kanaLastName,
+        seller_phone: values.phone,
+        seller_email: values.email,
+        seller_zip_code: values.zipCode,
+        seller_prefecture: values.prefecture,
+        seller_city: values.city,
+        seller_address: values.address,
+        seller_building: values.building,
+        item_name: values.itemName,
+        item_code: values.itemCode,
+        item_size: values.itemSize,
+        item_color: values.itemColor,
+        item_note: values.itemNote,
+        status: "受付済",
+      }),
+    });
 
-    if (error) {
-      console.log(error);
+    if (values.itemNameB) {
+      fetch(`${process.env.NEXT_PUBLIC_API}/api/usedItems`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          reception_date: today,
+          user_id: cookieName,
+          seller_last_name: values.lastName,
+          seller_first_name: values.firstName,
+          seller_kana_last_name: values.kanaFirstName,
+          seller_kana_first_name: values.kanaLastName,
+          seller_phone: values.phone,
+          seller_email: values.email,
+          seller_zip_code: values.zipCode,
+          seller_prefecture: values.prefecture,
+          seller_city: values.city,
+          seller_address: values.address,
+          seller_building: values.building,
+          item_name: values.itemNameB,
+          item_code: values.itemCodeB,
+          item_size: values.itemSizeB,
+          item_color: values.itemColorB,
+          item_note: values.itemNoteB,
+        }),
+      });
     }
-
-    if (data) {
-      console.log(data);
-    }
-    
-    //   if (values.itemNameB) {
-    //     fetch(`${process.env. NEXT_PUBLIC_API}/api/usedItems`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         receptionDate: today,
-    //         cookieName: cookieName,
-    //         sellerLastName: values.lastName,
-    //         sellerFirstName: values.firstName,
-    //         sellerKanaLastName: values.kanaFirstName,
-    //         sellerKanaFirstName: values.kanaLastName,
-    //         sellerPhoneNumber: values.phone,
-    //         sellerEmail: values.email,
-    //         sellerZipCode: values.zipCode,
-    //         sellerPrefecture: values.prefecture,
-    //         sellerCity: values.city,
-    //         sellerAddress: values.address,
-    //         sellerBuilding: values.building,
-    //         itemName: values.itemNameB,
-    //         itemCode: values.itemCodeB,
-    //         itemSize: values.itemSizeB,
-    //         itemColor: values.itemColorB,
-    //         itemNote: values.itemNoteB,
-    //         itemStatus: "受付済",
-    //       }),
-    //     });
-    //   }
+    router.push("/");
   };
 
   return (

@@ -7,15 +7,9 @@ const getUserImfo = async (req: NextApiRequest, res: NextApiResponse) => {
   const { data, error } = await supabase
     .from("users")
     .select("*")
-    // .eq("id", parseInt(cookieInt))
-    // .eq("id", 1)
     .eq("id", cookieNumber)
     .limit(1)
     .single();
-
-  // console.log("req.cookies", req.cookies);
-  // console.log("Id", parseInt(cookieNumber));
-  console.log("req.cookies", req.cookies);
 
   // 401 Unauthorized、認証が必要
   if (error) res.status(401).json({ error: error.message });

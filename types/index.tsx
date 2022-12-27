@@ -67,8 +67,8 @@ export type FavoriteItem2 = {
 };
 
 export type ShoppingCart = {
-  id: number; 
-  userId: number;
+  id: number;
+  user_id: number
   stock_id: number[];
   stocks: Stock;
 };
