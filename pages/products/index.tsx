@@ -134,8 +134,6 @@ const Result = ({products}: {products: Stock[]}) => {
 
 export const getServerSideProps = async (context: any) => {
     const keyword = context.query.keyword
-    console.log(keyword);
-
     
     let { data: products, error } = await supabase.from("stocks").select(`*,items(*)`);
 
@@ -143,8 +141,6 @@ export const getServerSideProps = async (context: any) => {
     if(error) {
         throw Error;
     }
-
-    console.log(result);
 
     return {
         props: {
