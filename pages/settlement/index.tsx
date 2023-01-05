@@ -40,19 +40,6 @@ export default function Settlement() {
     );
   }, [itemList]);
 
-  // 購入した商品の在庫を削除する
-  // const stockDelete = { deleted: true };
-
-  // for (const patchStock of ItemList) {
-  //   fetch(`/api/getStock/${userId}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(stockDelete),
-  //   });
-  // }
-
   const orderData = [
     {
       note: note,
@@ -88,7 +75,7 @@ export default function Settlement() {
 
   const getItems = () => {
     mutate(`/api/getOrder/${userID}`, fetcher);
-
+    //追加したorderのIDを取得してorderItemsにPOSTする
     for (const post of itemList) {
       const postData = {
         order_id: orderID.id,
@@ -101,6 +88,11 @@ export default function Settlement() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(postData),
+      });
+
+      // stocksの在庫をなくす(deletedをtrueに変える)
+      fetch(`/api/getStocks/${post.stock_id}`, {
+        method: "PATCH",
       });
     }
   };
