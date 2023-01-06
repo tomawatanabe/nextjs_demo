@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import styles from "../../styles/LogInPage.module.css";
 import PageTop from "../../components/pageTop";
 import SignCheck from "../../components/signUp/Signcheck";
+import Router from "next/router";
 
 export default function Loginpage() {
   const [id, setId] = useState("");
@@ -37,6 +38,10 @@ export default function Loginpage() {
       .then((data) => {
         if (data.datastatus === 404) {
           setFlag(true);
+        } else if (data.userID === 9999) {
+          Router.push("/adminPage");
+          document.cookie = `userID=${data.userID}; Path=/; `;
+          document.cookie = `userName=${encodeURI(data.userName)};  Path=/;`;
         } else {
           history.back();
           document.cookie = `userID=${data.userID}; Path=/; `;
